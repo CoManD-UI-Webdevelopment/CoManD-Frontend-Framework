@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/04/11
+framework.css - last update: 2024/04/15
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -1296,7 +1296,7 @@ form [class*="grid-container"] {
 
 /* begin fieldsets */
 fieldset {
-    background: var(--fieldset-background);
+    background: var(--fieldset-background-color);
     border: var(--fieldset-border);
     border-radius: var(--fieldset-border-radius);
     padding: var(--fieldset-padding);
@@ -1516,7 +1516,7 @@ label, .label {
         color: var(--status-color);
     }
 
-    &:has(:user-invalid) :is(.label-text :is(a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
+    &:has(:user-invalid) :is(.label-text :is(span,a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
         --status-color: var(--error-color);
     }
 
@@ -1631,7 +1631,7 @@ label, .label {
 
         &[class*="icon-"], & [class*="icon-"] {
             & + :is(input, select, textarea, .input) {
-                padding-left: calc(var(--default-padding) * 3);
+                padding-left: calc(var(--default-padding) * 2);
             }
 
             & + input:focus {

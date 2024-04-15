@@ -6,8 +6,7 @@
                     <div class="company-logo">
                         <a href="./" title="Tooltip">
                             <picture>
-                                <source srcset="./assets/images/logos/logo-darkmode.svg"
-                                        media="(prefers-color-scheme: dark)">
+                                <source srcset="./assets/images/logos/logo-darkmode.svg" media="(prefers-color-scheme: dark)">
                                 <img src="./assets/images/logos/logo.svg" alt="Company Logo">
                             </picture>
                         </a>
@@ -224,14 +223,14 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- begin comand-versions -->
-                        <dl class="box-footer comand-versions">
-                            <dt>Frontend-Framework Version:</dt>
-                            <dd>{{ packageJson.version }}</dd>
-                        </dl>
-                        <!-- end comand-versions -->
                     </div>
                     <!-- end table of contents -->
+                    <!-- begin comand-versions -->
+                    <dl class="box-footer comand-versions">
+                        <dt>Frontend-Framework Version:</dt>
+                        <dd>{{ packageJson.version }}</dd>
+                    </dl>
+                    <!-- end comand-versions -->
                 </div>
                 <div v-else>
                     <div class="closed-sidebar">
@@ -1250,8 +1249,7 @@
                                             name="textarea-with-native-validation"
                                             id="textarea-with-native-validation"
                                             required="required"
-                                            placeholder="Placeholdertext for textarea with native validation">
-                                        </textarea>
+                                            placeholder="Placeholdertext for textarea with native validation"></textarea>
                                     </label>
                                 </div>
                             </fieldset>

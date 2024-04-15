@@ -161,7 +161,7 @@
     }
 
     .inner-sidebar-wrapper {
-        padding: var(--default-padding) 0;
+        padding: var(--default-padding) 0 0 0;
     }
 
     .site-footer footer {
@@ -270,7 +270,7 @@
         }
 
         hr {
-            margin: calc(var(--default-margin) / 3);
+            margin: calc(var(--default-margin) / 2);
             border-color: var(--default-border-color);
 
             & + * {
@@ -292,5 +292,9 @@
 
     h2.headline-demopage {
         text-shadow: var(--default-text-shadow);
+    }
+
+    [class*="copyright-information"] {
+        background: var(--copyright-information-background);
     }
 }

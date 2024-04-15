@@ -16,6 +16,7 @@ html {
     --tertiary-color-saturation: 72%; /* tertiary-color-saturation */
     --tertiary-color-lightness: 65%; /* tertiary-color-lightness */
     --default-text-color: #555;
+    --headline-text-color: #734F87;
     --default-border-radius: .5rem;
     --text-shadow-color: #666;
     --form-element-border-radius: .5rem;
@@ -28,14 +29,15 @@ html {
     --default-font-size: 1.6rem;
     --button-background-color: red;
     --box-footer-background-color: var(--pure-white);
-}
-
-#template-casual {
+    --box-header-background-color: var(--primary-background-gradient);
+    --fieldset-background-color: linear-gradient(to right, rgba(115,79,135,0.1) 0%,hsla(178,98%,33%,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     --default-background-gradient: linear-gradient(to top, #efefef 0%, var(--pure-white) 60%);
     --primary-background-gradient: linear-gradient(to top, var(--primary-color) 0%, var(--tertiary-color) 100%);
     --box-background-color: var(--default-background-gradient);
-    --box-header-background-color: var(--primary-background-gradient);
-    --fieldset-background-color: var(--primary-background-gradient);
+    --copyright-information-background: rgba(115,79,135,1)
+}
+
+#template-casual {
 }
 
 body {
