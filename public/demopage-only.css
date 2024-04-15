@@ -62,6 +62,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: var(--default-gap);
             text-align: center;
             color: #fff;
             padding: .5rem;
@@ -270,7 +271,7 @@
 
         hr {
             margin: calc(var(--default-margin) / 2);
-            border-color: var(--border-color);
+            border-color: var(--default-border-color);
 
             & + * {
                 margin: 0;
