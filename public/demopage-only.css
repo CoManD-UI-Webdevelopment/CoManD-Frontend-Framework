@@ -270,7 +270,7 @@
         }
 
         hr {
-            margin: calc(var(--default-margin) / 3);
+            margin: calc(var(--default-margin) / 2);
             border-color: var(--default-border-color);
 
             & + * {
