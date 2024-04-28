@@ -34,7 +34,7 @@ html {
     --default-background-gradient: linear-gradient(to top, #efefef 0%, var(--pure-white) 60%);
     --primary-background-gradient: linear-gradient(to top, var(--primary-color) 0%, var(--tertiary-color) 100%);
     --box-background-color: var(--default-background-gradient);
-    --copyright-information-background: rgba(115,79,135,1)
+    --copyright-information-background: linear-gradient(to right, rgba(115,79,135,1) 0%,hsla(178,98%,33%,1) 100%);
 }
 
 #template-casual {
