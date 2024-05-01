@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/04/15
+framework.css - last update: 2024/04/29
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -311,8 +311,8 @@ html {
     --box-border: var(--default-border); /* border for .box */
     --box-border-radius: var(--default-border-radius); /* border-radius for .box */
     --box-header-text-color: var(--pure-white); /* text-color for box-header */
-    --box-body-text-color: var(--default-text-color); /* text-color for box-header */
-    --box-footer-text-color: var(--default-text-color); /* text-color for box-header */
+    --box-body-text-color: var(--color-scheme-text-color); /* text-color for box-header */
+    --box-footer-text-color: var(--color-scheme-text-color); /* text-color for box-header */
     --box-shadow-color: var(--dark-gray); /* box-shadow-color */
     /* END BOXES ------------------------------------------------------------------------------------------ */
 
@@ -414,7 +414,7 @@ html {
 
     /* active table-cells */
     --active-table-cell-background: var(--light-gray); /* background(-color) for active table-cells */
-    --active-table-cell-text-color: var(--default-text-color); /* text-color for active/highlighted table-cells */
+    --active-table-cell-text-color: var(--color-scheme-text-color); /* text-color for active/highlighted table-cells */
     --active-table-cell-background-highlighted: var(--primary-color); /* highlighted background(-color) for active table-cells */
     --active-table-cell-text-color-highlighted: var(--color-scheme-background); /* highlighted text-color for active table-cells */
     /* END TABLES ------------------------------------------------------------------------------------------ */
@@ -730,6 +730,20 @@ img.grayscale {
 
 .word-break-keep-all {
     word-break: keep-all;
+}
+
+.use-icon-as-background[class*="icon-"] {
+    min-width: 0;
+    min-height: 0;
+    background: none !important;
+    border: 0 !important;
+    padding: 0;
+
+    &::before {
+        color: var(--secondary-color);
+        font-size: 4rem;
+    }
+
 }
 
 /* end basic selectors and classes ------------------------------------------------------------------------------------------ */
@@ -1631,7 +1645,7 @@ label, .label {
 
         &[class*="icon-"], & [class*="icon-"] {
             & + :is(input, select, textarea, .input) {
-                padding-left: calc(var(--default-padding) * 2);
+                padding-left: calc(var(--default-padding) * 3);
             }
 
             & + input:focus {
@@ -2576,12 +2590,7 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: var(--headline-text-transform);
     line-height: var(--headline-line-height);
 
-    &.has-icon, :has(span[class*="icon-"]) {
-        display: flex;
-        align-items: center;
-    }
-
-    & > a {
+    & > * {
         line-height: var(--headline-line-height);
     }
 }
@@ -2721,7 +2730,7 @@ span + [class*="icon-"] {
 }
 
 :where(h1, h2, h3, h4, h5, h6) [class*="icon-"] + span {
-    margin-left: var(--default-margin);
+    margin-left: calc(var(--default-margin) / 2);
 }
 
 /* end icons ------------------------------------------------------------------------------------------ */
@@ -2827,6 +2836,10 @@ dd {
                     > li {
                         border: 0;
                         background: inherit;
+
+                        &:first-child {
+                            border: inherit; /* required for specificity */
+                        }
                     }
                 }
             }

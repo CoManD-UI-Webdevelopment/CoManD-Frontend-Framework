@@ -58,14 +58,14 @@
         }
 
 
-        h2.headline-demopage {
+        .headline-demopage {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: var(--default-gap);
+            gap: calc(var(--default-gap) / 2);
             text-align: center;
             color: var(--pure-white);
-            padding: .5rem;
+            padding: calc(var(--default-padding) / 2);
             background: var(--primary-color);
             font-size: 4rem;
             margin-top: 0;
