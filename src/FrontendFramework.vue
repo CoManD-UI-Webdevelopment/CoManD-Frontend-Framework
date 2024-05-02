@@ -269,6 +269,7 @@
                         <h4><span class="icon-home"></span><span>Headline 4</span></h4>
                         <h5><span class="icon-home"></span><span>Headline 5</span></h5>
                         <h6><span class="icon-home"></span><span>Headline 6</span></h6>
+                        <h1><span class="icon-hexagon use-icon-as-background"><span class="icon-home"></span></span><span>Headline 1</span></h1>
                         <h3 class="headline-demopage" id="anchor-paragraphs">Paragraphs (continuous text)</h3>
                         <p>This is a short paragraph</p>
                         <p>This is continuous text within a paragraph with text-align left (which is default).
@@ -1184,9 +1185,13 @@
                                         <span class="label-text">
                                             <span>Inputfield without validation:<sup>*</sup></span>
                                         </span>
-                                        <input name="inputfield-without-validation" id="inputfield-without-validation"
-                                               placeholder="Placeholdertext for inputfield with error" type="text"
-                                               required="required" minlength="5"/>
+                                        <input
+                                            name="inputfield-without-validation" id="inputfield-without-validation"
+                                            placeholder="Placeholdertext for inputfield with error"
+                                            type="text"
+                                            required="required"
+                                            minlength="5"
+                                        />
                                     </label>
                                     <label>
                                         <span class="label-text">
