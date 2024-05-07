@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/04/29
+framework.css - last update: 2024/05/02
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -413,8 +413,8 @@ html {
     --table-head-text-align: center; /* text-align for table-head */
 
     /* active table-cells */
-    --active-table-cell-background: var(--primary-color-reduced-opacity); /* background(-color) for active table-cells */
-    --active-table-cell-text-color: var(--pure-white); /* text-color for active/highlighted table-cells */
+    --active-table-cell-background: var(--light-gray); /* background(-color) for active table-cells */
+    --active-table-cell-text-color: var(--default-text-color); /* text-color for active/highlighted table-cells */
     --active-table-cell-background-highlighted: var(--primary-color); /* highlighted background(-color) for active table-cells */
     --active-table-cell-text-color-highlighted: var(--pure-white); /* highlighted text-color for active table-cells */
     /* END TABLES ------------------------------------------------------------------------------------------ */
@@ -876,7 +876,7 @@ img.grayscale {
         --button-background: var(--primary-color);
         border-color: var(--primary-color);
 
-        &:is(:hover, :active, :focus) {
+        &:is(:hover, :active, :focus-visible) {
             color: var(--primary-color);
             border-color: var(--primary-color);
 
@@ -890,7 +890,7 @@ img.grayscale {
         --button-background: var(--tertiary-color);
         border-color: var(--tertiary-color);
 
-        &:is(:hover, :active, :focus) {
+        &:is(:hover, :active, :focus-visible) {
             color: var(--tertiary-color);
             border-color: var(--tertiary-color);
 
@@ -917,7 +917,7 @@ img.grayscale {
         --button-background: var(--success-color);
         --color-scheme-text-color: var(--success-color);
 
-        &:is(:hover, :active, :focus) {
+        &:is(:hover, :active, :focus-visible) {
             border: var(--success-border);
 
             span {
@@ -936,7 +936,7 @@ img.grayscale {
         margin: 0;
     }
 
-    &:is(:hover, :active, :focus) {
+    &:is(:hover, :active, :focus-visible) {
         color: var(--button-text-color-highlighted);
         background: var(--button-background-highlighted);
         cursor: pointer;
@@ -2679,7 +2679,7 @@ span + [class*="icon-"] {
 .use-icon-as-background[class*="icon-"] {
     min-width: 0;
     min-height: 0;
-    background: none !important;
+    background: none;
     border: 0 !important;
     padding: 0;
 
@@ -3001,6 +3001,10 @@ dd {
                 ul {
                     top: 0;
                     left: 100%;
+
+                    li:first-child {
+                        border-top: 0;
+                    }
                 }
             }
 
