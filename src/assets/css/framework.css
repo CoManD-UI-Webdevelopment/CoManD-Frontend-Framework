@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/05/02
+framework.css - last update: 2024/05/12
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -1705,7 +1705,7 @@ select {
 
 ::placeholder {
     font-style: var(--placeholder-font-style);
-    color: var(--placeholder-text-color);
+    color: var(--placeholder-text-color) !important;
     opacity: var(--placeholder-text-opacity);
 }
 
@@ -2192,13 +2192,16 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
     .switch-label-wrapper {
         display: flex;
         border: var(--default-border);
-        border-color: var(--status-color);
         background: var(--color-scheme-background);
         border-radius: 1.2rem;
         overflow: hidden;
         height: 2rem;
         padding: .2rem var(--default-padding);
         align-self: center;
+
+        .label-text {
+            min-width: 3.5rem;
+        }
 
         input {
             border: 0;
@@ -2287,6 +2290,7 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
     &.colored {
         .switch-label-wrapper {
             --status-color: var(--error-color);
+            border-color: var(--status-color);
 
             span.label-text {
                 --status-color: var(--error-color);
@@ -2874,7 +2878,7 @@ dd {
     }
 
     nav, .nav {
-        margin: 0;
+        margin: 0 auto;
         display: flex;
         border-left: var(--main-navigation-border);
         border-right: var(--main-navigation-border);
