@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/05/12
+framework.css - last update: 2024/05/14
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -3311,6 +3311,28 @@ table td, td.center-content {
 /* ---------------------------------------------- END MAIN STYLES -------------------------------------------------- */
 
 /* ---------------------------------------------- BEGIN MEDIA QUERIES AND BROWSER SPECIFIC STYLES -------------------------------------------------- */
+/* begin container-styles ------------------------------------------------------------------------------------------ */
+@container (width <= 400px) {
+    .flex-container {
+        flex-direction: column; /* arrange flex-items vertically */
+
+        > * {
+            max-width: 100%;
+            width: 100%;
+            flex: none;
+        }
+
+        &.row-for-small {
+            flex-direction: row; /* arrange flex-items horizontally */
+        }
+    }
+
+    fieldset {
+        padding: var(--default-padding);
+    }
+}
+/* end container-styles ------------------------------------------------------------------------------------------ */
+
 /* begin css webkit-browsers only ------------------------------------------------------------------------------------------ */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
     :where([type="color"], [type="date"], [type="datetime-local"], [type="email"], [type="month"], [type="number"],
