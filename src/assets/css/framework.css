@@ -1262,11 +1262,15 @@ fieldset {
         flex-wrap: nowrap;
     }
 
+    .flex-container {
+        width: 100%;
+        align-items: flex-end;
+    }
+
     &.grid-container-create-columns {
         grid-template-columns: min-content; /* items should be minimum as wide as content */
 
-        > *,
-        .grid-container-create-columns {
+        > *, .grid-container-create-columns {
             grid-column: span var(--grid-columns);
         }
     }
@@ -3313,13 +3317,17 @@ table td, td.center-content {
 /* ---------------------------------------------- BEGIN MEDIA QUERIES AND BROWSER SPECIFIC STYLES -------------------------------------------------- */
 /* begin container-styles ------------------------------------------------------------------------------------------ */
 @container (width <= 400px) {
-    .flex-container {
+    .flex-container, .button-wrapper {
         flex-direction: column; /* arrange flex-items vertically */
 
         > * {
             max-width: 100%;
             width: 100%;
-            flex: none;
+            flex: none !important;
+        }
+
+        legend, .place-inside {
+            width: auto;
         }
 
         &.row-for-small {

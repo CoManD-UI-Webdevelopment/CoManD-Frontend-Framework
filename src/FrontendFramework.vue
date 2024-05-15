@@ -1037,7 +1037,7 @@
                                       </label>
                                   </span>
                                 </div>
-                                <div class="flex-container align-bottom">
+                                <div class="flex-container">
                                     <label for="default-inputfield">
                                         <span class="label-text">
                                             <span>Default inputfield:<sup>*</sup></span>
