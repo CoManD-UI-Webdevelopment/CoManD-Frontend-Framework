@@ -1,6 +1,11 @@
 <template>
     <div id="frontend-framework-demo" class="demopage">
         <div :id="templateId">
+            <ul class="device-width">
+                <li :class="{active: activeDeviceWidth === 'large'}"><a href="#" @click.prevent="changeWindowSize('large')">Large</a></li>
+                <li :class="{active: activeDeviceWidth === 'medium'}"><a href="#" @click.prevent="changeWindowSize('medium')">Medium</a></li>
+                <li :class="{active: activeDeviceWidth === 'small'}"><a href="#" @click.prevent="changeWindowSize('small')">Small</a></li>
+            </ul>
             <div class="site-header sticky" id="anchor-back-to-top" role="banner">
                 <header class="grid-container-create-columns">
                     <div class="company-logo">
@@ -90,7 +95,7 @@
                     <!-- end main-navigation for testing -->
                 </header>
             </div>
-            <aside :class="['sidebar box', {'open': openSidebar}]">
+            <aside v-if="showSidebar" :class="['sidebar box', {'open': openSidebar}]">
                 <!-- begin inner-sidebar-wrapper -->
                 <div v-if="openSidebar" class="inner-sidebar-wrapper">
                     <h3 class="text-align-center">Site Settings</h3>
@@ -241,6 +246,9 @@
                         <a href="#" class="button primary" title="Open Template Settings"
                            @click.prevent="openBox('table')">
                             <span class="icon-cogs"></span>
+                        </a>
+                        <a href="#" @click.prevent="showSidebar = false">
+                            <span>Hide sidebar</span>
                         </a>
                     </div>
                 </div>
@@ -2048,7 +2056,9 @@ export default {
         return {
             selectedTemplate: "blank",
             openBoxes: ["template", "table"],
+            showSidebar: true,
             openSidebar: true,
+            activeDeviceWidth: "large",
             packageJson
         }
     },
@@ -2058,6 +2068,35 @@ export default {
         }
     },
     methods: {
+        changeWindowSize(size) {
+            /*
+            let currentURL = window.location.href;
+
+            // Open the URL in a new window
+            window.open(currentURL, '_blank', 'width=800,height=600')
+             */
+
+
+            switch(size) {
+                case 'large':
+                    window.moveTo(0, 0);
+                    window.resizeTo(screen.width, screen.height);
+                    this.activeDeviceWidth = 'large'
+                    break;
+                case 'medium':
+                    window.resizeTo(1023, 600);
+                    this.activeDeviceWidth = 'medium'
+                    break;
+                case 'small':
+                    window.resizeTo(600, 600);
+                    this.activeDeviceWidth = 'small'
+                    break;
+                default:
+                    window.moveTo(0, 0);
+                    window.resizeTo(screen.width, screen.height);
+                    this.activeDeviceWidth = 'large'
+            }
+        },
         toggleSidebar() {
             this.openSidebar = !this.openSidebar
         },
@@ -2097,4 +2136,34 @@ export default {
 </script>
 
 <style>
+.device-width {
+    padding: calc(var(--default-padding) / 2) var(--default-padding);
+    position: fixed;
+    top: 1rem;
+    right: 0;
+    background: var(--primary-color);
+    width: 7.5rem;
+    margin: 0;
+    z-index: 1000;
+
+    li {
+        margin: 0;
+        list-style-type: none;
+
+        a {
+            color: var(--pure-white);
+            text-decoration: none;
+
+            &:hover, &:active, &:focus {
+                text-decoration: underline;
+            }
+        }
+
+        &.active {
+            a {
+                font-weight: bold;
+            }
+        }
+    }
+}
 </style>

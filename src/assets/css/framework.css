@@ -352,8 +352,8 @@ html {
 
     /* large buttons */
     --button-font-size-large: var(--font-size-large); /* font-size for large buttons */
-    --button-min-width-large: 6rem; /* minimum width for small buttons */
-    --button-min-height-large: 6rem; /* minimum height for small buttons */
+    --button-min-width-large: 6rem; /* minimum width for large buttons */
+    --button-min-height-large: 6rem; /* minimum height for large buttons */
     --button-padding-large: calc(var(--button-padding) * 2); /* padding for large buttons */
 
     /* button with large icon */
@@ -866,6 +866,7 @@ img.grayscale {
     font-size: var(--button-font-size);
     min-width: var(--button-min-width);
     min-height: var(--button-min-height);
+    align-self: flex-start; /* avoid button to be stretched in flex-containers (with flex: 1 for flex-items) */
 
     > :is(span, [class*="icon-"]) {
         color: var(--button-text-color);
