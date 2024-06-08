@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/05/14
+framework.css - last update: 2024/06/07
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -87,11 +87,21 @@ html {
     --full-circle: 50%; /* radius for full circles */
     /* END WEBSITE-GRID AND GLOBAL SETTINGS ------------------------------------------------------------------------------------------ */
 
-    /* BEGIN MAIN NAVIGATION------------------------------------------------------------------------------------------ */
+    /* BEGIN SITE HEADER ------------------------------------------------------------------------------------------ */
+    --border-site-header: var(--default-border);
+    --background-site-header: var(--color-scheme-background);
+    /* END SITE HEADER ------------------------------------------------------------------------------------------ */
+
+    /* BEGIN MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
     --main-navigation-background: var(--default-background); /* background(-color) for main navigation (and all sub-entries) */
     --main-navigation-border: var(--default-border); /* border for main navigation (and all sub-entries) */
     --main-navigation-border-radius: var(--default-border-radius); /* border-radius for main navigation (and bottom of sub-entries-list) */
     /* END MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
+
+    /* BEGIN SITE FOOTER ------------------------------------------------------------------------------------------ */
+    --border-site-footer: var(--default-border);
+    --background-site-footer: var(--color-scheme-background);
+    /* END SITE FOOTER ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BACKGROUNDS ------------------------------------------------------------------------------------------ */
     /* default backgrounds */
@@ -1131,9 +1141,13 @@ img.grayscale {
     gap: var(--default-gap);
 }
 
-:where(ul, ol).flex-container:not(.vertical) li {
-    list-style-type: none;
+:where(ul, ol).flex-container:not(.vertical) {
     margin: 0;
+
+    li {
+        list-style-type: none;
+        margin: inherit;
+    }
 }
 
 :where(.flex-container, .button-wrapper) > * {
@@ -1263,7 +1277,7 @@ fieldset {
         flex-wrap: nowrap;
     }
 
-    .flex-container {
+    & > .flex-container {
         width: 100%;
         align-items: flex-end;
     }
@@ -1800,7 +1814,7 @@ label { /* label required for specificity */
                 border-radius: var(--full-circle);
                 background: var(--hyperlink-color);
                 width: .8rem;
-                top: .05rem;
+                top: .1rem;
                 aspect-ratio: 1/1;
                 align-self: center;
                 margin: 0 auto;
@@ -2777,6 +2791,10 @@ dt {
 dd {
     grid-column: 2;
     white-space: normal;
+
+    ul, ol {
+        margin: 0;
+    }
 }
 
 /* end definition-lists */
@@ -2787,8 +2805,11 @@ dd {
     grid-area: site-header;
     display: flex;
     flex-direction: column;
-    border-bottom: var(--default-border);
-    background: var(--color-scheme-background);
+    border: var(--border-site-header);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background: var(--background-site-header);
 
     &.sticky {
         position: sticky;
@@ -2814,7 +2835,7 @@ dd {
             }
         }
 
-        #main-navigation-wrapper {
+        .main-navigation-wrapper {
             grid-area: main-navigation;
             grid-column: span var(--grid-large-span);
             border: 0;
@@ -2855,8 +2876,11 @@ dd {
 /* begin site-footer ------------------------------------------------------------------------------------------ */
 .site-footer {
     padding: var(--grid-gap) 0;
-    border-top: var(--default-border);
-    background: var(--default-background);
+    border: var(--border-site-footer);
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    background: var(--background-site-footer);
 
     footer {
         max-width: var(--footer-max-width);
@@ -2869,8 +2893,7 @@ dd {
 /* end site-footer ------------------------------------------------------------------------------------------ */
 
 /* begin main-navigation ------------------------------------------------------------------------------------------ */
-/* wrapper must have id to keep high specificity */
-#main-navigation-wrapper {
+.main-navigation-wrapper {
     background: var(--main-navigation-background);
     border-top: var(--main-navigation-border);
     border-bottom: var(--main-navigation-border);
@@ -3008,6 +3031,7 @@ dd {
                 /* third-level only */
 
                 ul {
+                    border-top: var(--main-navigation-border);
                     top: 0;
                     left: 100%;
 

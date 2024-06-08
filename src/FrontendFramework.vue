@@ -17,7 +17,7 @@
                         </a>
                     </div>
                     <!-- begin main-navigation for testing -->
-                    <div id="main-navigation-wrapper">
+                    <div class="main-navigation-wrapper">
                         <nav>
                             <ul>
                                 <li>
@@ -1872,7 +1872,7 @@
                 <div class="width-limitation-wrapper">
                     <section>
                         <h2 class="headline-demopage" id="anchor-main-navigation">Main Navigation</h2>
-                        <div id="main-navigation-wrapper">
+                        <div class="main-navigation-wrapper">
                             <nav>
                                 <ul>
                                     <li>

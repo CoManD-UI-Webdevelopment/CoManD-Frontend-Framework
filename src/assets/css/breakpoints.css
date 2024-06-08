@@ -17,7 +17,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     }
 
     /* hide navigation */
-    #main-navigation-wrapper {
+    .main-navigation-wrapper {
         display: flex;
 
         nav {
@@ -26,7 +26,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     }
 
     /* show button to potentially toggle off-canvas */
-    #main-navigation-wrapper #toggle-offcanvas {
+    .main-navigation-wrapper #toggle-offcanvas {
         display: inline-flex;
     }
 

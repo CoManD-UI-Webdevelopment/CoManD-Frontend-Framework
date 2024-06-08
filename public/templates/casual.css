@@ -91,7 +91,7 @@ th {
     text-shadow: var(--default-text-shadow);
 }
 
-#main-navigation-wrapper {
+.main-navigation-wrapper {
     border-radius: 0;
 }
 
