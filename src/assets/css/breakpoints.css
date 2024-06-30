@@ -7,7 +7,8 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         --grid-columns: 6; /* grid-columns */
         --grid-small-span: calc(var(--grid-columns) / 2); /* default column span smaller part */
         --grid-large-span: var(--grid-small-span); /* default column span larger part */
-        --default-line-height: 150%; /* avoids hyperlinks inside text to be to narrow to each other */
+        --default-line-height: 1.5; /* avoids hyperlinks inside text to be to narrow to each other */
+        --default-gap: 1.5rem; /* default-gap */
     }
 
     html, body {
@@ -59,7 +60,8 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         --grid-columns: 4; /* grid-columns */
         --grid-small-span: var(--grid-columns); /* default column span smaller part */
         --grid-large-span: var(--grid-columns); /* default column span larger part */
-        --default-line-height: 1.2; /* line-height - may not be set as percentage to work properly in calc() */
+        --default-line-height: 1.2; /* default-line-height - may not be set as percentage to work properly in calc() */
+        --default-gap: 1rem; /* default-gap */
 
         font-size: 56.25%; /* default size is 16px, 56.25% of that is 9px = 0.9rem */
     }

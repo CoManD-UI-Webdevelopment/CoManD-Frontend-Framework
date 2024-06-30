@@ -1,10 +1,9 @@
 <template>
     <div id="frontend-framework-demo" class="demopage">
         <div :id="templateId">
-            <ul class="device-width">
-                <li :class="{active: activeDeviceWidth === 'large'}"><a href="#" @click.prevent="changeWindowSize('large')">Large</a></li>
-                <li :class="{active: activeDeviceWidth === 'medium'}"><a href="#" @click.prevent="changeWindowSize('medium')">Medium</a></li>
-                <li :class="{active: activeDeviceWidth === 'small'}"><a href="#" @click.prevent="changeWindowSize('small')">Small</a></li>
+            <ul class="toggle-color-scheme">
+                <li :class="{active: activeColorScheme === 'light'}"><a href="#" @click.prevent="toggleColorScheme('light')">Light-Mode</a></li>
+                <li :class="{active: activeColorScheme === 'dark'}"><a href="#" @click.prevent="toggleColorScheme('dark')">Dark-Mode</a></li>
             </ul>
             <div class="site-header sticky" id="anchor-back-to-top" role="banner">
                 <header class="grid-container-create-columns">
@@ -1553,7 +1552,7 @@
                                     </label>
                                 </div>
                                 <div class="label inline">
-                                    <span class="label-text">Label for Toggle-Switch-Checkbox-Group:<sup>*</sup></span>
+                                    <span class="label-text"><span>Label for Toggle-Switch-Checkbox-Group:<sup>*</sup></span></span>
                                     <span class="flex-container no-flex">
                                         <label class="toggle-switch" for="checkbox5">
                                             <input type="checkbox" id="checkbox5" name="toggle-switch-chechboxgroup-1"
@@ -2058,7 +2057,7 @@ export default {
             openBoxes: ["template", "table"],
             showSidebar: true,
             openSidebar: true,
-            activeDeviceWidth: "large",
+            activeColorScheme: "light",
             packageJson
         }
     },
@@ -2068,34 +2067,18 @@ export default {
         }
     },
     methods: {
-        changeWindowSize(size) {
-            /*
-            let currentURL = window.location.href;
+        toggleColorScheme(mode) {
+            const htmlTag = document.documentElement
 
-            // Open the URL in a new window
-            window.open(currentURL, '_blank', 'width=800,height=600')
-             */
-
-
-            switch(size) {
-                case 'large':
-                    window.moveTo(0, 0);
-                    window.resizeTo(screen.width, screen.height);
-                    this.activeDeviceWidth = 'large'
-                    break;
-                case 'medium':
-                    window.resizeTo(1023, 600);
-                    this.activeDeviceWidth = 'medium'
-                    break;
-                case 'small':
-                    window.resizeTo(600, 600);
-                    this.activeDeviceWidth = 'small'
-                    break;
-                default:
-                    window.moveTo(0, 0);
-                    window.resizeTo(screen.width, screen.height);
-                    this.activeDeviceWidth = 'large'
-            }
+           if(mode === "light") {
+               this.activeColorScheme = "light"
+               htmlTag.classList.remove("dark-mode")
+               htmlTag.classList.add("light-mode")
+            } else {
+               this.activeColorScheme = "dark"
+               htmlTag.classList.remove("light-mode")
+               htmlTag.classList.add("dark-mode")
+           }
         },
         toggleSidebar() {
             this.openSidebar = !this.openSidebar
@@ -2136,7 +2119,7 @@ export default {
 </script>
 
 <style>
-.device-width {
+.toggle-color-scheme {
     padding: calc(var(--default-padding) / 2) var(--default-padding);
     position: fixed;
     top: 1rem;

@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/06/07
+framework.css - last update: 2024/06/30
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -251,8 +251,10 @@ html {
     --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation */
     --hyperlink-color-lightness: var(--primary-color-lightness); /* hyperlink-color-lightness */
     --hyperlink-color: hsl(var(--hyperlink-color-hue), var(--hyperlink-color-saturation), var(--hyperlink-color-lightness)); /* hyperlink-color */
+    --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue */
+    --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation */
     --hyperlink-color-highlighted-lightness: 40%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) */
-    --hyperlink-color-highlighted: hsl(var(--hyperlink-color-hue), var(--hyperlink-color-saturation), var(--hyperlink-color-highlighted-lightness)); /* hyperlink-color highlighted (:hover, :active, :focus) hyperlinks */
+    --hyperlink-color-highlighted: hsl(var(--hyperlink-color-highlighted-hue), var(--hyperlink-color-highlighted-saturation), var(--hyperlink-color-highlighted-lightness)); /* hyperlink-color highlighted (:hover, :active, :focus) hyperlinks */
 
     /* colors for disabled elements */
     --disabled-color-hue: 0; /* disabled-color-hue */
@@ -380,10 +382,20 @@ html {
     /* legends */
     --legend-text-color: var(--color-scheme-text-color); /* text-color for fieldset legends */
     --legend-font-weight: var(--font-weight-bold); /* font-weight for fieldset legends */
-    --legend-font-size: var(--default-font-size);
+    --legend-font-size: var(--default-font-size); /* font-size for fieldset legend */
+
+    /* labels */
+    --label-text-font-size: var(--default-font-size); /* font-size for labels */
+    --label-text-font-weight: var(--default-font-weight); /* font-weight for labels */
+    --label-text-color: var(--color-scheme-text-color); /* text-color for labels */
+    --label-text-color-highlighted: var(--hyperlink-color-highlighted); /* text-color for highlighted labels */
+    --label-text-color-checked: var(--hyperlink-color); /* text-color for labels with a corresponding checked input */
+    --label-text-color-checked-highlighted: var(--hyperlink-color-highlighted); /* text-color for highlighted labels with a corresponding checked input */
 
     /* asterisk-color */
     --asterisk-color: var(--hyperlink-color); /* asterisk color for mandatory form-elements */
+    --asterisk-font-size: var(--font-size-large);/* asterisk font-size for mandatory form-elements */
+    --asterisk-font-weight: var(--default-font-weight); /* asterisk font-weight for mandatory form-elements */
 
     /* placeholder texts */
     --placeholder-font-style: italic; /* font-style for placeholder texts */
@@ -430,6 +442,9 @@ html {
     /* END TABLES ------------------------------------------------------------------------------------------ */
 
     /* BEGIN MISCELLANEOUS ------------------------------------------------------------------------------------------ */
+    /* flex */
+    --reset-flex: 0 1 auto; /* reset flex to its default behavior (i.e. to overwrite flex: none;)
+
     /* opacity */
     --reduced-opacity: .75; /* reduced opacity (should be at least 0.75 for accessibility) */
 
@@ -442,8 +457,8 @@ html {
     --default-transition: all .5s; /* default transition */
     /* END MISCELLANEOUS ------------------------------------------------------------------------------------------ */
 
-    /* BEGIN COLORS FOR COLOR-SCHEMES  ------------------------------------------------------------------------------------------ */
-    /* colors for color-schemes (light-/dark-mode) */
+    /* BEGIN COLORS FOR NATIVE COLOR-SCHEMES (LIGHT-/DARK-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
+    /* colors for native color-schemes (light-/dark-mode) */
     --light-mode-text-color: var(--default-text-color); /* text-color for light-mode */
     --light-mode-text-color-buttons: var(--pure-white); /* button-text-color for light-mode */
     --light-mode-background: var(--pure-white); /* background(-color) for light-mode */
@@ -451,30 +466,74 @@ html {
     --dark-mode-text-color-buttons: var(--dark-mode-background); /* button-text-color for dark-mode */
     --dark-mode-background: var(--dark-gray); /* background(-color) for dark-mode */
 
-    /* assign default colors for light-mode only */
+    /* assign default colors for native light-mode only */
     --color-scheme-text-color: var(--light-mode-text-color); /* assign text-color for light-mode to color-scheme */
     --color-scheme-text-color-buttons: var(--light-mode-text-color-buttons); /* assign button-text-color for light-mode to color-scheme */
     --color-scheme-text-color-inverted: var(--dark-mode-text-color); /* assign an inverted text-color for light-mode to color-scheme */
     --color-scheme-background: var(--light-mode-background); /* assign background(-color) for light-mode to color-scheme */
     --color-scheme-background-inverted: var(--dark-mode-background); /* assign an inverted background(-color) for light-mode to color-scheme */
+    /* END COLORS FOR NATIVE COLOR-SCHEMES (LIGHT-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
 }
 
+/* BEGIN COLORS FOR NATIVE COLOR-SCHEMES (DARK-MODE SET BY BROWSER/OS) ------------------------------------------------------------------------------------------ */
 @media (prefers-color-scheme: dark) {
     html {
         --color-scheme-text-color: var(--dark-mode-text-color); /* assign text-color for dark-mode to color-scheme */
-        --color-scheme-text-color-buttons: var(--dark-mode-text-color-buttons); /* assign button-text-color for dark-mode to color-scheme*/
         --color-scheme-text-color-inverted: var(--light-mode-text-color); /* assign an inverted text-color for dark-mode to color-scheme */
+        --color-scheme-text-color-buttons: var(--dark-mode-text-color-buttons); /* assign button-text-color for dark-mode to color-scheme*/
         --color-scheme-background: var(--dark-mode-background); /* assign background(-color) for dark-mode to color-scheme */
         --color-scheme-background-inverted: var(--light-mode-background); /* assign an inverted background(-color) for dark-mode to color-scheme */
         --color-scheme-disabled-background: var(--dark-gray); /* assign background(-color) fo disabled-elements for dark-mode */
         --disabled-color-lightness: 50%; /* disabled-text-color for dark-mode */
         --default-background-color-lightness: 20%; /* reduce default background-color-lightness for dark-mode */
+        --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
+        --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
         --hyperlink-color-lightness: 50%; /* hyperlink-color-lightness for dark-mode */
-        --hyperlink-color-highlighted-lightness: 100%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode */
+        --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
+        --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
+        --hyperlink-color-highlighted-lightness: 100%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
+    }
+}
+/* END COLORS FOR NATIVE COLOR-SCHEMES (DARK-MODE SET BY BROWSER/OS) ------------------------------------------------------------------------------------------ */
+
+/* BEGIN CUSTOM COLORS-SCHEMES (LIGHT-/DARK-MODE SET BY CLASS) -------------------------------------------------- */
+html {
+    &.light-mode {
+        /* assign default colors for custom light-mode set by class */
+        --color-scheme-text-color: var(--light-mode-text-color); /* assign text-color for light-mode to color-scheme */
+        --color-scheme-text-color-inverted: var(--dark-mode-text-color); /* assign an inverted text-color for light-mode to color-scheme */
+        --color-scheme-text-color-buttons: var(--light-mode-text-color-buttons); /* assign button-text-color for light-mode to color-scheme */
+        --color-scheme-background: var(--light-mode-background); /* assign background(-color) for light-mode to color-scheme */
+        --color-scheme-background-inverted: var(--dark-mode-background); /* assign an inverted background(-color) for light-mode to color-scheme */
+        --default-background-color-lightness: 97%; /* assign default background-color-lightness for light-mode */
+    }
+
+    &.dark-mode {
+        /* assign default colors for custom dark-mode set by class */
+        --color-scheme-text-color: var(--dark-mode-text-color); /* assign text-color for dark-mode to color-scheme */
+        --color-scheme-text-color-inverted: var(--light-mode-text-color); /* assign an inverted text-color for dark-mode to color-scheme */
+        --color-scheme-text-color-buttons: var(--dark-mode-text-color-buttons); /* assign button-text-color for dark-mode to color-scheme */
+        --color-scheme-background: var(--dark-mode-background); /* assign background(-color) for dark-mode to color-scheme */
+        --color-scheme-background-inverted: var(--light-mode-background); /* assign an inverted background(-color) for dark-mode to color-scheme */
+        --color-scheme-disabled-background: var(--dark-gray); /* assign background(-color) fo disabled-elements for dark-mode */
+        --disabled-color-lightness: 50%; /* disabled-text-color for dark-mode */
+        --default-background-color-lightness: 20%; /* assign default background-color-lightness for dark-mode */
+        --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
+        --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
+        --hyperlink-color-lightness: 50%; /* hyperlink-color-lightness for dark-mode */
+        --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
+        --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
+        --hyperlink-color-highlighted-lightness: 50%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
+
+        /* assign default colors for custom dark-mode set by class */
+        :where(label, .label) .label-text > [class*="icon-"] {
+            background: var(--dark-gray);
+        }
     }
 }
 
-/* END COLORS FOR COLOR-SCHEMES ------------------------------------------------------------------------------------------ */
+/* END CUSTOM COLORS-SCHEMES (LIGHT-/DARK-MODE SET BY CLASS) -------------------------------------------------- */
+
 /* ---------------------------------------------- END VARIABLES & TOKENS -------------------------------------------------- */
 
 /* ---------------------------------------------- BEGIN MAIN STYLES -------------------------------------------------- */
@@ -1156,7 +1215,7 @@ img.grayscale {
 
 .flex-container {
     > *:not(.button) {
-        flex: 1; /* item should have same width */
+        flex: 1; /* items should have same width */
     }
 
     &.stretch > * {
@@ -1419,7 +1478,7 @@ fieldset {
 
 /* begin labels */
 label, .label {
-    --status-color: var(--color-scheme-text-color);
+    --status-color: var(--label-text-color);
 
     display: block;
 
@@ -1429,32 +1488,39 @@ label, .label {
     }
 
     .label-text {
+        font-size: var(--label-text-font-size);
+        font-weight: var(--label-text-font-weight);
+
         & ~ * {
-            --status-color: var(--color-scheme-text-color);
+            --status-color: var(--label-text-color);
 
             color: var(--status-color);
         }
 
-        /* for mandatory-asterisk */
-
+        /* begin inner label text and hyperlinks */
         span {
             color: var(--status-color);
 
             & > a {
-                font-size: var(--default-font-size);
+                font-size: var(--label-text-font-size);
                 margin-left: auto;
             }
-
-            sup {
-                --status-color: var(--asterisk-color);
-
-                font-size: var(--font-size-large); /* overwrite normalize.css */
-                top: -.2rem; /* overwrite normalize.css */
-            }
         }
+        /* end inner label text and hyperlinks */
+
+        /* begin mandatory asterisk */
+        sup {
+            --status-color: var(--asterisk-color);
+
+            font-size: var(--asterisk-font-size); /* overwrite normalize.css */
+            font-weight: var(--asterisk-font-weight);
+            top: -.2rem; /* overwrite normalize.css */
+        }
+        /* end mandatory asterisk */
 
         a[class*="icon-"], a:has([class*="icon-"]) {
-            --status-color: var(--hyperlink-color);
+            --status-color: var(--label-text-color-highlighted);
+
             align-self: flex-end; /* avoids stretching if label wraps */
             border-radius: var(--full-circle);
             line-height: 1;
@@ -1504,10 +1570,6 @@ label, .label {
     > input {
         margin-top: 0;
         margin-left: 0;
-    }
-
-    &:focus input + span {
-        color: var(--hyperlink-color);
     }
 
     &.inline {
@@ -1654,8 +1716,8 @@ td .toggle-switch.switch-label {
 }
 
 input {
-    &:checked ~ span {
-        color: var(--hyperlink-color);
+    &:checked ~ span.label-text {
+        color: var(--label-text-color-checked);
     }
 
     &[type="search"] {
@@ -1807,12 +1869,12 @@ label { /* label required for specificity */
         display: inline-flex; /* avoids label-text to wrap */
 
         &:checked {
-            border-color: var(--hyperlink-color);
+            border-color: var(--label-text-color-checked);
 
             &::after {
                 content: "";
                 border-radius: var(--full-circle);
-                background: var(--hyperlink-color);
+                background: var(--label-text-color-checked);
                 width: .8rem;
                 top: .1rem;
                 aspect-ratio: 1/1;
@@ -1823,11 +1885,11 @@ label { /* label required for specificity */
         }
 
         &:is(:hover, :active, :focus), &:checked:is(:hover, :active, :focus)::after {
-            border-color: var(--hyperlink-color-highlighted);
+            border-color: var(--label-text-color-checked-highlighted);
         }
 
         &:is(:hover, :active, :focus) + .label-text {
-            color: var(--hyperlink-color-highlighted);
+            color: var(--label-text-color-highlighted);
         }
 
         &.error, &.error:checked {
@@ -1843,7 +1905,7 @@ label { /* label required for specificity */
 
             &:checked {
                 &:is(:hover, :active, :focus)::after {
-                    background-color: var(--hyperlink-color-highlighted);
+                    background-color: var(--label-text-color-checked-highlighted);
                 }
 
                 &:disabled::after {
@@ -1864,7 +1926,7 @@ label { /* label required for specificity */
                     width: 1rem;
                     height: .5rem;
                     border-radius: 0;
-                    border: .3rem solid var(--hyperlink-color);
+                    border: .3rem solid var(--label-text-color-checked);
                     border-top: 0;
                     border-right: 0;
                     background: none;
@@ -1873,7 +1935,7 @@ label { /* label required for specificity */
                 }
 
                 & + .label {
-                    color: var(--hyperlink-color);
+                    color: var(--label-text-color);
                 }
 
                 &.error + .label {
@@ -2600,26 +2662,26 @@ a {
     color: var(--hyperlink-color);
     text-decoration: var(--hyperlink-text-decoration);
 
+    & * {
+        color: inherit;
+    }
+
     &:is(:hover, :active, :focus) {
         color: var(--hyperlink-color-highlighted);
         text-decoration: var(--hyperlink-text-decoration-highlighted);
-
-        & > * {
-            color: inherit;
-        }
     }
 
-    &[class*="icon-"]:not(.button),
-    &:not(.button) :is(span, [class*="icon-"]) {
+    &[class*="icon-"],
+    & :where(span, [class*="icon-"]) {
         color: var(--hyperlink-color);
     }
 
-    &[class*="icon-"]:not(.button):is(:hover, :active, :focus, .active),
-    &:not(.button):is(:hover, :active, :focus, .active) :is(span, [class*="icon-"]) {
+    &[class*="icon-"]:where(:hover, :active, :focus, .active),
+    &:where(:hover, :active, :focus, .active) :where(span, [class*="icon-"]) {
         color: var(--hyperlink-color-highlighted);
     }
 
-    & > [class*="icon-"]:not(:only-child) {
+    & > [class*="icon-"] {
         font-size: var(--default-font-size); /* adjust icon to size as text */
     }
 
