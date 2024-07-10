@@ -28,13 +28,13 @@
                                 <li class="has-subentries">
                                     <a href="">
                                         <span>Entry 2</span>
-                                        <span class="subentry-icon icon-single-arrow-down"></span>
+                                        <span class="subentry-icon icon-chevron-one-stripe-down"></span>
                                     </a>
                                     <ul aria-expanded="true">
                                         <li>
                                             <a href="">
                                                 <span>Entry 2.1</span>
-                                                <span class="subentry-icon icon-single-arrow-down"></span>
+                                                <span class="subentry-icon icon-chevron-one-stripe-down"></span>
                                             </a>
                                             <ul aria-expanded="true">
                                                 <li>
@@ -64,7 +64,7 @@
                                 <li class="has-subentries">
                                     <a href="#">
                                         <span>Entry 3</span>
-                                        <span class="subentry-icon icon-single-arrow-down"></span>
+                                        <span class="subentry-icon icon-chevron-one-stripe-down"></span>
                                     </a>
                                     <ul aria-expanded="true">
                                         <li>
@@ -106,7 +106,7 @@
                                 <span>Template Settings</span>
                             </h4>
                             <span
-                                :class="openBoxes.includes('template') ? 'icon-single-arrow-up' : 'icon-single-arrow-down'"></span>
+                                :class="openBoxes.includes('template') ? 'icon-chevron-one-stripe-up' : 'icon-chevron-one-stripe-down'"></span>
                         </a>
                         <div v-if="openBoxes.includes('template')" class="box-body" aria-expanded="true" role="article">
                             <div class="default-padding">
@@ -133,7 +133,7 @@
                                 <span>Table of contents</span>
                             </h4>
                             <span
-                                :class="openBoxes.includes('table') ? 'icon-single-arrow-up' : 'icon-single-arrow-down'"></span>
+                                :class="openBoxes.includes('table') ? 'icon-chevron-one-stripe-up' : 'icon-chevron-one-stripe-down'"></span>
                         </a>
                         <div v-if="openBoxes.includes('table')" class="box-body" aria-expanded="true" role="article">
                             <div class="default-padding">
@@ -252,7 +252,7 @@
                     </div>
                 </div>
                 <a href="#" :title="openSidebar ? 'Collapse sidebar' : 'Expand sidebar'" @click.prevent="toggleSidebar">
-                    <span :class="openSidebar ? 'icon-single-arrow-left' : 'icon-single-arrow-right'"></span>
+                    <span :class="openSidebar ? 'icon-chevron-one-stripe-left' : 'icon-chevron-one-stripe-right'"></span>
                 </a>
             </aside>
             <main id="content">
@@ -1884,13 +1884,13 @@
                                         <a href="#">
                                             <span class="icon-user-profile"></span>
                                             <span>Entry 2</span>
-                                            <span class="subentry-icon icon-single-arrow-down"></span>
+                                            <span class="subentry-icon icon-chevron-one-stripe-down"></span>
                                         </a>
                                         <ul>
                                             <li class="has-subentries">
                                                 <a href="#">
                                                     <span>Entry 2.1</span>
-                                                    <span class="subentry-icon icon-single-arrow-down"></span>
+                                                    <span class="subentry-icon icon-chevron-one-stripe-down"></span>
                                                 </a>
                                                 <ul>
                                                     <li><a href="#">Entry 2.1.1</a></li>
@@ -2032,7 +2032,7 @@
 
                 <!-- begin back-to-top-button -->
                 <a class="button" id="back-to-top-button" href="#top-of-page" title="Back to top">
-                    <span class="icon-single-arrow-up"></span>
+                    <span class="icon-chevron-one-stripe-up"></span>
                 </a>
                 <!-- end back-to-top-button -->
             </main>

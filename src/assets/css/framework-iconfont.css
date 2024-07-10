@@ -1,10 +1,10 @@
-/* framework-iconfont.css - last update: 2023/03/29
+/* framework-iconfont.css - last update: 2024/07/10
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES IN template.css OR YOUR OWN iconfont-css-file
 */
 
 @font-face {
 	font-family: 'icomoon';
-	src: url('../fonts/iconfonts/framework-iconfont/icomoon.woff?m358kr') format('woff');
+	src: url('../fonts/iconfonts/framework-iconfont/icomoon.woff?38w2fw') format('woff');
     font-weight: normal;
 	font-style: normal;
 	font-display: block;
@@ -24,6 +24,9 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-wireframe:before {
+  content: "\a220";
+}
 .icon-moon:before {
   content: "\a217";
 }
@@ -177,16 +180,16 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 .icon-dollar:before {
   content: "\a12f";
 }
-.icon-double-arrow-down:before {
+.icon-chevron-two-stripes-down:before {
   content: "\a130";
 }
-.icon-double-arrow-left:before {
+.icon-chevron-two-stripes-left:before {
   content: "\a131";
 }
-.icon-double-arrow-right:before {
+.icon-chevron-two-stripes-right:before {
   content: "\a132";
 }
-.icon-double-arrow-up:before {
+.icon-chevron-two-stripes--up:before {
   content: "\a133";
 }
 .icon-download:before {
@@ -471,16 +474,16 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 .icon-shrink:before {
   content: "\a191";
 }
-.icon-single-arrow-down:before {
+.icon-chevron-one-stripe-down:before {
   content: "\a192";
 }
-.icon-single-arrow-left:before {
+.icon-chevron-one-stripe-left:before {
   content: "\a193";
 }
-.icon-single-arrow-right:before {
+.icon-chevron-one-stripe-right:before {
   content: "\a194";
 }
-.icon-single-arrow-up:before {
+.icon-chevron-one-stripe-up:before {
   content: "\a195";
 }
 .icon-sort-arrows:before {
