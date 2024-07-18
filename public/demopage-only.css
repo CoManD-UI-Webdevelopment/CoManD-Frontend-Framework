@@ -73,6 +73,13 @@
             margin-bottom: 2rem;
             border-radius: var(--default-border-radius);
 
+            &h1 {
+                font-size: 5rem;
+                background: var(--pure-white);
+                border: var(--default-border);
+                border-color: var(--primary-color);
+            }
+
             span, span[class*="icon-"] {
                 color: inherit;
                 font-size: inherit;

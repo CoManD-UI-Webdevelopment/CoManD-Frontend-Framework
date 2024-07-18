@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/06/30
+framework.css - last update: 2024/07/18
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -52,7 +52,7 @@ T ------------------------
 - MEDIA QUERIES ------------------------
 - browser specific css
 - css for print only
-- css for for dark-mode
+- css for dark-mode
 */
 /* end table of contents ------------------------------------------------------------------------------------------ */
 
@@ -2885,8 +2885,12 @@ dd {
         max-width: var(--header-max-width);
         width: 100%;
         margin: 0 auto;
-        padding: calc(var(--default-padding) * 2) var(--default-padding);
+        padding: var(--default-padding);
         align-items: center;
+
+        &:has(:only-child) {
+            row-gap: 0;
+        }
 
         .company-logo {
             grid-area: company-logo;

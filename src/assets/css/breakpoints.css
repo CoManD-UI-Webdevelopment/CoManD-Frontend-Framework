@@ -48,7 +48,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     }
 
     input.replace-input-type:where([type="checkbox"], [type="radio"]) {
-        transform: scale(1.4); /* scale radiobuttons and checkbox to double of original size (to click them more easily) */
+        transform: scale(1.4); /* scale radiobuttons and checkbox to double of the original size (to click them more easily) */
         margin: 0 var(--default-margin) 0 0;
     }
 }
