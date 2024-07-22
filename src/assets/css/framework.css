@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/07/18
+framework.css - last update: 2024/07/22
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -2458,6 +2458,12 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
             text-align: center;
             width: 100%;
             margin: 0;
+        }
+
+        input {
+            &:checked ~ span {
+                color: var(--hyperlink-color);
+            }
         }
 
         &:is(:hover, :active, :focus) {
