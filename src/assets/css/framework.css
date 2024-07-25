@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/07/22
+framework.css - last update: 2024/07/25
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -221,7 +221,8 @@ html {
     --primary-color-lightness: 26%; /* primary-color-lightness */
     --primary-color-hsl-values: var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness); /* primary-color-hsl-values */
     --primary-color: hsl(var(--primary-color-hsl-values)); /* primary-color */
-    --primary-color-reduced-opacity: hsla(var(--primary-color-hsl-values), var(--reduced-opacity)); /* primary-color with reduced opacity */
+    --primary-color-opacity: 1; /* primary-color-opacity */
+    --primary-color-reduced-opacity: hsla(var(--primary-color-hsl-values), var(--primary-color-opacity)); /* primary-color with reduced opacity */
 
     /* secondary-color (i.e. for default-/secondary-buttons) */
     --secondary-color-hue: 0; /* secondary-color-hue */
@@ -229,6 +230,7 @@ html {
     --secondary-color-lightness: 30%; /* secondary-color-lightness */
     --secondary-color-hsl-values: var(--secondary-color-hue), var(--secondary-color-saturation), var(--secondary-color-lightness); /* secondary-color-hsl-values */
     --secondary-color: hsl(var(--secondary-color-hsl-values)); /* secondary-color */
+    --secondary-color-opacity: 1; /* secondary-color-opacity */
     --secondary-color-reduced-opacity: hsla(var(--secondary-color-hsl-values), var(--reduced-opacity)); /* secondary-color with reduced opacity */
 
     /* tertiary-color (i.e. for tertiary-buttons) */
@@ -237,6 +239,7 @@ html {
     --tertiary-color-lightness: 70%; /* tertiary-color-lightness */
     --tertiary-color-hsl-values: var(--tertiary-color-hue), var(--tertiary-color-saturation), var(--tertiary-color-lightness); /* tertiary-color-hsl-values */
     --tertiary-color: hsl(var(--tertiary-color-hsl-values)); /* tertiary-color */
+    --tertiary-color-opacity: 1; /* tertiary-color-opacity */
     --tertiary-color-reduced-opacity: hsla(var(--tertiary-color-hsl-values), var(--reduced-opacity)); /* tertiary-color with reduced opacity */
 
     /* text-colors */
@@ -314,14 +317,18 @@ html {
     --headline-line-height: 1.3; /* line-height for headlines */
     --headline-font-weight: var(--font-weight-bold); /* font-weight for headlines */
     --headline-margin-top: calc(var(--default-margin) * 2); /* margin-top for headlines */
+    --headline-margin-bottom: var(--default-margin); /* margin-bottom for headlines */
     /* END FONTS AND TYPOGRAPHY ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BOXES ------------------------------------------------------------------------------------------ */
     --box-background: var(--default-background); /* background(-color) for entire box (could be partially covered by box-header-background(-color) if box header exists) */
     --box-header-background: var(--primary-color); /* background(-color) for box-header */
     --box-footer-background: none; /* background(-color) for box-footer */
-    --box-border: var(--default-border); /* border for .box */
-    --box-border-radius: var(--default-border-radius); /* border-radius for .box */
+    --box-border-width: var(--default-border-width); /* border-width for boxes */
+    --box-border-style: var(--default-border-style); /* border-style for boxes */
+    --box-border-color: var(--default-border-color); /* border-color for boxes */
+    --box-border: var(--box-border-width) var(--box-border-style) var(--box-border-color); /* border for boxes */
+    --box-border-radius: var(--default-border-radius); /* border-radius for boxes */
     --box-header-text-color: var(--pure-white); /* text-color for box-header */
     --box-body-text-color: var(--color-scheme-text-color); /* text-color for box-header */
     --box-footer-text-color: var(--color-scheme-text-color); /* text-color for box-header */
@@ -339,7 +346,10 @@ html {
     /* button border and outline */
     --button-outline: var(--default-outline); /* outline for buttons */
     --button-outline-highlighted: var(--default-outline); /* outline for buttons */
-    --button-border: var(--secondary-border); /* border for buttons */
+    --button-border-width: var(--default-border-width);
+    --button-border-style: var(--default-border-style);
+    --button-border-color: var(--default-border-color);
+    --button-border: var(--button-border-width) var(--button-border-style) var(--button-border-color); /* border for buttons */
     --button-border-highlighted: var(--secondary-border); /* border for buttons */
     --button-border-radius: var(--default-border-radius);
 
@@ -391,6 +401,7 @@ html {
     --label-text-color-highlighted: var(--hyperlink-color-highlighted); /* text-color for highlighted labels */
     --label-text-color-checked: var(--hyperlink-color); /* text-color for labels with a corresponding checked input */
     --label-text-color-checked-highlighted: var(--hyperlink-color-highlighted); /* text-color for highlighted labels with a corresponding checked input */
+    --label-text-icon-color: var(--pure-white); /* icon-color for icons inside label-text */
 
     /* asterisk-color */
     --asterisk-color: var(--hyperlink-color); /* asterisk color for mandatory form-elements */
@@ -399,7 +410,7 @@ html {
 
     /* placeholder texts */
     --placeholder-font-style: italic; /* font-style for placeholder texts */
-    --placeholder-text-color: gray; /* text-color for placeholder texts */
+    --placeholder-text-color: var(--medium-gray); /* text-color for placeholder texts */
     --placeholder-text-opacity: .5; /* opacity for placeholder texts (should not be lower than 0.5 to avoid w2aa accessibility standards */
 
     /* inputfields */
@@ -408,6 +419,7 @@ html {
     --form-element-border: var(--default-border); /* border for form-elements */
     --form-element-border-color-highlighted: var(--hyperlink-color); /* border-color highlighted for form-elements */
     --form-element-border-radius: var(--default-border-radius); /* border-radius for form-elements */
+    --select-options-text-color: var(--default-text-color); /* text color for options inside selectboxes */
     /* END FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SYSTEM-MESSAGES ------------------------------------------------------------------------------------------ */
@@ -436,7 +448,7 @@ html {
 
     /* active table-cells */
     --active-table-cell-background: var(--light-gray); /* background(-color) for active table-cells */
-    --active-table-cell-text-color: var(--default-text-color); /* text-color for active/highlighted table-cells */
+    --active-table-cell-text-color: var(--color-scheme-text-color); /* text-color for active/highlighted table-cells */
     --active-table-cell-background-highlighted: var(--primary-color); /* highlighted background(-color) for active table-cells */
     --active-table-cell-text-color-highlighted: var(--pure-white); /* highlighted text-color for active table-cells */
     /* END TABLES ------------------------------------------------------------------------------------------ */
@@ -457,22 +469,24 @@ html {
     --default-transition: all .5s; /* default transition */
     /* END MISCELLANEOUS ------------------------------------------------------------------------------------------ */
 
-    /* BEGIN COLORS FOR NATIVE COLOR-SCHEMES (LIGHT-/DARK-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
-    /* colors for native color-schemes (light-/dark-mode) */
+    /* BEGIN VARIABLES FOR NATIVE COLOR-SCHEMES (LIGHT-/DARK-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
+    /* styles for native color-schemes (light-/dark-mode) */
     --light-mode-text-color: var(--default-text-color); /* text-color for light-mode */
     --light-mode-text-color-buttons: var(--pure-white); /* button-text-color for light-mode */
     --light-mode-background: var(--pure-white); /* background(-color) for light-mode */
     --dark-mode-text-color: hsl(0, 0%, 85%); /* text-color for dark-mode */
     --dark-mode-text-color-buttons: var(--dark-mode-background); /* button-text-color for dark-mode */
     --dark-mode-background: var(--dark-gray); /* background(-color) for dark-mode */
+    --show-in-light-mode-only: block; /* display-behavior for elements using .show-in-light-mode-only */
+    --show-in-dark-mode-only: none; /* display-behavior for elements using .show-in-dark-mode-only */
 
-    /* assign default colors for native light-mode only */
+    /* assign default styles for native light-mode only */
     --color-scheme-text-color: var(--light-mode-text-color); /* assign text-color for light-mode to color-scheme */
     --color-scheme-text-color-buttons: var(--light-mode-text-color-buttons); /* assign button-text-color for light-mode to color-scheme */
     --color-scheme-text-color-inverted: var(--dark-mode-text-color); /* assign an inverted text-color for light-mode to color-scheme */
     --color-scheme-background: var(--light-mode-background); /* assign background(-color) for light-mode to color-scheme */
     --color-scheme-background-inverted: var(--dark-mode-background); /* assign an inverted background(-color) for light-mode to color-scheme */
-    /* END COLORS FOR NATIVE COLOR-SCHEMES (LIGHT-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
+    /* END VARIABLES FOR NATIVE COLOR-SCHEMES (LIGHT-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
 }
 
 /* BEGIN COLORS FOR NATIVE COLOR-SCHEMES (DARK-MODE SET BY BROWSER/OS) ------------------------------------------------------------------------------------------ */
@@ -486,12 +500,15 @@ html {
         --color-scheme-disabled-background: var(--dark-gray); /* assign background(-color) fo disabled-elements for dark-mode */
         --disabled-color-lightness: 50%; /* disabled-text-color for dark-mode */
         --default-background-color-lightness: 20%; /* reduce default background-color-lightness for dark-mode */
+        --placeholder-text-color: var(--light-gray); /* text-color for placeholder texts for dark-mode */
         --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
         --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
         --hyperlink-color-lightness: 50%; /* hyperlink-color-lightness for dark-mode */
         --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
         --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
         --hyperlink-color-highlighted-lightness: 100%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
+        --show-in-light-mode-only: none; /* display-behavior for elements using .show-in-light-mode-only */
+        --show-in-dark-mode-only: block; /* display-behavior for elements using .show-in-dark-mode-only */
     }
 }
 /* END COLORS FOR NATIVE COLOR-SCHEMES (DARK-MODE SET BY BROWSER/OS) ------------------------------------------------------------------------------------------ */
@@ -506,6 +523,8 @@ html {
         --color-scheme-background: var(--light-mode-background); /* assign background(-color) for light-mode to color-scheme */
         --color-scheme-background-inverted: var(--dark-mode-background); /* assign an inverted background(-color) for light-mode to color-scheme */
         --default-background-color-lightness: 97%; /* assign default background-color-lightness for light-mode */
+        --show-in-light-mode-only: block; /* display-behavior for elements using .show-in-light-mode-only */
+        --show-in-dark-mode-only: none; /* display-behavior for elements using .show-in-dark-mode-only */
     }
 
     &.dark-mode {
@@ -518,17 +537,22 @@ html {
         --color-scheme-disabled-background: var(--dark-gray); /* assign background(-color) fo disabled-elements for dark-mode */
         --disabled-color-lightness: 50%; /* disabled-text-color for dark-mode */
         --default-background-color-lightness: 20%; /* assign default background-color-lightness for dark-mode */
+        --placeholder-text-color: var(--light-gray); /* text-color for placeholder texts for dark-mode */
         --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
         --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
         --hyperlink-color-lightness: 50%; /* hyperlink-color-lightness for dark-mode */
         --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
         --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
-        --hyperlink-color-highlighted-lightness: 50%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
+        --hyperlink-color-highlighted-lightness: 70%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
+        --show-in-light-mode-only: none; /* display-behavior for elements using .show-in-light-mode-only */
+        --show-in-dark-mode-only: block; /* display-behavior for elements using .show-in-dark-mode-only */
 
         /* assign default colors for custom dark-mode set by class */
         :where(label, .label) .label-text > [class*="icon-"] {
             background: var(--dark-gray);
         }
+
+
     }
 }
 
@@ -609,6 +633,34 @@ object, svg, img, video, canvas, .responsive-wrapper {
     height: auto;
 }
 
+.width-limitation-wrapper {
+    max-width: var(--width-limitation-wrapper);
+    margin: 0 auto;
+}
+
+.sticky {
+    position: sticky;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.center-item-wrapper {
+    display: grid;
+    place-items: center;
+}
+
+.center-absolute {
+    --position: 50%;
+    position: absolute;
+    display: block;
+    top: var(--position);
+    left: var(--position);
+    translate: calc(var(--position) * -1);
+}
+
+/* begin aspect-ratios */
 .responsive-wrapper {
     aspect-ratio: auto;
     overflow: hidden;
@@ -628,24 +680,16 @@ object, svg, img, video, canvas, .responsive-wrapper {
     aspect-ratio: 4/3;
 }
 
+.ratio-3-2 {
+    aspect-ratio: 3/2;
+}
+
 .ratio-1-1 {
     aspect-ratio: 1/1;
 }
+/* end aspect-ratios */
 
-.center-item-wrapper {
-    display: grid;
-    place-items: center;
-}
-
-.center-absolute {
-    --position: 50%;
-    position: absolute;
-    display: block;
-    top: var(--position);
-    left: var(--position);
-    translate: calc(var(--position) * -1);
-}
-
+/* begin widths and heights */
 .full-width, .full-height {
     display: block; /* sets element to a block-element */
     float: none; /* element should not float */
@@ -668,19 +712,23 @@ object, svg, img, video, canvas, .responsive-wrapper {
 .auto-height {
     height: auto !important; /* overwrite set height */
 }
+/* end widths and heights */
 
-.sticky {
-    position: sticky;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 100;
+/* begin wrapping and word-breaks */
+.wrap, .white-space-normal {
+    white-space: normal
 }
 
-.nowrap {
+.nowrap, .white-space-nowrap {
     white-space: nowrap;
 }
 
+.word-break-keep-all {
+    word-break: keep-all;
+}
+/* end wrapping and word-breaks  */
+
+/* begin text-align */
 .text-align-left {
     text-align: left;
 }
@@ -701,13 +749,32 @@ object, svg, img, video, canvas, .responsive-wrapper {
     text-align: justify-all;
 }
 
-h1, h2, h3, h4, h5, h6,
+[class^="icon-"], [class*="icon-"] {
+    vertical-align: baseline !important; /* avoid vertical-alignment to be overwritten by later imported icon-font */
+}
+/* end text-align */
+
+/* begin item-align for flex-containers */
+.align-items-top, .align-items-flex-start {
+    align-items: flex-start !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.align-items-bottom, .align-items-flex-end {
+    align-items: flex-end !important;
+}
+/* end item-align for flex-containers */
+
+/* begin basic typography */
 p, ul, ol, dl, table, fieldset, address {
-    margin-bottom: var(--default-margin); /* margin-bottom for most elements */
+    margin-bottom: var(--default-margin); /* margin-bottom for most elements containing text */
 }
 
 strong {
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
 }
 
 em, cite, .italic {
@@ -734,6 +801,12 @@ hr + * {
     margin-top: calc(var(--default-margin) * 2);
 }
 
+:is(p, li, a, dd, td) :is(code, pre) {
+    display: inline;
+}
+/* end typography */
+
+/* begin images */
 figure {
     margin: 0;
 }
@@ -759,13 +832,11 @@ a:where(:hover, :active, :focus) img {
 img.grayscale {
     filter: grayscale(1);
 }
+/* end images */
 
-:is(p, li, a, dd, td) :is(code, pre) {
-    display: inline;
-}
-
+/* begin visibility */
 .hidden, .display-none {
-    display: none !important
+    display: none !important;
 }
 
 .visibility-hidden {
@@ -776,15 +847,16 @@ img.grayscale {
     overflow: hidden !important;
 }
 
-[class^="icon-"], [class*="icon-"] {
-    vertical-align: baseline !important; /* avoid vertical-alignment to be overwritten by later imported icon-font */
+.show-in-light-mode-only {
+    display: var(--show-in-light-mode-only);
 }
 
-.width-limitation-wrapper {
-    max-width: var(--width-limitation-wrapper);
-    margin: 0 auto;
+.show-in-dark-mode-only {
+    display: var(--show-in-dark-mode-only);
 }
+/* end visibility */
 
+/* begin borders */
 .border-radius {
     border-radius: var(--default-border-radius); /* border-radius to create round corners for any element with this class  */
 }
@@ -796,10 +868,7 @@ img.grayscale {
 .border {
     border: var(--default-border); /* border (width, style, color) for any element with this class */
 }
-
-.word-break-keep-all {
-    word-break: keep-all;
-}
+/* end borders */
 
 /* end basic selectors and classes ------------------------------------------------------------------------------------------ */
 
@@ -861,7 +930,7 @@ img.grayscale {
         padding: var(--default-padding);
         color: var(--box-footer-text-color);
         background: var(--box-footer-background);
-        border-top: var(--default-border);
+        border-top: var(--box-border);
         border-bottom-left-radius: var(--default-border-radius);
         border-bottom-right-radius: var(--default-border-radius);
         margin-top: auto;
@@ -919,7 +988,6 @@ img.grayscale {
 :is(button, .button, input[type="submit"]) {
     background: var(--button-background);
     border: var(--button-border);
-    border-color: var(--color-scheme-text-color);
     border-radius: var(--button-border-radius);
     outline: var(--button-outline);
     color: var(--button-text-color);
@@ -1481,10 +1549,10 @@ label, .label {
     --status-color: var(--label-text-color);
 
     display: block;
+    white-space: nowrap; /* avoid wrapping of inputelement and (inline) text) */
 
     > span {
-        line-height: 1;
-        white-space: normal;
+        white-space: normal; /* wrap text in label */
     }
 
     .label-text {
@@ -1519,15 +1587,17 @@ label, .label {
         /* end mandatory asterisk */
 
         a[class*="icon-"], a:has([class*="icon-"]) {
-            --status-color: var(--label-text-color-highlighted);
+            --status-color: var(--hyperlink-color);
 
             align-self: flex-end; /* avoids stretching if label wraps */
             border-radius: var(--full-circle);
             line-height: 1;
             margin-left: auto;
             color: var(--status-color);
+            background: var(--label-text-icon-color);
 
             &:is(:hover, :active, :focus) {
+                --status-color: var(--label-text-color-highlighted);
                 background: var(--pure-white);
             }
         }
@@ -1782,6 +1852,10 @@ select {
     &[multiple] {
         max-height: 10rem;
     }
+
+    option {
+        color: var(--select-options-text-color);
+    }
 }
 
 ::placeholder {
@@ -1832,6 +1906,10 @@ td {
     gap: 0;
     align-items: flex-end;
     flex-wrap: nowrap;
+
+    &:has([type="checkbox"], [type="radio"]) {
+        flex-wrap: wrap;
+    }
 
     > * {
         flex: auto;
@@ -2306,7 +2384,8 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
                     align-self: center;
                     position: absolute;
                     right: -.7rem;
-                    top: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
                 }
             }
 
@@ -2322,7 +2401,8 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
                         border-color: var(--default-text-color);
                         background: none;
                         left: -.7rem;
-                        top: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
                     }
                 }
             }
@@ -2620,6 +2700,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--headline-text-color);
     font-weight: var(--headline-font-weight);
     margin-top: var(--headline-margin-top);
+    margin-bottom: var(--headline-margin-bottom);
     text-transform: var(--headline-text-transform);
     line-height: var(--headline-line-height);
 
@@ -2770,7 +2851,7 @@ span + [class*="icon-"] {
 .use-icon-as-background[class*="icon-"] {
     min-width: 0;
     min-height: 0;
-    background: none;
+    background: none !important;
     border: 0 !important;
     padding: 0;
 
@@ -2975,6 +3056,7 @@ dd {
         width: 100%;
         padding-left: var(--default-padding);
         padding-right: var(--default-padding);
+        border-radius: inherit;
     }
 
     nav, .nav {
@@ -2982,7 +3064,6 @@ dd {
         display: flex;
         border-left: var(--main-navigation-border);
         border-right: var(--main-navigation-border);
-        background: var(--main-navigation-background);
 
         /* first-level only */
 
@@ -3017,7 +3098,6 @@ dd {
                 list-style-type: none;
                 margin: 0;
                 white-space: nowrap;
-                background: var(--main-navigation-background);
 
                 li a span[class*="icon-"].subentry-icon::before {
                     display: inline-block;
@@ -3084,6 +3164,7 @@ dd {
                 border-bottom: var(--main-navigation-border);
                 border-bottom-left-radius: var(--main-navigation-border-radius);
                 border-bottom-right-radius: var(--main-navigation-border-radius);
+                background: var(--main-navigation-background);
 
                 li {
                     border: var(--main-navigation-border);

@@ -1,17 +1,15 @@
 <template>
     <div id="frontend-framework-demo" class="demopage">
         <div :id="templateId">
-            <ul class="toggle-color-scheme">
-                <li :class="{active: activeColorScheme === 'light'}"><a href="#" @click.prevent="toggleColorScheme('light')">Light-Mode</a></li>
-                <li :class="{active: activeColorScheme === 'dark'}"><a href="#" @click.prevent="toggleColorScheme('dark')">Dark-Mode</a></li>
-            </ul>
             <div class="site-header sticky" id="anchor-back-to-top" role="banner">
                 <header class="grid-container-create-columns">
                     <div class="company-logo">
                         <a href="./" title="Tooltip">
                             <picture>
-                                <source srcset="./assets/images/logos/logo-darkmode.svg" media="(prefers-color-scheme: dark)">
-                                <img src="./assets/images/logos/logo.svg" alt="Company Logo">
+                                <source srcset="./assets/images/logos/logo-darkmode.svg"
+                                        media="(prefers-color-scheme: dark)" />
+                                <img class="show-in-dark-mode-only" src="./assets/images/logos/logo-darkmode.svg" alt="Company Logo Dark Mode" />
+                                <img class="show-in-light-mode-only"  src="./assets/images/logos/logo.svg" alt="Company Logo" />
                             </picture>
                         </a>
                     </div>
@@ -99,17 +97,17 @@
                 <div v-if="openSidebar" class="inner-sidebar-wrapper">
                     <h3 class="text-align-center">Site Settings</h3>
                     <!-- begin select template -->
-                    <div class="box content collapsible stretch-horizontally" @click.prevent="toggleBox('template')">
-                        <a href="#" class="box-header" title="Show content">
+                    <div class="box content collapsible stretch-horizontally">
+                        <a href="#" class="box-header" title="Show content" @click.prevent="toggleBox('template')">
                             <h4>
-                                <span class="icon-home"></span>
+                                <span class="icon-cog"></span>
                                 <span>Template Settings</span>
                             </h4>
                             <span
                                 :class="openBoxes.includes('template') ? 'icon-chevron-one-stripe-up' : 'icon-chevron-one-stripe-down'"></span>
                         </a>
                         <div v-if="openBoxes.includes('template')" class="box-body" aria-expanded="true" role="article">
-                            <div class="default-padding">
+                            <div class="default-padding flex-container vertical">
                                 <label for="select-template">
                                     <span>Select template</span>
                                     <select id="select-template" v-model="selectedTemplate">
@@ -120,6 +118,26 @@
                                         <option value="influencer">Influencer</option>
                                     </select>
                                 </label>
+                                <div>
+                                    <span>Color Scheme</span>
+                                    <div class="input-wrapper">
+                                        <label for="default-color-scheme">
+                                            <input type="radio" id="default-color-scheme" name="color-scheme" v-model="colorScheme"
+                                                   value="none"/>
+                                            <span class="label-text">Color-Scheme by Browser/OS</span>
+                                        </label>
+                                        <label for="light-mode">
+                                            <input type="radio" id="light-mode" name="color-scheme" v-model="colorScheme"
+                                                   value="light"/>
+                                            <span class="label-text">Light Mode</span>
+                                        </label>
+                                        <label for="dark-mode">
+                                            <input type="radio" id="dark-mode" name="color-scheme" v-model="colorScheme"
+                                                   value="dark"/>
+                                            <span class="label-text">Dark Mode</span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -252,7 +270,8 @@
                     </div>
                 </div>
                 <a href="#" :title="openSidebar ? 'Collapse sidebar' : 'Expand sidebar'" @click.prevent="toggleSidebar">
-                    <span :class="openSidebar ? 'icon-chevron-one-stripe-left' : 'icon-chevron-one-stripe-right'"></span>
+                    <span
+                        :class="openSidebar ? 'icon-chevron-one-stripe-left' : 'icon-chevron-one-stripe-right'"></span>
                 </a>
             </aside>
             <main id="content">
@@ -276,27 +295,21 @@
                         <h4><span class="icon-home"></span><span>Headline 4</span></h4>
                         <h5><span class="icon-home"></span><span>Headline 5</span></h5>
                         <h6><span class="icon-home"></span><span>Headline 6</span></h6>
-                        <h1><span class="icon-hexagon use-icon-as-background"><span class="icon-home"></span></span><span>Headline 1</span></h1>
+                        <h1><span class="icon-hexagon use-icon-as-background"><span
+                            class="icon-home"></span></span><span>Headline 1</span></h1>
                         <h3 class="headline-demopage" id="anchor-paragraphs">Paragraphs (continuous text)</h3>
                         <p>This is a short paragraph</p>
                         <p>This is continuous text within a paragraph with text-align left (which is default).
-                            Longer
-                            texts
-                            should always
-                            be formatted with a &lt;p&gt;-tag. It can contain different further tags, i.e. &lt;br /&gt;,
-                            &lt;a&gt;,
-                            &lt;span&gt;,
-                            &lt;strong&gt;, &lt;em&gt;, &lt;div&gt;. An additional &lt;p&gt;-tag inside a
-                            surrounding
-                            &lt;p&gt;-tag
-                            is not
-                            allowed. It should be also avoided placing to &lt;br /&gt; after each other (use a &lt;p&gt;
-                            instead),
-                            because another paragraph is required if you want to create a blank line (which is no
-                            real
-                            line, but
-                            a
-                            margin). Of course a paragraph may not contain tags for headlines, tables or forms.</p>
+                            Longer texts should always be formatted with a &lt;p&gt;-tag. It can contain different
+                            further tags, i.e. &lt;br /&gt;,
+                            &lt;a&gt;,&lt;span&gt;,&lt;strong&gt;, &lt;em&gt;, &lt;div&gt;. An additional &lt;p&gt;-tag
+                            inside a
+                            surrounding &lt;p&gt;-tag is not allowed. It should be also avoided placing to &lt;br /&gt;
+                            after each other (use a &lt;p&gt;
+                            instead), because another paragraph is required if you want to create a blank line (which is
+                            no
+                            real line, but a margin). Of course a paragraph may not contain tags for headlines, tables
+                            or forms.</p>
                         <p class="text-align-justify">This is continuous text within a paragraph with text-align
                             justify. Longer
                             texts
@@ -380,6 +393,12 @@
                             <span>Hyperlink</span>
                             <span class="icon-user-profile"></span>
                         </a>
+                        <h4>Links in a paragraph</h4>
+                        <p>
+                            This is continuous text within a paragraph including some <a href="#">hyperlinks</a> inside.
+                            This should assure that <a href="#">hyperlinks</a> are well seen by the user even if nested
+                            inside normal text.
+                        </p>
                         <hr/>
                         <h3 class="headline-demopage" id="anchor-miscellaneous">Miscellaneous Typo</h3>
                         <h4>Emphasized</h4>
@@ -1227,7 +1246,7 @@
                         <form method="post" action="#">
                             <fieldset class="flex-container">
                                 <legend>Form with native validation</legend>
-                                <div class="flex-container">
+                                <div class="flex-container align-items-top">
                                     <label for="inputfield-with-native-validation">
                                         <span class="label-text">
                                             <span>Inputfield with native validation:<sup>*</sup></span>
@@ -1552,7 +1571,8 @@
                                     </label>
                                 </div>
                                 <div class="label inline">
-                                    <span class="label-text"><span>Label for Toggle-Switch-Checkbox-Group:<sup>*</sup></span></span>
+                                    <span
+                                        class="label-text"><span>Label for Toggle-Switch-Checkbox-Group:<sup>*</sup></span></span>
                                     <span class="flex-container no-flex">
                                         <label class="toggle-switch" for="checkbox5">
                                             <input type="checkbox" id="checkbox5" name="toggle-switch-chechboxgroup-1"
@@ -2053,11 +2073,11 @@ import packageJson from "../package.json"
 export default {
     data() {
         return {
-            selectedTemplate: "blank",
+            selectedTemplate: "dating",
             openBoxes: ["template", "table"],
             showSidebar: true,
             openSidebar: true,
-            activeColorScheme: "light",
+            colorScheme: "light",
             packageJson
         }
     },
@@ -2067,19 +2087,6 @@ export default {
         }
     },
     methods: {
-        toggleColorScheme(mode) {
-            const htmlTag = document.documentElement
-
-           if(mode === "light") {
-               this.activeColorScheme = "light"
-               htmlTag.classList.remove("dark-mode")
-               htmlTag.classList.add("light-mode")
-            } else {
-               this.activeColorScheme = "dark"
-               htmlTag.classList.remove("light-mode")
-               htmlTag.classList.add("dark-mode")
-           }
-        },
         toggleSidebar() {
             this.openSidebar = !this.openSidebar
         },
@@ -2099,20 +2106,40 @@ export default {
         }
     },
     watch: {
-        selectedTemplate() {
-            let linkTag = document.querySelector('link')
+        colorScheme: {
+            handler() {
+                const htmlTag = document.documentElement
 
-            if (linkTag) {
-                linkTag.parentNode.removeChild(linkTag)
-            }
+                if (this.colorScheme === "light") {
+                    htmlTag.classList.remove("dark-mode")
+                    htmlTag.classList.add("light-mode")
+                } else if (this.colorScheme === "dark") {
+                    htmlTag.classList.remove("light-mode")
+                    htmlTag.classList.add("dark-mode")
+                } else {
+                    htmlTag.classList.remove("dark-mode")
+                    htmlTag.classList.remove("light-mode")
+                }
+            },
+            immediate: true
+        },
+        selectedTemplate: {
+            handler() {
+                let linkTag = document.querySelector('link')
 
-            if (this.selectedTemplate !== "blank") {
-                let newLink = document.createElement('link');
-                newLink.rel = 'stylesheet';
-                newLink.href = '/templates/' + this.selectedTemplate + '.css';
+                if (linkTag) {
+                    linkTag.parentNode.removeChild(linkTag)
+                }
 
-                document.head.appendChild(newLink);
-            }
+                if (this.selectedTemplate !== "blank") {
+                    let newLink = document.createElement('link');
+                    newLink.rel = 'stylesheet';
+                    newLink.href = '/templates/' + this.selectedTemplate + '.css';
+
+                    document.head.appendChild(newLink);
+                }
+            },
+            immediate: true
         }
     }
 }
@@ -2120,33 +2147,6 @@ export default {
 
 <style>
 .toggle-color-scheme {
-    padding: calc(var(--default-padding) / 2) var(--default-padding);
-    position: fixed;
-    top: 1rem;
-    right: 0;
-    background: var(--primary-color);
-    width: 7.5rem;
-    margin: 0;
-    z-index: 1000;
 
-    li {
-        margin: 0;
-        list-style-type: none;
-
-        a {
-            color: var(--pure-white);
-            text-decoration: none;
-
-            &:hover, &:active, &:focus {
-                text-decoration: underline;
-            }
-        }
-
-        &.active {
-            a {
-                font-weight: bold;
-            }
-        }
-    }
 }
 </style>

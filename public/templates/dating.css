@@ -1,3 +1,4 @@
+/* begin template 'dating' */
 @font-face {
     font-family: 'Dancing Script';
     src: url('../../src/assets/fonts/textfonts/dancingscript.woff') format('woff');
@@ -7,96 +8,97 @@
 }
 
 #template-dating {
-    --primary-color: var(--light-pink);
-    --light-pink: hsl(var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness));
-    --dark-pink: hsl(288, 79%, 47%);
-    --hyperlink-color: var(--light-pink);
-    --hyperlink-color-highlighted: var(--dark-pink);
     --default-background: rgba(255, 255, 255, 0.2);
-    --colored-background-gradient: linear-gradient(180deg, var(--primary-color) 0%, var(--dark-pink) 100%);
-    --colored-background-gradient-rotated: linear-gradient(0deg, var(--primary-color) 0%, var(--dark-pink) 100%);
-    --button-font-weight: 400;
+    --colored-background-gradient: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    --colored-background-gradient-rotated: linear-gradient(0deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background-image: url("../images/background/background-dating-lightmode.jpg");
+    background-size: cover;
 }
 
 html {
-    --primary-color-hue: 326;
-    --primary-color-saturation: 70%;
-    --primary-color-lightness: 58%;
-    --box-shadow: .1rem .1rem .5rem #666;
+    --tertiary-color: hsl(211, 46%, 72%);
+    --primary-color-hue: 243;
+    --primary-color-saturation: 60%;
+    --primary-color-lightness: 75%;
+    --secondary-color-hue: 304;
+    --secondary-color-saturation: 40%;
+    --secondary-color-lightness: 75%;
+    --box-shadow: 0 0 2rem rgba(50, 50, 50, .1);
     --font-size: 1.8rem;
     --default-radius: 1rem;
-    --font-family: 'Dancing Script', cursive;
+    --default-padding: 1.5rem;
+    --default-font-family: "Segoe UI", Roboto, sans-serif;
     --default-border-radius: .5rem;
+    --default-border-color: var(--light-gray);
+    --default-text-color: #666;
+    --box-border-color: #ddd;
+    --button-border-radius: 3rem;
+    --main-navigation-background: #fff;
+    --hyperlink-color: var(--primary-color);
+    --hyperlink-color-saturation: 70%;
+    --active-table-cell-background: hsla(var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness), .25);
+    --primary-color-opacity: .1;
+    --button-font-weight: 600;
 }
 
-main {
-    background: var(--colored-background-gradient);
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#6b043e+0,d60868+20,8e054c+70,6b043e+100 */
-    background: hsl(324, 100%, 98%); /* Old browsers */
+h1 {
+    font-family: 'Dancing Script', cursive;
 }
 
 .box, fieldset, #flex-section .flex-container > *,
 #grid-section [class*="grid-"] > div, table {
     box-shadow: var(--box-shadow);
-    backdrop-filter: blur(.3rem);
-    -webkit-backdrop-filter: blur(.3rem);
-    border-color: rgba(0, 0, 0, 0.5);
-    background: var(--pure-white);
+    backdrop-filter: blur(.7rem);
+    -webkit-backdrop-filter: blur(.7rem);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.main-navigation-wrapper {
+    box-shadow: none;
 }
 
 fieldset{
-    background: linear-gradient(180deg, hsl(326, 73%, 97%) 0%, hsl(326, 73%, 92%) 100%);
+    background: linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 97%) 0%, hsl(326, 40%, 92%) 100%);
 }
 
 tr {
     background: none;
 }
 
-button, .button, input[type="submit"] {
-    border: var(--default-border);
-    display: inline-flex;
-    padding: var(--default-padding);
-    background: var(--colored-background-gradient);
-    color: var(--pure-white);
-    font-weight: var(--button-font-weight);
-}
-
-:is(button, .button, input[type="submit"]) :is(span, [class*="icon"]),
-:is(button, .button, input[type="submit"]).primary :is(span, [class*="icon"]) {
-    color: var(--pure-white);
-}
-
-:is(button, .button, input[type="submit"]) [class*="icon"] {
-    font-size: 2rem;
-    line-height: 100%;
-}
-
-:is(button, .button, input[type="submit"]):is(:hover, :active, :focus) {
-    background: var(--pure-white);
-    outline-color: var(--hyperlink-color-highlighted);
-    text-shadow: 0 0 .2rem var(--box-shadow-color);
-    animation: gradient 10s ease infinite;
-    border-color: var(--light-pink) !important;
-}
-
-:is(button, .button, input[type="submit"]):is(:hover, :active, :focus) :is(span, [class*="icon"]) {
-    color: var(--light-pink) !important;
-}
-
 :is(button, .button).primary {
-    background: var(--dark-pink);
-}
-
-:is(button, .button, input[type="submit"]).primary:is(:hover, :active, :focus) {
-    background: var(--pure-white);
-    background-image: none;
-    border-color: var(--dark-pink);
-}
-
-:is(button, .button, input[type="submit"]).primary:is(:hover, :active, :focus) :is(span, [class*="icon"]) {
-    color: var(--dark-pink);
+    background: var(--colored-background-gradient);
 }
 
 .system-message :is(span, [class*="icon-"]) {
-    text-shadow: var(--text-shadow);
+    text-shadow: var(--default-text-shadow);
+}
+
+:is(input, select, textarea, .input):focus {
+    background: var(--primary-color-reduced-opacity);
+}
+
+html {
+    &.dark-mode {
+        #template-dating {
+            --default-background: rgba(0, 0, 0, 0.2);
+            --main-navigation-background: var(--dark-gray);
+            background-image: url("../images/background/background-dating-darkmode.jpg");
+        }
+
+        fieldset{
+            background: linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 7%) 0%, hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 15%));
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    #template-dating {
+        --default-background: rgba(0, 0, 0, 0.2);
+        --main-navigation-background: var(--dark-gray);
+        background-image: url("../images/background/background-dating-darkmode.jpg");
+
+        fieldset{
+            background: linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 7%) 0%, hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 15%));
+        }
+    }
 }

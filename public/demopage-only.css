@@ -15,6 +15,9 @@
     }
 
     .sidebar {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
         &.open {
             width: 30rem;
 
@@ -22,7 +25,8 @@
                 margin-top: auto;
                 font-size: 1.2rem;
                 margin-bottom: 0;
-                background: var(--pure-white);
+                background: var(--color-scheme-background);
+                border-radius: 0;
             }
         }
 
@@ -38,6 +42,8 @@
             align-items: center;
             border: 0;
             border-left: var(--default-border);
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
     }
 
@@ -57,7 +63,19 @@
             }
         }
 
-        .headline-demopage {
+        h1.headline-demopage {
+            font-size: 5rem;
+            background: var(--pure-white);
+            border: var(--default-border);
+            border-color: var(--primary-color);
+        }
+
+        h3.headline-demopage {
+            font-size: 2rem;
+            background: none;
+        }
+
+        h2.headline-demopage {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -72,13 +90,6 @@
             text-transform: uppercase;
             margin-bottom: 2rem;
             border-radius: var(--default-border-radius);
-
-            &h1 {
-                font-size: 5rem;
-                background: var(--pure-white);
-                border: var(--default-border);
-                border-color: var(--primary-color);
-            }
 
             span, span[class*="icon-"] {
                 color: inherit;
@@ -116,6 +127,7 @@
         .box {
             padding: 0;
             border: 0;
+            border-radius: 0;
 
             &:nth-child {
                 flex: 1;
@@ -155,11 +167,11 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            padding: var(--default-padding) 0 0 0;
+            padding: 1rem 0 0 0;
         }
 
         & > h3 {
-            padding: var(--default-padding);
+            padding: 1rem;
             margin: 0;
         }
 
@@ -167,7 +179,7 @@
             display: flex;
             flex-direction: column;
             gap: var(--default-gap);
-            padding: var(--default-padding);
+            padding: 1rem;
 
             .button {
                 align-self: center;
@@ -223,10 +235,9 @@
 
     #flex-section .flex-container > *,
     #grid-section [class*="grid-"] > div {
-        border: var(--default-border);
         text-align: center;
         padding: var(--default-padding);
-        background: var(--default-background);
+        border: var(--default-border);
     }
 
     main {
