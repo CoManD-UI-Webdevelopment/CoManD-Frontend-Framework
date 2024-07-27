@@ -39,6 +39,9 @@ html {
     --active-table-cell-background: hsla(var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness), .25);
     --primary-color-opacity: .1;
     --button-font-weight: 600;
+    --transparent-background: rgba(255, 255, 255, 0.2);
+    --background-site-header: var(--transparent-background);
+    --background-site-footer: var(--transparent-background);
 }
 
 h1 {

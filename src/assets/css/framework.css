@@ -1797,6 +1797,7 @@ input {
         border-bottom-right-radius: 0;
 
         & + :is(button, .button) {
+            border-radius: var(--form-element-border-radius);
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             height: var(--input-height); /* assures that button will not gain vertical space by padding */

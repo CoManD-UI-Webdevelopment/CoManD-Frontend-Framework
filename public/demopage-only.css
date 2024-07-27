@@ -64,15 +64,29 @@
         }
 
         h1.headline-demopage {
-            font-size: 5rem;
+            font-size: 6rem;
             background: var(--pure-white);
             border: var(--default-border);
             border-color: var(--primary-color);
+            margin: 0;
+            color: var(--primary-color);
+            text-align: center;
+            border-radius: var(--default-border-radius);
         }
 
         h3.headline-demopage {
             font-size: 2rem;
             background: none;
+        }
+
+        fieldset h3.headline-demopage {
+            padding: 0;
+            justify-content: flex-start;
+            color: var(--primary-color);
+
+            span {
+                color: inherit;
+            }
         }
 
         h2.headline-demopage {
