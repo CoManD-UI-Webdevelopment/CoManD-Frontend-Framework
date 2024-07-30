@@ -985,7 +985,7 @@ img.grayscale {
 /* end boxes ------------------------------------------------------------------------------------------ */
 
 /* begin buttons ------------------------------------------------------------------------------------------ */
-:is(button, .button, input[type="submit"]) {
+:is(button, .button, input[type="submit"]), ::file-selector-button {
     background: var(--button-background);
     border: var(--button-border);
     border-radius: var(--button-border-radius);
@@ -1008,6 +1008,12 @@ img.grayscale {
     > :is(span, [class*="icon-"]) {
         color: var(--button-text-color);
         align-self: center; /* necessary to keep text and icon centered if button has different alignment */
+    }
+
+    ::file-selector-button:hover {
+        background: red !important;
+        margin-right: 2rem;
+        cursor: pointer;
     }
 
     &.primary {
@@ -1165,7 +1171,7 @@ img.grayscale {
     position: fixed;
     right: 2rem;
     bottom: 2rem;
-    z-index: 1000;
+    z-index: 3000;
     line-height: var(--button-line-height);
 
     [class*="icon-"] {
@@ -1816,8 +1822,7 @@ input {
     }
 
     &[type="file"] {
-        padding-top: .8rem;
-        padding-bottom: .7rem;
+        padding: 0;
     }
 
     &[type="color"] {

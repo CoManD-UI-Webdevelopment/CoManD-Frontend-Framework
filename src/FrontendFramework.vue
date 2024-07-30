@@ -1,6 +1,6 @@
 <template>
     <div id="frontend-framework-demo" class="demopage">
-        <div :id="templateId">
+        <div :id="templateId" class="page-wrapper">
             <div class="site-header sticky" id="anchor-back-to-top" role="banner">
                 <header class="grid-container-create-columns">
                     <div class="company-logo">
@@ -1103,6 +1103,10 @@
                                             <a href="#" class="button no-flex"><span class="icon-search"></span></a>
                                         </span>
                                     </label>
+                                    <label for="select-file-field">
+                                        <span class="label-text"><span>Label for select-file-field:</span></span>
+                                            <input name="select-file-field" id="select-file-field" placeholder="Keyword(s)" type="file"/>
+                                    </label>
                                 </div>
                                 <label class="inline" for="numberfield">
                                     <span class="label-text"><span>Label for numberfield (inline):</span></span>
@@ -2058,8 +2062,8 @@
             </main>
 
             <!-- begin copyright-information -->
-            <div class="cmd-copyright-information" role="contentinfo">
-                <a href="http://www.comand-cms.com" target="_blank" lang="en" title="CoManD-Website">© CoManD</a>
+            <div class="copyright-information" role="contentinfo">
+                <a href="https://www.comand-cms.com" target="_blank" lang="en" title="CoManD-Website">© CoManD</a>
             </div>
             <!-- end copyright-information -->
         </div> <!-- end main-wrapper -->
@@ -2146,7 +2150,13 @@ export default {
 </script>
 
 <style>
-.toggle-color-scheme {
-
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100dvh;
+    scroll-behavior: smooth;
+    scroll-padding-top: 11.7rem;
 }
 </style>

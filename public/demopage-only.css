@@ -4,14 +4,8 @@
         overflow: hidden;
     }
 
-    > [id^="template-"] {
-        display: flex;
-        flex-direction: column;
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll;
-        width: 100vw;
-        height: 100vh;
-        scroll-behavior: smooth
+    .site-header {
+        flex: none;
     }
 
     .sidebar {
@@ -205,10 +199,12 @@
         height: 5vh;
     }
 
-    [class*="copyright-information"] {
+    .copyright-information {
         background: var(--default-text-color);
         text-align: center;
         padding: var(--default-padding);
+        flex: none;
+        margin-top: 0;
 
         a {
             color: var(--pure-white);
@@ -255,9 +251,7 @@
     }
 
     main {
-        overflow-y: scroll;
-        height: calc(100vh - 20vh);
-        flex: 1;
+        flex: 1 0 auto;
     }
 }
 
