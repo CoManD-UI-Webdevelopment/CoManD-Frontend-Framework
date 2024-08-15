@@ -1,21 +1,14 @@
 /* begin template 'dating' */
 @font-face {
-    font-family: 'Dancing Script';
+    font-family: 'Dancing Script', cursive;
     src: url('../../src/assets/fonts/textfonts/dancingscript.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: block;
 }
 
-#template-dating {
-    --default-background: rgba(255, 255, 255, 0.2);
-    --colored-background-gradient: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-    --colored-background-gradient-rotated: linear-gradient(0deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    background-image: url("../images/background/background-dating-lightmode.jpg");
-    background-size: cover;
-}
-
 html {
+    /* overwrite variables from framework.css */
     --tertiary-color: hsl(211, 46%, 72%);
     --primary-color-hue: 243;
     --primary-color-saturation: 60%;
@@ -41,6 +34,18 @@ html {
     --button-font-weight: 600;
     --transparent-background: rgba(255, 255, 255, 0.2);
     --background-site-footer: var(--transparent-background);
+    --default-background: rgba(255, 255, 255, 0.2);
+    --input-height: 4.6rem;
+    --form-element-with-icon-padding: calc(var(--default-padding) * 2);
+
+    /* declare custom variables */
+    --colored-background-gradient: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    --colored-background-gradient-rotated: linear-gradient(0deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+.page-wrapper {
+    background-image: url("../images/background/background-dating-lightmode.jpg");
+    background-size: cover;
 }
 
 h1 {
@@ -69,10 +74,6 @@ tr {
 
 :is(button, .button).primary {
     background: var(--colored-background-gradient);
-}
-
-.system-message :is(span, [class*="icon-"]) {
-    text-shadow: var(--default-text-shadow);
 }
 
 :is(input, select, textarea, .input):focus {

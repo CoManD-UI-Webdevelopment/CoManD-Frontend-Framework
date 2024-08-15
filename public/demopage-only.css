@@ -71,6 +71,7 @@
         h3.headline-demopage {
             font-size: 2rem;
             background: none;
+            gap: calc(var(--default-gap) / 2);
         }
 
         fieldset h3.headline-demopage {

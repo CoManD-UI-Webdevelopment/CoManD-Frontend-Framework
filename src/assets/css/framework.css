@@ -420,6 +420,7 @@ html {
     --form-element-border-color-highlighted: var(--hyperlink-color); /* border-color highlighted for form-elements */
     --form-element-border-radius: var(--default-border-radius); /* border-radius for form-elements */
     --select-options-text-color: var(--default-text-color); /* text color for options inside selectboxes */
+    --form-element-with-icon-padding: calc(var(--default-padding) * 3); /* padding(-left) for form-elements with icon */
     /* END FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SYSTEM-MESSAGES ------------------------------------------------------------------------------------------ */
@@ -1010,12 +1011,6 @@ img.grayscale {
         align-self: center; /* necessary to keep text and icon centered if button has different alignment */
     }
 
-    ::file-selector-button:hover {
-        background: red !important;
-        margin-right: 2rem;
-        cursor: pointer;
-    }
-
     &.primary {
         --button-background: var(--primary-color);
         border-color: var(--primary-color);
@@ -1164,6 +1159,10 @@ img.grayscale {
             }
         }
     }
+}
+
+::file-selector-button {
+    border-radius: var(--form-element-border-radius);
 }
 
 /* begin back-to-top-button */
@@ -1744,7 +1743,7 @@ label, .label {
 
         &[class*="icon-"], & [class*="icon-"] {
             & + :is(input, select, textarea, .input) {
-                padding-left: calc(var(--default-padding) * 3);
+                padding-left: var(--form-element-with-icon-padding);
             }
 
             & + input:focus {
@@ -3246,7 +3245,7 @@ dd {
         cursor: pointer;
         aspect-ratio: 1/1;
         align-self: flex-start;
-        line-height: .5;
+        line-height: .3;
         margin: 0;
 
         &:is(:hover, :active, :focus) {
