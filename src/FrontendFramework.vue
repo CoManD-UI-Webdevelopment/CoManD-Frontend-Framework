@@ -993,7 +993,7 @@
                         <h2 class="headline-demopage" id="anchor-forms">Forms</h2>
                         <h3 id="anchor-native-form-elements">Native form elements (fieldset with grid-container)</h3>
                         <form method="post">
-                            <fieldset class="grid-container-create-column">
+                            <fieldset class="flex-container">
                                 <legend>Legend</legend>
                                 <div class="label">
                                     <span class="label-text">Enter dates:</span>

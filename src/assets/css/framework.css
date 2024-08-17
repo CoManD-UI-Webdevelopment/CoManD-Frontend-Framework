@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/07/25
+framework.css - last update: 2024/08/17
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -1435,7 +1435,9 @@ fieldset {
         color: var(--legend-text-color);
         font-weight: var(--legend-font-weight);
         font-size: var(--legend-font-size);
-        padding: 0 .3rem .3rem .3rem;
+        position: absolute; /* must be placed absolute for fieldset-flex-container to work properly */
+        top:  calc(var(--fieldset-padding) * -1);
+        right: 0; /* align right to avoid collision with optional headlines above fieldset */
     }
 
     > *:first-child, legend + * {
