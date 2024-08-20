@@ -1271,6 +1271,14 @@ img.grayscale {
     display: flex;
     flex-wrap: wrap; /* breaks children to new line if they are wider than their parent */
     gap: var(--default-gap);
+
+    &.space-between {
+        justify-content: space-between;
+
+        > * {
+            flex: none !important; /* must be set to make space-between work properly */
+        }
+    }
 }
 
 :where(ul, ol).flex-container:not(.vertical) {
