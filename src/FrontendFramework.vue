@@ -1108,9 +1108,9 @@
                                             <input name="select-file-field" id="select-file-field" placeholder="Keyword(s)" type="file"/>
                                     </label>
                                 </div>
-                                <label class="inline" for="numberfield">
-                                    <span class="label-text"><span>Label for numberfield (inline):</span></span>
-                                    <input name="numberfield" id="numberfield" placeholder="1" type="number"/>
+                                <label class="inline stretch-field" for="numberfield">
+                                    <span class="label-text"><span>Label for numberfield (inline, stretched):</span></span>
+                                    <input name="numberfield" id="numberfield" placeholder="1" type="number" value="0"/>
                                 </label>
                                 <label class="inline" for="numberfield2">
                                     <span
