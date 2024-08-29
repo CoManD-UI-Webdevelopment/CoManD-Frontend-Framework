@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/08/20
+framework.css - last update: 2024/08/29
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -552,8 +552,6 @@ html {
         :where(label, .label) .label-text > [class*="icon-"] {
             background: var(--dark-gray);
         }
-
-
     }
 }
 
@@ -1666,6 +1664,8 @@ label, .label {
         }
 
         .label-text {
+            display: flex;
+
             a[class*="icon"], a:has([class*="icon"]) {
                 margin-left: calc(var(--default-margin) / 2);
             }
