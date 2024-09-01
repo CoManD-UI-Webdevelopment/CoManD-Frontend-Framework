@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/08/29
+framework.css - last update: 2024/08/31
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -388,6 +388,7 @@ html {
     --fieldset-border: var(--default-border); /* border for fieldsets */
     --fieldset-border-radius: var(--default-border-radius); /* border-radius for fieldsets */
     --fieldset-padding: calc(var(--default-padding) * 2); /* padding for fieldsets */
+    --fieldset-margin: 0 0 calc(var(--default-margin) * 2) 0; /* margin for fieldsets */
 
     /* legends */
     --legend-text-color: var(--color-scheme-text-color); /* text-color for fieldset legends */
@@ -768,7 +769,7 @@ object, svg, img, video, canvas, .responsive-wrapper {
 /* end item-align for flex-containers */
 
 /* begin basic typography */
-p, ul, ol, dl, table, fieldset, address {
+p, ul, ol, dl, table, address {
     margin-bottom: var(--default-margin); /* margin-bottom for most elements containing text */
 }
 
@@ -1409,6 +1410,7 @@ fieldset {
     border: var(--fieldset-border);
     border-radius: var(--fieldset-border-radius);
     padding: var(--fieldset-padding);
+    margin: var(--fieldset-margin);
 
     &.flex-container {
         flex-direction: column;
