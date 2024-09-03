@@ -1937,7 +1937,7 @@
                 <div class="width-limitation-wrapper">
                     <section id="flex-section">
                         <h2 class="headline-demopage" id="anchor-flex-containers">Flex-Containers</h2>
-                        <h3 id="anchor-flex-containers-default">Default</h3>
+                        <h3 id="anchor-flex-containers-default">Default/Equal</h3>
                         <div class="flex-container">
                             <div>flex-item</div>
                             <div>flex-item</div>
@@ -1966,6 +1966,15 @@
                             <div>flex-item</div>
                             <div>flex-item</div>
                             <div>flex-item</div>
+                        </div>
+                        <h3 id="anchor-flex-containers-unequal">Unequal widths</h3>
+                        <div class="flex-container" style="margin-bottom: 2rem;">
+                            <div class="flex-item-two-third">flex-item 2/3</div>
+                            <div class="flex-item-one-third">flex-item 1/3</div>
+                        </div>
+                        <div class="flex-container">
+                            <div class="flex-item-one-forth">flex-item 1/4</div>
+                            <div class="flex-item-three-forth">flex-item 3/4</div>
                         </div>
                     </section>
                 </div>

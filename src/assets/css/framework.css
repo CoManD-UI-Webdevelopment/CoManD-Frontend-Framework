@@ -1321,6 +1321,19 @@ img.grayscale {
             margin-bottom: 0;
         }
     }
+
+    > .flex-item-one-third,
+    .flex-item-one-forth {
+        flex: 1;
+    }
+
+    > .flex-item-two-third {
+        flex: 2;
+    }
+
+    > .flex-item-three-forth {
+        flex: 3;
+    }
 }
 
 :is(label, .label) > .flex-container > :is(label, .label) {
