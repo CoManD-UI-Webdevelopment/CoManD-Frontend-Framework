@@ -410,6 +410,13 @@
                         <p>text<sub>subscript</sub></p>
                         <h4>Small text</h4>
                         <small>Small text</small>
+                        <h4>Definition</h4>
+                        <p>
+                            <dfn title="A definition is describable text for a default terminology">Definition</dfn>
+                        </p>
+                        <p>
+                            <a href="#"><dfn title="A definition is describable text for a default terminology">Definition with a link</dfn></a>
+                        </p>
                         <h4>Horizontal row</h4>
                         <hr/>
                     </section>
@@ -1938,13 +1945,33 @@
                     <section id="flex-section">
                         <h2 class="headline-demopage" id="anchor-flex-containers">Flex-Containers</h2>
                         <h3 id="anchor-flex-containers-default">Default/Equal</h3>
+                        <div class="flex-container" style="margin-bottom: 2rem;">
+                            <div>flex-item</div>
+                            <div>flex-item</div>
+                        </div>
+                        <div class="flex-container" style="margin-bottom: 2rem;">
+                            <div>flex-item</div>
+                            <div>flex-item</div>
+                            <div>flex-item</div>
+                        </div>
                         <div class="flex-container">
+                            <div>flex-item</div>
                             <div>flex-item</div>
                             <div>flex-item</div>
                             <div>flex-item</div>
                         </div>
                         <h3 id="anchor-flex-containers-no-gap">No-gap</h3>
+                        <div class="flex-container no-gap" style="margin-bottom: 2rem;">
+                            <div>flex-item</div>
+                            <div>flex-item</div>
+                        </div>
+                        <div class="flex-container no-gap" style="margin-bottom: 2rem;">
+                            <div>flex-item</div>
+                            <div>flex-item</div>
+                            <div>flex-item</div>
+                        </div>
                         <div class="flex-container no-gap">
+                            <div>flex-item</div>
                             <div>flex-item</div>
                             <div>flex-item</div>
                             <div>flex-item</div>

@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/08/31
+framework.css - last update: 2024/09/26
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -330,7 +330,10 @@ html {
     --box-border: var(--box-border-width) var(--box-border-style) var(--box-border-color); /* border for boxes */
     --box-border-radius: var(--default-border-radius); /* border-radius for boxes */
     --box-header-text-color: var(--pure-white); /* text-color for box-header */
+    --box-header-padding:  calc(var(--default-padding) / 2) var(--default-padding);; /* padding for box-header */
     --box-body-text-color: var(--color-scheme-text-color); /* text-color for box-header */
+    --box-body-padding: var(--default-padding); /* padding for box-body */
+    --box-footer-padding: var(--default-padding); /* padding for box-footer */
     --box-footer-text-color: var(--color-scheme-text-color); /* text-color for box-header */
     --box-shadow-color: var(--dark-gray); /* box-shadow-color */
     /* END BOXES ------------------------------------------------------------------------------------------ */
@@ -628,6 +631,15 @@ time {
     display: inline;
 }
 
+dfn {
+    font-style: normal;
+    border-bottom: .1rem dashed;
+
+    &:hover, &:active, &:focus {
+        cursor: help;
+    }
+}
+
 object, svg, img, video, canvas, .responsive-wrapper {
     max-width: 100%;
     height: auto;
@@ -877,12 +889,12 @@ img.grayscale {
     background: var(--box-background);
     border: var(--box-border);
     border-radius: var(--box-border-radius);
-    padding: calc(var(--default-padding) * 2);
+    padding: var(--box-body-padding);
 
     .box-header {
         display: flex;
         align-items: center;
-        padding: calc(var(--default-padding) / 2) var(--default-padding);
+        padding: var(--box-header-padding);
         background: var(--box-header-background);
         border-top-left-radius: var(--box-border-radius);
         border-top-right-radius: var(--box-border-radius);
@@ -927,7 +939,7 @@ img.grayscale {
     }
 
     .box-footer {
-        padding: var(--default-padding);
+        padding: var(--box-footer-padding);
         color: var(--box-footer-text-color);
         background: var(--box-footer-background);
         border-top: var(--box-border);
@@ -1015,11 +1027,11 @@ img.grayscale {
         border-color: var(--primary-color);
 
         &:is(:hover, :active, :focus-visible) {
-            color: var(--primary-color);
+            color: var(--primary-color) !important; /* avoid overwriting by text-color with higher specificity */
             border-color: var(--primary-color);
 
             > :is(span, [class*="icon-"]) {
-                color: var(--primary-color);
+                color: var(--primary-color) !important; /* avoid overwriting by text-color with higher specificity */
             }
         }
     }
@@ -1029,11 +1041,11 @@ img.grayscale {
         border-color: var(--tertiary-color);
 
         &:is(:hover, :active, :focus-visible) {
-            color: var(--tertiary-color);
+            color: var(--tertiary-color) !important; /* avoid overwriting by text-color with higher specificity */
             border-color: var(--tertiary-color);
 
             > :is(span, [class*="icon-"]) {
-                color: var(--tertiary-color);
+                color: var(--tertiary-color) !important; /* avoid overwriting by text-color with higher specificity */
             }
         }
     }
@@ -1075,7 +1087,7 @@ img.grayscale {
     }
 
     &:is(:hover, :active, :focus-visible) {
-        color: var(--button-text-color-highlighted);
+        color: var(--button-text-color-highlighted) !important; /* avoid overwriting by text-color with higher specificity */
         background: var(--button-background-highlighted);
         cursor: pointer;
         text-shadow: none;
@@ -1083,7 +1095,7 @@ img.grayscale {
         outline: var(--button-outline-highlighted); /* avoids overwrite from a:hover */
 
         > :is(span, [class*="icon-"]) {
-            color: var(--button-text-color-highlighted);
+            color: var(--button-text-color-highlighted) !important; /* avoid overwriting by text-color with higher specificity */
             text-shadow: none;
         }
     }
@@ -1287,10 +1299,6 @@ img.grayscale {
         list-style-type: none;
         margin: inherit;
     }
-}
-
-:where(.flex-container, .button-wrapper) > * {
-    float: none !important; /* flex-items should not be floated */
 }
 
 .flex-container {
@@ -2825,6 +2833,10 @@ a {
         & > * {
             color: inherit;
         }
+    }
+
+    &:has(dfn) {
+        text-decoration: none;
     }
 }
 
