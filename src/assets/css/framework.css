@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/09/26
+framework.css - last update: 2024/10/05
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -503,7 +503,7 @@ html {
         --color-scheme-background: var(--dark-mode-background); /* assign background(-color) for dark-mode to color-scheme */
         --color-scheme-background-inverted: var(--light-mode-background); /* assign an inverted background(-color) for dark-mode to color-scheme */
         --color-scheme-disabled-background: var(--dark-gray); /* assign background(-color) fo disabled-elements for dark-mode */
-        --disabled-color-lightness: 50%; /* disabled-text-color for dark-mode */
+        --disabled-color-lightness: 30%; /* disabled-text-color for dark-mode */
         --default-background-color-lightness: 20%; /* reduce default background-color-lightness for dark-mode */
         --placeholder-text-color: var(--light-gray); /* text-color for placeholder texts for dark-mode */
         --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
@@ -527,7 +527,16 @@ html {
         --color-scheme-text-color-buttons: var(--light-mode-text-color-buttons); /* assign button-text-color for light-mode to color-scheme */
         --color-scheme-background: var(--light-mode-background); /* assign background(-color) for light-mode to color-scheme */
         --color-scheme-background-inverted: var(--dark-mode-background); /* assign an inverted background(-color) for light-mode to color-scheme */
+        --color-scheme-disabled-background: var(--disabled-background); /* assign background(-color) fo disabled-elements for light-mode */
+        --disabled-color-lightness: 50%; /* disabled-text-color for light-mode */
         --default-background-color-lightness: 97%; /* assign default background-color-lightness for light-mode */
+        --placeholder-text-color: var(--light-gray); /* text-color for placeholder texts for light-mode */
+        --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for light-mode */
+        --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for light-mode */
+        --hyperlink-color-lightness: var(--primary-color-lightness); /* hyperlink-color-lightness for light-mode */
+        --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue for light-mode */
+        --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
+        --hyperlink-color-highlighted-lightness: 40%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
         --show-in-light-mode-only: block; /* display-behavior for elements using .show-in-light-mode-only */
         --show-in-dark-mode-only: none; /* display-behavior for elements using .show-in-dark-mode-only */
     }

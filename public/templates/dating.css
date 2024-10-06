@@ -9,6 +9,7 @@
 
 html {
     /* overwrite variables from framework.css */
+    --dark-mode-text-color: rgb(240, 240, 240);
     --tertiary-color: hsl(211, 46%, 72%);
     --primary-color-hue: 243;
     --primary-color-saturation: 60%;
@@ -29,7 +30,7 @@ html {
     --main-navigation-background: #fff;
     --hyperlink-color: var(--primary-color);
     --hyperlink-color-saturation: 70%;
-    --active-table-cell-background: hsla(var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness), .25);
+    --active-table-cell-background: hsla(var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness), .5);
     --primary-color-opacity: .1;
     --button-font-weight: 600;
     --transparent-background: rgba(255, 255, 255, 0.2);
@@ -95,6 +96,7 @@ html {
         --default-background: rgba(0, 0, 0, 0.2);
         --main-navigation-background: var(--dark-gray);
         --box-header-background: none;
+        --default-text-color: red;
         --fieldset-background: linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 7%) 0%, hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 15%));
 
         background-image: url("../images/background/background-dating-darkmode.jpg");
