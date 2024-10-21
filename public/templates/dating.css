@@ -34,7 +34,7 @@ html {
     --primary-color-opacity: .1;
     --button-font-weight: 600;
     --transparent-background: rgba(255, 255, 255, 0.2);
-    --background-site-footer: var(--transparent-background);
+    --site-footer-background: var(--transparent-background);
     --default-background: rgba(255, 255, 255, 0.2);
     --input-height: 4.6rem;
     --form-element-with-icon-padding: calc(var(--default-padding) * 2);
