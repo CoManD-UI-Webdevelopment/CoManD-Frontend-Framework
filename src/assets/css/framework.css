@@ -88,9 +88,10 @@ html {
     /* END WEBSITE-GRID AND GLOBAL SETTINGS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SITE HEADER ------------------------------------------------------------------------------------------ */
-    --site-header-border: var(--default-border);
-    --site-header-background: var(--color-scheme-background);
-    --site-header-text-color: var(--color-scheme-text-color);
+    --site-header-border: var(--default-border); /* border for site-header */
+    --site-header-background: var(--color-scheme-background); /* background for site-header */
+    --site-header-text-color: var(--color-scheme-text-color); /* text-color for site-header */
+    --site-header-padding: var(--default-padding); /* padding for site-header */
     /* END SITE HEADER ------------------------------------------------------------------------------------------ */
 
     /* BEGIN MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
@@ -100,9 +101,11 @@ html {
     /* END MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SITE FOOTER ------------------------------------------------------------------------------------------ */
-    --site-footer-border: var(--default-border);
-    --site-footer-background: var(--color-scheme-background);
-    --site-footer-text-color: var(--color-scheme-text-color);
+    --site-footer-border: var(--default-border); /* border for site-footer */
+    --site-footer-background: var(--color-scheme-background); /* background for site-footer */
+    --site-footer-headline-color: var(--headline-text-color);/* headline-text-color for site-footer */
+    --site-footer-text-color: var(--color-scheme-text-color); /* text-color for site-footer */
+    --site-footer-padding: var(--default-padding); /* padding for site-footer */
     /* END SITE FOOTER ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BACKGROUNDS ------------------------------------------------------------------------------------------ */
@@ -2959,8 +2962,13 @@ span + [class*="icon-"] {
 /* begin ordered and unordered-lists */
 /* indent for nested lists */
 ul, ol {
-    margin: 0 0 0 var(--default-margin);
+    margin: 0 0 var(--default-margin) var(--default-margin);
 
+    &.no-indent {
+      margin-left: 0;
+    }
+
+    /* nested lists */
     ul, ol {
         margin-bottom: 0;
     }
@@ -3032,7 +3040,7 @@ dd {
         max-width: var(--header-max-width);
         width: 100%;
         margin: 0 auto;
-        padding: var(--default-padding);
+        padding: var(--site-header-padding);
         align-items: center;
 
         & > * {
@@ -3092,7 +3100,6 @@ dd {
 
 /* begin site-footer ------------------------------------------------------------------------------------------ */
 .site-footer {
-    padding: var(--grid-gap) 0;
     border: var(--site-footer-border);
     border-left: 0;
     border-right: 0;
@@ -3103,9 +3110,15 @@ dd {
         max-width: var(--footer-max-width);
         width: 100%;
         margin: 0 auto;
-        padding: 0 var(--default-padding);
+        padding: var(--site-footer-padding);
 
-        & > * {
+        h2, h3, h4, h5, h6 {
+            span {
+                color: var(--site-footer-headline-color);
+            }
+        }
+
+        & * {
             color: var(--site-footer-text-color);
         }
     }
@@ -3521,6 +3534,21 @@ table {
             .toggle-switch > span {
                 white-space: nowrap;
             }
+
+            &.center-content {
+                text-align: center;
+
+                :is(button, .button) {
+                    float: none;
+                    display: table;
+                    margin: 0 auto;
+                }
+
+                input {
+                    float: none;
+                    text-align: center;
+                }
+            }
         }
     }
 
@@ -3540,21 +3568,6 @@ table {
 
 [class*="grid-container"] table {
     align-self: start;
-}
-
-table td, td.center-content {
-    text-align: center;
-
-    :is(button, .button) {
-        float: none;
-        display: table;
-        margin: 0 auto;
-    }
-
-    input {
-        float: none;
-        text-align: center;
-    }
 }
 
 /* end tables ------------------------------------------------------------------------------------------ */
