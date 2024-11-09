@@ -95,9 +95,13 @@ html {
     /* END SITE HEADER ------------------------------------------------------------------------------------------ */
 
     /* BEGIN MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
-    --main-navigation-background: var(--default-background); /* background(-color) for main navigation (and all sub-entries) */
+    --main-navigation-background: var(--default-background); /* background(-color) for entire main navigation (and all sub-entries) */
+    --main-navigation-background-highlighted: var(--pure-white); /* background(-color) for highlighted entries in main navigation (and all sub-entries) */
     --main-navigation-border: var(--default-border); /* border for main navigation (and all sub-entries) */
     --main-navigation-border-radius: var(--default-border-radius); /* border-radius for main navigation (and bottom of sub-entries-list) */
+    --main-navigation-hyperlink-color: var(--color-scheme-text-color); /* default text-color for links in main-navigation */
+    --main-navigation-hyperlink-color-highlighted: var(--hyperlink-color); /* highlighted text-color for links in main-navigation */
+    --main-navigation-hyperlink-color-active: var(--hyperlink-color); /* active text-color for links in main-navigation */
     /* END MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SITE FOOTER ------------------------------------------------------------------------------------------ */
@@ -309,6 +313,9 @@ html {
 
     /* text-decorations */
     --hyperlink-text-decoration: underline; /* text-decoration for hyperlinks */
+    --hyperlink-text-decoration-color: var(--hyperlink-color); /* text-decoration-color for hyperlinks */
+    --hyperlink-text-decoration-style: solid; /* text-decoration-style for hyperlinks */
+    --hyperlink-text-decoration-thickness: auto; /* text-decoration-thickness for hyperlinks */
     --hyperlink-text-decoration-highlighted: none; /* text-decoration for highlighted (:hover, :active, :focus) hyperlinks */
 
     /* headlines */
@@ -537,7 +544,7 @@ html {
         --color-scheme-disabled-background: var(--disabled-background); /* assign background(-color) fo disabled-elements for light-mode */
         --disabled-color-lightness: 50%; /* disabled-text-color for light-mode */
         --default-background-color-lightness: 97%; /* assign default background-color-lightness for light-mode */
-        --placeholder-text-color: var(--light-gray); /* text-color for placeholder texts for light-mode */
+        --placeholder-text-color: var(--medium-gray); /* text-color for placeholder texts for light-mode */
         --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for light-mode */
         --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for light-mode */
         --hyperlink-color-lightness: var(--primary-color-lightness); /* hyperlink-color-lightness for light-mode */
@@ -726,6 +733,8 @@ object, svg, img, video, canvas, .responsive-wrapper {
 .full-width {
     width: 100% !important; /* overwrite set width */
     max-width: none !important; /* overwrite set max-width */
+    padding-left: 0 !important; /* overwrite set padding-left */
+    padding-right: 0 !important; /* overwrite set padding-right */
 }
 
 .full-height {
@@ -941,6 +950,10 @@ img.grayscale {
 
         &:has(*:only-child) {
             margin: 0;
+        }
+
+        fieldset {
+            background: none;
         }
     }
 
@@ -2807,6 +2820,9 @@ h6, h6 > :is(a, span, [class*="icon-"]) {
 a {
     color: var(--hyperlink-color);
     text-decoration: var(--hyperlink-text-decoration);
+    text-decoration-color: var(--hyperlink-text-decoration-color);
+    text-decoration-style: var(--hyperlink-text-decoration-style);
+    text-decoration-thickness: var(--hyperlink-text-decoration-thickness);
 
     & * {
         color: inherit;
@@ -2963,6 +2979,12 @@ span + [class*="icon-"] {
 /* indent for nested lists */
 ul, ol {
     margin: 0 0 var(--default-margin) var(--default-margin);
+
+    &.highlight-list-style-item {
+        li::marker {
+            color: var(--primary-color);
+        }
+    }
 
     &.no-indent {
       margin-left: 0;
@@ -3190,7 +3212,7 @@ dd {
                     align-items: center;
                     padding: var(--default-padding);
                     text-decoration: none;
-                    color: var(--hyperlink-color);
+                    color: var(--main-navigation-hyperlink-color);
 
                     span, [class*="icon-"] {
                         color: inherit;
@@ -3205,8 +3227,8 @@ dd {
                     }
 
                     &:is(:hover, :active, :focus) {
-                        background: var(--primary-color);
-                        color: var(--pure-white);
+                        background: var(--main-navigation-background-highlighted);
+                        color: var(--main-navigation-hyperlink-color-highlighted);
 
                         :is(span, [class*="icon-"]) {
                             color: inherit;
@@ -3217,7 +3239,7 @@ dd {
                 &.active {
                     a, a:focus {
                         background: var(--primary-color);
-                        color: var(--pure-white);
+                        color: var(--main-navigation-hyperlink-color-active);
                     }
 
                     :is(span, [class*="icon-"]) {
@@ -3596,6 +3618,7 @@ table {
 
     fieldset {
         padding: var(--default-padding);
+        container-type: inline-size /* enables flex-containers in fieldset to work with @contaiter (DO NOT SET TO 'size' because of render-height-issue) */
     }
 }
 /* end container-styles ------------------------------------------------------------------------------------------ */

@@ -70,6 +70,10 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         width: auto;
     }
 
+    a[href^="tel"]:not(.button) {
+        text-decoration: underline;
+    }
+
     :is(label, .label) {
         &.inline {
             flex-direction: column;
@@ -120,10 +124,6 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         }
     }
 
-    fieldset {
-        padding: var(--default-padding);
-    }
-
     .flex-container.align-bottom > *,
     fieldset > .flex-container > * {
         align-self: flex-start;
@@ -131,6 +131,8 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     }
 
     fieldset {
+        padding: var(--default-padding);
+
         > label:first-child {
             margin-top: 0;
         }

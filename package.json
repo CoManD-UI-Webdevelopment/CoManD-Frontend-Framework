@@ -1,6 +1,6 @@
 {
   "name": "comand-frontend-framework",
-  "version": "4.0.84",
+  "version": "4.0.94",
   "license": "GPL-3.0-only",
   "author": "CoManD-UI",
   "private": false,
@@ -9,7 +9,8 @@
     "publish": "npm publish",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "main": "dist/comand-frontend-framework.umd.cjs",
   "module": "dist/comand-frontend-framework.js",
