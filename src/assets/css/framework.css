@@ -73,6 +73,10 @@ html {
     --grid-layout-columns: calc(var(--grid-columns) / var(--grid-small-span)); /* layout/optical columns */
     --grid-gap: var(--default-gap); /* grid-gap for grid-items */
 
+    /* golden-ratio */
+    --golden-ratio-small-width: 38.2%; /* width for small-item for golden-ratio */
+    --golden-ratio-large-width: 61.8%; /* width for large-item for golden-ratio */
+
     /* paddings, margins, gaps, radii */
     --default-padding: 1rem; /* default paddings */
     --default-padding-half: calc(var(--default-padding) / 2); /* half of default padding */
@@ -99,9 +103,9 @@ html {
     --main-navigation-background-highlighted: var(--pure-white); /* background(-color) for highlighted entries in main navigation (and all sub-entries) */
     --main-navigation-border: var(--default-border); /* border for main navigation (and all sub-entries) */
     --main-navigation-border-radius: var(--default-border-radius); /* border-radius for main navigation (and bottom of sub-entries-list) */
-    --main-navigation-hyperlink-color: var(--color-scheme-text-color); /* default text-color for links in main-navigation */
-    --main-navigation-hyperlink-color-highlighted: var(--hyperlink-color); /* highlighted text-color for links in main-navigation */
-    --main-navigation-hyperlink-color-active: var(--hyperlink-color); /* active text-color for links in main-navigation */
+    --main-navigation-hyperlink-color: var(--color-scheme-text-color); /* hyperlink-color for main-navigation */
+    --main-navigation-hyperlink-color-highlighted: var(--hyperlink-color); /* highlighted hyperlink-color for main-navigation */
+    --main-navigation-hyperlink-color-active: var(--hyperlink-color); /* active hyperlink-color for  main-navigation */
     /* END MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SITE FOOTER ------------------------------------------------------------------------------------------ */
@@ -109,6 +113,11 @@ html {
     --site-footer-background: var(--color-scheme-background); /* background for site-footer */
     --site-footer-headline-color: var(--headline-text-color);/* headline-text-color for site-footer */
     --site-footer-text-color: var(--color-scheme-text-color); /* text-color for site-footer */
+    --site-footer-hyperlink-color: var(--hyperlink-color); /* hyperlink-color for site-footer */
+    --site-footer-hyperlink-color-highlighted: var(--hyperlink-color-highlighted); /* highlighted hyperlink-color for site-footer */
+    --site-footer-text-decoration: none; /* text-decoration for hyperlinks in site-footer */
+    --site-footer-text-decoration-highlighted: underline; /* text-decoration for highlighted hyperlinks in site-footer */
+    --site-footer-text-decoration-color-highlighted: var(--pure-white); /* text-decoration-color for highlighted hyperlinks in site-footer */
     --site-footer-padding: var(--default-padding); /* padding for site-footer */
     /* END SITE FOOTER ------------------------------------------------------------------------------------------ */
 
@@ -193,8 +202,8 @@ html {
     --pure-black-reduced-opacity: hsla(var(--pure-black-hsl-values), var(--reduced-opacity)); /* pure-black-color with reduced opacity */
 
     /* system-colors (for errors, warnings, successes, infos) */
-    /* default system message text-color */
-    --system-color: var(--default-text-color); /* default system-color */
+    /* default system-message text-color */
+    --system-color: var(--default-text-color); /* default system-color (do not change --color-scheme-text-color due to accessibility reasons) */
     --system-message-text-color: var(--pure-white); /* text-color for all system-messages */
 
     /* error-colors */
@@ -437,7 +446,7 @@ html {
     --form-element-border: var(--default-border); /* border for form-elements */
     --form-element-border-color-highlighted: var(--hyperlink-color); /* border-color highlighted for form-elements */
     --form-element-border-radius: var(--default-border-radius); /* border-radius for form-elements */
-    --select-options-text-color: var(--default-text-color); /* text color for options inside selectboxes */
+    --select-options-text-color: var(--color-scheme-text-color); /* text color for options inside selectboxes */
     --form-element-with-icon-padding: calc(var(--default-padding) * 3); /* padding(-left) for form-elements with icon */
     /* END FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
 
@@ -681,12 +690,21 @@ object, svg, img, video, canvas, .responsive-wrapper {
     z-index: 100;
 }
 
-.center-item-wrapper {
+.center-content.flex-container {
+    display: flex;
+    place-content: center;
+
+     > * {
+         flex: none !important;
+     }
+}
+
+.center-content.grid-container {
     display: grid;
     place-items: center;
 }
 
-.center-absolute {
+.center-content-absolute {
     --position: 50%;
     position: absolute;
     display: block;
@@ -1318,6 +1336,10 @@ img.grayscale {
         > * {
             flex: none !important; /* must be set to make space-between work properly */
         }
+    }
+
+    > img {
+        align-self: flex-start; /* avoid images to be stretched unproportional */
     }
 }
 
@@ -2702,13 +2724,23 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
 }
 
 /* begin golden-ratio */
-.flex-container, [class*="grid-container"] {
+.flex-container-no-gap, [class*="grid-container"] {
     & > .golden-ratio-small-item {
-        width: 38.2%
+        width: var(--golden-ratio-small-width);
     }
 
     & > .golden-ratio-large-item {
-        width: 61.8%
+        width: var(--golden-ratio-large-width);
+    }
+}
+
+.flex-container {
+    & > .golden-ratio-small-item {
+        width: calc(var(--golden-ratio-small-width) - calc(var(--default-gap) / 2));
+    }
+
+    & > .golden-ratio-large-item {
+        width: calc(var(--golden-ratio-large-width) - calc(var(--default-gap) / 2));
     }
 }
 
@@ -3142,6 +3174,25 @@ dd {
 
         & * {
             color: var(--site-footer-text-color);
+        }
+
+        a {
+            text-decoration: var(--site-footer-text-decoration);
+            color: var(--site-footer-hyperlink-color);
+
+            span {
+                color: inherit;
+            }
+
+            &:hover, &:active, &:focus {
+                color: var(--site-footer-hyperlink-color-highlighted);
+                text-decoration: var(--site-footer-text-decoration-highlighted);
+                text-decoration-color: var(--site-footer-text-decoration-color-highlighted);
+
+                span {
+                    color: inherit;
+                }
+            }
         }
     }
 }

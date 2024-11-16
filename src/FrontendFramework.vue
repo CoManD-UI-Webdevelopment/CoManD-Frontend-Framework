@@ -695,6 +695,19 @@
                                                            alt="landscape medium" title="landscape medium"/></div>
                             </div>
                         </div>
+                        <h3>Center content</h3>
+                        <div class="flex-container">
+                            <div class="center-content flex-container" style="border: 1px solid gray; height: 5rem;">
+                                <div>
+                                    Centered inside <strong>flex-container</strong>
+                                </div>
+                            </div>
+                            <div class="center-content grid-container" style="border: 1px solid gray;">
+                                <div>
+                                    Centered inside <strong>grid-container</strong>
+                                </div>
+                            </div>
+                        </div>
                         <h3 id="anchor-boxes-with-centered-content">Boxes with centered content</h3>
                         <div class="grid-container-auto-columns" id="demopage-boxes">
                             <div class="box center-content">
