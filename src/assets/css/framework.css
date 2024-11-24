@@ -2888,12 +2888,6 @@ a {
         display: ruby;
     }
 
-    /* avoid email-links to wrap */
-
-    &[href^="mailto:"] {
-        white-space: nowrap;
-    }
-
     &.disabled {
         color: var(--disabled-color) !important;
 
@@ -3672,7 +3666,15 @@ table {
 
     fieldset {
         padding: var(--default-padding);
-        container-type: inline-size /* enables flex-containers in fieldset to work with @contaiter (DO NOT SET TO 'size' because of render-height-issue) */
+        container-type: inline-size /* enables flex-containers in fieldset to work with @container (DO NOT SET TO 'size' because of render-height-issue) */
+    }
+
+    .button-wrapper {
+        container-type: size;
+
+        .button {
+            width: 100%;
+        }
     }
 }
 /* end container-styles ------------------------------------------------------------------------------------------ */
