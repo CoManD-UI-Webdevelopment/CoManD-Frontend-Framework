@@ -3666,11 +3666,15 @@ table {
 
     fieldset {
         padding: var(--default-padding);
-        container-type: inline-size /* enables flex-containers in fieldset to work with @container (DO NOT SET TO 'size' because of render-height-issue) */
+        container-type: inline-size; /* enables flex-containers in fieldset to work with @container (DO NOT SET TO 'size' because of render-height-issue) */
+
+        [type="submit"].button {
+            width: 100%;
+        }
     }
 
     .button-wrapper {
-        container-type: size;
+        container-type: inline-size; /* enables button-wrappers to work with @container (DO NOT SET TO 'size' because of render-height-issue) */
 
         .button {
             width: 100%;

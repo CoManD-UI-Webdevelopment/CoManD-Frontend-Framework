@@ -103,6 +103,10 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 
         &.row-for-small {
             flex-direction: row; /* arrange flex-items horizontally */
+
+            & > * {
+                width: auto;
+            }
         }
     }
 
