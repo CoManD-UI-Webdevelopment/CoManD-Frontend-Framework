@@ -613,14 +613,17 @@ html, body {
 
 body {
     min-height: 100%;
-    color: var(--color-scheme-text-color); /* fallback for text-color to inherit */
     word-wrap: break-word; /* breaks word at the end of the line */
     font-size: var(--default-font-size); /* sets the default font-size for every element */
     line-height: var(--default-line-height); /* improves reading on the screen. default is 120% */
 }
 
+body, dialog {
+    color: var(--color-scheme-text-color); /* fallback for text-color to inherit (must be set separately for dialog-tag) */
+}
+
 body, textarea {
-    font-family: var(--default-font-family);
+    font-family: var(--default-font-family); /* font-family for entire page (must be set separately for textarea-tag) */
 }
 
 body.no-transitions *, .no-transitions {

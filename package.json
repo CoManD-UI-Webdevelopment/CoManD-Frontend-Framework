@@ -1,6 +1,6 @@
 {
   "name": "comand-frontend-framework",
-  "version": "4.1.1",
+  "version": "4.1.4",
   "license": "GPL-3.0-only",
   "author": "CoManD-UI",
   "private": false,
@@ -23,7 +23,7 @@
       "import": "./dist/comand-frontend-framework.js",
       "require": "./dist/comand-frontend-framework.umd.cjs"
     },
-    "./styles": {
+    "./styles.css": {
       "import": "./dist/style.css"
     },
     "./demopage-only.css": {
@@ -31,7 +31,8 @@
     }
   },
   "dependencies": {
-    "comand-ui-iconfonts": "^1.0.12",
+    "comand-frontend-framework": "^4.1.1",
+    "comand-ui-iconfonts": "^1.0.14",
     "core-js": "^3.36.0",
     "vue": "^3.4.21"
   },
