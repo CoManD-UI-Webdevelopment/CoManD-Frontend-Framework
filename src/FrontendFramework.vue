@@ -1019,7 +1019,7 @@
                                     <span class="label-text">Enter dates:</span>
                                     <span class="flex-container no-flex">
                                     <label class="inline" for="startdate">
-                                        <span class="label-text">Start date:<sup>*</sup></span>
+                                        <span class="label-text"><span>Start date:<sup>*</sup></span></span>
                                         <input type="date" id="startdate"/>
                                     </label>
                                     <label class="inline" for="enddate">

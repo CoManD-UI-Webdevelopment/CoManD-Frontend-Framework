@@ -128,6 +128,14 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         &.align-right {
             flex-direction: column-reverse;
         }
+
+        &.stretch-on-small-devices {
+            flex-direction: column-reverse;
+
+            button, .button {
+                width: 100%;
+            }
+        }
     }
 
     .flex-container.align-bottom > *,

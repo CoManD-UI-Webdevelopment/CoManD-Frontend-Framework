@@ -681,6 +681,7 @@ object, svg, img, video, canvas, .responsive-wrapper {
 }
 
 .width-limitation-wrapper {
+    width: 100%; /* assure container to be stretched if wrapped in a flex-container */
     max-width: var(--width-limitation-wrapper);
     margin: 0 auto;
 }
@@ -754,8 +755,6 @@ object, svg, img, video, canvas, .responsive-wrapper {
 .full-width {
     width: 100% !important; /* overwrite set width */
     max-width: none !important; /* overwrite set max-width */
-    padding-left: 0 !important; /* overwrite set padding-left */
-    padding-right: 0 !important; /* overwrite set padding-right */
 }
 
 .full-height {
@@ -877,6 +876,11 @@ a :is(img, figcaption) {
 
 img {
     border-radius: var(--default-border-radius);
+    max-height: 100%;
+
+    &.grayscale {
+        filter: grayscale(1);
+    }
 }
 
 a img {
@@ -885,10 +889,6 @@ a img {
 
 a:where(:hover, :active, :focus) img {
     border-color: var(--hyperlink-color);
-}
-
-img.grayscale {
-    filter: grayscale(1);
 }
 /* end images */
 
@@ -2300,6 +2300,8 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
     }
 
     input {
+        flex: none; /* avoid input to be shrunk */
+
         &:is([type="checkbox"], [type="radio"]) { /* type required for specificity */
             appearance: none;
             width: 4rem !important; /* avoids overwrite by media queries for input-elements */
@@ -3372,6 +3374,14 @@ dd {
     -webkit-background-clip: padding-box; /* important to keep border transparent */
     background-clip: padding-box; /* important to keep border transparent */
 
+    *, [class*="icon-"] {
+        color: var(--system-message-text-color);
+    }
+
+    a {
+        text-decoration-color: var(--system-message-text-color);
+    }
+
     & > .message-headline {
         display: flex;
         align-items: center;
@@ -3384,7 +3394,7 @@ dd {
     & > input[type="checkbox"] {
         appearance: none;
         border: var(--default-border);
-        border-color: var(--pure-white);
+        border-color: var(--system-message-text-color);
         border-radius: var(--default-border-radius);
         box-shadow: none;
         padding: var(--default-padding-half);
@@ -3395,7 +3405,7 @@ dd {
         margin: 0;
 
         &:is(:hover, :active, :focus) {
-            background: var(--pure-white);
+            background: var(--system-message-text-color);
             color: var(--error-color);
         }
 
@@ -3412,10 +3422,6 @@ dd {
 
     /* end fake-icon (with checkbox) to close system-message */
 
-    *, [class*="icon-"] {
-        color: var(--system-message-text-color);
-    }
-
     .message-headline {
         margin: 0 auto;
     }
@@ -3429,19 +3435,12 @@ dd {
 
     &.warning {
         --system-message-background: var(--warning-color);
+        --system-message-text-color: var(--dark-gray); /* must be set to a dark color for accessibility */
+
         border-color: hsla(var(--warning-color-hsl-values), var(--reduced-opacity));
 
         * {
-            color: var(--dark-gray); /* must be set to a dark color for accessibility */
             text-shadow: none;
-        }
-
-        > input[type="checkbox"] {
-            border-color: var(--dark-gray);
-
-            &:is(:hover, :active, :focus) {
-                color: var(--dark-gray);
-            }
         }
 
         :is(span, [class*="icon-"]) {
@@ -3661,6 +3660,10 @@ table {
 
         &.row-for-small {
             flex-direction: row; /* arrange flex-items horizontally */
+
+            & > * {
+                width: 100%;
+            }
         }
     }
 
