@@ -87,6 +87,7 @@ html {
     --default-gap: 2rem; /* default gap for flex- and grid-containers */
     --default-gap-half: calc(var(--default-gap) / 2); /* half of default gap for flex- and grid-containers */
     --default-gap-third: calc(var(--default-gap) / 3); /* third of default gap for flex- and grid-containers */
+    --icon-and-text-gap: .5rem; /* text between icons and text if wrapped inside .icontext-wrapper */
     --default-border-radius: 0; /* default radius */
     --full-circle: 50%; /* radius for full circles */
     /* END WEBSITE-GRID AND GLOBAL SETTINGS ------------------------------------------------------------------------------------------ */
@@ -106,6 +107,8 @@ html {
     --main-navigation-hyperlink-color: var(--color-scheme-text-color); /* hyperlink-color for main-navigation */
     --main-navigation-hyperlink-color-highlighted: var(--hyperlink-color); /* highlighted hyperlink-color for main-navigation */
     --main-navigation-hyperlink-color-active: var(--hyperlink-color); /* active hyperlink-color for  main-navigation */
+    --main-navigation-main-level-icon-size: var(--default-icon-size); /* icon-size for icons on main-level of main-navigation */
+    --main-navigation-sub-level-icon-size: var(--default-icon-size); /* icon-size for icons on (all) sub-levels of main-navigation */
     /* END MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SITE FOOTER ------------------------------------------------------------------------------------------ */
@@ -442,6 +445,7 @@ html {
 
     /* inputfields */
     --input-height: 4rem; /* fixed height to render inputs and select same height across different browsers */
+    --input-padding: 1rem .1rem 1rem .5rem; /* padding for inputfields and selectboxes */
     --input-max-width-short-fields: 14rem; /* maximum width for small inputs (to avoid stretching if horizontal space is available) */
     --form-element-border: var(--default-border); /* border for form-elements */
     --form-element-border-color-highlighted: var(--hyperlink-color); /* border-color highlighted for form-elements */
@@ -1938,7 +1942,7 @@ input {
 
 input, select, .input {
     height: var(--input-height); /* forces different browsers to render same height */
-    padding: 1rem .1rem 1rem .5rem;
+    padding: var(--input-padding);
 }
 
 select {
@@ -2948,6 +2952,25 @@ li a.active {
     }
 }
 
+/* do not add hyphen between .icontext to avoid trouble by icon-font-font-renderings */
+.icontext-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--icon-and-text-gap);
+
+    span {
+        margin: 0 !important; /* avoid overwrite by margins of span-siblings */
+    }
+}
+
+a.icontext-wrapper {
+    text-decoration: none;
+
+    span:not([class*="icon-"]) {
+        text-decoration: underline;
+    }
+}
+
 /* do not replace by span + [class*="icon-"], because compiler cannot handle it */
 span + [class*="icon-"] {
     margin-left: calc(var(--default-margin) / 2);
@@ -3218,7 +3241,7 @@ dd {
         border-left: var(--main-navigation-border);
         border-right: var(--main-navigation-border);
 
-        /* first-level only */
+        /* begin first-level only */
 
         > ul {
             display: flex;
@@ -3229,9 +3252,15 @@ dd {
                 &:first-child {
                     border-left: var(--main-navigation-border);
                 }
+
+                a span[class*="icon-"] {
+                    font-size: var(--main-navigation-main-level-icon-size);
+                }
             }
         }
+        /* end first-level only */
 
+        /* begin all levels (incl. first-level) */
         ul {
             margin: 0;
 
@@ -3269,7 +3298,7 @@ dd {
                     }
 
                     [class*="icon-"] {
-                        font-size: var(--default-icon-size);
+                        font-size: var(--main-navigation-sub-level-icon-size);
 
                         &.subentry-icon {
                             font-size: var(--font-size-small);
@@ -3766,3 +3795,16 @@ html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not wo
 }
 
 /* end css for dark-mode only ------------------------------------------------------------------------------------------ */
+
+/* begin iphone-styles only */
+@supports (-webkit-touch-callout: none) {
+    html {
+        border: 2px solid red !important;
+    }
+
+    .table-wrapper {
+        border: 2px solid green !important;
+        max-width: 100%;
+    }
+}
+/* end iphone-styles only */

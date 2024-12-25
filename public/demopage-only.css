@@ -65,6 +65,7 @@
             margin: 0;
             color: var(--primary-color);
             text-align: center;
+            justify-content: center;
             border-radius: var(--default-border-radius);
         }
 

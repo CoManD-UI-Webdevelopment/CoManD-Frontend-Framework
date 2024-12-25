@@ -385,12 +385,12 @@
                             <span class="icon-user-profile"></span>
                         </a>
                         <h4>Link with icon and text</h4>
-                        <a href="#">
+                        <a href="#" class="icontext-wrapper">
                             <span class="icon-user-profile"></span>
-                            <span>Hyperlink</span>
+                            <span>Hyperlink (with icon left)</span>
                         </a><br/>
-                        <a href="#">
-                            <span>Hyperlink</span>
+                        <a href="#" class="icontext-wrapper">
+                            <span>Hyperlink (with icon right)</span>
                             <span class="icon-user-profile"></span>
                         </a>
                         <h4>Links in a paragraph</h4>
@@ -417,6 +417,15 @@
                         <p>
                             <a href="#"><dfn title="A definition is describable text for a default terminology">Definition with a link</dfn></a>
                         </p>
+                        <h4>Text with icon</h4>
+                        <div class="icontext-wrapper">
+                            <span class="icon-chevron-one-stripe-left"></span>
+                            <span>Text (with icon left)</span>
+                        </div>
+                        <div class="icontext-wrapper">
+                            <span>Text (with icon right)</span>
+                            <span class="icon-chevron-one-stripe-right"></span>
+                        </div>
                         <h4>Horizontal row</h4>
                         <hr/>
                     </section>

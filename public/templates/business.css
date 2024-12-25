@@ -9,14 +9,14 @@ html {
     --tertiary-color-saturation: 71%;
     --tertiary-color-lightness: 50%;
     --box-shadow: .1rem .1rem .5rem #666;
-    --font-size: 1.5rem;
+    --default-font-size: 1.5rem;
     --default-border-radius: 0;
     --dark-mode-text-color: hsl(0, 0%, 100%);
     --button-text-color: var(--pure-white);
     --medium-blue: hsl(var(--tertiary-color-hue), var(--tertiary-color-saturation), var(--tertiary-color-lightness));
     --active-table-cell-text-color-highlighted: var(--pure-white);
     --button-background-color-highlighted: var(--pure-white);
-    --font-family: "NeuzeitGro-Reg", "Open Sans", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    --default-font-family: "NeuzeitGro-Reg", "Open Sans", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 }
 
 #template-business {
