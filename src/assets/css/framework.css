@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2024/10/05
+framework.css - last update: 2025/02/08
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -295,6 +295,7 @@ html {
     --default-font-family: arial, sans-serif; /* default-font-family */
 
     /* font-sizes */
+    --root-font-size: 62.5%; /* default size is 16px, 62.5% of that is 10px = 1rem */
     --default-font-size: var(--font-size-medium); /* default font-size for text-elements */
     --font-size-small: 1.2rem; /* font-size for small text */
     --font-size-medium: 1.4rem; /* font-size for default/medium text */
@@ -361,7 +362,7 @@ html {
     --box-body-padding: var(--default-padding); /* padding for box-body */
     --box-footer-padding: var(--default-padding); /* padding for box-footer */
     --box-footer-text-color: var(--color-scheme-text-color); /* text-color for box-header */
-    --box-shadow-color: var(--dark-gray); /* box-shadow-color */
+    --box-box-shadow: var(--default-box-shadow); /* box-shadow for boxes */
     /* END BOXES ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BUTTONS ------------------------------------------------------------------------------------------ */
@@ -375,12 +376,13 @@ html {
     /* button border and outline */
     --button-outline: var(--default-outline); /* outline for buttons */
     --button-outline-highlighted: var(--default-outline); /* outline for buttons */
-    --button-border-width: var(--default-border-width);
-    --button-border-style: var(--default-border-style);
-    --button-border-color: var(--default-border-color);
+    --button-border-width: var(--default-border-width); /* border-width for buttons */
+    --button-border-style: var(--default-border-style); /* border-style for buttons */
+    --button-border-color: var(--default-border-color); /* border-color for buttons */
     --button-border: var(--button-border-width) var(--button-border-style) var(--button-border-color); /* border for buttons */
     --button-border-highlighted: var(--secondary-border); /* border for buttons */
-    --button-border-radius: var(--default-border-radius);
+    --button-border-radius: var(--default-border-radius); /* border-radius for buttons */
+    --primary-button-border-radius: var(--button-border-radius); /* border-radius for primary-buttons */
 
     /* button backgrounds */
     --button-background: var(--secondary-color); /* background(-color) for buttons */
@@ -407,8 +409,11 @@ html {
     --button-min-height-large: 6rem; /* minimum height for large buttons */
     --button-padding-large: calc(var(--button-padding) * 2); /* padding for large buttons */
 
-    /* button with large icon */
+    /* buttons with large icon */
     --button-large-icon-icon-size: 5rem; /* icon-size for button with large-icon */
+
+    /* buttons shadow */
+    --button-box-shadow: none; /* box-shadow for buttons */
     /* END BUTTONS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
@@ -416,6 +421,7 @@ html {
     --fieldset-background: var(--default-background); /* background(-color) for fieldsets */
     --fieldset-border: var(--default-border); /* border for fieldsets */
     --fieldset-border-radius: var(--default-border-radius); /* border-radius for fieldsets */
+    --fieldset-box-shadow: none; /* box-shadow for fieldsets */
     --fieldset-padding: calc(var(--default-padding) * 2); /* padding for fieldsets */
     --fieldset-margin: 0 0 calc(var(--default-margin) * 2) 0; /* margin for fieldsets */
 
@@ -444,14 +450,16 @@ html {
     --placeholder-text-opacity: .5; /* opacity for placeholder texts (should not be lower than 0.5 to avoid w2aa accessibility standards */
 
     /* inputfields */
-    --input-height: 4rem; /* fixed height to render inputs and select same height across different browsers */
-    --input-padding: 1rem .1rem 1rem .5rem; /* padding for inputfields and selectboxes */
-    --input-max-width-short-fields: 14rem; /* maximum width for small inputs (to avoid stretching if horizontal space is available) */
-    --form-element-border: var(--default-border); /* border for form-elements */
-    --form-element-border-color-highlighted: var(--hyperlink-color); /* border-color highlighted for form-elements */
-    --form-element-border-radius: var(--default-border-radius); /* border-radius for form-elements */
+    --form-input-height: 4rem; /* fixed height to render inputs and select same height across different browsers */
+    --form-input-padding: 1rem .1rem 1rem .5rem; /* padding for inputfields and selectboxes */
+    --form-input-max-width-short-fields: 14rem; /* maximum width for small inputs (to avoid stretching if horizontal space is available) */
+    --form-input-border: var(--default-border); /* border for form-elements */
+    --form-input-border-color-highlighted: var(--hyperlink-color); /* border-color highlighted for form-elements */
+    --form-input-border-radius: var(--default-border-radius); /* border-radius for form-elements */
+    --textarea-border-radius: var(--form-input-border-radius); /* border-radius for textareas */
+    --textarea-padding: calc(var(--default-padding) / 2); /* padding for textarea */
     --select-options-text-color: var(--color-scheme-text-color); /* text color for options inside selectboxes */
-    --form-element-with-icon-padding: calc(var(--default-padding) * 3); /* padding(-left) for form-elements with icon */
+    --form-input-with-icon-padding: calc(var(--default-padding) * 3); /* padding(-left) for form-elements with icon */
     /* END FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SYSTEM-MESSAGES ------------------------------------------------------------------------------------------ */
@@ -493,9 +501,10 @@ html {
     --reduced-opacity: .75; /* reduced opacity (should be at least 0.75 for accessibility) */
 
     /* shadows */
+    --box-shadow-color: var(--dark-gray); /* box-shadow-color */
     --default-box-shadow: .2rem .2rem .2rem var(--box-shadow-color); /* box-shadow */
     --text-shadow-color: var(--dark-gray); /* text-shadow-color */
-    --default-text-shadow: .1rem .1rem .1rem var(--text-shadow-color); /* text-shadow-color */
+    --default-text-shadow: .1rem .1rem .1rem var(--text-shadow-color); /* text-shadow */
 
     /* transitions */
     --default-transition: all .5s; /* default transition */
@@ -602,7 +611,7 @@ html {
 /* ---------------------------------------------- BEGIN MAIN STYLES -------------------------------------------------- */
 /* begin basic selectors and classes ------------------------------------------------------------------------------------------ */
 html {
-    font-size: 62.5%; /* default size is 16px, 62.5% of that is 10px = 1rem */
+    font-size: var(--root-font-size);
 }
 
 * {
@@ -611,7 +620,7 @@ html {
 }
 
 html, body {
-    height: 100%; /* maximises visible area. do not set to "min-height" (important to fix footer at bottom!) */
+    height: 100dvh; /* maximises visible area. do not set to "min-height" (important to fix footer at bottom!) */
     background: var(--color-scheme-background); /* necessary for accessibility to set default value */
 }
 
@@ -626,7 +635,7 @@ body, dialog {
     color: var(--color-scheme-text-color); /* fallback for text-color to inherit (must be set separately for dialog-tag) */
 }
 
-body, textarea {
+body, fr {
     font-family: var(--default-font-family); /* font-family for entire page (must be set separately for textarea-tag) */
 }
 
@@ -918,9 +927,14 @@ a:where(:hover, :active, :focus) img {
 }
 /* end visibility */
 
-/* begin borders */
+/* begin borders and radii */
 .border-radius {
     border-radius: var(--default-border-radius); /* border-radius to create round corners for any element with this class  */
+}
+
+.full-circle {
+    border-radius: var(--full-circle); /* border-radius for full-circle (do no apply to elements that should not have aspect-ratio 1/1) */
+    aspect-ratio: 1/1;
 }
 
 .box-shadow {
@@ -1069,6 +1083,7 @@ a:where(:hover, :active, :focus) img {
     font-size: var(--button-font-size);
     min-width: var(--button-min-width);
     min-height: var(--button-min-height);
+    box-shadow: var(--button-box-shadow);
     align-self: flex-start; /* avoid button to be stretched in flex-containers (with flex: 1 for flex-items) */
 
     > :is(span, [class*="icon-"]) {
@@ -1076,16 +1091,31 @@ a:where(:hover, :active, :focus) img {
         align-self: center; /* necessary to keep text and icon centered if button has different alignment */
     }
 
+    &:is(:hover, :active, :focus-visible) {
+        color: var(--button-text-color-highlighted);
+        background: var(--button-background-highlighted);
+        cursor: pointer;
+        text-shadow: none;
+        border: var(--button-border-highlighted);
+        outline: var(--button-outline-highlighted); /* avoids overwrite from a:hover */
+
+        > :is(span, [class*="icon-"]) {
+            color: var(--button-text-color-highlighted);
+            text-shadow: none;
+        }
+    }
+
     &.primary {
         --button-background: var(--primary-color);
+
         border-color: var(--primary-color);
 
         &:is(:hover, :active, :focus-visible) {
-            color: var(--primary-color) !important; /* avoid overwriting by text-color with higher specificity */
+            color: var(--primary-color);
             border-color: var(--primary-color);
 
-            > :is(span, [class*="icon-"]) {
-                color: var(--primary-color) !important; /* avoid overwriting by text-color with higher specificity */
+            > :is(span, span[class*="icon-"]) {
+                color: var(--primary-color);
             }
         }
     }
@@ -1095,11 +1125,11 @@ a:where(:hover, :active, :focus) img {
         border-color: var(--tertiary-color);
 
         &:is(:hover, :active, :focus-visible) {
-            color: var(--tertiary-color) !important; /* avoid overwriting by text-color with higher specificity */
+            color: var(--tertiary-color);
             border-color: var(--tertiary-color);
 
             > :is(span, [class*="icon-"]) {
-                color: var(--tertiary-color) !important; /* avoid overwriting by text-color with higher specificity */
+                color: var(--tertiary-color);
             }
         }
     }
@@ -1138,20 +1168,6 @@ a:where(:hover, :active, :focus) img {
 
     &:last-child {
         margin: 0;
-    }
-
-    &:is(:hover, :active, :focus-visible) {
-        color: var(--button-text-color-highlighted) !important; /* avoid overwriting by text-color with higher specificity */
-        background: var(--button-background-highlighted);
-        cursor: pointer;
-        text-shadow: none;
-        border: var(--button-border-highlighted);
-        outline: var(--button-outline-highlighted); /* avoids overwrite from a:hover */
-
-        > :is(span, [class*="icon-"]) {
-            color: var(--button-text-color-highlighted) !important; /* avoid overwriting by text-color with higher specificity */
-            text-shadow: none;
-        }
     }
 
     &.small {
@@ -1227,7 +1243,7 @@ a:where(:hover, :active, :focus) img {
 }
 
 ::file-selector-button {
-    border-radius: var(--form-element-border-radius);
+    border-radius: var(--form-input-border-radius);
 }
 
 /* begin back-to-top-button */
@@ -1488,8 +1504,13 @@ fieldset {
     background: var(--fieldset-background);
     border: var(--fieldset-border);
     border-radius: var(--fieldset-border-radius);
+    box-shadow: var(--fieldset-box-shadow);
     padding: var(--fieldset-padding);
     margin: var(--fieldset-margin);
+
+    > * {
+        margin: 0;
+    }
 
     &.flex-container {
         flex-direction: column;
@@ -1499,6 +1520,14 @@ fieldset {
     & > .flex-container {
         width: 100%;
         align-items: flex-end;
+
+        &.vertical {
+            align-items: flex-start;
+
+            & > * {
+                width: 100%;
+            }
+        }
     }
 
     &.grid-container-create-columns {
@@ -1839,7 +1868,7 @@ label, .label {
 
         &[class*="icon-"], & [class*="icon-"] {
             & + :is(input, select, textarea, .input) {
-                padding-left: var(--form-element-with-icon-padding);
+                padding-left: var(--form-input-with-icon-padding);
             }
 
             & + input:focus {
@@ -1866,15 +1895,15 @@ td .toggle-switch.switch-label {
 /* end labels */
 
 /* begin form-elements */
-:is(input, select, textarea, .input) {
+:where(input, select, textarea, .input) {
     min-width: 5rem;
-    border: var(--form-element-border);
-    border-radius: var(--form-element-border-radius);
+    border: var(--form-input-border);
+    border-radius: var(--form-input-border-radius);
     align-self: flex-end; /* required to let items be as high as their content */
     background: var(--color-scheme-background);
 
     &:is(:hover, :active, :focus) {
-        border-color: var(--form-element-border-color-highlighted);
+        border-color: var(--form-input-border-color-highlighted);
     }
 
     &:user-invalid {
@@ -1894,14 +1923,10 @@ input {
     &[type="search"] {
         align-self: stretch;
         box-sizing: border-box; /* overwrite normalize.css */
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
 
         & + :is(button, .button) {
-            border-radius: var(--form-element-border-radius);
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            height: var(--input-height); /* assures that button will not gain vertical space by padding */
+            border-radius: var(--form-input-border-radius);
+            height: var(--form-input-height); /* assures that button will not gain vertical space by padding */
         }
     }
 
@@ -1941,8 +1966,8 @@ input {
 }
 
 input, select, .input {
-    height: var(--input-height); /* forces different browsers to render same height */
-    padding: var(--input-padding);
+    height: var(--form-input-height); /* forces different browsers to render same height */
+    padding: var(--form-input-padding);
 }
 
 select {
@@ -1968,12 +1993,15 @@ select {
 textarea {
     overflow-x: hidden;
     overflow-y: scroll;
-    min-height: 16.5rem;
-    padding: calc(var(--default-padding) / 2);
+    min-height: 9rem;
+    max-height: 30rem;
+    field-sizing: content; /* allows field to grow if required (no more scrolling) */
+    padding: var(--textarea-padding);
+    border-radius: var(--textarea-border-radius);
 }
 
 .inline input:where([type="date"], [type="number"], [type="color"]) {
-    max-width: var(--input-max-width-short-fields);
+    max-width: var(--form-input-max-width-short-fields);
 }
 
 input[type="submit"] input:where(:hover, :active, :focus) {
@@ -2885,7 +2913,7 @@ a {
     }
 
     & > [class*="icon-"] {
-        font-size: var(--default-font-size); /* adjust icon to size as text */
+        font-size: var(--default-icon-size); /* adjust icon to size as text */
     }
 
     /* set display 'ruby' to avoid font-size-rendering for empty anchors in firefox and to let element not be counted as flex- or grid-item */
@@ -2939,7 +2967,7 @@ li a.active {
 
     & > * {
         font-family: var(--default-font-family);
-        font-size: var(--default-font-size);
+        font-size: var(--default-icon-size);
     }
 
     & + span {
@@ -2952,7 +2980,7 @@ li a.active {
     }
 }
 
-/* do not add hyphen between .icontext to avoid trouble by icon-font-font-renderings */
+/* do not add hyphen between .icontext to avoid trouble by icon-font-renderings */
 .icontext-wrapper {
     display: flex;
     align-items: center;
@@ -3061,15 +3089,37 @@ ul, ol {
         list-style-type: none;
         margin-left: 0;
     }
+
+    &.list-of-images {
+        display: flex;
+        margin: 0;
+        gap: var(--default-gap);
+
+        &.vertical {
+            flex-direction: column;
+
+            li {
+                align-self: flex-start; /* avoid stretching over complete column */
+            }
+        }
+
+        li {
+            list-style-type: none;
+            margin: 0;
+        }
+
+        a, img, figure {
+            display: block;
+        }
+    }
 }
 
 ol li {
     list-style-type: decimal;
 }
-
 /* end ordered and unordered-lists */
 
-/* begin definition-lists */
+/* begin description-lists */
 dl {
     display: grid;
     grid-gap: .2rem 1rem; /* row, column */
@@ -3090,7 +3140,7 @@ dd {
     }
 }
 
-/* end definition-lists */
+/* end description-lists */
 /* end lists ------------------------------------------------------------------------------------------ */
 
 /* begin site-header ------------------------------------------------------------------------------------------ */
@@ -3295,6 +3345,7 @@ dd {
 
                     span, [class*="icon-"] {
                         color: inherit;
+                        white-space: normal; /* avoids text going into padding */
                     }
 
                     [class*="icon-"] {

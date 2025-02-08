@@ -64,8 +64,6 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         --default-gap: 1rem; /* default-gap */
         --golden-ratio-small-width: 100%; /* set to full width to use entire space */
         --golden-ratio-large-width: 100%; /* set to full width to use entire space */
-
-        font-size: 56.25%; /* default size is 16px, 56.25% of that is 9px = 0.9rem */
     }
 
     :is(button, .button, input[type="submit"]):not(.stretch-on-small-devices) {

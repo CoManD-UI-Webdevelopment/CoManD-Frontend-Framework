@@ -376,6 +376,31 @@
                             <dt><span class="icon-mail" title="Email"></span></dt>
                             <dd>Definition data with a very long text which will wrap on small devices</dd>
                         </dl>
+                        <h5>List of images</h5>
+                        <ul class="list-of-images">
+                            <li>
+                                <img src="/images/landscape-small.jpg" alt="image in a list" title="image in a list">
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="/images/landscape-small.jpg" alt="image with link in a list" title="image with link in a list">
+                                </a>
+                            </li>
+                            <li>
+                                <figure>
+                                    <img src="/images/landscape-small.jpg" alt="image with figure in a list" title="image with figure in a list">
+                                    <figcaption>image with figure</figcaption>
+                                </figure>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <figure>
+                                        <img src="/images/landscape-small.jpg" alt="image with figure and link in a list" title="image with figure and link in a list">
+                                        <figcaption>image with figure and link</figcaption>
+                                    </figure>
+                                </a>
+                            </li>
+                        </ul>
                         <hr/>
                         <h3 id="anchor-hyperlinks">Hyperlinks</h3>
                         <h4>Link with text only</h4>
