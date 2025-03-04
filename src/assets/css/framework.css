@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/02/08
+framework.css - last update: 2025/03/04
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -173,41 +173,33 @@ html {
 
     /* BEGIN COLORS ------------------------------------------------------------------------------------------ */
     /* white */
-    --pure-white-hue: 0; /* pure-white-hue */
-    --pure-white-saturation: 0%; /* pure-white-saturation */
-    --pure-white-lightness: 100%; /* pure-white-lightness */
-    --pure-white-hsl-values: var(--pure-white-hue), var(--pure-white-saturation), var(--pure-white-lightness); /* pure-white-hsl */
+    --pure-white-hsl-values: 0, 0%, 100%; /* pure-white-hsl */
     --pure-white: hsl(var(--pure-white-hsl-values)); /* pure-white-color */
     --pure-white-reduced-opacity: hsla(var(--pure-white-hsl-values), var(--reduced-opacity)); /* pure-white-color with reduced opacity */
 
-    /* light-gray */
-    --light-gray-lightness: 90%; /* light-gray-color-hue */
-    --light-gray-hsl-values: var(--pure-white-hue), var(--pure-white-saturation), var(--light-gray-lightness); /* light-gray-hsl */
-    --light-gray: hsl(var(--light-gray-hsl-values)); /* light-gray-color */
-    --light-gray-reduced-opacity: hsla(var(--light-gray-hsl-values), var(--reduced-opacity)); /* light-gray with reduced opacity */
+    /* shaded of gray */
+    --color-gray-10: hsl(0, 0%, 90%); /* 10%-gray */
+    --color-gray-20: hsl(0, 0%, 80%); /* 20%-gray */
+    --color-gray-30: hsl(0, 0%, 70%); /* 30%-gray */
+    --color-gray-40: hsl(0, 0%, 60%); /* 40%-gray */
+    --color-gray-50: hsl(0, 0%, 50%); /* 50%-gray */
+    --color-gray-60: hsl(0, 0%, 40%); /* 60%-gray */
+    --color-gray-70: hsl(0, 0%, 30%); /* 70%-gray */
+    --color-gray-80: hsl(0, 0%, 20%); /* 80%-gray */
+    --color-gray-90: hsl(0, 0%, 10%); /* 90%-gray */
 
-    /* medium-gray */
-    --medium-gray-lightness: 50%; /* medium-gray-color-hue */
-    --medium-gray-hsl-values: var(--pure-white-hue), var(--pure-white-saturation), var(--medium-gray-lightness); /* medium-gray-hsl */
-    --medium-gray: hsl(var(--medium-gray-hsl-values)); /* medium-gray-color */
-    --medium-gray-reduced-opacity: hsla(var(--medium-gray-hsl-values), var(--reduced-opacity)); /* medium-gray-color with reduced opacity */
-
-    /* dark-gray */
-    --dark-gray-lightness: 10%; /* dark-gray-color-hue */
-    --dark-gray-hsl-values: var(--pure-white-hue), var(--pure-white-saturation), var(--dark-gray-lightness); /* dark-gray-hsl */
-    --dark-gray: hsl(var(--dark-gray-hsl-values)); /* dark-gray-color */
-    --dark-gray-reduced-opacity: hsla(var(--dark-gray-hsl-values), var(--reduced-opacity)); /* dark-gray-color with reduced opacity */
+    /* predefined shades of gray */
+    --light-gray: var(--color-gray-10); /* light-gray-color */
+    --medium-gray: var(--color-gray-50); /* medium-gray-color */
+    --dark-gray: var(--color-gray-90); /* dark-gray-color */
 
     /* black */
-    --pure-black-lightness: 0%; /* pure-black-color-hue */
-    --pure-black-hsl-values: var(--pure-white-hue), var(--pure-white-saturation), var(--pure-black-lightness); /* pure-black-hsl */
+    --pure-black-hsl-values: 0, 0%, 0%; /* pure-black-hsl */
     --pure-black: hsl(var(--pure-black-hsl-values)); /* pure-black-color */
     --pure-black-reduced-opacity: hsla(var(--pure-black-hsl-values), var(--reduced-opacity)); /* pure-black-color with reduced opacity */
 
     /* system-colors (for errors, warnings, successes, infos) */
-    /* default system-message text-color */
     --system-color: var(--default-text-color); /* default system-color (do not change --color-scheme-text-color due to accessibility reasons) */
-    --system-message-text-color: var(--pure-white); /* text-color for all system-messages */
 
     /* error-colors */
     --error-color-hue: 8; /* error-color-hue */
@@ -367,11 +359,13 @@ html {
 
     /* BEGIN BUTTONS ------------------------------------------------------------------------------------------ */
     /* button typography */
-    --button-text-color: var(--pure-white); /* button-text-color */
-    --button-text-color-highlighted: var(--secondary-color); /* button-text-color highlighted */
+    --button-text-color: var(--pure-white); /* text-color for buttons */
+    --button-text-color-highlighted: var(--secondary-color); /* highlighted text-color for buttons */
     --button-font-size: var(--font-size-medium); /* font-size for buttons */
     --button-font-weight: var(--font-weight-bold); /* font-weight for buttons */
     --button-line-height: var(--line-height-none); /* line-height for buttons */
+    --button-primary-text-color: var(--pure-white); /* text-color for primary-buttons */
+    --button-primary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
 
     /* button border and outline */
     --button-outline: var(--default-outline); /* outline for buttons */
@@ -380,13 +374,20 @@ html {
     --button-border-style: var(--default-border-style); /* border-style for buttons */
     --button-border-color: var(--default-border-color); /* border-color for buttons */
     --button-border: var(--button-border-width) var(--button-border-style) var(--button-border-color); /* border for buttons */
-    --button-border-highlighted: var(--secondary-border); /* border for buttons */
+    --button-border-highlighted: var(--secondary-border); /* border for highlighted buttons */
     --button-border-radius: var(--default-border-radius); /* border-radius for buttons */
-    --primary-button-border-radius: var(--button-border-radius); /* border-radius for primary-buttons */
+    --button-primary-border-width: var(--default-border-width); /* border-width for primary-buttons */
+    --button-primary-border-style: var(--default-border-style); /* border-style for primary-buttons */
+    --button-primary-border-color: var(--primary-color); /* border-color for primary-buttons */
+    --button-primary-border: var(--button-primary-border-width) var(--button-primary-border-style) var(--button-primary-border-color); /* border for primary-buttons */
+    --button-primary-border-highlighted: var(--button-primary-border); /* border for highlighted primary-buttons */
+    --button-primary-border-radius: var(--button-border-radius); /* border-radius for primary-buttons */
 
     /* button backgrounds */
     --button-background: var(--secondary-color); /* background(-color) for buttons */
-    --button-background-highlighted: var(--pure-white); /* background(-color) for highlighted buttons (i.e. :hover) */
+    --button-background-highlighted: var(--pure-white); /* background(-color) for highlighted buttons */
+    --button-primary-background: var(--primary-color); /* background(-color) for primary-buttons */
+    --button-primary-background-highlighted: var(--pure-white); /* background(-color) for highlighted primary-buttons */
 
     /* button dimensions */
     --button-padding: var(--default-padding); /* padding for button */
@@ -463,6 +464,7 @@ html {
     /* END FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SYSTEM-MESSAGES ------------------------------------------------------------------------------------------ */
+    --system-message-text-color: var(--pure-white); /* text-color for all system-messages */
     --system-message-border: var(--default-border); /* border for system-messages */
     --system-message-border-radius: var(--default-border-radius); /* border-radius for system-messages */
     --system-message-font-weight: var(--font-weight-bold); /* font-weight for system-messages */
@@ -973,10 +975,10 @@ a:where(:hover, :active, :focus) img {
         padding: 0;
     }
 
-    &:has(img:only-child) {
+    &:has(> img:only-child) {
         align-self: flex-start;
 
-        img {
+        > img {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             display: block;
@@ -1091,6 +1093,10 @@ a:where(:hover, :active, :focus) img {
         align-self: center; /* necessary to keep text and icon centered if button has different alignment */
     }
 
+    > [class*="icon-"] {
+        top: -.1rem; /* corrects vertical position of icon to an optical center */
+    }
+
     &:is(:hover, :active, :focus-visible) {
         color: var(--button-text-color-highlighted);
         background: var(--button-background-highlighted);
@@ -1106,16 +1112,22 @@ a:where(:hover, :active, :focus) img {
     }
 
     &.primary {
-        --button-background: var(--primary-color);
+        --button-background: var(--button-primary-background);
 
-        border-color: var(--primary-color);
+        border: var(--button-primary-border);
+        border-radius: var(--button-primary-border-radius);
+
+        > :is(span, span[class*="icon-"]) {
+            color: var(--button-primary-text-color);
+        }
 
         &:is(:hover, :active, :focus-visible) {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
+            --button-background: var(--button-primary-background-highlighted);
+
+            border: var(--button-primary-border-highlighted);
 
             > :is(span, span[class*="icon-"]) {
-                color: var(--primary-color);
+                color: var(--button-primary-text-color-highlighted);
             }
         }
     }
@@ -1138,9 +1150,9 @@ a:where(:hover, :active, :focus) img {
         --button-background: var(--error-color);
         --color-scheme-text-color: var(--error-color);
 
-        &:is(:hover, :active, :focus) {
-            border: var(--error-border);
+        border: var(--error-border);
 
+        &:is(:hover, :active, :focus) {
             span {
                 color: var(--error-color);
             }
@@ -1151,9 +1163,9 @@ a:where(:hover, :active, :focus) img {
         --button-background: var(--success-color);
         --color-scheme-text-color: var(--success-color);
 
-        &:is(:hover, :active, :focus-visible) {
-            border: var(--success-border);
+        border: var(--success-border);
 
+        &:is(:hover, :active, :focus-visible) {
             span {
                 color: var(--success-color);
             }
@@ -1366,6 +1378,22 @@ a:where(:hover, :active, :focus) img {
     }
 }
 
+.flexible-scroll-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 20rem;
+    overflow: hidden;
+
+    > .fixed-wrapper {
+        flex: none;
+    }
+
+    > .scroll-wrapper {
+        flex: 1;
+        overflow-y: auto;
+    }
+}
+
 :where(ul, ol).flex-container:not(.vertical) {
     margin: 0;
 
@@ -1390,6 +1418,10 @@ a:where(:hover, :active, :focus) img {
 
     &.align-bottom > * {
         align-self: flex-end;
+    }
+
+    &.horizontal {
+        flex-direction: row; /* class forces flex-containers flex-direction to stay in row on all devices */
     }
 
     &.vertical {
@@ -1524,7 +1556,7 @@ fieldset {
         &.vertical {
             align-items: flex-start;
 
-            & > * {
+            & > *:not(hr) {
                 width: 100%;
             }
         }
@@ -3085,9 +3117,13 @@ ul, ol {
         margin-left: 1.7rem; /* set back to native indent */
     }
 
-    &.no-list-items li {
-        list-style-type: none;
-        margin-left: 0;
+    &.no-list-items {
+        margin: 0;
+
+        li {
+            list-style-type: none;
+            margin-left: 0;
+        }
     }
 
     &.list-of-images {

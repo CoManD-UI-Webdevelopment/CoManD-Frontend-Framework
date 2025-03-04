@@ -228,6 +228,7 @@
                                                 Item</a>
                                             </li>
                                             <li><a href="#anchor-flex-containers-vertical">Vertical</a></li>
+                                            <li><a href="#anchor-flex-containers-flexible-scroll-container">Flexible scroll-container</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -2049,6 +2050,40 @@
                         <div class="flex-container">
                             <div class="flex-item-one-forth">flex-item 1/4</div>
                             <div class="flex-item-three-forth">flex-item 3/4</div>
+                        </div>
+                        <h3 id="anchor-flex-containers-flexible-scroll-container">Flexible scroll-container</h3>
+                        <div class="flexible-scroll-container" style="border: 1px dotted gray;">
+                            <div class="fixed-wrapper" style="border: 1px dotted gray;">
+                                Fixed Content
+                            </div>
+                            <div class="scroll-wrapper" style="border: 1px dotted gray;">
+                                <ul>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                    <li>Dynamic Content</li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
                 </div>
