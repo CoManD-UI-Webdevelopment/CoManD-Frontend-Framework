@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/03/04
+framework.css - last update: 2025/03/08
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -1093,7 +1093,7 @@ a:where(:hover, :active, :focus) img {
         align-self: center; /* necessary to keep text and icon centered if button has different alignment */
     }
 
-    > [class*="icon-"] {
+    > [class*="icon-"]:not(:only-child) {
         top: -.1rem; /* corrects vertical position of icon to an optical center */
     }
 
@@ -1418,6 +1418,14 @@ a:where(:hover, :active, :focus) img {
 
     &.align-bottom > * {
         align-self: flex-end;
+    }
+
+    &.justify-content-space-between {
+        justify-content: space-between;
+    }
+
+    &.justify-content-space-around {
+        justify-content: space-around;
     }
 
     &.horizontal {
