@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/03/08
+framework.css - last update: 2025/03/13
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -57,6 +57,10 @@ T ------------------------
 /* end table of contents ------------------------------------------------------------------------------------------ */
 
 /* ---------------------------------------------- BEGIN VARIABLES & TOKENS -------------------------------------------------- */
+:root {
+    color-scheme: light dark; /* activate color-scheme detection for css */
+}
+
 html {
     /* BEGIN WEBSITE-GRID AND GLOBAL SETTINGS ------------------------------------------------------------------------------------------ */
     /* max-widths */
@@ -100,8 +104,8 @@ html {
     /* END SITE HEADER ------------------------------------------------------------------------------------------ */
 
     /* BEGIN MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
-    --main-navigation-background: var(--default-background); /* background(-color) for entire main navigation (and all sub-entries) */
-    --main-navigation-background-highlighted: var(--pure-white); /* background(-color) for highlighted entries in main navigation (and all sub-entries) */
+    --main-navigation-background: var(--color-scheme-background); /* background(-color) for entire main navigation (and all sub-entries) */
+    --main-navigation-background-highlighted: var(--color-white); /* background(-color) for highlighted entries in main navigation (and all sub-entries) */
     --main-navigation-border: var(--default-border); /* border for main navigation (and all sub-entries) */
     --main-navigation-border-radius: var(--default-border-radius); /* border-radius for main navigation (and bottom of sub-entries-list) */
     --main-navigation-hyperlink-color: var(--color-scheme-text-color); /* hyperlink-color for main-navigation */
@@ -120,25 +124,19 @@ html {
     --site-footer-hyperlink-color-highlighted: var(--hyperlink-color-highlighted); /* highlighted hyperlink-color for site-footer */
     --site-footer-text-decoration: none; /* text-decoration for hyperlinks in site-footer */
     --site-footer-text-decoration-highlighted: underline; /* text-decoration for highlighted hyperlinks in site-footer */
-    --site-footer-text-decoration-color-highlighted: var(--pure-white); /* text-decoration-color for highlighted hyperlinks in site-footer */
+    --site-footer-text-decoration-color-highlighted: var(--color-scheme-text-color); /* text-decoration-color for highlighted hyperlinks in site-footer */
     --site-footer-padding: var(--default-padding); /* padding for site-footer */
     /* END SITE FOOTER ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BACKGROUNDS ------------------------------------------------------------------------------------------ */
     /* default backgrounds */
-    --default-background-color-hue: 0; /* default-background-color-hue */
-    --default-background-color-saturation: 0%; /* default-background-color-saturation */
-    --default-background-color-lightness: 97%; /* default-background-color-lightness */
-    --default-background-color-hsl-values: var(--default-background-color-hue), var(--default-background-color-saturation), var(--default-background-color-lightness); /* default-background-color-hsl-values */
-    --default-background: hsl(var(--default-background-color-hsl-values)); /* default-background(-color) */
-    --default-background-color-reduced-opacity: hsla(var(--default-background-color-hsl-values), var(--reduced-opacity)); /* default-background-color with reduced opacity */
+    --default-background: var(--color-light-gray); /* default-background(-color) - will not be influenced by color-scheme */
+    --default-background-color-reduced-opacity: hsla(var(--default-background), var(--reduced-opacity)); /* default-background-color with reduced opacity */;
 
-    /* disabled backgrounds */
+    /* disabled backgrounds - keep identical for light- and dark-mode due to accessibility reasons */
     --disabled-background-lightness: 78%; /* disabled-background-color-lightness */
-    --disabled-background-hsl-values: var(--default-background-color-hue), var(--default-background-color-saturation), var(--disabled-background-lightness); /* disabled-background-color-hsl-values */
-    --disabled-background: hsl(var(--disabled-background-hsl-values)); /* disabled-background(-color) */
-    --disabled-background-reduced-opacity: hsla(var(--disabled-background-hsl-values), var(--reduced-opacity)); /* disabled-background-color with reduced opacity */
-    --color-scheme-disabled-background: var(--disabled-background); /* assign background(-color) for disabled-elements to color-scheme-color */
+    --disabled-background: hsl(from var(--color-black) h s var(--disabled-background-lightness)); /* disabled-background(-color) */
+    --disabled-background-reduced-opacity: hsla(var(--disabled-background), var(--reduced-opacity)); /* disabled-background-color with reduced opacity */
     /* END BACKGROUNDS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BORDERS AND OUTLINES ------------------------------------------------------------------------------------------ */
@@ -172,115 +170,108 @@ html {
     /* END BORDERS AND OUTLINES ------------------------------------------------------------------------------------------ */
 
     /* BEGIN COLORS ------------------------------------------------------------------------------------------ */
+    /* black */
+    --color-black: hsl(0, 0%, 0%); /* (pure) black color - values are used as base for all colors */
+    --color-black-reduced-opacity: hsl(from var(--color-black) h s l / var(--reduced-opacity)); /* pure-white-color with reduced opacity */
+
     /* white */
-    --pure-white-hsl-values: 0, 0%, 100%; /* pure-white-hsl */
-    --pure-white: hsl(var(--pure-white-hsl-values)); /* pure-white-color */
-    --pure-white-reduced-opacity: hsla(var(--pure-white-hsl-values), var(--reduced-opacity)); /* pure-white-color with reduced opacity */
+    --color-white: hsl(0, 0%, 100%); /* (pure) white color */
+    --color-white-reduced-opacity: hsl(from var(--color-white) h s l / var(--reduced-opacity)); /* pure-white-color with reduced opacity */
 
     /* shaded of gray */
-    --color-gray-10: hsl(0, 0%, 90%); /* 10%-gray */
-    --color-gray-20: hsl(0, 0%, 80%); /* 20%-gray */
-    --color-gray-30: hsl(0, 0%, 70%); /* 30%-gray */
-    --color-gray-40: hsl(0, 0%, 60%); /* 40%-gray */
-    --color-gray-50: hsl(0, 0%, 50%); /* 50%-gray */
-    --color-gray-60: hsl(0, 0%, 40%); /* 60%-gray */
-    --color-gray-70: hsl(0, 0%, 30%); /* 70%-gray */
-    --color-gray-80: hsl(0, 0%, 20%); /* 80%-gray */
-    --color-gray-90: hsl(0, 0%, 10%); /* 90%-gray */
+    --color-gray-10: hsl(from var(--color-black) h s 90%); /* gray 90% lightness */
+    --color-gray-20: hsl(from var(--color-black) h s 80%); /* gray 80% lightness */
+    --color-gray-30: hsl(from var(--color-black) h s 70%); /* gray 70% lightness */
+    --color-gray-40: hsl(from var(--color-black) h s 60%); /* gray 60% lightness */
+    --color-gray-50: hsl(from var(--color-black) h s 50%); /* gray 50% lightness */
+    --color-gray-60: hsl(from var(--color-black) h s 40%); /* gray 40% lightness */
+    --color-gray-70: hsl(from var(--color-black) h s 30%); /* gray 30% lightness */
+    --color-gray-80: hsl(from var(--color-black) h s 20%); /* gray 20% lightness */
+    --color-gray-90: hsl(from var(--color-black) h s 10%); /* gray 10% lightness */
 
     /* predefined shades of gray */
-    --light-gray: var(--color-gray-10); /* light-gray-color */
-    --medium-gray: var(--color-gray-50); /* medium-gray-color */
-    --dark-gray: var(--color-gray-90); /* dark-gray-color */
+    --color-light-gray: var(--color-gray-10); /* assign alternative variable for light-gray-color */
+    --color-medium-gray: var(--color-gray-50); /* assign alternative variable for medium-gray-color */
+    --color-dark-gray: var(--color-gray-90); /* assign alternative variable for dark-gray-color */
 
-    /* black */
-    --pure-black-hsl-values: 0, 0%, 0%; /* pure-black-hsl */
-    --pure-black: hsl(var(--pure-black-hsl-values)); /* pure-black-color */
-    --pure-black-reduced-opacity: hsla(var(--pure-black-hsl-values), var(--reduced-opacity)); /* pure-black-color with reduced opacity */
-
-    /* system-colors (for errors, warnings, successes, infos) */
-    --system-color: var(--default-text-color); /* default system-color (do not change --color-scheme-text-color due to accessibility reasons) */
-
-    /* error-colors */
+    /* error-colors - keep identical for light- and dark-mode due to accessibility reasons */
     --error-color-hue: 8; /* error-color-hue */
     --error-color-saturation: 100%; /* error-color-saturation */
     --error-color-lightness: 36%; /* error-color-lightness */
-    --error-color-alpha: 1; /* alpha for error-color */
-    --error-color-hsl-values: var(--error-color-hue), var(--error-color-saturation), var(--error-color-lightness); /* error-color-hsl-value */
-    --error-color: hsla(var(--error-color-hsl-values), var(--error-color-alpha)); /* error-color */
+    --error-color: hsl(var(--error-color-hue), var(--error-color-saturation), var(--error-color-lightness)); /* error-color */
 
-    /* warning-colors */
+    /* warning-colors - keep identical for light- and dark-mode due to accessibility reasons */
     --warning-color-hue: 46; /* warning-color-hue */
     --warning-color-saturation: 100%; /* warning-color-saturation */
     --warning-color-lightness: 45%; /* warning-color-lightness */
-    --warning-color-hsl-values: var(--warning-color-hue), var(--warning-color-saturation), var(--warning-color-lightness); /* warning-color-hsl-values: */
-    --warning-color: hsl(var(--warning-color-hsl-values)); /* warning-color */
+    --warning-color: hsl(var(--warning-color-hue), var(--warning-color-saturation), var(--warning-color-lightness)); /* warning-color */
 
-    /* success-colors */
+    /* success-colors - keep identical for light- and dark-mode due to accessibility reasons */
     --success-color-hue: 116; /* success-color-hue */
     --success-color-saturation: 100%; /* success-color-saturation */
     --success-color-lightness: 23%; /* success-color-lightness */
-    --success-color-hsl-values: var(--success-color-hue), var(--success-color-saturation), var(--success-color-lightness); /* success-color-hsl-values: */
-    --success-color: hsl(var(--success-color-hsl-values)); /* success-color */
+    --success-color: hsl(var(--success-color-hue), var(--success-color-saturation), var(--success-color-lightness)); /* success-color */
 
-    /* info-colors */
+    /* info-colors - keep identical for light- and dark-mode due to accessibility reasons */
     --info-color-hue: 217; /* info-color-hue */
     --info-color-saturation: 100%; /* info-color-saturation */
     --info-color-lightness: 63%; /* info-color-lightness */
-    --info-color-hsl-values: var(--info-color-hue), var(--info-color-saturation), var(--info-color-lightness); /* info-color-hsl-values: */
-    --info-color: hsl(var(--info-color-hsl-values)); /* info-color */
+    --info-color: hsl(var(--info-color-hue), var(--info-color-saturation), var(--info-color-lightness)); /* info-color */
 
-    /* primary-color (i.e. for highlights, primary-buttons) */
+    /* primary-color (i.e. for primary-buttons) */
     --primary-color-hue: 201; /* primary-color-hue */
     --primary-color-saturation: 93%; /* primary-color-saturation */
     --primary-color-lightness: 26%; /* primary-color-lightness */
-    --primary-color-hsl-values: var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness); /* primary-color-hsl-values */
+    --primary-color-hsl-values: var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness); /* primary-color hsl-values */
     --primary-color: hsl(var(--primary-color-hsl-values)); /* primary-color */
-    --primary-color-opacity: 1; /* primary-color-opacity */
-    --primary-color-reduced-opacity: hsla(var(--primary-color-hsl-values), var(--primary-color-opacity)); /* primary-color with reduced opacity */
+    --primary-color-reduced-opacity: hsl(from var(--primary-color) h s l / var(--reduced-opacity)); /* primary-color with reduced opacity */
 
-    /* secondary-color (i.e. for default-/secondary-buttons) */
+    /* secondary-color (i.e. for secondary-buttons) */
     --secondary-color-hue: 0; /* secondary-color-hue */
     --secondary-color-saturation: 0%; /* secondary-color-saturation */
     --secondary-color-lightness: 30%; /* secondary-color-lightness */
-    --secondary-color-hsl-values: var(--secondary-color-hue), var(--secondary-color-saturation), var(--secondary-color-lightness); /* secondary-color-hsl-values */
+    --secondary-color-hsl-values: var(--secondary-color-hue), var(--secondary-color-saturation), var(--secondary-color-lightness); /* secondary-color hsl-values */
     --secondary-color: hsl(var(--secondary-color-hsl-values)); /* secondary-color */
-    --secondary-color-opacity: 1; /* secondary-color-opacity */
-    --secondary-color-reduced-opacity: hsla(var(--secondary-color-hsl-values), var(--reduced-opacity)); /* secondary-color with reduced opacity */
-
+    --secondary-color-reduced-opacity: hsl(from var(--secondary-color) h s l / var(--reduced-opacity)); /* secondary-color with reduced opacity */
+    
     /* tertiary-color (i.e. for tertiary-buttons) */
     --tertiary-color-hue: 201; /* tertiary-color-hue */
     --tertiary-color-saturation: 93%; /* tertiary-color-saturation */
     --tertiary-color-lightness: 70%; /* tertiary-color-lightness */
-    --tertiary-color-hsl-values: var(--tertiary-color-hue), var(--tertiary-color-saturation), var(--tertiary-color-lightness); /* tertiary-color-hsl-values */
+    --tertiary-color-hsl-values: var(--tertiary-color-hue), var(--tertiary-color-saturation), var(--tertiary-color-lightness); /* tertiary-color hsl-values */
     --tertiary-color: hsl(var(--tertiary-color-hsl-values)); /* tertiary-color */
-    --tertiary-color-opacity: 1; /* tertiary-color-opacity */
-    --tertiary-color-reduced-opacity: hsla(var(--tertiary-color-hsl-values), var(--reduced-opacity)); /* tertiary-color with reduced opacity */
-
+    --tertiary-color-reduced-opacity: hsl(from var(--tertiary-color) h s l / var(--reduced-opacity)); /* tertiary-color with reduced opacity */
+    
     /* text-colors */
-    --text-color-hue: 0; /* text-color-hue */
-    --text-color-saturation: 0%; /* text-color-saturation */
-    --text-color-lightness: 15%; /* text-color-lightness */
-    --text-color-hsl-values: var(--text-color-hue), var(--text-color-saturation), var(--text-color-lightness); /* text-color-hsl-values */
-    --default-text-color: hsl(var(--text-color-hsl-values)); /* default-text-color */
+    --default-text-color-hue: 0; /* default-text-color-hue */
+    --default-text-color-saturation: 0%; /* default-text-color-saturation */
+    --default-text-color-lightness: 15%; /* default-text-color-lightness */
+    --default-text-color-hsl-values: var(--default-text-color-hue), var(--default-text-color-saturation), var(--default-text-color-lightness); /* default-text-color-hsl-values */
+    --default-text-color: hsla(var(--default-text-color-hsl-values), var(--reduced-opacity)); /* default-text-color - will not be influenced by color-scheme */
+    
+    /* hyperlink-color (default) (i.e. for :link, :visited) */
+    --hyperlink-color-hue-light-mode: var(--primary-color-hue); /* hyperlink-color-hue for light-mode */
+    --hyperlink-color-saturation-light-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for light-mode */
+    --hyperlink-color-lightness-light-mode: var(--primary-color-lightness); /* hyperlink-color-lightness  for light-mode */
+    --hyperlink-color-hue-dark-mode: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
+    --hyperlink-color-saturation-dark-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
+    --hyperlink-color-lightness-dark-mode: 40%; /* hyperlink-color-lightness for dark-mode */
+    --hyperlink-color: light-dark(hsl(var(--hyperlink-color-hue-light-mode), var(--hyperlink-color-saturation-light-mode), var(--hyperlink-color-lightness-light-mode)), hsl(var(--hyperlink-color-hue-dark-mode), var(--hyperlink-color-saturation-dark-mode), var(--hyperlink-color-lightness-dark-mode))); /* hyperlink-color */
 
-    /* hyperlink-color */
-    --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue */
-    --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation */
-    --hyperlink-color-lightness: var(--primary-color-lightness); /* hyperlink-color-lightness */
-    --hyperlink-color: hsl(var(--hyperlink-color-hue), var(--hyperlink-color-saturation), var(--hyperlink-color-lightness)); /* hyperlink-color */
-    --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue */
-    --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation */
-    --hyperlink-color-highlighted-lightness: 40%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) */
-    --hyperlink-color-highlighted: hsl(var(--hyperlink-color-highlighted-hue), var(--hyperlink-color-highlighted-saturation), var(--hyperlink-color-highlighted-lightness)); /* hyperlink-color highlighted (:hover, :active, :focus) hyperlinks */
+    /* hyperlink-color (highlighted) (i.e. for :hover, :active, :focus, .active) */
+    --hyperlink-color-highlighted-hue-light-mode: var(--primary-color-hue); /* hyperlink-color-hue for light-mode */
+    --hyperlink-color-highlighted-saturation-light-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for light-mode */
+    --hyperlink-color-highlighted-lightness-light-mode: var(--primary-color-lightness); /* hyperlink-color-lightness for light-mode */
+    --hyperlink-color-highlighted-hue-dark-mode: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
+    --hyperlink-color-highlighted-saturation-dark-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
+    --hyperlink-color-highlighted-lightness-dark-mode: 60%; /* hyperlink-color-lightness for dark-mode */
+    --hyperlink-color-highlighted: light-dark(hsl(var(--hyperlink-color-highlighted-hue-light-mode), var(--hyperlink-color-highlighted-saturation-light-mode), var(--hyperlink-color-highlighted-lightness-light-mode)), hsl(var(--hyperlink-color-highlighted-hue-dark-mode), var(--hyperlink-color-saturation-dark-mode), var(--hyperlink-color-highlighted-lightness-dark-mode))) !important; /* hyperlink-color */
 
     /* colors for disabled elements */
-    --disabled-color-hue: 0; /* disabled-color-hue */
-    --disabled-color-saturation: 0%; /* disabled-color-saturation */
-    --disabled-color-lightness: 30%; /* disabled-color-lightness */
-    --disabled-color-hsl-values: var(--disabled-color-hue), var(--disabled-color-saturation), var(--disabled-color-lightness); /* disabled-color-hsl-values */
-    --disabled-color: hsl(var(--disabled-color-hsl-values)); /* disabled-color */
-    --disabled-color-reduced-opacity: hsla(var(--disabled-color-hsl-values), var(--reduced-opacity)); /* disabled-color with reduced opacity */
+    --disabled-color: var(--color-gray-70); /* disabled-color - do not set light-dark-mode (color should remain the same) */
+    --disabled-color-label-light-mode: var(--disabled-color);
+    --disabled-color-label-dark-mode: var(--color-gray-50);
+    --disabled-color-label: light-dark(var(--disabled-color-label-light-mode), var(--disabled-color-label-dark-mode));
     /* END COLORS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN FONTS AND TYPOGRAPHY ------------------------------------------------------------------------------------------ */
@@ -340,7 +331,7 @@ html {
     /* END FONTS AND TYPOGRAPHY ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BOXES ------------------------------------------------------------------------------------------ */
-    --box-background: var(--default-background); /* background(-color) for entire box (could be partially covered by box-header-background(-color) if box header exists) */
+    --box-background: var(--color-scheme-background); /* background(-color) for entire box (could be partially covered by box-header-background(-color) if box header exists) */
     --box-header-background: var(--primary-color); /* background(-color) for box-header */
     --box-footer-background: none; /* background(-color) for box-footer */
     --box-border-width: var(--default-border-width); /* border-width for boxes */
@@ -348,8 +339,8 @@ html {
     --box-border-color: var(--default-border-color); /* border-color for boxes */
     --box-border: var(--box-border-width) var(--box-border-style) var(--box-border-color); /* border for boxes */
     --box-border-radius: var(--default-border-radius); /* border-radius for boxes */
-    --box-header-text-color: var(--pure-white); /* text-color for box-header */
-    --box-header-padding:  calc(var(--default-padding) / 2) var(--default-padding);; /* padding for box-header */
+    --box-header-text-color: var(--color-white); /* text-color for box-header */
+    --box-header-padding:  calc(var(--default-padding) / 2) var(--default-padding); /* padding for box-header */
     --box-body-text-color: var(--color-scheme-text-color); /* text-color for box-header */
     --box-body-padding: var(--default-padding); /* padding for box-body */
     --box-footer-padding: var(--default-padding); /* padding for box-footer */
@@ -359,23 +350,33 @@ html {
 
     /* BEGIN BUTTONS ------------------------------------------------------------------------------------------ */
     /* button typography */
-    --button-text-color: var(--pure-white); /* text-color for buttons */
+    --button-text-color-light-mode: var(--color-white); /* text-color for buttons in light-mode */
+    --button-text-color-dark-mode: var(--color-white); /* text-color for buttons in dark-mode */
+    --button-text-color: light-dark(var(--button-text-color-light-mode), var(--button-text-color-dark-mode)); /* text-color for buttons */
     --button-text-color-highlighted: var(--secondary-color); /* highlighted text-color for buttons */
     --button-font-size: var(--font-size-medium); /* font-size for buttons */
     --button-font-weight: var(--font-weight-bold); /* font-weight for buttons */
     --button-line-height: var(--line-height-none); /* line-height for buttons */
-    --button-primary-text-color: var(--pure-white); /* text-color for primary-buttons */
+    --button-primary-text-color: var(--button-text-color); /* text-color for primary-buttons */
     --button-primary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
+    --button-secondary-text-color: var(--button-text-color); /* text-color for primary-buttons */
+    --button-secondary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
+    --button-tertiary-text-color: var(--button-text-color); /* text-color for primary-buttons */
+    --button-tertiary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
 
-    /* button border and outline */
-    --button-outline: var(--default-outline); /* outline for buttons */
-    --button-outline-highlighted: var(--default-outline); /* outline for buttons */
-    --button-border-width: var(--default-border-width); /* border-width for buttons */
-    --button-border-style: var(--default-border-style); /* border-style for buttons */
-    --button-border-color: var(--default-border-color); /* border-color for buttons */
-    --button-border: var(--button-border-width) var(--button-border-style) var(--button-border-color); /* border for buttons */
-    --button-border-highlighted: var(--secondary-border); /* border for highlighted buttons */
-    --button-border-radius: var(--default-border-radius); /* border-radius for buttons */
+    /* button border and outline for (default) buttons */
+    --button-outline: var(--default-outline); /* outline for (default) buttons */
+    --button-outline-highlighted: var(--default-outline); /* outline for (default) buttons */
+    --button-border-width: var(--default-border-width); /* border-width for (default) buttons */
+    --button-border-style: var(--default-border-style); /* border-style for (default) buttons */
+    --button-border-color: var(--default-border-color); /* border-color for (default) buttons */
+    --button-border: var(--button-border-width) var(--button-border-style) var(--button-border-color); /* border for (default) buttons */
+    --button-border-highlighted: var(--secondary-border); /* border for highlighted (default) buttons */
+    --button-border-radius: var(--default-border-radius); /* border-radius for (default) buttons */
+
+    /* button border and outline for primary-buttons */
+    --button-primary-outline: var(--default-outline); /* outline for primary-buttons */
+    --button-primary-outline-highlighted: var(--default-outline); /* outline for primary-buttons */
     --button-primary-border-width: var(--default-border-width); /* border-width for primary-buttons */
     --button-primary-border-style: var(--default-border-style); /* border-style for primary-buttons */
     --button-primary-border-color: var(--primary-color); /* border-color for primary-buttons */
@@ -383,11 +384,23 @@ html {
     --button-primary-border-highlighted: var(--button-primary-border); /* border for highlighted primary-buttons */
     --button-primary-border-radius: var(--button-border-radius); /* border-radius for primary-buttons */
 
+    /* button border and outline for tertiary-buttons */
+    --button-tertiary-outline: var(--default-outline); /* outline for tertiary-buttons */
+    --button-tertiary-outline-highlighted: var(--default-outline); /* outline for tertiary-buttons */
+    --button-tertiary-border-width: var(--default-border-width); /* border-width for tertiary-buttons */
+    --button-tertiary-border-style: var(--default-border-style); /* border-style for tertiary-buttons */
+    --button-tertiary-border-color: var(--tertiary-color); /* border-color for tertiary-buttons */
+    --button-tertiary-border: var(--button-tertiary-border-width) var(--button-tertiary-border-style) var(--button-tertiary-border-color); /* border for tertiary-buttons */
+    --button-tertiary-border-highlighted: var(--button-tertiary-border); /* border for highlighted tertiary-buttons */
+    --button-tertiary-border-radius: var(--button-border-radius); /* border-radius for tertiary-buttons */
+
     /* button backgrounds */
-    --button-background: var(--secondary-color); /* background(-color) for buttons */
-    --button-background-highlighted: var(--pure-white); /* background(-color) for highlighted buttons */
+    --button-background: var(--secondary-color); /* background(-color) for (default) buttons */
+    --button-background-highlighted: var(--color-white); /* background for highlighted buttons */
     --button-primary-background: var(--primary-color); /* background(-color) for primary-buttons */
-    --button-primary-background-highlighted: var(--pure-white); /* background(-color) for highlighted primary-buttons */
+    --button-primary-background-highlighted:  var(--color-white); /* background for highlighted primary-buttons */
+    --button-tertiary-background: var(--tertiary-color); /* background(-color) for tertiary-buttons */
+    --button-tertiary-background-highlighted:  var(--color-white); /* background for highlighted tertiary-buttons */
 
     /* button dimensions */
     --button-padding: var(--default-padding); /* padding for button */
@@ -419,7 +432,7 @@ html {
 
     /* BEGIN FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
     /* fieldsets */
-    --fieldset-background: var(--default-background); /* background(-color) for fieldsets */
+    --fieldset-background: var(--color-scheme-background); /* background(-color) for fieldsets */
     --fieldset-border: var(--default-border); /* border for fieldsets */
     --fieldset-border-radius: var(--default-border-radius); /* border-radius for fieldsets */
     --fieldset-box-shadow: none; /* box-shadow for fieldsets */
@@ -438,7 +451,7 @@ html {
     --label-text-color-highlighted: var(--hyperlink-color-highlighted); /* text-color for highlighted labels */
     --label-text-color-checked: var(--hyperlink-color); /* text-color for labels with a corresponding checked input */
     --label-text-color-checked-highlighted: var(--hyperlink-color-highlighted); /* text-color for highlighted labels with a corresponding checked input */
-    --label-text-icon-color: var(--pure-white); /* icon-color for icons inside label-text */
+    --label-text-icon-color: var(--color-white); /* icon-color for icons inside label-text */
 
     /* asterisk-color */
     --asterisk-color: var(--hyperlink-color); /* asterisk color for mandatory form-elements */
@@ -446,8 +459,10 @@ html {
     --asterisk-font-weight: var(--default-font-weight); /* asterisk font-weight for mandatory form-elements */
 
     /* placeholder texts */
+    --placeholder-color-light-mode: var(--color-medium-gray); /* text-color for placeholder texts in inputfields in light-mode */
+    --placeholder-color-dark-mode: var(--color-light-gray); /* text-color for placeholder texts in inputfields in dark-mode */
+    --placeholder-text-color: light-dark(var(--placeholder-color-light-mode), var(--placeholder-color-dark-mode)); /* text-color for placeholder texts in inputfields */
     --placeholder-font-style: italic; /* font-style for placeholder texts */
-    --placeholder-text-color: var(--medium-gray); /* text-color for placeholder texts */
     --placeholder-text-opacity: .5; /* opacity for placeholder texts (should not be lower than 0.5 to avoid w2aa accessibility standards */
 
     /* inputfields */
@@ -464,7 +479,7 @@ html {
     /* END FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SYSTEM-MESSAGES ------------------------------------------------------------------------------------------ */
-    --system-message-text-color: var(--pure-white); /* text-color for all system-messages */
+    --system-message-text-color: var(--color-white); /* text-color for all system-messages - do not change due to accessibility reasons */
     --system-message-border: var(--default-border); /* border for system-messages */
     --system-message-border-radius: var(--default-border-radius); /* border-radius for system-messages */
     --system-message-font-weight: var(--font-weight-bold); /* font-weight for system-messages */
@@ -476,6 +491,10 @@ html {
     --table-border: var(--default-border); /* border for table (not cells) */
     --table-border-radius: var(--default-border-radius); /* border-radius for table (and cells in the corners) */
 
+    /* table-rows */
+    --table-row-background: var(--color-scheme-background); /* define background for rows */
+    --table-row-background-highlighted: var(--color-scheme-background); /* define background for highlighted rows */
+
     /* table cells (th and td) */
     --table-cell-padding: var(--default-padding); /* padding for all cells */
     --table-cell-border: var(--default-border); /* border for all cells */
@@ -483,16 +502,18 @@ html {
 
     /* table head */
     --table-head-background: var(--primary-color); /* background(-color) for table-head */
-    --table-head-text-color: var(--pure-white); /* text-color for table-head */
+    --table-head-text-color: var(--color-white); /* text-color for table-head */
     --table-head-font-size: var(--font-size-large); /* font-size for table-head */
     --table-head-font-weight: var(--font-weight-bold); /* font-weight-color for table-head */
     --table-head-text-align: center; /* text-align for table-head */
 
     /* active table-cells */
-    --active-table-cell-background: var(--light-gray); /* background(-color) for active table-cells */
+    --active-table-cell-background-light-mode:var(--color-gray-10);
+    --active-table-cell-background-dark-mode: var(--color-gray-80);
+    --active-table-cell-background: light-dark(var(--active-table-cell-background-light-mode), var(--active-table-cell-background-dark-mode)); /* background(-color) for active table-cells */
     --active-table-cell-text-color: var(--color-scheme-text-color); /* text-color for active/highlighted table-cells */
     --active-table-cell-background-highlighted: var(--primary-color); /* highlighted background(-color) for active table-cells */
-    --active-table-cell-text-color-highlighted: var(--pure-white); /* highlighted text-color for active table-cells */
+    --active-table-cell-text-color-highlighted: var(--color-white); /* highlighted text-color for active table-cells */
     /* END TABLES ------------------------------------------------------------------------------------------ */
 
     /* BEGIN MISCELLANEOUS ------------------------------------------------------------------------------------------ */
@@ -503,110 +524,43 @@ html {
     --reduced-opacity: .75; /* reduced opacity (should be at least 0.75 for accessibility) */
 
     /* shadows */
-    --box-shadow-color: var(--dark-gray); /* box-shadow-color */
-    --default-box-shadow: .2rem .2rem .2rem var(--box-shadow-color); /* box-shadow */
-    --text-shadow-color: var(--dark-gray); /* text-shadow-color */
-    --default-text-shadow: .1rem .1rem .1rem var(--text-shadow-color); /* text-shadow */
+    --box-shadow-color: light-dark(var(--color-dark-gray), none); /* box-shadow-color */
+    --default-box-shadow: light-dark(.2rem .2rem .2rem var(--box-shadow-color), none); /* box-shadow */
+    --text-shadow-color: light-dark(var(--color-dark-gray), none); /* text-shadow-color */
+    --default-text-shadow: light-dark(.1rem .1rem .1rem var(--text-shadow-color), none); /* text-shadow */
 
     /* transitions */
     --default-transition: all .5s; /* default transition */
     /* END MISCELLANEOUS ------------------------------------------------------------------------------------------ */
 
-    /* BEGIN VARIABLES FOR NATIVE COLOR-SCHEMES (LIGHT-/DARK-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
-    /* styles for native color-schemes (light-/dark-mode) */
+    /* BEGIN GLOBAL VARIABLES FOR COLOR-SCHEMES (LIGHT-/DARK-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
+    /* styles for color-schemes (light-/dark-mode) */
     --light-mode-text-color: var(--default-text-color); /* text-color for light-mode */
-    --light-mode-text-color-buttons: var(--pure-white); /* button-text-color for light-mode */
-    --light-mode-background: var(--pure-white); /* background(-color) for light-mode */
+    --light-mode-text-color-buttons: var(--color-white); /* button-text-color for light-mode */
+    --light-mode-background: var(--color-white); /* background(-color) for light-mode */
     --dark-mode-text-color: hsl(0, 0%, 85%); /* text-color for dark-mode */
     --dark-mode-text-color-buttons: var(--dark-mode-background); /* button-text-color for dark-mode */
-    --dark-mode-background: var(--dark-gray); /* background(-color) for dark-mode */
+    --dark-mode-background: var(--color-dark-gray); /* background(-color) for dark-mode */
     --show-in-light-mode-only: block; /* display-behavior for elements using .show-in-light-mode-only */
     --show-in-dark-mode-only: none; /* display-behavior for elements using .show-in-dark-mode-only */
 
-    /* assign default styles for native light-mode only */
-    --color-scheme-text-color: var(--light-mode-text-color); /* assign text-color for light-mode to color-scheme */
-    --color-scheme-text-color-buttons: var(--light-mode-text-color-buttons); /* assign button-text-color for light-mode to color-scheme */
-    --color-scheme-text-color-inverted: var(--dark-mode-text-color); /* assign an inverted text-color for light-mode to color-scheme */
-    --color-scheme-background: var(--light-mode-background); /* assign background(-color) for light-mode to color-scheme */
-    --color-scheme-background-inverted: var(--dark-mode-background); /* assign an inverted background(-color) for light-mode to color-scheme */
+    /* assign default styles to color-scheme related variables */
+    --color-scheme-text-color: light-dark(var(--light-mode-text-color), var(--dark-mode-text-color)); /* assign text-color to color-scheme */
+    --color-scheme-text-color-buttons: light-dark(var(--light-mode-text-color-buttons), var(--dark-mode-text-color-buttons)); /* assign button-text-color to color-scheme */
+    --color-scheme-text-color-inverted: light-dark(var(--dark-mode-text-color), var(--light-mode-text-color)); /* assign an inverted text-color to color-scheme */
+    --color-scheme-background: light-dark(var(--light-mode-background), var(--dark-mode-background)); /* assign background(-color) to color-scheme */
+    --color-scheme-background-inverted: light-dark(var(--dark-mode-background), var(--light-mode-background)); /* assign an inverted background(-color) to color-scheme */
     /* END VARIABLES FOR NATIVE COLOR-SCHEMES (LIGHT-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
 }
 
 /* BEGIN COLORS FOR NATIVE COLOR-SCHEMES (DARK-MODE SET BY BROWSER/OS) ------------------------------------------------------------------------------------------ */
 @media (prefers-color-scheme: dark) {
     html {
-        --color-scheme-text-color: var(--dark-mode-text-color); /* assign text-color for dark-mode to color-scheme */
-        --color-scheme-text-color-inverted: var(--light-mode-text-color); /* assign an inverted text-color for dark-mode to color-scheme */
-        --color-scheme-text-color-buttons: var(--dark-mode-text-color-buttons); /* assign button-text-color for dark-mode to color-scheme*/
-        --color-scheme-background: var(--dark-mode-background); /* assign background(-color) for dark-mode to color-scheme */
-        --color-scheme-background-inverted: var(--light-mode-background); /* assign an inverted background(-color) for dark-mode to color-scheme */
-        --color-scheme-disabled-background: var(--dark-gray); /* assign background(-color) fo disabled-elements for dark-mode */
-        --disabled-color-lightness: 30%; /* disabled-text-color for dark-mode */
-        --default-background-color-lightness: 20%; /* reduce default background-color-lightness for dark-mode */
-        --placeholder-text-color: var(--light-gray); /* text-color for placeholder texts for dark-mode */
-        --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
-        --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
-        --hyperlink-color-lightness: 50%; /* hyperlink-color-lightness for dark-mode */
-        --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
-        --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
-        --hyperlink-color-highlighted-lightness: 100%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
         --show-in-light-mode-only: none; /* display-behavior for elements using .show-in-light-mode-only */
         --show-in-dark-mode-only: block; /* display-behavior for elements using .show-in-dark-mode-only */
     }
 }
 /* END COLORS FOR NATIVE COLOR-SCHEMES (DARK-MODE SET BY BROWSER/OS) ------------------------------------------------------------------------------------------ */
-
-/* BEGIN CUSTOM COLORS-SCHEMES (LIGHT-/DARK-MODE SET BY CLASS) -------------------------------------------------- */
-html {
-    &.light-mode {
-        /* assign default colors for custom light-mode set by class */
-        --color-scheme-text-color: var(--light-mode-text-color); /* assign text-color for light-mode to color-scheme */
-        --color-scheme-text-color-inverted: var(--dark-mode-text-color); /* assign an inverted text-color for light-mode to color-scheme */
-        --color-scheme-text-color-buttons: var(--light-mode-text-color-buttons); /* assign button-text-color for light-mode to color-scheme */
-        --color-scheme-background: var(--light-mode-background); /* assign background(-color) for light-mode to color-scheme */
-        --color-scheme-background-inverted: var(--dark-mode-background); /* assign an inverted background(-color) for light-mode to color-scheme */
-        --color-scheme-disabled-background: var(--disabled-background); /* assign background(-color) fo disabled-elements for light-mode */
-        --disabled-color-lightness: 50%; /* disabled-text-color for light-mode */
-        --default-background-color-lightness: 97%; /* assign default background-color-lightness for light-mode */
-        --placeholder-text-color: var(--medium-gray); /* text-color for placeholder texts for light-mode */
-        --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for light-mode */
-        --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for light-mode */
-        --hyperlink-color-lightness: var(--primary-color-lightness); /* hyperlink-color-lightness for light-mode */
-        --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue for light-mode */
-        --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
-        --hyperlink-color-highlighted-lightness: 40%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
-        --show-in-light-mode-only: block; /* display-behavior for elements using .show-in-light-mode-only */
-        --show-in-dark-mode-only: none; /* display-behavior for elements using .show-in-dark-mode-only */
-    }
-
-    &.dark-mode {
-        /* assign default colors for custom dark-mode set by class */
-        --color-scheme-text-color: var(--dark-mode-text-color); /* assign text-color for dark-mode to color-scheme */
-        --color-scheme-text-color-inverted: var(--light-mode-text-color); /* assign an inverted text-color for dark-mode to color-scheme */
-        --color-scheme-text-color-buttons: var(--dark-mode-text-color-buttons); /* assign button-text-color for dark-mode to color-scheme */
-        --color-scheme-background: var(--dark-mode-background); /* assign background(-color) for dark-mode to color-scheme */
-        --color-scheme-background-inverted: var(--light-mode-background); /* assign an inverted background(-color) for dark-mode to color-scheme */
-        --color-scheme-disabled-background: var(--dark-gray); /* assign background(-color) fo disabled-elements for dark-mode */
-        --disabled-color-lightness: 50%; /* disabled-text-color for dark-mode */
-        --default-background-color-lightness: 20%; /* assign default background-color-lightness for dark-mode */
-        --placeholder-text-color: var(--light-gray); /* text-color for placeholder texts for dark-mode */
-        --hyperlink-color-hue: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
-        --hyperlink-color-saturation: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
-        --hyperlink-color-lightness: 50%; /* hyperlink-color-lightness for dark-mode */
-        --hyperlink-color-highlighted-hue: var(--hyperlink-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
-        --hyperlink-color-highlighted-saturation: var(--hyperlink-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
-        --hyperlink-color-highlighted-lightness: 70%; /* hyperlink-color-highlighted-lightness (used for highlighted hyperlinks) for dark-mode for dark-mode */
-        --show-in-light-mode-only: none; /* display-behavior for elements using .show-in-light-mode-only */
-        --show-in-dark-mode-only: block; /* display-behavior for elements using .show-in-dark-mode-only */
-
-        /* assign default colors for custom dark-mode set by class */
-        :where(label, .label) .label-text > [class*="icon-"] {
-            background: var(--dark-gray);
-        }
-    }
-}
-
-/* END CUSTOM COLORS-SCHEMES (LIGHT-/DARK-MODE SET BY CLASS) -------------------------------------------------- */
 
 /* ---------------------------------------------- END VARIABLES & TOKENS -------------------------------------------------- */
 
@@ -614,6 +568,23 @@ html {
 /* begin basic selectors and classes ------------------------------------------------------------------------------------------ */
 html {
     font-size: var(--root-font-size);
+
+    &.light-mode {
+        color-scheme: light;
+    }
+
+    &.dark-mode {
+        color-scheme: dark;
+
+        /* must be set for dark-mode-class separately, because styles will not be triggered by preferred-color-scheme */
+        .show-in-light-mode-only {
+            display: none;
+        }
+
+        .show-in-dark-mode-only {
+            display: block;
+        }
+    }
 }
 
 * {
@@ -639,6 +610,10 @@ body, dialog {
 
 body, fr {
     font-family: var(--default-font-family); /* font-family for entire page (must be set separately for textarea-tag) */
+}
+
+body, :where(label, .label) .label-text [class*="icon-"] {
+    background: var(--color-scheme-background);
 }
 
 body.no-transitions *, .no-transitions {
@@ -1104,18 +1079,17 @@ a:where(:hover, :active, :focus) img {
         text-shadow: none;
         border: var(--button-border-highlighted);
         outline: var(--button-outline-highlighted); /* avoids overwrite from a:hover */
-
+  
+        
         > :is(span, [class*="icon-"]) {
-            color: var(--button-text-color-highlighted);
-            text-shadow: none;
+            color: inherit;
         }
     }
 
     &.primary {
         --button-background: var(--button-primary-background);
-
-        border: var(--button-primary-border);
-        border-radius: var(--button-primary-border-radius);
+        --button-border: var(--button-primary-border);
+        --button-border-radius: var(--button-primary-border-radius);
 
         > :is(span, span[class*="icon-"]) {
             color: var(--button-primary-text-color);
@@ -1123,25 +1097,29 @@ a:where(:hover, :active, :focus) img {
 
         &:is(:hover, :active, :focus-visible) {
             --button-background: var(--button-primary-background-highlighted);
-
+            
+            color: var(--button-tertiary-text-color-highlighted);
             border: var(--button-primary-border-highlighted);
 
             > :is(span, span[class*="icon-"]) {
-                color: var(--button-primary-text-color-highlighted);
+                color: inherit;
             }
         }
     }
 
     &.tertiary {
-        --button-background: var(--tertiary-color);
-        border-color: var(--tertiary-color);
-
+        --button-background: var(--button-tertiary-background);
+        --button-border: var(--button-tertiary-border);
+        --button-border-radius: var(--button-tertiary-border-radius);
+        
         &:is(:hover, :active, :focus-visible) {
-            color: var(--tertiary-color);
+            --button-background: var(--button-tertiary-background-highlighted);
+            
+            color: var(--button-tertiary-text-color-highlighted);
             border-color: var(--tertiary-color);
 
             > :is(span, [class*="icon-"]) {
-                color: var(--tertiary-color);
+                color: inherit;
             }
         }
     }
@@ -1244,7 +1222,7 @@ a:where(:hover, :active, :focus) img {
 
         &:is(.disabled, :disabled) {
             &::before {
-                color: var(--color-scheme-disabled-background) !important;
+                color: var(--disabled-background) !important;
             }
 
             > span[class*="icon-"]::before {
@@ -1305,7 +1283,7 @@ a:where(:hover, :active, :focus) img {
 [disabled]:not(fieldset) > span,
 :is(button, input[type="submit"]):disabled,
 :is(button, .button, input[type="submit"]).disabled {
-    background: var(--color-scheme-disabled-background) !important;
+    background: var(--disabled-background) !important;
     color: var(--disabled-color) !important;
     border-color: var(--disabled-color) !important;
     text-shadow: none !important;
@@ -1323,7 +1301,7 @@ a:where(:hover, :active, :focus) img {
 
 :where(input[type="checkbox"], input[type="radio"]):disabled + span,
 .toggle-switch .switch-label-wrapper input:disabled ~ .label-text {
-    color: var(--disabled-color) !important;
+    color: var(--disabled-color-label) !important;
 }
 
 :where([readonly], .disabled, [disabled]:not(fieldset)):is(:hover, :active, :focus) {
@@ -1332,7 +1310,7 @@ a:where(:hover, :active, :focus) img {
 
 :is(label, .label).disabled,
 :is(label, .label).disabled span {
-    color: var(--disabled-color) !important;
+    color: var(--disabled-color-label) !important;
     background: none !important;
 }
 
@@ -1343,12 +1321,12 @@ a:where(:hover, :active, :focus) img {
     }
 
     .switch-label-wrapper input:disabled ~ .label-text {
-        color: var(--disabled-color) !important;
+        color: var(--disabled-color-label) !important;
     }
 
     &.disabled .switch-label-wrapper {
         border-color: var(--disabled-color) !important;
-        background: var(--color-scheme-disabled-background) !important;
+        background: var(--disabled-background) !important;
     }
 }
 
@@ -1420,8 +1398,12 @@ a:where(:hover, :active, :focus) img {
         align-self: flex-end;
     }
 
-    &.justify-content-space-between {
+    &.justify-content-space-between, &.justify-content-space-around  {
         justify-content: space-between;
+
+        > * {
+            flex: none;
+        }
     }
 
     &.justify-content-space-around {
@@ -1635,10 +1617,10 @@ fieldset {
     /* begin disabled fieldset */
 
     &[disabled] {
-        background: var(--light-gray) !important; /* avoid overwriting */
+        background: var(--color-light-gray) !important; /* avoid overwriting */
 
         :is(input, select, textarea, .input, .replace-input-type) {
-            background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+            background: var(--disabled-background) !important; /* avoid overwriting */
             border-color: var(--disabled-color) !important; /* avoid overwriting */
         }
 
@@ -1652,26 +1634,26 @@ fieldset {
         }
 
         input[type="range"]::-webkit-slider-thumb {
-            background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+            background: var(--disabled-background) !important; /* avoid overwriting */
             border-color: var(--disabled-color) !important; /* avoid overwriting */
         }
 
         input[type="range"]::-webkit-slider-runnable-track {
-            background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+            background: var(--disabled-background) !important; /* avoid overwriting */
         }
 
         input[type="range"]::-moz-range-thumb {
-            background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+            background: var(--disabled-background) !important; /* avoid overwriting */
             border-color: var(--disabled-color) !important; /* avoid overwriting */
         }
 
         input[type="range"]::-moz-range-track {
-            background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+            background: var(--disabled-background) !important; /* avoid overwriting */
         }
 
         input[type="search"] + a.button {
             color: var(--disabled-color) !important; /* avoid overwriting */
-            background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+            background: var(--disabled-background) !important; /* avoid overwriting */
         }
 
         input[type="search"] + a.button span,
@@ -1698,7 +1680,7 @@ fieldset {
         }
 
         .multiple-switch label {
-            background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+            background: var(--disabled-background) !important; /* avoid overwriting */
         }
     }
 
@@ -1761,7 +1743,7 @@ label, .label {
 
             &:is(:hover, :active, :focus) {
                 --status-color: var(--label-text-color-highlighted);
-                background: var(--pure-white);
+                background: var(--color-white);
             }
         }
 
@@ -2111,7 +2093,7 @@ label { /* label required for specificity */
         padding: .1rem;
         border: var(--default-border);
         border-color: var(--color-scheme-text-color);
-        background: var(--pure-white);
+        background: var(--color-white);
         box-shadow: none;
         display: inline-flex; /* avoids label-text to wrap */
 
@@ -2336,22 +2318,22 @@ input[type="range"]:focus::-moz-range-thumb {
 }
 
 input[type="range"]:is([disabled], .disabled)::-moz-range-thumb {
-    background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+    background: var(--disabled-background) !important; /* avoid overwriting */
     border-color: var(--disabled-color) !important; /* avoid overwriting */
 }
 
 input[type="range"]:is([disabled], .disabled)::-webkit-slider-thumb {
-    background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+    background: var(--disabled-background) !important; /* avoid overwriting */
     border-color: var(--disabled-color) !important; /* avoid overwriting */
 }
 
 input[type="range"]:is([disabled], .disabled)::-moz-range-track {
-    background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+    background: var(--disabled-background) !important; /* avoid overwriting */
     border-color: var(--disabled-color) !important; /* avoid overwriting */
 }
 
 input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
-    background: var(--color-scheme-disabled-background) !important; /* avoid overwriting */
+    background: var(--disabled-background) !important; /* avoid overwriting */
     border-color: var(--disabled-color) !important; /* avoid overwriting */
 }
 
@@ -2569,7 +2551,7 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
                     text-align: right;
 
                     &::before {
-                        border-color: var(--default-text-color);
+                        border-color: var(--default-text-color); /* do not change to color-scheme-text-color */
                         background: none;
                         left: -.7rem;
                         top: 50%;
@@ -2745,13 +2727,13 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
         }
 
         &.disabled {
-            background: var(--color-scheme-disabled-background);
+            background: var(--disabled-background);
         }
     }
 
     &.disabled {
         label {
-            background: var(--color-scheme-disabled-background) !important;
+            background: var(--disabled-background) !important;
 
             &:hover {
                 cursor: not-allowed;
@@ -2978,11 +2960,11 @@ a {
 /* begin active links */
 a.active:not([class*="icon-"]), li.active > a:not([class*="icon-"]) {
     background: var(--hyperlink-color);
-    color: var(--pure-white);
+    color: var(--color-white);
 }
 
 :is(a, li).active > :is(span, [class*="icon-"]) {
-    color: var(--pure-white);
+    color: var(--color-white);
 }
 
 li a.active {
@@ -3089,7 +3071,7 @@ span + [class*="icon-"] {
         font-size: var(--icon-size-large);
 
         &::before {
-            color: var(--pure-white);
+            color: var(--color-white);
         }
     }
 }
@@ -3389,7 +3371,7 @@ dd {
 
                     span, [class*="icon-"] {
                         color: inherit;
-                        white-space: normal; /* avoids text going into padding */
+                        white-space: nowrap;
                     }
 
                     [class*="icon-"] {
@@ -3489,14 +3471,14 @@ dd {
 .system-message {
     display: flex;
     border: var(--system-message-border);
+    border-width: .3rem;
     border-radius: var(--system-message-border-radius);
     font-weight: var(--system-message-font-weight);
     padding: var(--system-message-padding);
     margin-bottom: var(--default-margin);
-    background: var(--system-message-background);
-    border-width: .3rem;
-    -webkit-background-clip: padding-box; /* important to keep border transparent */
+    background: var(--system-message-status-color);
     background-clip: padding-box; /* important to keep border transparent */
+    border-color: hsl(from var(--system-message-status-color) h 70% 50%);
 
     *, [class*="icon-"] {
         color: var(--system-message-text-color);
@@ -3504,6 +3486,7 @@ dd {
 
     a {
         text-decoration-color: var(--system-message-text-color);
+        text-decoration: underline; /* ensure links can be identified easily with accessible text-color for system-messages */
     }
 
     & > .message-headline {
@@ -3525,12 +3508,12 @@ dd {
         cursor: pointer;
         aspect-ratio: 1/1;
         align-self: flex-start;
-        line-height: .3;
+        line-height: .5;
         margin: 0;
 
         &:is(:hover, :active, :focus) {
             background: var(--system-message-text-color);
-            color: var(--error-color);
+            color: var(--system-message-status-color);
         }
 
         &::before {
@@ -3553,40 +3536,25 @@ dd {
     /* begin different status */
 
     &.error {
-        --system-message-background: var(--error-color);
-        border-color: hsla(var(--error-color-hsl-values), var(--reduced-opacity));
+        --system-message-status-color: var(--error-color);
     }
 
     &.warning {
-        --system-message-background: var(--warning-color);
-        --system-message-text-color: var(--dark-gray); /* must be set to a dark color for accessibility */
-
-        border-color: hsla(var(--warning-color-hsl-values), var(--reduced-opacity));
-
-        * {
-            text-shadow: none;
-        }
-
-        :is(span, [class*="icon-"]) {
-            text-shadow: none;
-        }
+        --system-message-status-color: var(--warning-color);
+        --system-message-text-color: var(--color-dark-gray); /* must be set to a dark color for accessibility */
     }
 
     &.success {
-        --system-message-background: var(--success-color);
-        border-color: hsla(var(--success-color-hsl-values), var(--reduced-opacity));
-
-        > input[type="checkbox"]:is(:hover, :active, :focus) {
-            color: var(--success-color);
-        }
+        --system-message-status-color: var(--success-color);
     }
 
     &.info {
-        --system-message-background: var(--info-color);
-        border-color: hsla(var(--info-color-hsl-values), var(--reduced-opacity));
+        --system-message-status-color: var(--info-color);
+    }
 
-        > input[type="checkbox"]:is(:hover, :active, :focus) {
-            color: var(--info-color);
+    &.hide-close-icon {
+        > input {
+            display: none;
         }
     }
 
@@ -3638,14 +3606,14 @@ table {
     }
 
     tr {
-        background: var(--color-scheme-background);
+        background: var(--table-row-background);
 
         &:last-child th[scope="row"] {
             border-bottom: 0;
         }
 
         &:is(:hover, :active, :focus) td {
-            background: var(--color-scheme-background);
+            background: var(--table-row-background-highlighted);
         }
 
         &:last-of-type td {
@@ -3709,7 +3677,7 @@ table {
             &[scope="row"] {
                 border-radius: 0;
                 border-bottom: var(--table-border);
-                border-bottom-color: var(--pure-white);
+                border-bottom-color: var(--color-white);
             }
         }
 
@@ -3819,7 +3787,7 @@ table {
 
     /* set disabled-color in chrome (will be to set darkest-possible value by browser) */
     select[disabled], select[disabled] > option {
-        color: var(--pure-black) !important;
+        color: var(--color-black) !important;
     }
 }
 
@@ -3837,11 +3805,11 @@ html::-webkit-scrollbar-thumb:hover { /* do not set :active, :focus (does not wo
 }
 
 html::-webkit-scrollbar-track {
-    background-color: var(--light-gray);
+    background-color: var(--color-light-gray);
 }
 
 html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not work anymore then) */
-    background-color: var(--medium-gray);
+    background-color: var(--color-medium-gray);
 }
 /* end css webkit-browsers only ------------------------------------------------------------------------------------------ */
 
@@ -3859,7 +3827,7 @@ html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not wo
 /* begin css for print only ------------------------------------------------------------------------------------------ */
 @media only print {
     * {
-        color: var(--dark-gray);
+        color: var(--color-dark-gray);
     }
 
     a[href]:after {
@@ -3882,10 +3850,6 @@ html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not wo
 @media (prefers-color-scheme: dark) {
     html::-webkit-scrollbar-track {
         background-color: var(--color-scheme-background);
-    }
-
-    body, :where(label, .label) .label-text [class*="icon-"] {
-        background: var(--color-scheme-background);
     }
 }
 

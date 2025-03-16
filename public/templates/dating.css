@@ -23,7 +23,7 @@ html {
     --default-padding: 1.5rem;
     --default-font-family: "Segoe UI", Roboto, sans-serif;
     --default-border-radius: .5rem;
-    --default-border-color: var(--light-gray);
+    --default-border-color: var(--color-light-gray);
     --default-text-color: #666;
     --box-border-color: #ddd;
     --button-border-radius: 3rem;
@@ -81,24 +81,11 @@ html {
     &.dark-mode {
         #template-dating {
             --default-background: rgba(0, 0, 0, 0.2);
-            --main-navigation-background: var(--dark-gray);
+            --main-navigation-background: var(--color-dark-gray);
             --box-header-background: none;
             --fieldset-background: linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 7%) 0%, hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 15%));
 
             background-image: url("../images/background/background-dating-darkmode.jpg");
         }
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    /* begin css for dark-mode only ------------------------------------------------------------------------------------------ */
-    #template-dating {
-        --default-background: rgba(0, 0, 0, 0.2);
-        --main-navigation-background: var(--dark-gray);
-        --box-header-background: none;
-        --default-text-color: red;
-        --fieldset-background: linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 7%) 0%, hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 15%));
-
-        background-image: url("../images/background/background-dating-darkmode.jpg");
     }
 }

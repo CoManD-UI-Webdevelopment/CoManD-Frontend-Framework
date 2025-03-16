@@ -12,11 +12,11 @@ html {
     --default-font-size: 1.5rem;
     --default-border-radius: 0;
     --dark-mode-text-color: hsl(0, 0%, 100%);
-    --button-text-color: var(--pure-white);
+    --button-text-color: var(--color-white);
     --medium-blue: hsl(var(--tertiary-color-hue), var(--tertiary-color-saturation), var(--tertiary-color-lightness));
-    --active-table-cell-text-color-highlighted: var(--pure-white);
+    --active-table-cell-text-color-highlighted: var(--color-white);
     --button-background: var(--dark-blue);
-    --button-background-color-highlighted: var(--pure-white);
+    --button-background-color-highlighted: var(--color-white);
     --fieldset-box-shadow: none;
     --default-font-family: "NeuzeitGro-Reg", "Open Sans", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 }
@@ -29,14 +29,14 @@ html {
     --default-background: rgba(255, 255, 255, 0.1);
     --colored-background-gradient: linear-gradient(180deg, var(--primary-color) 0%, var(--dark-blue) 100%);
     --colored-background-gradient-rotated: linear-gradient(0deg, var(--primary-color) 0%, var(--dark-blue) 100%);
-    --button-border: .2rem solid var(--pure-white);
+    --button-border: .2rem solid var(--color-white);
     --button-outline: .2rem solid var(--primary-color);
 }
 
 @media (prefers-color-scheme: dark) {
     #template-business {
         --colored-background-gradient: linear-gradient(180deg, var(--dark-blue) 0%, var(--medium-blue) 50%, var(--dark-blue) 100%);
-        --hyperlink-color: var(--pure-white);
+        --hyperlink-color: var(--color-white);
         --hyperlink-color-highlighted: var(--dark-blue);
         --color-scheme-background-color: rgba(255, 255, 255, .15);
         --disabled-color: rgb(55, 55, 55);

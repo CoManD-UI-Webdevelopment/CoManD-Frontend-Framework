@@ -78,8 +78,9 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="http://www.comand-cms.com" target="comand-website">
-                                        <span>CoManD-CMS</span>
+                                    <a href="https://www.comand-ui.com" target="comand-website">
+                                        <span class="icon-export"></span>
+                                        <span>CoManD-UI</span>
                                     </a>
                                 </li>
                             </ul>
@@ -107,7 +108,7 @@
                                 :class="openBoxes.includes('template') ? 'icon-chevron-one-stripe-up' : 'icon-chevron-one-stripe-down'"></span>
                         </a>
                         <div v-if="openBoxes.includes('template')" class="box-body" aria-expanded="true" role="article">
-                            <div class="default-padding flex-container vertical">
+                            <div class="default-padding flex-container vertical" style="gap: 0.5rem;">
                                 <label for="select-template">
                                     <span>Select template</span>
                                     <select id="select-template" v-model="selectedTemplate">
@@ -187,6 +188,9 @@
                                             </li>
                                         </ul>
                                     </li>
+                                </ul>
+                                <ul>
+                                    <li><a href="#anchor-colors">Colors</a></li>
                                 </ul>
                                 <ul>
                                     <li>
@@ -278,6 +282,7 @@
             <main id="content">
                 <a id="top-of-page"></a>
                 <!-- begin typography -->
+                
                 <div class="width-limitation-wrapper">
                     <section>
                         <h2 class="headline-demopage" id="anchor-typography">Typography</h2>
@@ -764,6 +769,135 @@
                     </section>
                 </div>
                 <!-- end boxes -->
+
+                <!-- begin colors related content -->
+                <div class="width-limitation-wrapper">
+                    <section>
+                        <h2 class="headline-demopage" id="anchor-color-scheme-related-content">Color-Scheme Related Content</h2>
+                        <div class="flex-container">
+                            <span class="show-in-light-mode-only">Show this content in light-mode only</span>
+                            <span class="show-in-dark-mode-only">Show this content in dark-mode only</span>
+                        </div>
+                    </section>
+                </div>
+                <!-- end color-scheme related content -->
+
+                <!-- begin colors -->
+                <div class="width-limitation-wrapper">
+                    <section>
+                        <h2 class="headline-demopage" id="anchor-colors">Colors</h2>
+                        <h3>Text colors</h3>
+                        <div class="flex-container no-flex">
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--default-text-color)"></span>
+                                <span>Default Text-Color</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-scheme-text-color)"></span>
+                                <span>Color Scheme Text-Color</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-scheme-text-color-inverted)"></span>
+                                <span>Color Scheme Text-Color Inverted</span>
+                            </span>
+                        </div>
+                        <h3>Highlight colors</h3>
+                        <div class="flex-container no-flex">
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--primary-color)"></span>
+                                <span>Primary</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--secondary-color)"></span>
+                                <span>Secondary</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--tertiary-color)"></span>
+                                <span>Tertiary</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--hyperlink-color)"></span>
+                                <span>Hyperlink</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--hyperlink-color-highlighted)"></span>
+                                <span>Hyperlink highlighted</span>
+                            </span>
+                        </div>
+                        <h3>Shades of gray</h3>
+                        <div class="flex-container no-flex">
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-white)"></span>
+                                <span>White</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-10)"></span>
+                                <span>Gray 10 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-20)"></span>
+                                <span>Gray 20 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-30)"></span>
+                                <span>Gray 30 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-40)"></span>
+                                <span>Gray 40 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-50)"></span>
+                                <span>Gray 50 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-60)"></span>
+                                <span>Gray 60 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-70)"></span>
+                                <span>Gray 70 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-80)"></span>
+                                <span>Gray 80 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-gray-90)"></span>
+                                <span>Gray 90 %</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--color-black)"></span>
+                                <span>Black</span>
+                            </span>
+                        </div>
+                        <h3>System colors</h3>
+                        <div class="flex-container no-flex">
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--error-color)"></span>
+                                <span>Error</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--warning-color)"></span>
+                                <span>Warning</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--success-color)"></span>
+                                <span>Success</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span style="background: var(--info-color)"></span>
+                                <span>Info</span>
+                            </span>
+                        </div>
+                        <h3>Color-Scheme Related Content</h3>
+                        <div class="flex-container">
+                            <span class="show-in-light-mode-only">Show in light-mode only</span>
+                            <span class="show-in-dark-mode-only">Show in dark-mode only</span>
+                        </div>
+                    </section>
+                </div>
+                <!-- end colors -->
 
                 <!-- begin rich-media -->
                 <div class="width-limitation-wrapper">
