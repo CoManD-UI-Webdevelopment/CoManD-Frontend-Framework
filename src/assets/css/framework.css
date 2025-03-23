@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/03/13
+framework.css - last update: 2025/03/23
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -137,6 +137,9 @@ html {
     --disabled-background-lightness: 78%; /* disabled-background-color-lightness */
     --disabled-background: hsl(from var(--color-black) h s var(--disabled-background-lightness)); /* disabled-background(-color) */
     --disabled-background-reduced-opacity: hsla(var(--disabled-background), var(--reduced-opacity)); /* disabled-background-color with reduced opacity */
+
+    /* background-lightness for filles inputfields (default, :valid, :invalid) */
+    --form-input-filled-background-lightness: 97%;
     /* END BACKGROUNDS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BORDERS AND OUTLINES ------------------------------------------------------------------------------------------ */
@@ -552,16 +555,6 @@ html {
     --color-scheme-background-inverted: light-dark(var(--dark-mode-background), var(--light-mode-background)); /* assign an inverted background(-color) to color-scheme */
     /* END VARIABLES FOR NATIVE COLOR-SCHEMES (LIGHT-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
 }
-
-/* BEGIN COLORS FOR NATIVE COLOR-SCHEMES (DARK-MODE SET BY BROWSER/OS) ------------------------------------------------------------------------------------------ */
-@media (prefers-color-scheme: dark) {
-    html {
-        --show-in-light-mode-only: none; /* display-behavior for elements using .show-in-light-mode-only */
-        --show-in-dark-mode-only: block; /* display-behavior for elements using .show-in-dark-mode-only */
-    }
-}
-/* END COLORS FOR NATIVE COLOR-SCHEMES (DARK-MODE SET BY BROWSER/OS) ------------------------------------------------------------------------------------------ */
-
 /* ---------------------------------------------- END VARIABLES & TOKENS -------------------------------------------------- */
 
 /* ---------------------------------------------- BEGIN MAIN STYLES -------------------------------------------------- */
@@ -571,6 +564,15 @@ html {
 
     &.light-mode {
         color-scheme: light;
+
+        /* must be set for light-mode-class separately, because styles will not be triggered by preferred-color-scheme */
+        .show-in-light-mode-only {
+            display: block;
+        }
+
+        .show-in-dark-mode-only {
+            display: none;
+        }
     }
 
     &.dark-mode {
@@ -598,7 +600,7 @@ html, body {
 }
 
 body {
-    min-height: 100%;
+    min-height: 100%; /* stretch body to entire screen */
     word-wrap: break-word; /* breaks word at the end of the line */
     font-size: var(--default-font-size); /* sets the default font-size for every element */
     line-height: var(--default-line-height); /* improves reading on the screen. default is 120% */
@@ -609,11 +611,7 @@ body, dialog {
 }
 
 body, fr {
-    font-family: var(--default-font-family); /* font-family for entire page (must be set separately for textarea-tag) */
-}
-
-body, :where(label, .label) .label-text [class*="icon-"] {
-    background: var(--color-scheme-background);
+    font-family: var(--default-font-family); /* font-family for entire page */
 }
 
 body.no-transitions *, .no-transitions {
@@ -630,10 +628,10 @@ body.no-transitions *, .no-transitions {
 
 .default-padding {
     padding: var(--default-padding);
-}
 
-.default-padding > *:last-child {
-    margin-bottom: 0;
+    > *:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .default-margin {
@@ -647,6 +645,7 @@ body.no-transitions *, .no-transitions {
 .highlighted {
     color: var(--hyperlink-color);
 }
+
 
 dialog {
     border: var(--default-border);
@@ -684,18 +683,24 @@ object, svg, img, video, canvas, .responsive-wrapper {
     z-index: 100;
 }
 
-.center-content.flex-container {
-    display: flex;
-    place-content: center;
-
-     > * {
-         flex: none !important;
-     }
+.display-contents {
+    display: contents;
 }
 
-.center-content.grid-container {
-    display: grid;
-    place-items: center;
+.center-content {
+    &.flex-container {
+        display: flex;
+        place-content: center;
+
+        > * {
+            flex: none !important;
+        }
+    }
+
+    &.grid-container {
+        display: grid;
+        place-items: center;
+    }
 }
 
 .center-content-absolute {
@@ -800,20 +805,6 @@ object, svg, img, video, canvas, .responsive-wrapper {
     vertical-align: baseline !important; /* avoid vertical-alignment to be overwritten by later imported icon-font */
 }
 /* end text-align */
-
-/* begin item-align for flex-containers */
-.align-items-top, .align-items-flex-start {
-    align-items: flex-start !important;
-}
-
-.align-items-center {
-    align-items: center !important;
-}
-
-.align-items-bottom, .align-items-flex-end {
-    align-items: flex-end !important;
-}
-/* end item-align for flex-containers */
 
 /* begin basic typography */
 p, ul, ol, dl, table, address {
@@ -1398,6 +1389,30 @@ a:where(:hover, :active, :focus) img {
         align-self: flex-end;
     }
 
+    &.align-items-top, &.align-items-flex-start {
+        align-items: flex-start !important;
+    }
+
+    &.align-items-center {
+        align-items: center !important;
+    }
+
+    &.align-items-bottom, &.align-items-flex-end {
+        align-items: flex-end !important;
+    }
+
+    &.justify-content-top, &.justify-content-flex-start {
+        justify-content: flex-start;
+    }
+
+    &.justify-content-center {
+        justify-content: center;
+    }
+
+    &.justify-content-bottom, &.justify-content-flex-end {
+        justify-content: flex-end;
+    }
+
     &.justify-content-space-between, &.justify-content-space-around  {
         justify-content: space-between;
 
@@ -1557,6 +1572,10 @@ fieldset {
 
         > *, .grid-container-create-columns {
             grid-column: span var(--grid-columns);
+        }
+
+        :is(label, .label).inline > span:first-child {
+            grid-column: span var(--grid-small-span);
         }
     }
 
@@ -1731,7 +1750,7 @@ label, .label {
         }
         /* end mandatory asterisk */
 
-        a[class*="icon-"], a:has([class*="icon-"]) {
+        :is(a, span)[class*="icon-"], a:has([class*="icon-"]) {
             --status-color: var(--hyperlink-color);
 
             align-self: flex-end; /* avoids stretching if label wraps */
@@ -1815,7 +1834,6 @@ label, .label {
         }
 
         > span:first-child {
-            grid-column: span var(--grid-small-span);
             white-space: normal;
             margin: 0 var(--default-margin) 0 0;
 
@@ -1928,8 +1946,17 @@ td .toggle-switch.switch-label {
         border-color: var(--form-input-border-color-highlighted);
     }
 
+    &:not(:placeholder-shown) {
+        background: hsl(from var(--color-black) h s var(--form-input-filled-background-lightness));
+
+        &:valid {
+            background: hsl(120, 100%, var(--form-input-filled-background-lightness));
+        }
+    }
+
     &:user-invalid {
         border-color: var(--error-color);
+        background: hsl(0, 100%, var(--form-input-filled-background-lightness));
     }
 
     &.error::placeholder {
@@ -1940,6 +1967,10 @@ td .toggle-switch.switch-label {
 input {
     &:checked ~ span.label-text {
         color: var(--label-text-color-checked);
+    }
+
+    &[type="range"], &[type="date"], &[type="file"] {
+        background: none !important;
     }
 
     &[type="search"] {
@@ -1996,6 +2027,12 @@ select {
     padding-top: 0; /* avoids text to be cropped */
     padding-bottom: 0; /* avoids text to be cropped */
     word-wrap: normal; /* break words only at allowed break points */
+    background: none !important;
+
+    &:valid {
+        background: hsl(120, 100%, var(--form-input-filled-background-lightness)) !important;
+        color: var(--success-color);
+    }
 
     &[multiple] {
         max-height: 10rem;
@@ -3848,6 +3885,11 @@ html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not wo
 
 /* begin css for dark-mode only ------------------------------------------------------------------------------------------ */
 @media (prefers-color-scheme: dark) {
+    html {
+        --show-in-light-mode-only: none; /* display-behavior for elements using .show-in-light-mode-only */
+        --show-in-dark-mode-only: block; /* display-behavior for elements using .show-in-dark-mode-only */
+    }
+
     html::-webkit-scrollbar-track {
         background-color: var(--color-scheme-background);
     }

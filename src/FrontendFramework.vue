@@ -5,12 +5,8 @@
                 <header class="grid-container-create-columns">
                     <div class="company-logo">
                         <a href="./" title="Tooltip">
-                            <picture>
-                                <source srcset="./assets/images/logos/logo-darkmode.svg"
-                                        media="(prefers-color-scheme: dark)" />
-                                <img class="show-in-dark-mode-only" src="./assets/images/logos/logo-darkmode.svg" alt="Company Logo Dark Mode" />
-                                <img class="show-in-light-mode-only"  src="./assets/images/logos/logo.svg" alt="Company Logo" />
-                            </picture>
+                            <img class="show-in-dark-mode-only" src="/images/logos/logo-darkmode.svg" alt="Company Logo Dark Mode" />
+                            <img class="show-in-light-mode-only"  src="/images/logos/logo.svg" alt="Company Logo" />
                         </a>
                     </div>
                     <!-- begin main-navigation for testing -->
@@ -98,8 +94,8 @@
                 <div v-if="openSidebar" class="inner-sidebar-wrapper">
                     <h3 class="text-align-center">Site Settings</h3>
                     <!-- begin select template -->
-                    <div class="box content collapsible stretch-horizontally">
-                        <a href="#" class="box-header" title="Show content" @click.prevent="toggleBox('template')">
+                    <div class="box content collapsible stretch-horizontally flexible-scroll-container">
+                        <a href="#" class="fixed-wrapper box-header" title="Show content" @click.prevent="toggleBox('template')">
                             <h4>
                                 <span class="icon-cog"></span>
                                 <span>Template Settings</span>
@@ -107,7 +103,7 @@
                             <span
                                 :class="openBoxes.includes('template') ? 'icon-chevron-one-stripe-up' : 'icon-chevron-one-stripe-down'"></span>
                         </a>
-                        <div v-if="openBoxes.includes('template')" class="box-body" aria-expanded="true" role="article">
+                        <div v-if="openBoxes.includes('template')" class="scroll-wrapper box-body" aria-expanded="true" role="article">
                             <div class="default-padding flex-container vertical" style="gap: 0.5rem;">
                                 <label for="select-template">
                                     <span>Select template</span>
@@ -145,8 +141,8 @@
                     <!-- end select template -->
 
                     <!-- begin table of contents -->
-                    <div class="box content collapsible stretch-horizontally">
-                        <a href="#" class="box-header" title="Show content" @click.prevent="toggleBox('table')">
+                    <div class="box content flexible-scroll-container collapsible stretch-horizontally" style="max-height: none;">
+                        <a href="#" class="fixed-wrapper box-header" title="Show content" @click.prevent="toggleBox('table')">
                             <h4>
                                 <span class="icon-table"></span>
                                 <span>Table of contents</span>
@@ -154,7 +150,7 @@
                             <span
                                 :class="openBoxes.includes('table') ? 'icon-chevron-one-stripe-up' : 'icon-chevron-one-stripe-down'"></span>
                         </a>
-                        <div v-if="openBoxes.includes('table')" class="box-body" aria-expanded="true" role="article">
+                        <div v-if="openBoxes.includes('table')" class="scroll-wrapper box-body" aria-expanded="true" role="article">
                             <div class="default-padding">
                                 <ul>
                                     <li>
@@ -770,18 +766,6 @@
                 </div>
                 <!-- end boxes -->
 
-                <!-- begin colors related content -->
-                <div class="width-limitation-wrapper">
-                    <section>
-                        <h2 class="headline-demopage" id="anchor-color-scheme-related-content">Color-Scheme Related Content</h2>
-                        <div class="flex-container">
-                            <span class="show-in-light-mode-only">Show this content in light-mode only</span>
-                            <span class="show-in-dark-mode-only">Show this content in dark-mode only</span>
-                        </div>
-                    </section>
-                </div>
-                <!-- end color-scheme related content -->
-
                 <!-- begin colors -->
                 <div class="width-limitation-wrapper">
                     <section>
@@ -832,7 +816,7 @@
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-10)"></span>
-                                <span>Gray 10 %</span>
+                                <span>Gray 10 % <br />(light-gray)</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-20)"></span>
@@ -848,7 +832,7 @@
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-50)"></span>
-                                <span>Gray 50 %</span>
+                                <span>Gray 50 % <br />(medium-gray)</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-60)"></span>
@@ -864,7 +848,7 @@
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-90)"></span>
-                                <span>Gray 90 %</span>
+                                <span>Gray 90 % <br />(dark-gray)</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-black)"></span>

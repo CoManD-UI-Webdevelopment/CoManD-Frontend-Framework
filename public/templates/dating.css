@@ -9,7 +9,7 @@
 
 html {
     /* overwrite variables from framework.css */
-    --dark-mode-text-color: rgb(240, 240, 240);
+    --dark-mode-text-color: hsl(from var(--color-white) h s 80%);
     --tertiary-color: hsl(211, 46%, 72%);
     --primary-color-hue: 243;
     --primary-color-saturation: 60%;
@@ -17,28 +17,29 @@ html {
     --secondary-color-hue: 304;
     --secondary-color-saturation: 40%;
     --secondary-color-lightness: 75%;
-    --box-shadow: 0 0 2rem rgba(50, 50, 50, .1);
+    --box-shadow: 0 0 2rem hsl(from var(--color-black) h 30% l / .1);
     --font-size: 1.8rem;
     --default-radius: 1rem;
     --default-padding: 1.5rem;
     --default-font-family: "Segoe UI", Roboto, sans-serif;
     --default-border-radius: .5rem;
     --default-border-color: var(--color-light-gray);
-    --default-text-color: #666;
-    --box-border-color: #ddd;
+    --default-text-color: hsl(from var(--color-black) h s 30%);
+    --box-border-color: hsl(from var(--color-black) h s 80%);
     --button-border-radius: 3rem;
-    --main-navigation-background: #fff;
+    --main-navigation-background: light-dark(var(--color-white), var(--color-dark-gray));
     --hyperlink-color: var(--primary-color);
     --hyperlink-color-saturation: 70%;
     --active-table-cell-background: hsla(var(--primary-color-hue), var(--primary-color-saturation), var(--primary-color-lightness), .5);
     --primary-color-opacity: .1;
-    --button-font-weight: 600;
-    --transparent-background: rgba(255, 255, 255, 0.2);
+    --button-font-weight: var(--font-weight-semi-bold);
+    --transparent-background: var(--color-white) / .2;
     --site-footer-background: var(--transparent-background);
-    --default-background: rgba(255, 255, 255, 0.2);
+    --default-background: light-dark(var(--color-white) / .2, var(--color-black) / .2);
     --input-height: 4.6rem;
     --form-element-with-icon-padding: calc(var(--default-padding) * 2);
-    --fieldset-background: rgba(255, 255, 255, 0.2);
+    --fieldset-background: light-dark(var(--color-white) / .2, linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 7%) 0%, hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 15%)));
+
     /* declare custom variables */
     --colored-background-gradient: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
     --colored-background-gradient-rotated: linear-gradient(0deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -78,14 +79,29 @@ tr {
 }
 
 html {
-    &.dark-mode {
-        #template-dating {
-            --default-background: rgba(0, 0, 0, 0.2);
-            --main-navigation-background: var(--color-dark-gray);
+    font-size: var(--root-font-size);
+
+    &.light-mode {
+        .page-wrapper {
             --box-header-background: none;
-            --fieldset-background: linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 7%) 0%, hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 15%));
+
+            background-image: url("../images/background/background-dating-lightmode.jpg");
+        }
+    }
+
+    &.dark-mode {
+        .page-wrapper {
+            --box-header-background: none;
 
             background-image: url("../images/background/background-dating-darkmode.jpg");
         }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .page-wrapper {
+        --box-header-background: none;
+
+        background-image: url("../images/background/background-dating-darkmode.jpg");
     }
 }
