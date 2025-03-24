@@ -70,12 +70,26 @@ tr {
     background: none;
 }
 
-:is(button, .button).primary {
-    background: var(--colored-background-gradient);
+:is(button, .button, input[type="submit"]) {
+    .primary {
+        background: var(--colored-background-gradient);
+    }
+
+    & > [class*="icon-"]:not(:only-child) {
+        top: 0;
+    }
 }
 
-:is(input, select, textarea, .input):focus {
-    background: var(--primary-color-reduced-opacity);
+:is(input, select, textarea, .input) {
+    &:focus {
+        background: hsl(from var(--primary-color) h 30% l / .2);
+    }
+}
+
+.system-message {
+    & > input[type="checkbox"] {
+        line-height: .3;
+    }
 }
 
 html {

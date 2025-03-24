@@ -3540,6 +3540,7 @@ dd {
         border: var(--default-border);
         border-color: var(--system-message-text-color);
         border-radius: var(--default-border-radius);
+        background: none;
         box-shadow: none;
         padding: var(--default-padding-half);
         cursor: pointer;
