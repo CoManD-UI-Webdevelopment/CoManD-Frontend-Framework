@@ -412,11 +412,11 @@
                             <span class="icon-user-profile"></span>
                         </a>
                         <h4>Link with icon and text</h4>
-                        <a href="#" class="icontext-wrapper">
+                        <a href="#">
                             <span class="icon-user-profile"></span>
                             <span>Hyperlink (with icon left)</span>
                         </a><br/>
-                        <a href="#" class="icontext-wrapper">
+                        <a href="#">
                             <span>Hyperlink (with icon right)</span>
                             <span class="icon-user-profile"></span>
                         </a>

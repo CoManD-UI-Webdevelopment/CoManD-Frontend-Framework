@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/03/23
+framework.css - last update: 2025/03/26
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -118,7 +118,7 @@ html {
     /* BEGIN SITE FOOTER ------------------------------------------------------------------------------------------ */
     --site-footer-border: var(--default-border); /* border for site-footer */
     --site-footer-background: var(--color-scheme-background); /* background for site-footer */
-    --site-footer-headline-color: var(--headline-text-color);/* headline-text-color for site-footer */
+    --site-footer-headline-color: var(--headline-text-color); /* headline-text-color for site-footer */
     --site-footer-text-color: var(--color-scheme-text-color); /* text-color for site-footer */
     --site-footer-hyperlink-color: var(--hyperlink-color); /* hyperlink-color for site-footer */
     --site-footer-hyperlink-color-highlighted: var(--hyperlink-color-highlighted); /* highlighted hyperlink-color for site-footer */
@@ -236,7 +236,7 @@ html {
     --secondary-color-hsl-values: var(--secondary-color-hue), var(--secondary-color-saturation), var(--secondary-color-lightness); /* secondary-color hsl-values */
     --secondary-color: hsl(var(--secondary-color-hsl-values)); /* secondary-color */
     --secondary-color-reduced-opacity: hsl(from var(--secondary-color) h s l / var(--reduced-opacity)); /* secondary-color with reduced opacity */
-    
+
     /* tertiary-color (i.e. for tertiary-buttons) */
     --tertiary-color-hue: 201; /* tertiary-color-hue */
     --tertiary-color-saturation: 93%; /* tertiary-color-saturation */
@@ -244,14 +244,14 @@ html {
     --tertiary-color-hsl-values: var(--tertiary-color-hue), var(--tertiary-color-saturation), var(--tertiary-color-lightness); /* tertiary-color hsl-values */
     --tertiary-color: hsl(var(--tertiary-color-hsl-values)); /* tertiary-color */
     --tertiary-color-reduced-opacity: hsl(from var(--tertiary-color) h s l / var(--reduced-opacity)); /* tertiary-color with reduced opacity */
-    
+
     /* text-colors */
     --default-text-color-hue: 0; /* default-text-color-hue */
     --default-text-color-saturation: 0%; /* default-text-color-saturation */
     --default-text-color-lightness: 15%; /* default-text-color-lightness */
     --default-text-color-hsl-values: var(--default-text-color-hue), var(--default-text-color-saturation), var(--default-text-color-lightness); /* default-text-color-hsl-values */
     --default-text-color: hsla(var(--default-text-color-hsl-values), var(--reduced-opacity)); /* default-text-color - will not be influenced by color-scheme */
-    
+
     /* hyperlink-color (default) (i.e. for :link, :visited) */
     --hyperlink-color-hue-light-mode: var(--primary-color-hue); /* hyperlink-color-hue for light-mode */
     --hyperlink-color-saturation-light-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for light-mode */
@@ -343,7 +343,7 @@ html {
     --box-border: var(--box-border-width) var(--box-border-style) var(--box-border-color); /* border for boxes */
     --box-border-radius: var(--default-border-radius); /* border-radius for boxes */
     --box-header-text-color: var(--color-white); /* text-color for box-header */
-    --box-header-padding:  calc(var(--default-padding) / 2) var(--default-padding); /* padding for box-header */
+    --box-header-padding: calc(var(--default-padding) / 2) var(--default-padding); /* padding for box-header */
     --box-body-text-color: var(--color-scheme-text-color); /* text-color for box-header */
     --box-body-padding: var(--default-padding); /* padding for box-body */
     --box-footer-padding: var(--default-padding); /* padding for box-footer */
@@ -401,9 +401,9 @@ html {
     --button-background: var(--secondary-color); /* background(-color) for (default) buttons */
     --button-background-highlighted: var(--color-white); /* background for highlighted buttons */
     --button-primary-background: var(--primary-color); /* background(-color) for primary-buttons */
-    --button-primary-background-highlighted:  var(--color-white); /* background for highlighted primary-buttons */
+    --button-primary-background-highlighted: var(--color-white); /* background for highlighted primary-buttons */
     --button-tertiary-background: var(--tertiary-color); /* background(-color) for tertiary-buttons */
-    --button-tertiary-background-highlighted:  var(--color-white); /* background for highlighted tertiary-buttons */
+    --button-tertiary-background-highlighted: var(--color-white); /* background for highlighted tertiary-buttons */
 
     /* button dimensions */
     --button-padding: var(--default-padding); /* padding for button */
@@ -458,7 +458,7 @@ html {
 
     /* asterisk-color */
     --asterisk-color: var(--hyperlink-color); /* asterisk color for mandatory form-elements */
-    --asterisk-font-size: var(--font-size-large);/* asterisk font-size for mandatory form-elements */
+    --asterisk-font-size: var(--font-size-large); /* asterisk font-size for mandatory form-elements */
     --asterisk-font-weight: var(--default-font-weight); /* asterisk font-weight for mandatory form-elements */
 
     /* placeholder texts */
@@ -511,7 +511,7 @@ html {
     --table-head-text-align: center; /* text-align for table-head */
 
     /* active table-cells */
-    --active-table-cell-background-light-mode:var(--color-gray-10);
+    --active-table-cell-background-light-mode: var(--color-gray-10);
     --active-table-cell-background-dark-mode: var(--color-gray-80);
     --active-table-cell-background: light-dark(var(--active-table-cell-background-light-mode), var(--active-table-cell-background-dark-mode)); /* background(-color) for active table-cells */
     --active-table-cell-text-color: var(--color-scheme-text-color); /* text-color for active/highlighted table-cells */
@@ -521,9 +521,10 @@ html {
 
     /* BEGIN MISCELLANEOUS ------------------------------------------------------------------------------------------ */
     /* flex */
-    --reset-flex: 0 1 auto; /* reset flex to its default behavior (i.e. to overwrite flex: none;)
+    --reset-flex: 0 1 auto;
+    /* reset flex to its default behavior (i.e. to overwrite flex: none;)
 
-    /* opacity */
+       /* opacity */
     --reduced-opacity: .75; /* reduced opacity (should be at least 0.75 for accessibility) */
 
     /* shadows */
@@ -555,6 +556,7 @@ html {
     --color-scheme-background-inverted: light-dark(var(--dark-mode-background), var(--light-mode-background)); /* assign an inverted background(-color) to color-scheme */
     /* END VARIABLES FOR NATIVE COLOR-SCHEMES (LIGHT-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
 }
+
 /* ---------------------------------------------- END VARIABLES & TOKENS -------------------------------------------------- */
 
 /* ---------------------------------------------- BEGIN MAIN STYLES -------------------------------------------------- */
@@ -645,7 +647,6 @@ body.no-transitions *, .no-transitions {
 .highlighted {
     color: var(--hyperlink-color);
 }
-
 
 dialog {
     border: var(--default-border);
@@ -739,6 +740,7 @@ object, svg, img, video, canvas, .responsive-wrapper {
 .ratio-1-1 {
     aspect-ratio: 1/1;
 }
+
 /* end aspect-ratios */
 
 /* begin widths and heights */
@@ -764,6 +766,7 @@ object, svg, img, video, canvas, .responsive-wrapper {
 .auto-height {
     height: auto !important; /* overwrite set height */
 }
+
 /* end widths and heights */
 
 /* begin wrapping and word-breaks */
@@ -778,6 +781,7 @@ object, svg, img, video, canvas, .responsive-wrapper {
 .word-break-keep-all {
     word-break: keep-all;
 }
+
 /* end wrapping and word-breaks  */
 
 /* begin text-align */
@@ -804,6 +808,7 @@ object, svg, img, video, canvas, .responsive-wrapper {
 [class^="icon-"], [class*="icon-"] {
     vertical-align: baseline !important; /* avoid vertical-alignment to be overwritten by later imported icon-font */
 }
+
 /* end text-align */
 
 /* begin basic typography */
@@ -842,6 +847,7 @@ hr + * {
 :is(p, li, a, dd, td) :is(code, pre) {
     display: inline;
 }
+
 /* end typography */
 
 /* begin images */
@@ -871,6 +877,7 @@ a img {
 a:where(:hover, :active, :focus) img {
     border-color: var(--hyperlink-color);
 }
+
 /* end images */
 
 /* begin visibility */
@@ -893,6 +900,7 @@ a:where(:hover, :active, :focus) img {
 .show-in-dark-mode-only {
     display: var(--show-in-dark-mode-only);
 }
+
 /* end visibility */
 
 /* begin borders and radii */
@@ -912,6 +920,7 @@ a:where(:hover, :active, :focus) img {
 .border {
     border: var(--default-border); /* border (width, style, color) for any element with this class */
 }
+
 /* end borders */
 
 /* end basic selectors and classes ------------------------------------------------------------------------------------------ */
@@ -1070,8 +1079,7 @@ a:where(:hover, :active, :focus) img {
         text-shadow: none;
         border: var(--button-border-highlighted);
         outline: var(--button-outline-highlighted); /* avoids overwrite from a:hover */
-  
-        
+
         > :is(span, [class*="icon-"]) {
             color: inherit;
         }
@@ -1088,7 +1096,7 @@ a:where(:hover, :active, :focus) img {
 
         &:is(:hover, :active, :focus-visible) {
             --button-background: var(--button-primary-background-highlighted);
-            
+
             color: var(--button-tertiary-text-color-highlighted);
             border: var(--button-primary-border-highlighted);
 
@@ -1102,10 +1110,10 @@ a:where(:hover, :active, :focus) img {
         --button-background: var(--button-tertiary-background);
         --button-border: var(--button-tertiary-border);
         --button-border-radius: var(--button-tertiary-border-radius);
-        
+
         &:is(:hover, :active, :focus-visible) {
             --button-background: var(--button-tertiary-background-highlighted);
-            
+
             color: var(--button-tertiary-text-color-highlighted);
             border-color: var(--tertiary-color);
 
@@ -1413,7 +1421,7 @@ a:where(:hover, :active, :focus) img {
         justify-content: flex-end;
     }
 
-    &.justify-content-space-between, &.justify-content-space-around  {
+    &.justify-content-space-between, &.justify-content-space-around {
         justify-content: space-between;
 
         > * {
@@ -1593,7 +1601,7 @@ fieldset {
         font-weight: var(--legend-font-weight);
         font-size: var(--legend-font-size);
         position: absolute; /* must be placed absolute for fieldset-flex-container to work properly */
-        top:  calc(var(--fieldset-padding) * -1);
+        top: calc(var(--fieldset-padding) * -1);
         right: 0; /* align right to avoid collision with optional headlines above fieldset */
     }
 
@@ -2966,9 +2974,33 @@ a {
         color: var(--hyperlink-color);
     }
 
-    &[class*="icon-"]:where(:hover, :active, :focus, .active),
-    &:where(:hover, :active, :focus, .active) :where(span, [class*="icon-"]) {
-        color: var(--hyperlink-color-highlighted);
+    &:has(span[class*="icon-"]) {
+        text-decoration: none;
+
+        :not(span[class*="icon-"]) {
+            text-decoration: var(--hyperlink-text-decoration);
+        }
+
+        &:not(:only-child) {
+            display: flex;
+            align-items: center;
+            gap: var(--icon-and-text-gap);
+
+            span {
+                margin: 0 !important; /* avoid overwrite by margins of span-siblings */
+            }
+        }
+    }
+
+    &[class*="icon-"]:is(:hover, :active, :focus, .active),
+    &:is(:hover, :active, :focus, .active) {
+        :where(span, [class*="icon-"]) {
+            color: var(--hyperlink-color-highlighted);
+        }
+
+        :not(span[class*="icon-"]) {
+            text-decoration: var(--hyperlink-text-decoration-highlighted);
+        }
     }
 
     & > [class*="icon-"] {
@@ -3050,14 +3082,6 @@ li a.active {
     }
 }
 
-a.icontext-wrapper {
-    text-decoration: none;
-
-    span:not([class*="icon-"]) {
-        text-decoration: underline;
-    }
-}
-
 /* do not replace by span + [class*="icon-"], because compiler cannot handle it */
 span + [class*="icon-"] {
     margin-left: calc(var(--default-margin) / 2);
@@ -3112,6 +3136,7 @@ span + [class*="icon-"] {
         }
     }
 }
+
 /* end use icon as background */
 /* end icons ------------------------------------------------------------------------------------------ */
 
@@ -3128,7 +3153,7 @@ ul, ol {
     }
 
     &.no-indent {
-      margin-left: 0;
+        margin-left: 0;
     }
 
     /* nested lists */
@@ -3180,6 +3205,7 @@ ul, ol {
 ol li {
     list-style-type: decimal;
 }
+
 /* end ordered and unordered-lists */
 
 /* begin description-lists */
@@ -3814,6 +3840,7 @@ table {
         }
     }
 }
+
 /* end container-styles ------------------------------------------------------------------------------------------ */
 
 /* begin css webkit-browsers only ------------------------------------------------------------------------------------------ */
@@ -3849,6 +3876,7 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not work anymore then) */
     background-color: var(--color-medium-gray);
 }
+
 /* end css webkit-browsers only ------------------------------------------------------------------------------------------ */
 
 /* begin css firefox only ------------------------------------------------------------------------------------------ */
@@ -3909,4 +3937,5 @@ html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not wo
         max-width: 100%;
     }
 }
+
 /* end iphone-styles only */
