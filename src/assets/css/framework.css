@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/03/26
+framework.css - last update: 2025/03/30
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -2974,10 +2974,10 @@ a {
         color: var(--hyperlink-color);
     }
 
-    &:has(span[class*="icon-"]) {
+    &:not(.button):has(span[class*="icon-"]) {
         text-decoration: none;
 
-        :not(span[class*="icon-"]) {
+        > :not(span[class*="icon-"]) {
             text-decoration: var(--hyperlink-text-decoration);
         }
 
@@ -2986,19 +2986,25 @@ a {
             align-items: center;
             gap: var(--icon-and-text-gap);
 
-            span {
+            > span {
                 margin: 0 !important; /* avoid overwrite by margins of span-siblings */
+            }
+        }
+
+        &:is(:hover, :active, :focus, .active) {
+            > :not(span[class*="icon-"]) {
+                text-decoration: var(--hyperlink-text-decoration-highlighted);
             }
         }
     }
 
     &[class*="icon-"]:is(:hover, :active, :focus, .active),
     &:is(:hover, :active, :focus, .active) {
-        :where(span, [class*="icon-"]) {
+        > :where(span, [class*="icon-"]) {
             color: var(--hyperlink-color-highlighted);
         }
 
-        :not(span[class*="icon-"]) {
+        > :not(span[class*="icon-"]) {
             text-decoration: var(--hyperlink-text-decoration-highlighted);
         }
     }
@@ -3548,8 +3554,13 @@ dd {
     }
 
     a {
+        color: var(--system-message-text-color);
         text-decoration-color: var(--system-message-text-color);
         text-decoration: underline; /* ensure links can be identified easily with accessible text-color for system-messages */
+
+        &:is(:hover, :active, :focus) {
+            text-decoration: none;
+        }
     }
 
     & > .message-headline {
