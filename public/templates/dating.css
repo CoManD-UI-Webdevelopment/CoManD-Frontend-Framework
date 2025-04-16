@@ -97,16 +97,12 @@ html {
 
     &.light-mode {
         .page-wrapper {
-            --box-header-background: none;
-
             background-image: url("../images/background/background-dating-lightmode.jpg");
         }
     }
 
     &.dark-mode {
         .page-wrapper {
-            --box-header-background: none;
-
             background-image: url("../images/background/background-dating-darkmode.jpg");
         }
     }
@@ -114,8 +110,6 @@ html {
 
 @media (prefers-color-scheme: dark) {
     .page-wrapper {
-        --box-header-background: none;
-
         background-image: url("../images/background/background-dating-darkmode.jpg");
     }
 }

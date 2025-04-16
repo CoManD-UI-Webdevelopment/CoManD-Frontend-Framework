@@ -213,10 +213,6 @@
         }
     }
 
-    .site-footer footer {
-        height: 5vh;
-    }
-
     .copyright-information {
         background: var(--default-text-color);
         text-align: center;

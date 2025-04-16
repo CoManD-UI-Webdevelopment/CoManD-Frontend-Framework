@@ -1,12 +1,11 @@
-/* breakpoints.css - last update: 2023/08/21
+/* breakpoints.css - last update: 2025/04/14
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES IN template.css OR YOUR OWN breakpoint-css
 */
 /* begin css for medium breakpoint ------------------------------------------------------------------------------------------ */
 @media only screen and (width <= 1023px) {
     html {
-        --grid-columns: 6; /* grid-columns */
-        --grid-small-span: calc(var(--grid-columns) / 2); /* default column span smaller part */
-        --grid-large-span: var(--grid-small-span); /* default column span larger part */
+        --grid-columns: 8; /* grid-columns */
+        --grid-small-span: calc(var(--grid-columns) / 4); /* default column span smaller part */
         --default-line-height: 1.5; /* avoids hyperlinks inside text to be to narrow to each other */
         --default-gap: 1.5rem; /* default-gap */
     }
@@ -99,7 +98,31 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
             max-width: 100%;
         }
 
-        &.row-for-small {
+        &.align-items-top, &.align-items-flex-start {
+            justify-content: flex-start !important;
+        }
+
+        &.align-items-center {
+            justify-content: center !important;
+        }
+
+        &.align-items-bottom, &.align-items-flex-end {
+            justify-content: flex-end !important;
+        }
+
+        &.justify-content-top, &.justify-content-flex-start {
+            align-items: flex-start;
+        }
+
+        &.justify-content-center {
+            align-items: center;
+        }
+
+        &.justify-content-bottom, &.justify-content-flex-end {
+            align-items: flex-end;
+        }
+
+        &.row-for-small, &.no-wrap-on-small-devices {
             flex-direction: row; /* arrange flex-items horizontally */
 
             & > * {
@@ -128,10 +151,8 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         }
 
         &.stretch-on-small-devices {
-            flex-direction: column-reverse;
-
             button, .button {
-                width: 100%;
+                flex: 1;
             }
         }
     }
@@ -143,7 +164,6 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     }
 
     fieldset {
-        padding: var(--default-padding);
 
         > label:first-child {
             margin-top: 0;
@@ -151,6 +171,10 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 
         [class*="grid-container"] {
             --grid-gap: calc(var(--grid-gap) / 2);
+        }
+
+        &.flex-container, & > .flex-container {
+            gap: calc(var(--default-gap) * 2);
         }
     }
 

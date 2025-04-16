@@ -654,6 +654,7 @@ dialog {
 
 time {
     display: inline;
+    white-space: nowrap;
 }
 
 dfn {
@@ -943,6 +944,7 @@ a:where(:hover, :active, :focus) img {
         & > * {
             color: var(--box-header-text-color);
             margin: 0;
+            text-decoration: none !important; /* avoid overwriting by hyperlink if box-header is clickable */
         }
     }
 
@@ -1064,6 +1066,7 @@ a:where(:hover, :active, :focus) img {
     align-self: flex-start; /* avoid button to be stretched in flex-containers (with flex: 1 for flex-items) */
 
     > :is(span, [class*="icon-"]) {
+        text-decoration: none !important; /* avoid overwriting by hyperlink for a.button */
         color: var(--button-text-color);
         align-self: center; /* necessary to keep text and icon centered if button has different alignment */
     }
@@ -1072,7 +1075,7 @@ a:where(:hover, :active, :focus) img {
         top: -.1rem; /* corrects vertical position of icon to an optical center */
     }
 
-    &:is(:hover, :active, :focus-visible) {
+    &:is(:hover, :active, :focus-visible, .active) {
         color: var(--button-text-color-highlighted);
         background: var(--button-background-highlighted);
         cursor: pointer;
@@ -1094,7 +1097,7 @@ a:where(:hover, :active, :focus) img {
             color: var(--button-primary-text-color);
         }
 
-        &:is(:hover, :active, :focus-visible) {
+        &:is(:hover, :active, :focus-visible, .active) {
             --button-background: var(--button-primary-background-highlighted);
 
             color: var(--button-tertiary-text-color-highlighted);
@@ -1111,7 +1114,7 @@ a:where(:hover, :active, :focus) img {
         --button-border: var(--button-tertiary-border);
         --button-border-radius: var(--button-tertiary-border-radius);
 
-        &:is(:hover, :active, :focus-visible) {
+        &:is(:hover, :active, :focus-visible, .active) {
             --button-background: var(--button-tertiary-background-highlighted);
 
             color: var(--button-tertiary-text-color-highlighted);
@@ -1447,6 +1450,10 @@ a:where(:hover, :active, :focus) img {
             margin-top: 0;
             margin-bottom: 0;
         }
+
+        > a {
+            align-self: flex-start; /* avoid sensitive-area of link to be stretched to full width of parent-container */
+        }
     }
 
     > .flex-item-one-third,
@@ -1476,8 +1483,14 @@ a:where(:hover, :active, :focus) img {
     flex-wrap: nowrap !important;
 }
 
+.reset-flex, .reset-flex > *,
 .no-flex, .no-flex > * {
     flex: 0 1 auto !important; /* don't stretch items (item(s) will have default width) */
+}
+
+.flex-none {
+    flex: none !important; /* remove all flex-abilities completely */
+    align-self: flex-start; /* ensure element will not be stretched */
 }
 
 [data-type="multistep"] .button-wrapper {
@@ -1565,6 +1578,7 @@ fieldset {
     & > .flex-container {
         width: 100%;
         align-items: flex-end;
+        flex: none !important;
 
         &.vertical {
             align-items: flex-start;
@@ -1758,10 +1772,10 @@ label, .label {
         }
         /* end mandatory asterisk */
 
-        :is(a, span)[class*="icon-"], a:has([class*="icon-"]) {
+        :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
             --status-color: var(--hyperlink-color);
 
-            align-self: flex-end; /* avoids stretching if label wraps */
+            align-self: center; /* avoids stretching if label wraps */
             border-radius: var(--full-circle);
             line-height: 1;
             margin-left: auto;
@@ -1769,30 +1783,34 @@ label, .label {
             background: var(--label-text-icon-color);
 
             &:is(:hover, :active, :focus) {
-                --status-color: var(--label-text-color-highlighted);
+                --status-color: var(--label-text-color-highlighted) !important;
                 background: var(--color-white);
             }
         }
+    }
 
-        a {
-            color: var(--hyperlink-color);
+    &.error  {
+        > *, :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
+            --status-color: var(--error-color);
         }
     }
 
-    &.error :is(.label-text > *) {
-        --status-color: var(--error-color) !important;
+    &.warning {
+            > *, :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
+                --status-color: var(--warning-color);
+            }
     }
 
-    &.warning :is(.label-text > *) {
-        --status-color: var(--warning-color) !important;
+    &.success {
+        > *, :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
+            --status-color: var(--success-color);
+        }
     }
 
-    &.success :is(.label-text > *) {
-        --status-color: var(--success-color) !important;
-    }
-
-    &.info :is(.label-text > *) {
-        --status-color: var(--info-color) !important;
+    &.info {
+        > *, :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
+            --status-color: var(--info-color);
+        }
     }
 
     :where(.label-text :is(a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
@@ -2129,7 +2147,6 @@ td {
 
 /* begin forms: replace-input-type (radio/checkbox) ------------------------------------------------------------------------------------------ */
 label { /* label required for specificity */
-
     input.replace-input-type {
         appearance: none;
         min-width: 0;
@@ -2700,7 +2717,6 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
 
     .label-text {
         display: inline-flex;
-        margin: 0 auto;
         justify-content: center;
 
         a[class*="icon-"], a:has([class*="icon-"]) {
@@ -2974,14 +2990,14 @@ a {
         color: var(--hyperlink-color);
     }
 
-    &:not(.button):has(span[class*="icon-"]) {
+    &:has(span[class*="icon-"]) {
         text-decoration: none;
 
         > :not(span[class*="icon-"]) {
             text-decoration: var(--hyperlink-text-decoration);
         }
 
-        &:not(:only-child) {
+        &:not(:only-child):not(.button) {
             display: flex;
             align-items: center;
             gap: var(--icon-and-text-gap);
@@ -2991,15 +3007,15 @@ a {
             }
         }
 
-        &:is(:hover, :active, :focus, .active) {
+        &:where(:hover, :active, :focus, .active) {
             > :not(span[class*="icon-"]) {
                 text-decoration: var(--hyperlink-text-decoration-highlighted);
             }
         }
     }
 
-    &[class*="icon-"]:is(:hover, :active, :focus, .active),
-    &:is(:hover, :active, :focus, .active) {
+    &[class*="icon-"]:where(:hover, :active, :focus, .active),
+    &:where(:hover, :active, :focus, .active) {
         > :where(span, [class*="icon-"]) {
             color: var(--hyperlink-color-highlighted);
         }
@@ -3218,7 +3234,7 @@ ol li {
 dl {
     display: grid;
     grid-gap: .2rem 1rem; /* row, column */
-    grid-template-columns: min-content auto;
+    grid-template-columns: min-content minmax(min-content, auto);
     grid-auto-rows: min-content;
 }
 
@@ -3278,6 +3294,7 @@ dd {
 
             a img {
                 border: 0;
+                max-height: 10rem;
             }
         }
 
@@ -3326,6 +3343,7 @@ dd {
     border-right: 0;
     border-bottom: 0;
     background: var(--site-footer-background);
+    flex: none;
 
     footer {
         max-width: var(--footer-max-width);
@@ -3334,8 +3352,10 @@ dd {
         padding: var(--site-footer-padding);
 
         h2, h3, h4, h5, h6 {
+            color: var(--site-footer-headline-color);
+
             span {
-                color: var(--site-footer-headline-color);
+                color: inherit;
             }
         }
 
@@ -3359,6 +3379,10 @@ dd {
                 span {
                     color: inherit;
                 }
+            }
+
+            &:has([class*="icon"]) {
+                text-decoration: none;
             }
         }
     }
@@ -3438,12 +3462,13 @@ dd {
                     text-decoration: none;
                     color: var(--main-navigation-hyperlink-color);
 
-                    span, [class*="icon-"] {
+                    span, span[class*="icon-"] {
                         color: inherit;
                         white-space: nowrap;
+                        text-decoration: inherit !important;
                     }
 
-                    [class*="icon-"] {
+                    span[class*="icon-"] {
                         font-size: var(--main-navigation-sub-level-icon-size);
 
                         &.subentry-icon {

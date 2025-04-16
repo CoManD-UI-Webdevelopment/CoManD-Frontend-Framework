@@ -223,8 +223,8 @@
                                         <ul>
                                             <li><a href="#anchor-flex-containers-default">Default</a></li>
                                             <li><a href="#anchor-flex-containers-no-gap">No Gap</a></li>
-                                            <li><a href="#anchor-flex-containers-no-flex-all">No Flex All items</a></li>
-                                            <li><a href="#anchor-flex-containers-no-flex-single-item">No Flex Single
+                                            <li><a href="#anchor-flex-containers-reset-flex-all">No Flex All items</a></li>
+                                            <li><a href="#anchor-flex-containers-reset-flex-single-item">No Flex Single
                                                 Item</a>
                                             </li>
                                             <li><a href="#anchor-flex-containers-vertical">Vertical</a></li>
@@ -771,7 +771,7 @@
                     <section>
                         <h2 class="headline-demopage" id="anchor-colors">Colors</h2>
                         <h3>Text colors</h3>
-                        <div class="flex-container no-flex">
+                        <div class="flex-container reset-flex no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--default-text-color)"></span>
                                 <span>Default Text-Color</span>
@@ -786,7 +786,7 @@
                             </span>
                         </div>
                         <h3>Highlight colors</h3>
-                        <div class="flex-container no-flex">
+                        <div class="flex-container reset-flex no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--primary-color)"></span>
                                 <span>Primary</span>
@@ -809,7 +809,7 @@
                             </span>
                         </div>
                         <h3>Shades of gray</h3>
-                        <div class="flex-container no-flex">
+                        <div class="flex-container reset-flex no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-white)"></span>
                                 <span>White</span>
@@ -856,7 +856,7 @@
                             </span>
                         </div>
                         <h3>System colors</h3>
-                        <div class="flex-container no-flex">
+                        <div class="flex-container reset-flex no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--error-color)"></span>
                                 <span>Error</span>
@@ -1022,6 +1022,22 @@
                             </a>
                         </div>
 
+                        <h5>Buttons in button-wrapper (stretched on small devices)</h5>
+                        <div class="button-wrapper stretch-on-small-devices">
+                            <a class="button" href="#" role="button">
+                                <span class="icon-home"></span>
+                                <span>Button</span>
+                            </a>
+                            <a class="button" href="#" role="button">
+                                <span class="icon-globe"></span>
+                                <span>Button</span>
+                            </a>
+                            <a class="button" href="#" role="button">
+                                <span class="icon-user-profile"></span>
+                                <span>Button</span>
+                            </a>
+                        </div>
+
                         <h5>Disabled buttons</h5>
                         <div class="button-wrapper align-left">
                             <button class="button" disabled="disabled" role="button">
@@ -1170,7 +1186,7 @@
                                 <legend>Legend</legend>
                                 <div class="label">
                                     <span class="label-text">Enter dates:</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                     <label class="inline" for="startdate">
                                         <span class="label-text"><span>Start date:<sup>*</sup></span></span>
                                         <input type="date" id="startdate"/>
@@ -1191,7 +1207,7 @@
                                 </label>
                                 <div class="label inline">
                                     <span class="label-text">Label for radiobuttons:</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                     <label for="radio1">
                                         <input name="radiogroup" id="radio1" value="1" type="radio"/>
                                         <span class="label-text">Radiobutton 1 (default)</span>
@@ -1214,7 +1230,7 @@
                                 </div>
                                 <div class="label inline">
                                     <span class="label-text">Label for checkboxes:</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                       <label for="checkbox1">
                                           <input name="checkbox" id="checkbox1" value="1" type="checkbox"/>
                                           <span class="label-text">Checkbox 1 (default)</span>
@@ -1240,7 +1256,7 @@
                                     <label for="default-inputfield">
                                         <span class="label-text">
                                             <span>Default inputfield:<sup>*</sup></span>
-                                            <a href="#" class="icon-questionmark-circle" title="Open help"></a>
+                                            <a href="#" title="Open help"><span class="icon-questionmark-circle"></span></a>
                                         </span>
                                         <input name="default-inputfield" id="default-inputfield"
                                                placeholder="Placeholdertext for default inputfield" type="text"/>
@@ -1273,7 +1289,7 @@
                                         <span class="input-wrapper">
                                             <input name="searchfield" id="searchfield" placeholder="Keyword(s)"
                                                    type="search"/>
-                                            <a href="#" class="button no-flex"><span class="icon-search"></span></a>
+                                            <a href="#" class="button reset-flex"><span class="icon-search"></span></a>
                                         </span>
                                     </label>
                                     <label for="select-file-field">
@@ -1313,7 +1329,7 @@
                                         <span
                                             class="label-text"><span>Label for Zip/City (with hidden labels):</span></span>
                                         <span class="input-wrapper">
-                                            <label for="zip" class="no-flex">
+                                            <label for="zip" class="reset-flex">
                                                 <span class="hidden">Zip</span>
                                                 <input name="zip" id="zip" placeholder="12345" type="number"/>
                                             </label>
@@ -1479,7 +1495,7 @@
                                 <div class="flex-container align-bottom">
                                     <label for="inputfield-default">
                                         <span class="label-text">
-                                            <span>Inputfield (default with help-icon):<sup>*</sup></span>
+                                            <span>Inputfield wth <a href="#">link</a> in label:<sup>*</sup></span>
                                             <a href="#" class="icon-questionmark-circle" title="Open help!"></a>
                                         </span>
                                         <input
@@ -1624,7 +1640,7 @@
                                     <span class="label-text">
                                         <span>Label for Replaced Input-Type-Radio:<sup>*</sup></span>
                                     </span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label for="replaced-radio1">
                                             <input type="radio" class="replace-input-type" id="replaced-radio1"
                                                    name="radiogroup" value="1"/>
@@ -1654,7 +1670,7 @@
                                 <h4>Replaced Input-Type-Checkboxes</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Replaced Input-Type-Checkboxes:</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label for="replaced-checkbox1">
                                             <input type="checkbox" class="replace-input-type" id="replaced-checkbox1"
                                                    name="checkboxgroup" value="1"/>
@@ -1686,7 +1702,7 @@
                                 <h4>Toggle-Switch-Radio</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group:</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label class="toggle-switch" for="radio5">
                                             <input type="radio" id="radio5" name="toggle-switch-radiogroup-1"
                                                    value="1"/>
@@ -1712,7 +1728,7 @@
 
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group (colored):</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label class="toggle-switch colored" for="radio9">
                                             <input type="radio" id="radio9" name="toggle-switch-radiogroup-3"
                                                    value="5"/>
@@ -1729,7 +1745,7 @@
 
                                 <!-- begin toggle-switch-checkbox -->
                                 <h4>Toggle-Switch-Checkbox</h4>
-                                <div class="flex-container no-flex">
+                                <div class="flex-container reset-flex">
                                     <label class="toggle-switch" for="toggle-switch-with-icon">
                                         <input type="checkbox" class="icon-cancel-circle" id="toggle-switch-with-icon"
                                                value="1"/>
@@ -1750,7 +1766,7 @@
                                 <div class="label inline">
                                     <span
                                         class="label-text"><span>Label for Toggle-Switch-Checkbox-Group:<sup>*</sup></span></span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label class="toggle-switch" for="checkbox5">
                                             <input type="checkbox" id="checkbox5" name="toggle-switch-chechboxgroup-1"
                                                    value="1"/>
@@ -1776,7 +1792,7 @@
                                 <div class="label inline">
                                     <span
                                         class="label-text">Label for Toggle-Switch-Checkbox-Group (colored):<sup>*</sup></span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label class="toggle-switch colored" for="checkbox9">
                                             <input type="checkbox" id="checkbox9" name="toggle-switch-chechboxgroup-3"
                                                    value="5"/>
@@ -1796,7 +1812,7 @@
                                 <div class="label inline">
                                     <span
                                         class="label-text">Label for Toggle-Switch-Radio-Group with Switch-Label:</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label class="toggle-switch" for="toggle-switch-radio1" title="default">
                                             <span class="switch-label-wrapper">
                                               <input type="radio" id="toggle-switch-radio1"
@@ -1865,7 +1881,7 @@
                                         <span>Label for Toggle-Switch-Checkbox with Switch-Label:</span>
                                         <a href="#" class="icon-questionmark-circle" title="Open help"></a>
                                     </span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label class="toggle-switch" for="toggle-switch-checkbox1" title="default">
                                             <span class="switch-label-wrapper">
                                               <input type="checkbox" id="toggle-switch-checkbox1" name="chechboxgroup3"
@@ -1908,7 +1924,7 @@
                                 <h4>Toggle-Switch-Radio with Switch-Label</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio with Switch-Label:</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                             <label class="toggle-switch colored" for="toggle-switch-radio-colored1"
                                                    title="default">
                                                 <span class="switch-label-wrapper">
@@ -1933,7 +1949,7 @@
                                 <h4>Toggle-Switch-Checkbox with Switch-Label</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Checkbox with Switch-Label:</span>
-                                    <span class="flex-container no-flex">
+                                    <span class="flex-container reset-flex">
                                         <label class="toggle-switch colored" for="toggle-switch-checkbox-colored1"
                                                title="default">
                                             <span class="switch-label-wrapper">
@@ -1963,7 +1979,7 @@
                                         <span>Grouplabel for radio-group  given by property styled as multiple-switch</span>
                                         <a href="#" class="icon-questionmark-circle" title="Open help"></a>
                                     </span>
-                                    <span class="flex-container no-flex no-gap">
+                                    <span class="flex-container reset-flex no-gap">
                                         <label for="radio-id-1-multi">
                                           <input type="radio" id="radio-id-1-multi" name="input-group-radio-multi"
                                                  value="website">
@@ -2142,16 +2158,16 @@
                             <div>flex-item</div>
                             <div>flex-item</div>
                         </div>
-                        <h3 id="anchor-flex-containers-no-flex-all">No-flex (for all items)</h3>
-                        <div class="flex-container no-flex">
+                        <h3 id="anchor-flex-containers-reset-flex-all">reset-flex (for all items)</h3>
+                        <div class="flex-container reset-flex">
                             <div>flex-item</div>
                             <div>flex-item</div>
                             <div>flex-item</div>
                         </div>
-                        <h3 id="anchor-flex-containers-no-flex-single-item">No-flex (for single item)</h3>
+                        <h3 id="anchor-flex-containers-reset-flex-single-item">reset-flex (for single item)</h3>
                         <div class="flex-container">
                             <div>flex-item</div>
-                            <div class="no-flex">flex-item (no-flex)</div>
+                            <div class="reset-flex">flex-item (reset-flex)</div>
                             <div>flex-item</div>
                         </div>
                         <h3 id="anchor-flex-containers-vertical">Vertical</h3>
@@ -2296,6 +2312,22 @@
                 </a>
                 <!-- end back-to-top-button -->
             </main>
+
+            <!-- begin site-footer -->
+            <div class="site-footer">
+                <footer class="width-limitation-wrapper">
+                    <h6>Site Footer</h6>
+                    <ul class="no-list-items">
+                        <li>
+                            <a href="#">
+                                <span class="icon-calendar"></span>
+                                <span>Link with icon</span>
+                            </a>
+                        </li>
+                    </ul>
+                </footer>
+            </div>
+            <!-- end site-footer -->
 
             <!-- begin copyright-information -->
             <div class="copyright-information" role="contentinfo">
