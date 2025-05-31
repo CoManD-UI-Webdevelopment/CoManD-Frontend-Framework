@@ -1,7 +1,7 @@
 /* demopage-only.css - STYLES FOR DEMOPAGE ONLY - IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) */
 .demopage {
     body {
-        overflow: hidden;
+        overflow: auto;
     }
 
     .site-header {

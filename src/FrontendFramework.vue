@@ -311,7 +311,8 @@
                             instead), because another paragraph is required if you want to create a blank line (which is
                             no
                             real line, but a margin). Of course a paragraph may not contain tags for headlines, tables
-                            or forms.</p>
+                            or forms.
+                        </p>
                         <p class="text-align-justify">This is continuous text within a paragraph with text-align
                             justify. Longer
                             texts
@@ -330,7 +331,8 @@
                             (which is
                             no real line, but a margin). Of course a paragraph may not contain tags for headlines,
                             tables or
-                            forms.</p>
+                            forms.
+                        </p>
                         <h3 class="headline-demopage" id="anchor-lists">Lists</h3>
 
                         <h4 id="anchor-unordered-list">Unordered List</h4>
@@ -1172,6 +1174,11 @@
                                 <span class="icon-plus"></span>
                             </button>
                         </div>
+
+                        <h4>Tags</h4>
+                        <small class="tag">Tag 1</small>
+                        <small class="tag">Tag 2</small>
+                        <small class="tag">Tag 3</small>
                     </section>
                 </div>
                 <!-- end user-interface -->
@@ -2418,7 +2425,7 @@ export default {
 </script>
 
 <style>
-.page-wrapper {
+.demo-page .page-wrapper {
     display: flex;
     flex-direction: column;
     scroll-snap-type: y mandatory;

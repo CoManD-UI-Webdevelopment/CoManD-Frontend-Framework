@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/03/30
+framework.css - last update: 2025/05/29
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -50,9 +50,9 @@ T ------------------------
   - transforms
 
 - MEDIA QUERIES ------------------------
-- browser specific css
-- css for print only
-- css for dark-mode
+  - browser specific css
+  - css for print only
+  - css for dark-mode
 */
 /* end table of contents ------------------------------------------------------------------------------------------ */
 
@@ -81,7 +81,7 @@ html {
     --golden-ratio-small-width: 38.2%; /* width for small-item for golden-ratio */
     --golden-ratio-large-width: 61.8%; /* width for large-item for golden-ratio */
 
-    /* paddings, margins, gaps, radii */
+    /* paddings, margins, gaps, radii, ratios */
     --default-padding: 1rem; /* default paddings */
     --default-padding-half: calc(var(--default-padding) / 2); /* half of default padding */
     --default-padding-third: calc(var(--default-padding) / 3); /* third of default padding */
@@ -91,9 +91,10 @@ html {
     --default-gap: 2rem; /* default gap for flex- and grid-containers */
     --default-gap-half: calc(var(--default-gap) / 2); /* half of default gap for flex- and grid-containers */
     --default-gap-third: calc(var(--default-gap) / 3); /* third of default gap for flex- and grid-containers */
-    --icon-and-text-gap: .5rem; /* text between icons and text if wrapped inside .icontext-wrapper */
+    --icon-and-text-gap: .5rem; /* gap between icons and text if wrapped inside .icontext-wrapper */
     --default-border-radius: 0; /* default radius */
     --full-circle: 50%; /* radius for full circles */
+    --default-aspect-ratio: auto; /* default aspect-ratio */
     /* END WEBSITE-GRID AND GLOBAL SETTINGS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SITE HEADER ------------------------------------------------------------------------------------------ */
@@ -529,7 +530,7 @@ html {
 
     /* shadows */
     --box-shadow-color: light-dark(var(--color-dark-gray), none); /* box-shadow-color */
-    --default-box-shadow: light-dark(.2rem .2rem .2rem var(--box-shadow-color), none); /* box-shadow */
+    --default-box-shadow: light-dark(0 0 0 var(--box-shadow-color), none); /* box-shadow */
     --text-shadow-color: light-dark(var(--color-dark-gray), none); /* text-shadow-color */
     --default-text-shadow: light-dark(.1rem .1rem .1rem var(--text-shadow-color), none); /* text-shadow */
 
@@ -616,38 +617,6 @@ body, fr {
     font-family: var(--default-font-family); /* font-family for entire page */
 }
 
-body.no-transitions *, .no-transitions {
-    transition: none !important;
-}
-
-.inline-size {
-    container-type: inline-size; /* set reference for @container-rule for child-elements */
-}
-
-.no-padding {
-    padding: 0 !important;
-}
-
-.default-padding {
-    padding: var(--default-padding);
-
-    > *:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.default-margin {
-    margin: var(--default-margin);
-}
-
-.hide-for-small-up, .hide-for-medium-up {
-    display: none !important;
-}
-
-.highlighted {
-    color: var(--hyperlink-color);
-}
-
 dialog {
     border: var(--default-border);
 }
@@ -671,13 +640,140 @@ object, svg, img, video, canvas, .responsive-wrapper {
     height: auto;
 }
 
+body.no-transitions *, .no-transitions {
+    transition: none !important;
+}
+
+/* begin utility-classes */
+.inline-size, .container-type-inline-size {
+    container-type: inline-size; /* set reference for @container-rule for child-elements */
+}
+
+.hide-for-small-up, .hide-for-medium-up {
+    display: none !important;
+}
+
+.highlighted {
+    color: var(--hyperlink-color);
+}
+
 .width-limitation-wrapper {
     width: 100%; /* assure container to be stretched if wrapped in a flex-container */
     max-width: var(--width-limitation-wrapper);
     margin: 0 auto;
 }
+/* begin display-behaviors */
+.display-block {
+    display: block; !important
+}
 
-.sticky {
+.display-inline {
+    display: inline; !important;
+}
+
+.display-inline-block {
+    display: inline-block; !important;
+}
+
+.display-flex {
+    display: flex; !important
+}
+
+.display-inline-flex {
+    display: inline-flex !important;
+}
+
+.display-grid {
+    display: grid; !important;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.display-contents {
+    display: contents; /* remove parent from html (children act normally) */
+}
+/* end display-behaviors */
+
+/* begin flex-properties */
+.flex-direction-row {
+    flex-direction: row;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.flex-direction-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.flex-direction-column-reverse {
+    flex-direction: column-reverse;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+.flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+/* end flex-properties */
+
+/* begin paddings, margins, gaps */
+/* paddings */
+.no-padding {
+    padding: 0 !important;
+}
+
+.default-padding {
+    padding: var(--default-padding) !important;
+
+    > *:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+.padding-half {
+    padding: calc(var(--default-padding) / 2); !important;
+}
+
+/* margins */
+.no-margin {
+    margin: 0 !important;
+}
+
+.default-margin {
+    margin: var(--default-margin) !important;
+}
+
+.margin-half {
+    margin: calc(var(--default-margin) / 2); !important;
+}
+
+/* gaps */
+.no-gap {
+    gap: 0 !important;
+}
+
+.default-gap {
+    gap: var(--default-gap) !important;
+}
+
+.gap-half {
+    gap: calc(var(--default-gap) / 2); !important;
+}
+
+/* end paddings, margins, gaps */
+
+/* begin positions */
+.sticky, .position-sticky {
     position: sticky;
     left: 0;
     right: 0;
@@ -685,14 +781,25 @@ object, svg, img, video, canvas, .responsive-wrapper {
     z-index: 100;
 }
 
-.display-contents {
-    display: contents;
+.position-absolute {
+    position: absolute;
 }
 
+.position-relative {
+    position: relative;
+}
+
+.position-static {
+    position: static;
+}
+/* end positions */
+
+/* begin center content */
 .center-content {
     &.flex-container {
         display: flex;
-        place-content: center;
+        align-items: center;
+        justify-content: center;
 
         > * {
             flex: none !important;
@@ -701,7 +808,7 @@ object, svg, img, video, canvas, .responsive-wrapper {
 
     &.grid-container {
         display: grid;
-        place-items: center;
+        place-content: center;
     }
 }
 
@@ -713,6 +820,7 @@ object, svg, img, video, canvas, .responsive-wrapper {
     left: var(--position);
     translate: calc(var(--position) * -1);
 }
+/* end center content */
 
 /* begin aspect-ratios */
 .responsive-wrapper {
@@ -726,19 +834,23 @@ object, svg, img, video, canvas, .responsive-wrapper {
     }
 }
 
-.ratio-16-9 {
+.aspect-ratio-auto {
+    aspect-ratio: auto;
+}
+
+.aspect-ratio-16-9 {
     aspect-ratio: 16/9;
 }
 
-.ratio-4-3 {
+.aspect-ratio-4-3 {
     aspect-ratio: 4/3;
 }
 
-.ratio-3-2 {
+.aspect-ratio-3-2 {
     aspect-ratio: 3/2;
 }
 
-.ratio-1-1 {
+.aspect-ratio-1-1 {
     aspect-ratio: 1/1;
 }
 
@@ -760,11 +872,11 @@ object, svg, img, video, canvas, .responsive-wrapper {
     max-height: none !important; /* overwrite set max-height */
 }
 
-.auto-width {
+.width-auto {
     width: auto !important; /* overwrite set width */
 }
 
-.auto-height {
+.height-auto {
     height: auto !important; /* overwrite set height */
 }
 
@@ -781,6 +893,14 @@ object, svg, img, video, canvas, .responsive-wrapper {
 
 .word-break-keep-all {
     word-break: keep-all;
+}
+
+.word-wrap-normal {
+    word-wrap: normal;
+}
+
+.word-wrap-break-word {
+    word-wrap: break-word; /* allows long strings to be wrapped if larger than parent element */
 }
 
 /* end wrapping and word-breaks  */
@@ -809,8 +929,71 @@ object, svg, img, video, canvas, .responsive-wrapper {
 [class^="icon-"], [class*="icon-"] {
     vertical-align: baseline !important; /* avoid vertical-alignment to be overwritten by later imported icon-font */
 }
-
 /* end text-align */
+
+/* begin borders and radii */
+.no-border {
+    border: 0 !important;
+}
+
+.no-background {
+    background: none !important;
+}
+
+.box-shadow {
+    box-shadow: var(--default-box-shadow) !important;  /* box-shadow (color, left/right, top/bottom, blur) for any element with this class */
+}
+
+.text-shadow {
+    text-shadow: var(--default-text-shadow) !important;
+}
+
+.border-radius {
+    border-radius: var(--default-border-radius) !important;
+}
+
+.full-circle {
+    border-radius: var(--full-circle); /* border-radius for full-circle (do no apply to elements that should not have aspect-ratio 1/1) */
+    aspect-ratio: 1/1;
+}
+
+.border {
+    border: var(--default-border); /* border (width, style, color) for any element with this class */
+}
+
+/* end borders */
+
+/* begin visibility and overflow */
+.hidden, .display-none {
+    display: none !important;
+}
+
+.visibility-hidden {
+    visibility: hidden !important;
+}
+
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.overflow-scroll {
+    overflow: scroll !important;
+}
+
+.overflow-visible {
+    overflow: visible !important;
+}
+
+.show-in-light-mode-only {
+    display: var(--show-in-light-mode-only);
+}
+
+.show-in-dark-mode-only {
+    display: var(--show-in-dark-mode-only);
+}
+
+/* end visibility and overflow */
+/* end utility-classes */
 
 /* begin basic typography */
 p, ul, ol, dl, table, address {
@@ -856,7 +1039,7 @@ figure {
     margin: 0;
 }
 
-a :is(img, figcaption) {
+a > :is(img, figcaption, figure):only-child {
     display: block;
     text-align: center;
     margin: 0 auto;
@@ -871,7 +1054,7 @@ img {
     }
 }
 
-a img {
+a > img {
     border: var(--default-border);
 }
 
@@ -880,50 +1063,6 @@ a:where(:hover, :active, :focus) img {
 }
 
 /* end images */
-
-/* begin visibility */
-.hidden, .display-none {
-    display: none !important;
-}
-
-.visibility-hidden {
-    visibility: hidden !important;
-}
-
-.overflow-hidden {
-    overflow: hidden !important;
-}
-
-.show-in-light-mode-only {
-    display: var(--show-in-light-mode-only);
-}
-
-.show-in-dark-mode-only {
-    display: var(--show-in-dark-mode-only);
-}
-
-/* end visibility */
-
-/* begin borders and radii */
-.border-radius {
-    border-radius: var(--default-border-radius); /* border-radius to create round corners for any element with this class  */
-}
-
-.full-circle {
-    border-radius: var(--full-circle); /* border-radius for full-circle (do no apply to elements that should not have aspect-ratio 1/1) */
-    aspect-ratio: 1/1;
-}
-
-.box-shadow {
-    box-shadow: var(--default-box-shadow); /* box-shadow (color, left/right, top/bottom, blur) for any element with this class */
-}
-
-.border {
-    border: var(--default-border); /* border (width, style, color) for any element with this class */
-}
-
-/* end borders */
-
 /* end basic selectors and classes ------------------------------------------------------------------------------------------ */
 
 /* begin boxes ------------------------------------------------------------------------------------------ */
@@ -932,6 +1071,7 @@ a:where(:hover, :active, :focus) img {
     border: var(--box-border);
     border-radius: var(--box-border-radius);
     padding: var(--box-body-padding);
+    box-shadow: var(--box-box-shadow);
 
     .box-header {
         display: flex;
@@ -1339,18 +1479,34 @@ a:where(:hover, :active, :focus) img {
 
 /* end disabled ------------------------------------------------------------------------------------------ */
 
+/* begin tags ------------------------------------------------------------------------------------------ */
+.tag {
+    background: var(--color-light-gray);
+    padding: .2rem calc(var(--default-padding) / 2);
+    border-radius: var(--default-border-radius);
+
+    &:not(:last-child) {
+        margin-right: calc(var(--default-margin) / 2);
+    }
+}
+/* end tags ------------------------------------------------------------------------------------------ */
+
 /* begin flex-containers ------------------------------------------------------------------------------------------ */
 .flex-container, .button-wrapper {
     display: flex;
     flex-wrap: wrap; /* breaks children to new line if they are wider than their parent */
     gap: var(--default-gap);
 
-    &.space-between {
+    &.space-between, &.space-around {
         justify-content: space-between;
 
         > * {
             flex: none !important; /* must be set to make space-between work properly */
         }
+    }
+
+    &.space-around {
+        justify-content: space-around;
     }
 
     > img {
@@ -1483,14 +1639,21 @@ a:where(:hover, :active, :focus) img {
     flex-wrap: nowrap !important;
 }
 
-.reset-flex, .reset-flex > *,
 .no-flex, .no-flex > * {
+    flex: 0 0 auto !important; /* don't stretch items (item(s) will have default width) */
+}
+
+.reset-flex, .reset-flex > *, .flex-initial {
     flex: 0 1 auto !important; /* don't stretch items (item(s) will have default width) */
 }
 
 .flex-none {
     flex: none !important; /* remove all flex-abilities completely */
     align-self: flex-start; /* ensure element will not be stretched */
+}
+
+.flex-auto {
+    flex: auto; /* same as 1 1 auto */
 }
 
 [data-type="multistep"] .button-wrapper {
@@ -1628,7 +1791,8 @@ fieldset {
     }
 
     hr {
-        margin: var(--default-margin);
+        align-self: center;
+        width: 90%;
 
         & + * {
             margin-top: 0;
@@ -2990,7 +3154,7 @@ a {
         color: var(--hyperlink-color);
     }
 
-    &:has(span[class*="icon-"]) {
+    &:has(> span[class*="icon-"]) {
         text-decoration: none;
 
         > :not(span[class*="icon-"]) {
@@ -3189,9 +3353,14 @@ ul, ol {
         list-style-type: disc;
         list-style-position: outside;
         margin-left: 1.7rem; /* set back to native indent */
+
+        &.list-style-type-none {
+            list-style-type: none;
+            margin-left: 0;
+        }
     }
 
-    &.no-list-items {
+    &.no-list-items, &.list-style-type-none {
         margin: 0;
 
         li {
@@ -3850,17 +4019,16 @@ table {
             width: auto;
         }
 
-        &.row-for-small {
+        &.row-for-small, &.no-wrap-on-small-devices {
             flex-direction: row; /* arrange flex-items horizontally */
 
             & > * {
-                width: 100%;
+                width: auto;
             }
         }
     }
 
     fieldset {
-        padding: var(--default-padding);
         container-type: inline-size; /* enables flex-containers in fieldset to work with @container (DO NOT SET TO 'size' because of render-height-issue) */
 
         [type="submit"].button {
