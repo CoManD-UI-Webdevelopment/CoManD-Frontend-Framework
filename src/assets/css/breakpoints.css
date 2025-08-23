@@ -142,7 +142,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     }
 
     .button-wrapper {
-        &.no-flex > :where(button, .button) {
+        &.flex-none > :where(button, .button) {
             width: auto;
         }
 

@@ -163,7 +163,7 @@
                                                 <ul>
                                                     <li><a href="#anchor-unordered-list">Unordered List</a></li>
                                                     <li><a href="#anchor-ordered-list">Ordered List</a></li>
-                                                    <li><a href="#anchor-definition-list">Definition List</a></li>
+                                                    <li><a href="#anchor-description-list">Description List</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="#anchor-hyperlinks">Hyperlinks</a></li>
@@ -361,24 +361,33 @@
                             </li>
                             <li>List item</li>
                         </ol>
-                        <h4 id="anchor-definition-list">Definition List</h4>
+                        <h4 id="anchor-description-list">Description List</h4>
                         <h5>List with texts as terms</h5>
                         <dl>
-                            <dt>Definition term:</dt>
-                            <dd>Definition data</dd>
-                            <dt>Definition term:</dt>
-                            <dd>Definition data</dd>
-                            <dt>Definition longer term:</dt>
-                            <dd>Definition data with a very long text which will wrap on small devices</dd>
+                            <dt>Description term:</dt>
+                            <dd>Description data</dd>
+                            <dt>Description term:</dt>
+                            <dd>Description data</dd>
+                            <dt>Description longer term:</dt>
+                            <dd>Description data with a very long text which will wrap on small devices</dd>
                         </dl>
-                        <h5>List with icons as terms</h5>
+                        <h5>List with icons as terms (default: dt before dd)</h5>
                         <dl>
-                            <dt><span class="icon-company" title="Company"></span></dt>
-                            <dd>Definition data</dd>
-                            <dt><span class="icon-phone" title="Phone"></span></dt>
-                            <dd>Definition data</dd>
-                            <dt><span class="icon-mail" title="Email"></span></dt>
-                            <dd>Definition data with a very long text which will wrap on small devices</dd>
+                            <dt>Description data</dt>
+                            <dd><span class="icon-company" title="Company"></span></dd>
+                            <dt>Description data</dt>
+                            <dd><span class="icon-phone" title="Phone"></span></dd>
+                            <dt>Description data with a very long text which will wrap on small devices</dt>
+                            <dd><span class="icon-mail" title="Email"></span></dd>
+                        </dl>
+                        <h5>List with icons as terms (reverse: dd before dt)</h5>
+                        <dl>
+                            <dd><span class="icon-company" title="Company"></span></dd>
+                            <dt>Description data</dt>
+                            <dd><span class="icon-phone" title="Phone"></span></dd>
+                            <dt>Description data</dt>
+                            <dd><span class="icon-mail" title="Email"></span></dd>
+                            <dt>Description data with a very long text which will wrap on small devices</dt>
                         </dl>
                         <h5>List of images</h5>
                         <ul class="list-of-images">
@@ -773,7 +782,7 @@
                     <section>
                         <h2 class="headline-demopage" id="anchor-colors">Colors</h2>
                         <h3>Text colors</h3>
-                        <div class="flex-container reset-flex no-wrap-on-small-devices">
+                        <div class="flex-container flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--default-text-color)"></span>
                                 <span>Default Text-Color</span>
@@ -788,7 +797,7 @@
                             </span>
                         </div>
                         <h3>Highlight colors</h3>
-                        <div class="flex-container reset-flex no-wrap-on-small-devices">
+                        <div class="flex-container flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--primary-color)"></span>
                                 <span>Primary</span>
@@ -811,7 +820,7 @@
                             </span>
                         </div>
                         <h3>Shades of gray</h3>
-                        <div class="flex-container reset-flex no-wrap-on-small-devices">
+                        <div class="flex-container flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-white)"></span>
                                 <span>White</span>
@@ -858,7 +867,7 @@
                             </span>
                         </div>
                         <h3>System colors</h3>
-                        <div class="flex-container reset-flex no-wrap-on-small-devices">
+                        <div class="flex-container flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--error-color)"></span>
                                 <span>Error</span>
@@ -1193,7 +1202,7 @@
                                 <legend>Legend</legend>
                                 <div class="label">
                                     <span class="label-text">Enter dates:</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                     <label class="inline" for="startdate">
                                         <span class="label-text"><span>Start date:<sup>*</sup></span></span>
                                         <input type="date" id="startdate"/>
@@ -1214,7 +1223,7 @@
                                 </label>
                                 <div class="label inline">
                                     <span class="label-text">Label for radiobuttons:</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                     <label for="radio1">
                                         <input name="radiogroup" id="radio1" value="1" type="radio"/>
                                         <span class="label-text">Radiobutton 1 (default)</span>
@@ -1237,7 +1246,7 @@
                                 </div>
                                 <div class="label inline">
                                     <span class="label-text">Label for checkboxes:</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                       <label for="checkbox1">
                                           <input name="checkbox" id="checkbox1" value="1" type="checkbox"/>
                                           <span class="label-text">Checkbox 1 (default)</span>
@@ -1296,7 +1305,7 @@
                                         <span class="input-wrapper">
                                             <input name="searchfield" id="searchfield" placeholder="Keyword(s)"
                                                    type="search"/>
-                                            <a href="#" class="button reset-flex"><span class="icon-search"></span></a>
+                                            <a href="#" class="button flex-none"><span class="icon-search"></span></a>
                                         </span>
                                     </label>
                                     <label for="select-file-field">
@@ -1647,7 +1656,7 @@
                                     <span class="label-text">
                                         <span>Label for Replaced Input-Type-Radio:<sup>*</sup></span>
                                     </span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label for="replaced-radio1">
                                             <input type="radio" class="replace-input-type" id="replaced-radio1"
                                                    name="radiogroup" value="1"/>
@@ -1677,7 +1686,7 @@
                                 <h4>Replaced Input-Type-Checkboxes</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Replaced Input-Type-Checkboxes:</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label for="replaced-checkbox1">
                                             <input type="checkbox" class="replace-input-type" id="replaced-checkbox1"
                                                    name="checkboxgroup" value="1"/>
@@ -1709,7 +1718,7 @@
                                 <h4>Toggle-Switch-Radio</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group:</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label class="toggle-switch" for="radio5">
                                             <input type="radio" id="radio5" name="toggle-switch-radiogroup-1"
                                                    value="1"/>
@@ -1735,7 +1744,7 @@
 
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group (colored):</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label class="toggle-switch colored" for="radio9">
                                             <input type="radio" id="radio9" name="toggle-switch-radiogroup-3"
                                                    value="5"/>
@@ -1752,7 +1761,7 @@
 
                                 <!-- begin toggle-switch-checkbox -->
                                 <h4>Toggle-Switch-Checkbox</h4>
-                                <div class="flex-container reset-flex">
+                                <div class="flex-container flex-none">
                                     <label class="toggle-switch" for="toggle-switch-with-icon">
                                         <input type="checkbox" class="icon-cancel-circle" id="toggle-switch-with-icon"
                                                value="1"/>
@@ -1773,7 +1782,7 @@
                                 <div class="label inline">
                                     <span
                                         class="label-text"><span>Label for Toggle-Switch-Checkbox-Group:<sup>*</sup></span></span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label class="toggle-switch" for="checkbox5">
                                             <input type="checkbox" id="checkbox5" name="toggle-switch-chechboxgroup-1"
                                                    value="1"/>
@@ -1799,7 +1808,7 @@
                                 <div class="label inline">
                                     <span
                                         class="label-text">Label for Toggle-Switch-Checkbox-Group (colored):<sup>*</sup></span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label class="toggle-switch colored" for="checkbox9">
                                             <input type="checkbox" id="checkbox9" name="toggle-switch-chechboxgroup-3"
                                                    value="5"/>
@@ -1819,7 +1828,7 @@
                                 <div class="label inline">
                                     <span
                                         class="label-text">Label for Toggle-Switch-Radio-Group with Switch-Label:</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label class="toggle-switch" for="toggle-switch-radio1" title="default">
                                             <span class="switch-label-wrapper">
                                               <input type="radio" id="toggle-switch-radio1"
@@ -1888,7 +1897,7 @@
                                         <span>Label for Toggle-Switch-Checkbox with Switch-Label:</span>
                                         <a href="#" class="icon-questionmark-circle" title="Open help"></a>
                                     </span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label class="toggle-switch" for="toggle-switch-checkbox1" title="default">
                                             <span class="switch-label-wrapper">
                                               <input type="checkbox" id="toggle-switch-checkbox1" name="chechboxgroup3"
@@ -1931,7 +1940,7 @@
                                 <h4>Toggle-Switch-Radio with Switch-Label</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio with Switch-Label:</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                             <label class="toggle-switch colored" for="toggle-switch-radio-colored1"
                                                    title="default">
                                                 <span class="switch-label-wrapper">
@@ -1956,7 +1965,7 @@
                                 <h4>Toggle-Switch-Checkbox with Switch-Label</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Checkbox with Switch-Label:</span>
-                                    <span class="flex-container reset-flex">
+                                    <span class="flex-container flex-none">
                                         <label class="toggle-switch colored" for="toggle-switch-checkbox-colored1"
                                                title="default">
                                             <span class="switch-label-wrapper">
@@ -1986,7 +1995,7 @@
                                         <span>Grouplabel for radio-group  given by property styled as multiple-switch</span>
                                         <a href="#" class="icon-questionmark-circle" title="Open help"></a>
                                     </span>
-                                    <span class="flex-container reset-flex no-gap">
+                                    <span class="flex-container flex-none no-gap">
                                         <label for="radio-id-1-multi">
                                           <input type="radio" id="radio-id-1-multi" name="input-group-radio-multi"
                                                  value="website">
@@ -2165,6 +2174,16 @@
                             <div>flex-item</div>
                             <div>flex-item</div>
                         </div>
+                        <h3 id="anchor-flex-containers-reset-flex-all">flex-none (for all items)</h3>
+                        <div class="flex-container flex-none">
+                            <div>flex-item</div>
+                            <div>flex-item</div>
+                            <div>flex-item</div>
+                        </div>
+                        <h3 id="anchor-flex-containers-reset-flex-all">flex-none (for single items)</h3>
+                        <div class="flex-container">
+                            <div class="flex-none">this flex-item has class "flex-none" which equals (0 0 auto - so the item cannot shrink)</div>
+                        </div>
                         <h3 id="anchor-flex-containers-reset-flex-all">reset-flex (for all items)</h3>
                         <div class="flex-container reset-flex">
                             <div>flex-item</div>
@@ -2173,9 +2192,7 @@
                         </div>
                         <h3 id="anchor-flex-containers-reset-flex-single-item">reset-flex (for single item)</h3>
                         <div class="flex-container">
-                            <div>flex-item</div>
-                            <div class="reset-flex">flex-item (reset-flex)</div>
-                            <div>flex-item</div>
+                            <div class="reset-flex">this flex-item has class "reset-flex" which equals (0 1 auto - so the item can shrink)</div>
                         </div>
                         <h3 id="anchor-flex-containers-vertical">Vertical</h3>
                         <div class="flex-container vertical">

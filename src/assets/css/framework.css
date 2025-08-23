@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/05/29
+framework.css - last update: 2025/08/21
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -182,7 +182,7 @@ html {
     --color-white: hsl(0, 0%, 100%); /* (pure) white color */
     --color-white-reduced-opacity: hsl(from var(--color-white) h s l / var(--reduced-opacity)); /* pure-white-color with reduced opacity */
 
-    /* shaded of gray */
+    /* shades of gray */
     --color-gray-10: hsl(from var(--color-black) h s 90%); /* gray 90% lightness */
     --color-gray-20: hsl(from var(--color-black) h s 80%); /* gray 80% lightness */
     --color-gray-30: hsl(from var(--color-black) h s 70%); /* gray 70% lightness */
@@ -352,6 +352,12 @@ html {
     --box-box-shadow: var(--default-box-shadow); /* box-shadow for boxes */
     /* END BOXES ------------------------------------------------------------------------------------------ */
 
+    /* BEGIN TAGS ------------------------------------------------------------------------------------------ */
+    --tag-border-radius: var(--default-border-radius); /* border-radius for tags */
+    --tag-padding: .3rem calc(var(--default-padding) / 2); /* padding for tags */
+    --tag-margin: calc(var(--default-margin) / 2); /* margin for tags - not applied to last child by default */
+    /* END TAGS ------------------------------------------------------------------------------------------ */
+
     /* BEGIN BUTTONS ------------------------------------------------------------------------------------------ */
     /* button typography */
     --button-text-color-light-mode: var(--color-white); /* text-color for buttons in light-mode */
@@ -466,7 +472,7 @@ html {
     --placeholder-color-light-mode: var(--color-medium-gray); /* text-color for placeholder texts in inputfields in light-mode */
     --placeholder-color-dark-mode: var(--color-light-gray); /* text-color for placeholder texts in inputfields in dark-mode */
     --placeholder-text-color: light-dark(var(--placeholder-color-light-mode), var(--placeholder-color-dark-mode)); /* text-color for placeholder texts in inputfields */
-    --placeholder-font-style: italic; /* font-style for placeholder texts */
+    --placeholder-font-style: regular; /* font-style for placeholder texts */
     --placeholder-text-opacity: .5; /* opacity for placeholder texts (should not be lower than 0.5 to avoid w2aa accessibility standards */
 
     /* inputfields */
@@ -476,6 +482,7 @@ html {
     --form-input-border: var(--default-border); /* border for form-elements */
     --form-input-border-color-highlighted: var(--hyperlink-color); /* border-color highlighted for form-elements */
     --form-input-border-radius: var(--default-border-radius); /* border-radius for form-elements */
+    --form-input-background-color: var(--color-white); /* background for form-elemenets */
     --textarea-border-radius: var(--form-input-border-radius); /* border-radius for textareas */
     --textarea-padding: calc(var(--default-padding) / 2); /* padding for textarea */
     --select-options-text-color: var(--color-scheme-text-color); /* text color for options inside selectboxes */
@@ -662,6 +669,7 @@ body.no-transitions *, .no-transitions {
     max-width: var(--width-limitation-wrapper);
     margin: 0 auto;
 }
+
 /* begin display-behaviors */
 .display-block {
     display: block !important;
@@ -698,31 +706,31 @@ body.no-transitions *, .no-transitions {
 
 /* begin flex-properties */
 .flex-direction-row {
-    flex-direction: row;
+    flex-direction: row !important;
 }
 
 .flex-direction-column {
-    flex-direction: column;
+    flex-direction: column !important;
 }
 
 .flex-direction-row-reverse {
-    flex-direction: row-reverse;
+    flex-direction: row-reverse !important;
 }
 
 .flex-direction-column-reverse {
-    flex-direction: column-reverse;
+    flex-direction: column-reverse !important;
 }
 
-.flex-wrap {
-    flex-wrap: wrap;
+.flex-wrap-wrap {
+    flex-wrap: wrap !important;
 }
 
-.flex-nowrap {
-    flex-wrap: nowrap;
+.flex-wrap-nowrap {
+    flex-wrap: nowrap !important;
 }
 
-.flex-wrap-reverse {
-    flex-wrap: wrap-reverse;
+.flex-wrap-wrap-reverse {
+    flex-wrap: wrap-reverse !important;
 }
 /* end flex-properties */
 
@@ -1418,8 +1426,8 @@ a:where(:hover, :active, :focus) img {
 [readonly],
 .disabled:not(a),
 .disabled:not(a) :is(input, select, textarea, .input),
-[disabled]:not(fieldset),
-[disabled]:not(fieldset) > span,
+:disabled:not(fieldset),
+:disabled:not(fieldset) > span,
 :is(button, input[type="submit"]):disabled,
 :is(button, .button, input[type="submit"]).disabled {
     background: var(--disabled-background) !important;
@@ -1479,8 +1487,9 @@ a:where(:hover, :active, :focus) img {
 /* begin tags ------------------------------------------------------------------------------------------ */
 .tag {
     background: var(--color-light-gray);
-    padding: .2rem calc(var(--default-padding) / 2);
-    border-radius: var(--default-border-radius);
+    padding: var(--tag-padding);
+    border-radius: var(--tag-border-radius);
+    text-align: center;
 
     &:not(:last-child) {
         margin-right: calc(var(--default-margin) / 2);
@@ -1538,7 +1547,13 @@ a:where(:hover, :active, :focus) img {
 
 .flex-container {
     > *:not(.button) {
-        flex: 1; /* items should have same width */
+        flex: 1; /* items should have same width (and grow and shrink equally) */
+    }
+
+    &.flex-none {
+        > * {
+            flex: none !important;
+        }
     }
 
     &.stretch > * {
@@ -1589,11 +1604,11 @@ a:where(:hover, :active, :focus) img {
         justify-content: space-around;
     }
 
-    &.horizontal {
+    &.horizontal, &.flex-direction-row {
         flex-direction: row; /* class forces flex-containers flex-direction to stay in row on all devices */
     }
 
-    &.vertical {
+    &.vertical, &.flex-direction-column {
         flex-direction: column;
         flex-wrap: nowrap;
 
@@ -1609,17 +1624,20 @@ a:where(:hover, :active, :focus) img {
         }
     }
 
-    > .flex-item-one-third,
-    .flex-item-one-forth {
-        flex: 1;
+    > .flex-item-grow-1 {
+        flex-grow: 1;
     }
 
-    > .flex-item-two-third {
-        flex: 2;
+    > .flex-item-grow-2{
+        flex-grow: 2;
     }
 
-    > .flex-item-three-forth {
-        flex: 3;
+    > .flex-item-grow-3 {
+        flex-grow: 3;
+    }
+
+    > .flex-item-grow-4 {
+        flex-grow: 4;
     }
 }
 
@@ -1630,14 +1648,6 @@ a:where(:hover, :active, :focus) img {
 
 .no-gap {
     gap: 0 !important;
-}
-
-.no-wrap {
-    flex-wrap: nowrap !important;
-}
-
-.no-flex, .no-flex > * {
-    flex: 0 0 auto !important; /* don't stretch items (item(s) will have default width) */
 }
 
 .reset-flex, .reset-flex > *, .flex-initial {
@@ -1749,7 +1759,7 @@ fieldset {
         }
     }
 
-    &.grid-container-create-columns {
+    &.grid-container-create-columns, &.grid-container-with-equal-columns {
         grid-template-columns: min-content; /* items should be minimum as wide as content */
 
         > *, .grid-container-create-columns {
@@ -1978,14 +1988,12 @@ label, .label {
         color: var(--status-color);
     }
 
-    &:has(:user-invalid) :is(.label-text :is(span,a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
+    &:has(:user-invalid) :is(.label-text :is(span, a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
         --status-color: var(--error-color);
     }
 
-    &:has(:user-valid) {
-        :where(.label-text :is(a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
-            color: var(--status-color);
-        }
+    &:has(:user-valid) :where(.label-text :is(a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
+         color: var(--status-color);
     }
 
     > input {
@@ -2111,8 +2119,10 @@ label, .label {
     /* end place-inside (place icon inside/over inputfield) */
 }
 
-.grid-container-create-columns > :where(label, .label) {
-    grid-column: 1 / span var(--grid-columns);
+.grid-container-create-columns, .grid-container-with-equal-columns {
+    > :where(label, .label) {
+        grid-column: 1 / span var(--grid-columns);
+    }
 }
 
 td .toggle-switch.switch-label {
@@ -2152,11 +2162,13 @@ td .toggle-switch.switch-label {
 }
 
 input {
+    background: var(--form-input-background-color);
+
     &:checked ~ span.label-text {
         color: var(--label-text-color-checked);
     }
 
-    &[type="range"], &[type="date"], &[type="file"] {
+    &[type="range"], &[type="file"] {
         background: none !important;
     }
 
@@ -2978,10 +2990,17 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
     &.stretch-items {
         grid-auto-rows: auto;
     }
+
+    .subgrid {
+        display: inherit;
+        grid-template-columns: subgrid;
+        grid-template-rows: subgrid;
+    }
 }
 
-.grid-container-create-columns {
+.grid-container-create-columns, .grid-container-with-equal-columns {
     grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr)); /* creates grid-container with predefined number of columns */
+    
 
     & > .grid-small-item {
         grid-column: span var(--grid-small-span);
@@ -3402,18 +3421,22 @@ dl {
     grid-gap: .2rem 1rem; /* row, column */
     grid-template-columns: min-content minmax(min-content, auto);
     grid-auto-rows: min-content;
-}
 
-dt {
-    white-space: nowrap;
-}
+    dt {
+        white-space: nowrap;
+    }
+    
+    dd {
+        grid-column: 2;
+        white-space: normal;
+    
+        ul, ol {
+            margin: 0;
+        }
+    }
 
-dd {
-    grid-column: 2;
-    white-space: normal;
-
-    ul, ol {
-        margin: 0;
+    &:has(dd:first-child) dd {
+        grid-column: 1;
     }
 }
 
