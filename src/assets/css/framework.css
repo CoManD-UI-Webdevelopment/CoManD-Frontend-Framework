@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/08/21
+framework.css - last update: 2025/09/04
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -372,7 +372,7 @@ html {
     --button-secondary-text-color: var(--button-text-color); /* text-color for primary-buttons */
     --button-secondary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
     --button-tertiary-text-color: var(--button-text-color); /* text-color for primary-buttons */
-    --button-tertiary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
+    --button-tertiary-text-color-highlighted: var(--tertiary-color); /* highlighted text-color for primary-buttons */
 
     /* button border and outline for (default) buttons */
     --button-outline: var(--default-outline); /* outline for (default) buttons */
@@ -700,7 +700,7 @@ body.no-transitions *, .no-transitions {
 }
 
 .display-contents {
-    display: contents; /* remove parent from html (children act normally) */
+    display: contents !important; /* remove parent from html (children act normally) */
 }
 /* end display-behaviors */
 
@@ -945,7 +945,7 @@ body.no-transitions *, .no-transitions {
     border: 0 !important;
 }
 
-.no-background {
+.no-background, .background-none {
     background: none !important;
 }
 
@@ -1208,7 +1208,6 @@ a:where(:hover, :active, :focus) img {
     min-width: var(--button-min-width);
     min-height: var(--button-min-height);
     box-shadow: var(--button-box-shadow);
-    align-self: flex-start; /* avoid button to be stretched in flex-containers (with flex: 1 for flex-items) */
 
     > :is(span, [class*="icon-"]) {
         text-decoration: none !important; /* avoid overwriting by hyperlink for a.button */
@@ -1245,11 +1244,11 @@ a:where(:hover, :active, :focus) img {
         &:is(:hover, :active, :focus-visible, .active) {
             --button-background: var(--button-primary-background-highlighted);
 
-            color: var(--button-tertiary-text-color-highlighted);
+            color: var(--button-primary-text-color-highlighted);
             border: var(--button-primary-border-highlighted);
 
             > :is(span, span[class*="icon-"]) {
-                color: inherit;
+                color: var(--button-primary-text-color-highlighted);
             }
         }
     }
@@ -1266,7 +1265,7 @@ a:where(:hover, :active, :focus) img {
             border-color: var(--tertiary-color);
 
             > :is(span, [class*="icon-"]) {
-                color: inherit;
+                color: var(--button-tertiary-text-color-highlighted);
             }
         }
     }
@@ -1518,6 +1517,10 @@ a:where(:hover, :active, :focus) img {
     > img {
         align-self: flex-start; /* avoid images to be stretched unproportional */
     }
+
+     & > :is(button, .button) {
+        align-self: flex-start; /* avoid button to be stretched in flex-containers (with flex: 1 for flex-items) */
+     }
 }
 
 .flexible-scroll-container {
@@ -1615,8 +1618,11 @@ a:where(:hover, :active, :focus) img {
         > * {
             max-width: 100%;
             flex: none;
-            margin-top: 0;
             margin-bottom: 0;
+
+            &:not(h1, h2, h3, h4, h5, h6) {
+                margin-top: 0;
+            }
         }
 
         > a {
@@ -3437,6 +3443,30 @@ dl {
 
     &:has(dd:first-child) dd {
         grid-column: 1;
+    }
+
+    &.auto-columns {
+        grid-template-rows: auto;
+        grid-template-columns: repeat(auto-fit, minmax(0, min-content));
+        
+        dt, dd {
+            grid-column: auto !important;
+        }
+
+        dt:not(first-child) {
+            margin-left: var(--default-margin);
+        }
+
+        &:has(dd:first-child) {
+            dt {
+                margin: 0;
+            }
+
+            dd:not(first-child) {
+                margin-left: var(--default-margin);
+            }
+        }
+    
     }
 }
 

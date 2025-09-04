@@ -389,6 +389,24 @@
                             <dd><span class="icon-mail" title="Email"></span></dd>
                             <dt>Description data with a very long text which will wrap on small devices</dt>
                         </dl>
+                        <h5>List with auto-columns (default: dt before dd)</h5>
+                        <dl class="auto-columns">
+                            <dt>Description data</dt>
+                            <dd><span class="icon-company" title="Company"></span></dd>
+                            <dt>Description data</dt>
+                            <dd><span class="icon-phone" title="Phone"></span></dd>
+                            <dt>Description data with a very long text which will wrap on small devices</dt>
+                            <dd><span class="icon-mail" title="Email"></span></dd>
+                        </dl>
+                        <h5>List with auto-columns (reverse: dd before dt)</h5>
+                        <dl class="auto-columns">
+                            <dd><span class="icon-company" title="Company"></span></dd>
+                            <dt>Description data</dt>
+                            <dd><span class="icon-phone" title="Phone"></span></dd>
+                            <dt>Description data</dt>
+                            <dd><span class="icon-mail" title="Email"></span></dd>
+                            <dt>Description data with a very long text which will wrap on small devices</dt>
+                        </dl>
                         <h5>List of images</h5>
                         <ul class="list-of-images">
                             <li>
