@@ -354,8 +354,9 @@ html {
 
     /* BEGIN TAGS ------------------------------------------------------------------------------------------ */
     --tag-border-radius: var(--default-border-radius); /* border-radius for tags */
-    --tag-padding: .3rem calc(var(--default-padding) / 2); /* padding for tags */
+    --tag-padding: .2rem var(--default-padding); /* padding for tags */
     --tag-margin: calc(var(--default-margin) / 2); /* margin for tags - not applied to last child by default */
+    --tag-line-height: 100%; /* line-height for tags */
     /* END TAGS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BUTTONS ------------------------------------------------------------------------------------------ */
@@ -1489,7 +1490,8 @@ a:where(:hover, :active, :focus) img {
     padding: var(--tag-padding);
     border-radius: var(--tag-border-radius);
     text-align: center;
-
+    line-height: var(--tag-line-height);
+    
     &:not(:last-child) {
         margin-right: calc(var(--default-margin) / 2);
     }
