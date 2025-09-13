@@ -1243,8 +1243,7 @@ a:where(:hover, :active, :focus) img {
         }
 
         &:is(:hover, :active, :focus-visible, .active) {
-            --button-background: var(--button-primary-background-highlighted);
-
+            background: var(--button-primary-background-highlighted);
             color: var(--button-primary-text-color-highlighted);
             border: var(--button-primary-border-highlighted);
 

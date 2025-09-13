@@ -298,7 +298,8 @@
                         <h5><span class="icon-home"></span><span>Headline 5</span></h5>
                         <h6><span class="icon-home"></span><span>Headline 6</span></h6>
                         <h1><span class="icon-hexagon use-icon-as-background"><span
-                            class="icon-home"></span></span><span>Headline 1</span></h1>
+                            class="icon-home"></span></span><span>Headline 1</span>
+                        </h1>
                         <h3 class="headline-demopage" id="anchor-paragraphs">Paragraphs (continuous text)</h3>
                         <p>This is a short paragraph</p>
                         <p>This is continuous text within a paragraph with text-align left (which is default).
@@ -984,6 +985,9 @@
                             </a>
                             <button class="button primary">
                                 <span>Primary button with button-tag</span>
+                            </button>
+                            <button class="button primary active">
+                                <span>Primary button active</span>
                             </button>
                             <a href="#" class="button" role="button">
                                 <span>Default/Secondary button with a-tag</span>
