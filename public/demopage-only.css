@@ -70,9 +70,8 @@
         }
 
         h3.headline-demopage {
-            font-size: 2rem;
             background: none;
-            gap: calc(var(--default-gap) / 2);
+            gap: var(--default-gap-half);
         }
 
         fieldset h3.headline-demopage {
@@ -89,7 +88,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: calc(var(--default-gap) / 2);
+            gap: var(--default-gap-half);
             text-align: center;
             color: var(--color-white);
             padding: calc(var(--default-padding) / 2);
@@ -116,6 +115,7 @@
             flex-direction: column;
             align-items: center;
             gap: .5rem;
+            text-align: center;
 
             > span {
                 &:first-child {
@@ -133,6 +133,20 @@
             display: none;
         }
     }
+}
+
+#flex-section .flex-container > *,
+#grid-section [class*="grid-"] > div {
+    box-shadow: var(--default-box-shadow);
+    background: var(--color-scheme-background);
+}
+
+.box.center-content {
+    height: 15rem;
+
+    > div {
+        border: 1px dashed gray;
+    }    
 }
 
 #frontend-framework-demo {

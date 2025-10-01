@@ -16,6 +16,12 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         min-height: 100dvh;
     }
 
+    /* begin column-count */
+    .column-count-4 {
+        column-count: 2;
+    }
+    /* end column-count */
+
     /* hide navigation */
     .main-navigation-wrapper {
         display: flex;
@@ -64,6 +70,12 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         --golden-ratio-small-width: 100%; /* set to full width to use entire space */
         --golden-ratio-large-width: 100%; /* set to full width to use entire space */
     }
+
+    /* begin column-count */
+    [class*="column-count"] {
+        column-count: 1;
+    }
+    /* end column-count */
 
     :is(button, .button, input[type="submit"]):not(.stretch-on-small-devices) {
         width: auto;

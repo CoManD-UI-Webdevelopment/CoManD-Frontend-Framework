@@ -279,7 +279,9 @@ html {
     /* END COLORS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN FONTS AND TYPOGRAPHY ------------------------------------------------------------------------------------------ */
+    /* font family and text-align */
     --default-font-family: arial, sans-serif; /* default-font-family */
+    --default-text-align: left; /* default-text-align */
 
     /* font-sizes */
     --root-font-size: 62.5%; /* default size is 16px, 62.5% of that is 10px = 1rem */
@@ -321,42 +323,88 @@ html {
     /* headlines */
     --headline-font-family: var(--default-font-family); /* font-family for headlines */
     --headline-font-size-h1: 3.6rem; /* font-size for h1 */
-    --headline-font-size-h2: 2.8rem; /* font-size for h2 */
-    --headline-font-size-h3: 2.4rem; /* font-size for h3 */
-    --headline-font-size-h4: 2rem; /* font-size for h4 */
+    --headline-font-size-h2: 3rem; /* font-size for h2 */
+    --headline-font-size-h3: 2.5rem; /* font-size for h3 */
+    --headline-font-size-h4: 2.1rem; /* font-size for h4 */
     --headline-font-size-h5: 1.8rem; /* font-size for h5 */
     --headline-font-size-h6: 1.6rem; /* font-size for h6 */
     --headline-text-color: var(--color-scheme-text-color); /* text-color for headlines */
+    --headline-text-color-h1: var(--headline-text-color); /* text-color for h1 */
+    --headline-text-color-h2: var(--headline-text-color); /* text-color for h2 */
+    --headline-text-color-h3: var(--headline-text-color); /* text-color for h3 */
+    --headline-text-color-h4: var(--headline-text-color); /* text-color for h4 */
+    --headline-text-color-h5: var(--headline-text-color); /* text-color for h5 */
+    --headline-text-color-h6: var(--headline-text-color); /* text-color for h6 */
     --headline-text-transform: none; /* text-transform for headline */
     --headline-line-height: 1.3; /* line-height for headlines */
     --headline-font-weight: var(--font-weight-bold); /* font-weight for headlines */
     --headline-margin-top: calc(var(--default-margin) * 2); /* margin-top for headlines */
     --headline-margin-bottom: var(--default-margin); /* margin-bottom for headlines */
+    --headline-text-shadow: var(--default-text-shadow); /* text-shadow for headlines */
+    --headline-icon-size: 75%; /* font-size for icon inside headlines */
     /* END FONTS AND TYPOGRAPHY ------------------------------------------------------------------------------------------ */
+
+    /* BEGIN ACCORDIONS ------------------------------------------------------------------------------------------ */ 
+    --accordion-background: var(--color-scheme-background); /* background(-color) for entire accordion (could be partially covered by accordion-summary-background(-color)) */
+    --accordion-border-width: var(--default-border-width); /* border-width for accordions */
+    --accordion-border-style: var(--default-border-style); /* border-style for accordions */  
+    --accordion-border-color: var(--default-border-color); /* border-color for accordions */ 
+    --accordion-border-color-open: var(--default-border-color); /* border-color for accordions when open */ 
+    --accordion-border: var(--accordion-border-width) var(--accordion-border-style) var(--accordion-border-color); /* border for accordions */
+    --accordion-border-radius: var(--default-border-radius); /* border-radius for accordions */
+    --accordion-summary-background: var(--color-scheme-background); /* background(-color) for accordion-summary */
+    --accordion-summary-text-color: var(--color-scheme-text-color); /* text-color for accordion-summary */
+    --accordion-summary-background-open: var(--color-scheme-background); /* background(-color) for accordion-summary when open */
+    --accordion-summary-text-color-open: var(--color-scheme-text-color); /* text-color for accordion-summary when open */
+    --accordion-summary-border-bottom-open: var(--default-border); /* border-bottom for accordion-summary when open */
+    --accordion-summary-text-align: var(--default-text-align); /* text-align for accordion-summary */
+    --accordion-summary-padding: calc(var(--default-padding) / 2) var(--default-padding); /* padding for accordion-summary */   
+    --accordion-body-text-color: var(--color-scheme-text-color); /* text-color for accordion-body */
+    --accordion-body-padding: var(--default-padding); /* padding for accordion-body */
+    --accordion-box-shadow: var(--default-box-shadow); /* box-shadow for accordions */
+    /* END ACCORDIONS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BOXES ------------------------------------------------------------------------------------------ */
     --box-background: var(--color-scheme-background); /* background(-color) for entire box (could be partially covered by box-header-background(-color) if box header exists) */
-    --box-header-background: var(--primary-color); /* background(-color) for box-header */
-    --box-footer-background: none; /* background(-color) for box-footer */
     --box-border-width: var(--default-border-width); /* border-width for boxes */
     --box-border-style: var(--default-border-style); /* border-style for boxes */
     --box-border-color: var(--default-border-color); /* border-color for boxes */
     --box-border: var(--box-border-width) var(--box-border-style) var(--box-border-color); /* border for boxes */
     --box-border-radius: var(--default-border-radius); /* border-radius for boxes */
-    --box-header-text-color: var(--color-white); /* text-color for box-header */
+    --box-header-background: none; /* background(-color) for box-header */
+    --box-header-text-color: var(--color-scheme-text-color); /* text-color for box-header */
+    --box-header-border-bottom: var(--default-border); /* border-bottom for box-header */
     --box-header-padding: calc(var(--default-padding) / 2) var(--default-padding); /* padding for box-header */
     --box-body-text-color: var(--color-scheme-text-color); /* text-color for box-header */
     --box-body-padding: var(--default-padding); /* padding for box-body */
+    --box-footer-border-top: var(--default-border); /* border-top for box-footer */
+    --box-footer-background: none; /* background(-color) for box-footer */
     --box-footer-padding: var(--default-padding); /* padding for box-footer */
     --box-footer-text-color: var(--color-scheme-text-color); /* text-color for box-header */
     --box-box-shadow: var(--default-box-shadow); /* box-shadow for boxes */
     /* END BOXES ------------------------------------------------------------------------------------------ */
 
+    /* BEGIN IMAGES ------------------------------------------------------------------------------------------ */
+    --image-border-width: var(--default-border-width); /* border-width for images */
+    --image-border-style: var(--default-border-style); /* border-style for images */
+    --image-border-color: var(--default-border-color); /* border-color for images */
+    --image-border: var(--image-border-width) var(--image-border-style) var(--image-border-color); /* border for images */
+    --image-border-radius: var(--default-border-radius); /* border-radius for images */
+    --image-box-shadow: var(--default-box-shadow); /* box-shadow for images */
+    /* END IMAGES ------------------------------------------------------------------------------------------ */
+
     /* BEGIN TAGS ------------------------------------------------------------------------------------------ */
+    --tag-text-color: var(--color-scheme-text-color); /* text-color for tags */
+    --tag-background: var(--color-scheme-background); /* backround-color for tags */
+    --tag-border-width: var(--default-border-width); /* border-width for tags */
+    --tag-border-style: var(--default-border-style); /* border-style for tags */
+    --tag-border-color: var(--default-border-color); /* border-radius for tags */
+    --tag-border: var(--tag-border-width) var(--tag-border-style) var(--tag-border-color); /* border for tags */
     --tag-border-radius: var(--default-border-radius); /* border-radius for tags */
-    --tag-padding: .2rem var(--default-padding); /* padding for tags */
-    --tag-margin: calc(var(--default-margin) / 2); /* margin for tags - not applied to last child by default */
+    --tag-padding: .3rem var(--default-padding); /* padding for tags */
+    --tag-margin: calc(var(--default-margin) / 2); /* margin for tags - margin-right only by default/not applied to last child by default */
     --tag-line-height: 100%; /* line-height for tags */
+    --tag-box-shadow: var(--default-box-shadow); /* box-shadow for tags */
     /* END TAGS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BUTTONS ------------------------------------------------------------------------------------------ */
@@ -371,19 +419,29 @@ html {
     --button-primary-text-color: var(--button-text-color); /* text-color for primary-buttons */
     --button-primary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
     --button-secondary-text-color: var(--button-text-color); /* text-color for primary-buttons */
-    --button-secondary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
+    --button-secondary-text-color-highlighted: var(--secondary-color); /* highlighted text-color for primary-buttons */
     --button-tertiary-text-color: var(--button-text-color); /* text-color for primary-buttons */
     --button-tertiary-text-color-highlighted: var(--tertiary-color); /* highlighted text-color for primary-buttons */
+
+    /* button background */
+    --button-primary-background: var(--primary-color); /* background for primary-buttons */
+    --button-primary-background-highlighted: var(--color-white); /* highlighted background for primary-buttons */
+    --button-secondary-background: var(--secondary-color); /* background for secondary-buttons */
+    --button-secondary-background-highlighted: var(--color-white); /* highlighted background for secondary-buttons */
+    --button-tertiary-background: var(--secondary-color); /* background for tertiary-buttons */
+    --button-tertiary-background-highlighted: var(--color-white); /* highlighted background for tertiary-buttons */
 
     /* button border and outline for (default) buttons */
     --button-outline: var(--default-outline); /* outline for (default) buttons */
     --button-outline-highlighted: var(--default-outline); /* outline for (default) buttons */
     --button-border-width: var(--default-border-width); /* border-width for (default) buttons */
     --button-border-style: var(--default-border-style); /* border-style for (default) buttons */
-    --button-border-color: var(--default-border-color); /* border-color for (default) buttons */
+    --button-border-color: var(--secondary-color); /* border-color for (default) buttons */
     --button-border: var(--button-border-width) var(--button-border-style) var(--button-border-color); /* border for (default) buttons */
     --button-border-highlighted: var(--secondary-border); /* border for highlighted (default) buttons */
     --button-border-radius: var(--default-border-radius); /* border-radius for (default) buttons */
+    --button-box-shadow: none; /* box-shadow for (default) buttons */
+    --button-box-shadow-highlighted: none; /* box-shadow for highlighted (default) buttons */
 
     /* button border and outline for primary-buttons */
     --button-primary-outline: var(--default-outline); /* outline for primary-buttons */
@@ -394,6 +452,20 @@ html {
     --button-primary-border: var(--button-primary-border-width) var(--button-primary-border-style) var(--button-primary-border-color); /* border for primary-buttons */
     --button-primary-border-highlighted: var(--button-primary-border); /* border for highlighted primary-buttons */
     --button-primary-border-radius: var(--button-border-radius); /* border-radius for primary-buttons */
+    --button-primary-box-shadow: none; /* box-shadow for (default) primary-buttons */
+    --button-primary-box-shadow-highlighted: none; /* box-shadow for highlighted (default) primary-buttons */
+
+    /* button border and outline for secondary-buttons (equals default buttons by default) */
+    --button-secondary-outline: var(--default-outline); /* outline for secondary-buttons */
+    --button-secondary-outline-highlighted: var(--default-outline); /* outline for secondary-buttons */
+    --button-secondary-border-width: var(--default-border-width); /* border-width for secondary-buttons */
+    --button-secondary-border-style: var(--default-border-style); /* border-style for secondary-buttons */
+    --button-secondary-border-color: var(--secondary-color); /* border-color for secondary-buttons */
+    --button-secondary-border: var(--button-secondary-border-width) var(--button-secondary-border-style) var(--button-secondary-border-color); /* border for secondary-buttons */
+    --button-secondary-border-highlighted: var(--button-secondary-border); /* border for highlighted secondary-buttons */
+    --button-secondary-border-radius: var(--button-border-radius); /* border-radius for secondary-buttons */
+    --button-secondary-box-shadow: none; /* box-shadow for (default) secondary-buttons */
+    --button-secondary-box-shadow-highlighted: none; /* box-shadow for highlighted (default) secondary-buttons */
 
     /* button border and outline for tertiary-buttons */
     --button-tertiary-outline: var(--default-outline); /* outline for tertiary-buttons */
@@ -404,12 +476,16 @@ html {
     --button-tertiary-border: var(--button-tertiary-border-width) var(--button-tertiary-border-style) var(--button-tertiary-border-color); /* border for tertiary-buttons */
     --button-tertiary-border-highlighted: var(--button-tertiary-border); /* border for highlighted tertiary-buttons */
     --button-tertiary-border-radius: var(--button-border-radius); /* border-radius for tertiary-buttons */
+    --button-tertiary-box-shadow: none; /* box-shadow for (default) tertiary-buttons */
+    --button-tertiary-box-shadow-highlighted: none; /* box-shadow for highlighted (default) tertiary-buttons */
 
     /* button backgrounds */
     --button-background: var(--secondary-color); /* background(-color) for (default) buttons */
-    --button-background-highlighted: var(--color-white); /* background for highlighted buttons */
+    --button-background-highlighted: var(--color-white); /* background for highlighted (default) buttons */
     --button-primary-background: var(--primary-color); /* background(-color) for primary-buttons */
     --button-primary-background-highlighted: var(--color-white); /* background for highlighted primary-buttons */
+    --button-secondary-background: var(--primary-color); /* background(-color) for secondary-buttons */
+    --button-secondary-background-highlighted: var(--color-white); /* background for highlighted secondary-buttons */
     --button-tertiary-background: var(--tertiary-color); /* background(-color) for tertiary-buttons */
     --button-tertiary-background-highlighted: var(--color-white); /* background for highlighted tertiary-buttons */
 
@@ -438,17 +514,21 @@ html {
     --button-large-icon-icon-size: 5rem; /* icon-size for button with large-icon */
 
     /* buttons shadow */
-    --button-box-shadow: none; /* box-shadow for buttons */
+    --button-box-shadow: var(--default-box-shadow); /* box-shadow for buttons */
     /* END BUTTONS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
     /* fieldsets */
     --fieldset-background: var(--color-scheme-background); /* background(-color) for fieldsets */
-    --fieldset-border: var(--default-border); /* border for fieldsets */
+    --fieldset-border-width: var(--default-border-width); /* border-width for fieldsets */
+    --fieldset-border-style: var(--default-border-style); /* border-style for fieldsets */
+    --fieldset-border-color: var(--default-border-color); /* border-radius for fieldsets */
+    --fieldset-border: var(--fieldset-border-width) var(--fieldset-border-style) var(--fieldset-border-color); /* border for fieldsets */
     --fieldset-border-radius: var(--default-border-radius); /* border-radius for fieldsets */
     --fieldset-box-shadow: none; /* box-shadow for fieldsets */
     --fieldset-padding: calc(var(--default-padding) * 2); /* padding for fieldsets */
     --fieldset-margin: 0 0 calc(var(--default-margin) * 2) 0; /* margin for fieldsets */
+    --fieldset-box-shadow: var(--default-box-shadow); /* box-shadow for fieldsets */
 
     /* legends */
     --legend-text-color: var(--color-scheme-text-color); /* text-color for fieldset legends */
@@ -480,10 +560,17 @@ html {
     --form-input-height: 4rem; /* fixed height to render inputs and select same height across different browsers */
     --form-input-padding: 1rem .1rem 1rem .5rem; /* padding for inputfields and selectboxes */
     --form-input-max-width-short-fields: 14rem; /* maximum width for small inputs (to avoid stretching if horizontal space is available) */
-    --form-input-border: var(--default-border); /* border for form-elements */
-    --form-input-border-color-highlighted: var(--hyperlink-color); /* border-color highlighted for form-elements */
-    --form-input-border-radius: var(--default-border-radius); /* border-radius for form-elements */
-    --form-input-background-color: var(--color-white); /* background for form-elemenets */
+    --form-input-border-width: var(--default-border-width); /* border-width for form-inputs */
+    --form-input-border-style: var(--default-border-style); /* border-style for form-inputs */
+    --form-input-border-color: var(--default-border-color); /* border-color for form-inputs */
+    --form-input-border: var(--form-input-border-width) var(--form-input-border-style) var(--form-input-border-color); /* border for form-inputs */
+    --form-input-border-width-highlighted: var(--default-border-width); /* border-width for form-inputs highlighted */
+    --form-input-border-style-highlighted: var(--default-border-style); /* border-style for form-inputs highlighted */
+    --form-input-border-color-highlighted: var(--hyperlink-color-highlighted); /* border-color for form-inputs */
+    --form-input-border-highlighted: var(--form-input-border-width-highlighted) var(--form-input-border-style-highlighted) var(--form-input-border-color-highlighted); /* border for form-inputs highlighted */
+    --form-input-border-radius: var(--default-border-radius); /* border-radius for form-inputs */
+    --form-input-background: var(--color-scheme-background); /* background for form-inputs */
+    --form-input-background-highlighted: var(--color-scheme-background); /* background for form-inputs highlighted */
     --textarea-border-radius: var(--form-input-border-radius); /* border-radius for textareas */
     --textarea-padding: calc(var(--default-padding) / 2); /* padding for textarea */
     --select-options-text-color: var(--color-scheme-text-color); /* text color for options inside selectboxes */
@@ -495,13 +582,15 @@ html {
     --system-message-border: var(--default-border); /* border for system-messages */
     --system-message-border-radius: var(--default-border-radius); /* border-radius for system-messages */
     --system-message-font-weight: var(--font-weight-bold); /* font-weight for system-messages */
-    --system-message-padding: var(--default-padding); /* padding for system-messages */
+    --system-message-padding: var(--default-padding) calc(var(--default-padding) * 2); /* padding for system-messages */
+    --system-message-box-shadow: var(--default-box-shadow); /* box-shadow for system-messages */
     /* END SYSTEM-MESSAGES ------------------------------------------------------------------------------------------ */
 
     /* BEGIN TABLES ------------------------------------------------------------------------------------------ */
     /* tables */
-    --table-border: var(--default-border); /* border for table (not cells) */
-    --table-border-radius: var(--default-border-radius); /* border-radius for table (and cells in the corners) */
+    --table-border: var(--default-border); /* border for tables (not cells) */
+    --table-border-radius: var(--default-border-radius); /* border-radius for tables (and cells in the corners) */
+    --table-box-shadow: var(--default-box-shadow); /* box-shado for tables */
 
     /* table-rows */
     --table-row-background: var(--color-scheme-background); /* define background for rows */
@@ -520,8 +609,8 @@ html {
     --table-head-text-align: center; /* text-align for table-head */
 
     /* active table-cells */
-    --active-table-cell-background-light-mode: var(--color-gray-10);
-    --active-table-cell-background-dark-mode: var(--color-gray-80);
+    --active-table-cell-background-light-mode: var(--color-gray-10); /* background for active table-cells (light-mode-only); */
+    --active-table-cell-background-dark-mode: var(--color-gray-80); /* background for active table-cells (dark-mode-only); */
     --active-table-cell-background: light-dark(var(--active-table-cell-background-light-mode), var(--active-table-cell-background-dark-mode)); /* background(-color) for active table-cells */
     --active-table-cell-text-color: var(--color-scheme-text-color); /* text-color for active/highlighted table-cells */
     --active-table-cell-background-highlighted: var(--primary-color); /* highlighted background(-color) for active table-cells */
@@ -537,10 +626,11 @@ html {
     --reduced-opacity: .75; /* reduced opacity (should be at least 0.75 for accessibility) */
 
     /* shadows */
-    --box-shadow-color: light-dark(var(--color-dark-gray), none); /* box-shadow-color */
-    --default-box-shadow: light-dark(0 0 0 var(--box-shadow-color), none); /* box-shadow */
-    --text-shadow-color: light-dark(var(--color-dark-gray), none); /* text-shadow-color */
-    --default-text-shadow: light-dark(.1rem .1rem .1rem var(--text-shadow-color), none); /* text-shadow */
+    --box-shadow-opacity: none; /* box-shadow-opacity */
+    --box-shadow-color: light-dark(var(--color-dark-gray), var(--box-shadow-opacity)); /* box-shadow-color */
+    --default-box-shadow: light-dark(0 0 0 var(--box-shadow-color), var(--box-shadow-opacity)); /* box-shadow */
+    --text-shadow-color: light-dark(var(--color-dark-gray), var(--box-shadow-opacity)); /* text-shadow-color */
+    --default-text-shadow: light-dark(.1rem .1rem .1rem var(--text-shadow-color), var(--box-shadow-opacity)); /* text-shadow */
 
     /* transitions */
     --default-transition: all .5s; /* default transition */
@@ -776,7 +866,7 @@ body.no-transitions *, .no-transitions {
 }
 
 .gap-half {
-    gap: calc(var(--default-gap) / 2) !important;
+    gap: var(--default-gap-half) !important;
 }
 
 /* end paddings, margins, gaps */
@@ -805,6 +895,13 @@ body.no-transitions *, .no-transitions {
 
 /* begin center content */
 .center-content {
+    align-content: center;
+
+    & > div {
+        margin: 0 auto;
+        display: table;
+    }
+    
     &.flex-container {
         display: flex;
         align-items: center;
@@ -913,7 +1010,21 @@ body.no-transitions *, .no-transitions {
     word-wrap: break-word; /* allows long strings to be wrapped if larger than parent element */
 }
 
-/* end wrapping and word-breaks  */
+/* end wrapping and word-breaks */
+
+/* begin column-count */
+.column-count-2 {
+    column-count: 2;
+}
+
+.column-count-3 {
+    column-count: 3;
+}
+
+.column-count-4 {
+    column-count: 4;
+}
+/* end column-count */
 
 /* begin text-align */
 .text-align-left {
@@ -999,6 +1110,24 @@ body.no-transitions *, .no-transitions {
 }
 
 /* end visibility and overflow */
+
+.primary a {
+    --hyperlink-color: var(--primary-color);
+    --hyperlink-color-highlighted: var(--primary-color);
+    --hyperlink-text-decoration-color: var(--primary-color);
+}
+
+.secondary a {
+    --hyperlink-color: var(--secondary-color);
+    --hyperlink-color-highlighted: var(--secondary-color);
+    --hyperlink-text-decoration-color: var(--secondary-color);
+}
+
+.tertiary a {
+    --hyperlink-color: var(--tertiary-color);
+    --hyperlink-color-highlighted: var(--tertiary-color);
+    --hyperlink-text-decoration-color: var(--tertiary-color);
+}
 /* end utility-classes */
 
 /* begin basic typography */
@@ -1052,8 +1181,10 @@ a > :is(img, figcaption, figure):only-child {
 }
 
 img {
-    border-radius: var(--default-border-radius);
+    border-radius: var(--image-border-radius);
     max-height: 100%;
+    box-shadow: var(--image-box-shadow);
+    border: var(--image-border);
 
     &.grayscale {
         filter: grayscale(1);
@@ -1079,6 +1210,21 @@ a:where(:hover, :active, :focus) img {
     padding: var(--box-body-padding);
     box-shadow: var(--box-box-shadow);
 
+    &.primary {
+        --box-header-text-color: var(--color-white);
+        --box-header-background: var(--primary-color);
+    }
+
+    &.secondary {
+        --box-header-text-color: var(--color-white);
+        --box-header-background: var(--secondary-color);
+    }
+
+    &.tertiary {
+        --box-header-text-color: var(--color-white);
+        --box-header-background: var(--tertiary-color);
+    }
+
     .box-header {
         display: flex;
         align-items: center;
@@ -1086,6 +1232,7 @@ a:where(:hover, :active, :focus) img {
         background: var(--box-header-background);
         border-top-left-radius: var(--box-border-radius);
         border-top-right-radius: var(--box-border-radius);
+        border-bottom: var(--box-header-border-bottom);
 
         & > * {
             color: var(--box-header-text-color);
@@ -1119,6 +1266,11 @@ a:where(:hover, :active, :focus) img {
         fieldset {
             background: none;
         }
+
+        > img:first-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
     }
 
     &:has(> .box-footer) {
@@ -1135,7 +1287,7 @@ a:where(:hover, :active, :focus) img {
         padding: var(--box-footer-padding);
         color: var(--box-footer-text-color);
         background: var(--box-footer-background);
-        border-top: var(--box-border);
+        border-top: var(--box-footer-border-top);
         border-bottom-left-radius: var(--default-border-radius);
         border-bottom-right-radius: var(--default-border-radius);
         margin-top: auto;
@@ -1160,16 +1312,6 @@ a:where(:hover, :active, :focus) img {
     &.center-content {
         p:last-child {
             margin: 0;
-        }
-
-        > div {
-            border: var(--box-border);
-            margin: 0 auto;
-            top: 50%;
-            transform: translateY(-50%);
-            display: table;
-            padding: var(--default-padding);
-            flex: 0 1 auto;
         }
 
         &:is(.grid-container, .flex-container) {
@@ -1234,9 +1376,9 @@ a:where(:hover, :active, :focus) img {
     }
 
     &.primary {
-        --button-background: var(--button-primary-background);
-        --button-border: var(--button-primary-border);
-        --button-border-radius: var(--button-primary-border-radius);
+        background: var(--button-primary-background);
+        border: var(--button-primary-border);
+        border-radius: var(--button-primary-border-radius);
 
         > :is(span, span[class*="icon-"]) {
             color: var(--button-primary-text-color);
@@ -1253,14 +1395,33 @@ a:where(:hover, :active, :focus) img {
         }
     }
 
-    &.tertiary {
-        --button-background: var(--button-tertiary-background);
-        --button-border: var(--button-tertiary-border);
-        --button-border-radius: var(--button-tertiary-border-radius);
+    &.secondary {
+        background: var(--button-secondary-background);
+        border: var(--button-secondary-border);
+        border-radius: var(--button-secondary-border-radius);
+
+        > :is(span, span[class*="icon-"]) {
+            color: var(--button-secondary-text-color);
+        }
 
         &:is(:hover, :active, :focus-visible, .active) {
-            --button-background: var(--button-tertiary-background-highlighted);
+            background: var(--button-secondary-background-highlighted);
+            color: var(--button-secondary-text-color-highlighted);
+            border: var(--button-secondary-border-highlighted);
 
+            > :is(span, span[class*="icon-"]) {
+                color: var(--button-secondary-text-color-highlighted);
+            }
+        }
+    }
+
+    &.tertiary {
+        background: var(--button-tertiary-background);
+        border: var(--button-tertiary-border);
+        border-radius: var(--button-tertiary-border-radius);
+
+        &:is(:hover, :active, :focus-visible, .active) {
+            background: var(--button-tertiary-background-highlighted);
             color: var(--button-tertiary-text-color-highlighted);
             border-color: var(--tertiary-color);
 
@@ -1271,9 +1432,9 @@ a:where(:hover, :active, :focus) img {
     }
 
     &.cancel {
-        --button-background: var(--error-color);
         --color-scheme-text-color: var(--error-color);
 
+        background: var(--error-color);
         border: var(--error-border);
 
         &:is(:hover, :active, :focus) {
@@ -1284,9 +1445,9 @@ a:where(:hover, :active, :focus) img {
     }
 
     &.confirm {
-        --button-background: var(--success-color);
         --color-scheme-text-color: var(--success-color);
 
+        background: var(--success-color);
         border: var(--success-border);
 
         &:is(:hover, :active, :focus-visible) {
@@ -1434,6 +1595,7 @@ a:where(:hover, :active, :focus) img {
     border-color: var(--disabled-color) !important;
     text-shadow: none !important;
     outline: none !important;
+    box-shadow: none !important;
 }
 
 :is(button, .button, input[type="submit"]) {
@@ -1441,6 +1603,14 @@ a:where(:hover, :active, :focus) img {
         :is(span, [class*="icon-"]), &:not(a) span {
             color: var(--disabled-color) !important;
             text-shadow: none !important;
+        }
+    }
+}
+
+input, textarea {
+    &:disabled, &.disabled {
+        &::placeholder {
+            color: var(--disabled-text-color) !important;
         }
     }
 }
@@ -1485,14 +1655,37 @@ a:where(:hover, :active, :focus) img {
 
 /* begin tags ------------------------------------------------------------------------------------------ */
 .tag {
-    background: var(--color-light-gray);
+    display: inline-flex;
+    align-items: center;
+    background: var(--tag-background);
     padding: var(--tag-padding);
+    border: var(--tag-border);
     border-radius: var(--tag-border-radius);
     text-align: center;
     line-height: var(--tag-line-height);
-    
+    color: var(--tag-text-color);
+    box-shadow: var(--tag-box-shadow);
+
+    span, span[class*="icon"] {
+        color: inherit;
+    }
+
     &:not(:last-child) {
-        margin-right: calc(var(--default-margin) / 2);
+        margin-right: var(--tag-margin);
+    }
+
+    &.primary, &.secondary, &.tertiary {
+        --tag-background: var(--primary-color);
+        --tag-text-color: var(--color-white);
+        --tag-border-color: var(--tag-background);
+    }
+
+    &.secondary {
+        --tag-background: var(--secondary-color);
+    }
+
+    &.tertiary {
+        --tag-background: var(--tertiary-color);
     }
 }
 /* end tags ------------------------------------------------------------------------------------------ */
@@ -1572,7 +1765,7 @@ a:where(:hover, :active, :focus) img {
         align-self: flex-end;
     }
 
-    &.align-items-top, &.align-items-flex-start {
+    &.align-items-top, &.align-items-flex-start, .reset-align-items {
         align-items: flex-start !important;
     }
 
@@ -1663,7 +1856,6 @@ a:where(:hover, :active, :focus) img {
 
 .flex-none {
     flex: none !important; /* remove all flex-abilities completely */
-    align-self: flex-start; /* ensure element will not be stretched */
 }
 
 .flex-auto {
@@ -1742,6 +1934,7 @@ fieldset {
     box-shadow: var(--fieldset-box-shadow);
     padding: var(--fieldset-padding);
     margin: var(--fieldset-margin);
+    box-shadow: var(--fieldset-box-shadow);
 
     > * {
         margin: 0;
@@ -2138,29 +2331,30 @@ td .toggle-switch.switch-label {
 
 /* end labels */
 
-/* begin form-elements */
+/* begin form-input-elements */
 :where(input, select, textarea, .input) {
     min-width: 5rem;
     border: var(--form-input-border);
     border-radius: var(--form-input-border-radius);
     align-self: flex-end; /* required to let items be as high as their content */
-    background: var(--color-scheme-background);
+    background: var(--form-input-background);
 
     &:is(:hover, :active, :focus) {
-        border-color: var(--form-input-border-color-highlighted);
+        border: var(--form-input-border-highlighted);
+        background: var(--form-input-background-highlighted);
     }
 
     &:not(:placeholder-shown) {
-        background: hsl(from var(--color-black) h s var(--form-input-filled-background-lightness));
-
         &:valid {
-            background: hsl(120, 100%, var(--form-input-filled-background-lightness));
+            color: var(--success-color);
+            border-color: var(--success-color);
+            background: light-dark(hsl(120, 100%, var(--form-input-filled-background-lightness)), hsl(120, 100%, 3%));
         }
     }
 
     &:user-invalid {
         border-color: var(--error-color);
-        background: hsl(0, 100%, var(--form-input-filled-background-lightness));
+        background: hsl(0, 100%, var(--form-input-filled-background-lightness))
     }
 
     &.error::placeholder {
@@ -2169,8 +2363,6 @@ td .toggle-switch.switch-label {
 }
 
 input {
-    background: var(--form-input-background-color);
-
     &:checked ~ span.label-text {
         color: var(--label-text-color-checked);
     }
@@ -2180,12 +2372,17 @@ input {
     }
 
     &[type="search"] {
-        align-self: stretch;
         box-sizing: border-box; /* overwrite normalize.css */
+
+        input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
 
         & + :is(button, .button) {
             border-radius: var(--form-input-border-radius);
-            height: var(--form-input-height); /* assures that button will not gain vertical space by padding */
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
         }
     }
 
@@ -2233,7 +2430,6 @@ select {
     padding-top: 0; /* avoids text to be cropped */
     padding-bottom: 0; /* avoids text to be cropped */
     word-wrap: normal; /* break words only at allowed break points */
-    background: none !important;
 
     &:valid {
         background: hsl(120, 100%, var(--form-input-filled-background-lightness)) !important;
@@ -2251,7 +2447,7 @@ select {
 
 ::placeholder {
     font-style: var(--placeholder-font-style);
-    color: var(--placeholder-text-color) !important;
+    color: var(--placeholder-text-color);
     opacity: var(--placeholder-text-opacity);
 }
 
@@ -2277,9 +2473,9 @@ input[type="submit"] input:where(:hover, :active, :focus) {
     border-left: 0;
 }
 
-/* end form-elements */
+/* end form-input-elements */
 
-/* begin form-elements in table */
+/* begin form-input-elements in table */
 td {
     :where(label, .label, select, textarea, .input) {
         width: 100%;
@@ -2292,7 +2488,7 @@ td {
     }
 }
 
-/* end form-elements in table */
+/* end form-input-elements in table */
 
 /* begin .input-wrapper/.input-group */
 .input-wrapper, .input-group {
@@ -2319,6 +2515,15 @@ td {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
+    }
+
+    &:has(.button) {
+        align-items: stretch;
+    }
+
+    &:has([type="search"]) input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 }
 
@@ -3113,10 +3318,36 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: var(--headline-margin-top);
     margin-bottom: var(--headline-margin-bottom);
     text-transform: var(--headline-text-transform);
+    text-shadow: var(--headline-text-shadow);
     line-height: var(--headline-line-height);
+
+    &:has(span[class*="icon"]) {
+        display: flex;
+        align-items: center;
+    }
 
     & > * {
         line-height: var(--headline-line-height);
+    }
+
+    & > span, span[class*="icon"] {
+        color: inherit;
+    }
+
+    & > span[class*="icon"] {
+        font-size: var(--headline-icon-size);
+    }
+
+    &.primary {
+        --headline-text-color: var(--primary-color);
+    }
+
+    &.secondary {
+        --headline-text-color: var(--secondary-color);
+    }
+
+    &.tertiary {
+        --headline-text-color: var(--tertiary-color);
     }
 }
 
@@ -3129,27 +3360,27 @@ h1, h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6,
     margin-bottom: 0;
 }
 
-h1, h1 > :is(a, span, [class*="icon-"]) {
+h1, h1 > :is(a, span) {
     font-size: var(--headline-font-size-h1); /* font-size for h1 */
 }
 
-h2, h2 > :is(a, span, [class*="icon-"]) {
+h2, h2 > :is(a, span) {
     font-size: var(--headline-font-size-h2); /* font-size for h2 */
 }
 
-h3, h3 > :is(a, span, [class*="icon-"]) {
+h3, h3 > :is(a, span) {
     font-size: var(--headline-font-size-h3); /* font-size for h3 */
 }
 
-h4, h4 > :is(a, span, [class*="icon-"]) {
+h4, h4 > :is(a, span) {
     font-size: var(--headline-font-size-h4); /* font-size for h4 */
 }
 
-h5, h5 > :is(a, span, [class*="icon-"]) {
+h5, h5 > :is(a, span) {
     font-size: var(--headline-font-size-h5); /* font-size for h5 */
 }
 
-h6, h6 > :is(a, span, [class*="icon-"]) {
+h6, h6 > :is(a, span) {
     font-size: var(--headline-font-size-h6); /* font-size for h6 */
 }
 
@@ -3163,13 +3394,37 @@ a {
     text-decoration-style: var(--hyperlink-text-decoration-style);
     text-decoration-thickness: var(--hyperlink-text-decoration-thickness);
 
+    &:is(:hover, :active, :focus) {
+        color: var(--hyperlink-color-highlighted);
+        text-decoration: var(--hyperlink-text-decoration-highlighted);
+    }
+
     & * {
         color: inherit;
     }
 
-    &:is(:hover, :active, :focus) {
-        color: var(--hyperlink-color-highlighted);
-        text-decoration: var(--hyperlink-text-decoration-highlighted);
+    &.none {
+        --hyperlink-color: var(--color-scheme-text-color);
+        --hyperlink-text-decoration-color: var(--color-scheme-text-color);
+        --hyperlink-color-highlighted: var(--color-scheme-text-color);
+    }
+
+    &.primary {
+        --hyperlink-color: var(--primary-color);
+        --hyperlink-text-decoration-color: var(--primary-color);
+        --hyperlink-color-highlighted: var(--primary-color);
+    }
+
+    &.secondary {
+        --hyperlink-color: var(--secondary-color);
+        --hyperlink-text-decoration-color: var(--secondary-color);
+        --hyperlink-color-highlighted: var(--secondary-color);
+    }
+
+    &.tertiary {
+        --hyperlink-color: var(--tertiary-color);
+        --hyperlink-text-decoration-color: var(--tertiary-color);
+        --hyperlink-color-highlighted: var(--tertiary-color);
     }
 
     &[class*="icon-"],
@@ -3235,28 +3490,31 @@ a {
     }
 }
 
-/* begin active links */
-a.active:not([class*="icon-"]), li.active > a:not([class*="icon-"]) {
-    background: var(--hyperlink-color);
-    color: var(--color-white);
-}
+/* begin active list-items with links (do not put .active-class on <a>-tag to avoid specificity-collision with active buttons */
+li.active {
+    > :is(span, [class*="icon-"]) {
+        color: var(--color-white);
+    }    
+    
+    > a {
+        padding: .2rem calc(var(--default-padding) / 2);
+        text-decoration: none;
+    
+        /* do not set :focus */
+        &:is(:hover, :active) {
+            color: var(--hyperlink-color);
+            background: none;
+        }
 
-:is(a, li).active > :is(span, [class*="icon-"]) {
-    color: var(--color-white);
-}
-
-li a.active {
-    padding: .2rem calc(var(--default-padding) / 2);
-    text-decoration: none;
-
-    /* do not set :focus */
-    &:is(:hover, :active) {
-        color: var(--hyperlink-color);
-        background: none;
+        &:not([class*="icon-"]) {
+            background: var(--hyperlink-color);
+            color: var(--color-white);
+        }
+    
     }
 }
 
-/* end active links */
+/* end active list-items with links */
 /* end hyperlinks & anchors ------------------------------------------------------------------------------------------ */
 
 /* begin icons ------------------------------------------------------------------------------------------ */
@@ -3293,10 +3551,6 @@ li a.active {
 
 /* do not replace by span + [class*="icon-"], because compiler cannot handle it */
 span + [class*="icon-"] {
-    margin-left: calc(var(--default-margin) / 2);
-}
-
-:where(h1, h2, h3, h4, h5, h6) [class*="icon-"] + span {
     margin-left: calc(var(--default-margin) / 2);
 }
 
@@ -3428,6 +3682,14 @@ dl {
     grid-gap: .2rem 1rem; /* row, column */
     grid-template-columns: min-content minmax(min-content, auto);
     grid-auto-rows: min-content;
+    
+    &:has(> dd:first-child) {
+        grid-template-columns: max-content min-content;
+        
+        &:has([class*="icon"]) {
+            grid-template-columns: repeat(auto-fit, minmax(0, min-content));
+        }
+    }
 
     dt {
         white-space: nowrap;
@@ -3448,26 +3710,25 @@ dl {
 
     &.auto-columns {
         grid-template-rows: auto;
-        grid-template-columns: repeat(auto-fit, minmax(0, min-content));
+        grid-template-columns: repeat(auto-fit, minmax(0, max-content));
+
+        > :first-child {
+            margin-left: 0;
+        }
         
+        &:has(> dd:first-child) {
+            grid-template-columns: repeat(auto-fit, minmax(0, min-content));
+        }
+  
         dt, dd {
             grid-column: auto !important;
-        }
-
-        dt:not(first-child) {
-            margin-left: var(--default-margin);
         }
 
         &:has(dd:first-child) {
             dt {
                 margin: 0;
             }
-
-            dd:not(first-child) {
-                margin-left: var(--default-margin);
-            }
         }
-    
     }
 }
 
@@ -3511,6 +3772,10 @@ dl {
         .company-logo {
             grid-area: company-logo;
             grid-column: span var(--grid-small-span);
+
+            img {
+                box-shadow: none;
+            }
 
             a img {
                 border: 0;
@@ -3778,8 +4043,115 @@ dl {
         margin-bottom: var(--default-margin);
     }
 }
-
 /* end main-navigation ------------------------------------------------------------------------------------------ */
+
+/* begin accordions ------------------------------------------------------------------------------------------ */
+.accordion-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--default-gap);
+}
+
+details {
+    border: var(--accordion-border);
+    border-radius: var(--accordion-border-radius);
+    background: var(--accordion-background);
+    box-shadow: var(--accordion-box-shadow);
+
+    &.primary {
+        --accordion-summary-text-color: var(--color-white);
+        --accordion-summary-background: var(--primary-color);
+    }
+
+    &.secondary {
+        --accordion-summary-text-color: var(--color-white);
+        --accordion-summary-background: var(--secondary-color);
+    }
+
+    &.tertiary {
+        --accordion-summary-text-color: var(--color-white);
+        --accordion-summary-background: var(--tertiary-color);
+    }
+
+    summary {
+        display: flex;
+        align-items: center;
+        gap: var(--default-gap-half);
+        border-radius: var(--accordion-border-radius);
+        color: var(--accordion-summary-text-color);
+        padding: var(--accordion-summary-padding);
+        background: var(--accordion-summary-background);
+        text-align: var(--accordion-summary-text-align);
+
+        > :is(h1, h2, h3, h4, h5, h6) {
+            color: inherit;
+            text-align: inherit;
+            margin: 0;
+        }
+
+        [class*="icon-"] {
+            margin: 0;
+
+            &.open {
+                display: none;
+            }
+
+            &.closed {
+                display: inline-flex;
+            }
+        }
+    }
+
+    .accordion-body {
+        color: var(--accordion-body-text-color);
+        padding: var(--accordion-body-padding);
+
+        *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &[open] {
+        border-color: var(--accordion-border-color-open);
+
+        summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            color: var(--accordion-summary-text-color-open);
+            background: var(--accordion-summary-background-open);
+            border-bottom: var(--accordion-summary-border-bottom-open);
+
+            [class*="icon-"] {
+                &.open {
+                    display: inline-flex;
+                }
+    
+                &.closed {
+                    display: none;
+                }
+            }
+        }
+
+        &.primary {
+            --accordion-summary-text-color-open: var(--primary-color);
+            --accordion-summary-background-open: none;
+            --accordion-border-color-open: var(--primary-color);
+        }
+    
+        &.secondary {
+            --accordion-summary-text-color-open: var(--secondary-color);
+            --accordion-summary-background-open: none;
+            --accordion-border-color-open: var(--secondary-color);
+        }
+
+        &.tertiary {
+            --accordion-summary-text-color-open: var(--tertiary-color);
+            --accordion-summary-background-open: none;
+            --accordion-border-color-open: var(--tertiary-color);
+        }
+    }
+}
+/* end accordions ------------------------------------------------------------------------------------------ */
 
 /* begin system-messages ------------------------------------------------------------------------------------------ */
 .system-message {
@@ -3793,6 +4165,7 @@ dl {
     background: var(--system-message-status-color);
     background-clip: padding-box; /* important to keep border transparent */
     border-color: hsl(from var(--system-message-status-color) h 70% 50%);
+    box-shadow: var(--system-message-box-shadow);
 
     *, [class*="icon-"] {
         color: var(--system-message-text-color);
@@ -3831,13 +4204,19 @@ dl {
         line-height: .5;
         margin: 0;
 
+        &::before {
+            content: "x";
+            color: var(--color-white);
+        }
+
         &:is(:hover, :active, :focus) {
             background: var(--system-message-text-color);
             color: var(--system-message-status-color);
-        }
 
-        &::before {
-            content: "x";
+            &::before {
+                content: "x";
+                color: var(--system-message-status-color);
+            }
         }
     }
 
@@ -3857,11 +4236,27 @@ dl {
 
     &.error {
         --system-message-status-color: var(--error-color);
+
+        &:is(:hover, :active, :focus) {
+            color: var(--system-message-status-color);
+        }
     }
 
     &.warning {
         --system-message-status-color: var(--warning-color);
         --system-message-text-color: var(--color-dark-gray); /* must be set to a dark color for accessibility */
+
+        & > input[type="checkbox"] {
+            &::before {
+                color: var(--color-dark-gray); /* must be set to a dark color for accessibility */
+            }
+
+            &:is(:hover, :active, :focus) {
+                &::before {
+                    color: var(--color-white);
+                }
+            }
+        }
     }
 
     &.success {
@@ -3899,6 +4294,7 @@ dl {
 table {
     border: var(--table-border);
     border-radius: var(--table-border-radius);
+    box-shadow: var(--table-box-shadow);
 
     &.full-width {
         display: table; /* tables must have display: table; */
