@@ -111,9 +111,9 @@
                                 <label for="select-template">
                                     <span>Select template</span>
                                     <select id="select-template" v-model="selectedTemplate">
-                                        <option value="blank">Blank/Unstyled</option>
-                                        <option value="casual">Tailwind</option>
-                                        <option value="dating">Material-Web</option>   
+                                        <option value="blank">Blank/Unstyled</option> 
+                                        <option value="material-web">Material-Web</option>
+                                        <option value="tailwind">Tailwind</option>
                                     </select>
                                 </label>
                                 <div>
@@ -202,6 +202,7 @@
                                         <a href="#anchor-user-interface">User Interface</a>
                                         <ul>
                                             <li><a href="#anchor-accordions">Accordions</a></li>
+                                            <li><a href="#anchor-popover">Popover</a></li>
                                             <li><a href="#anchor-system-messages">System Messages</a></li>
                                             <li><a href="#anchor-buttons">Buttons</a></li>
                                             <li><a href="#anchor-tags">Tags</a></li>
@@ -385,6 +386,13 @@
                             no
                             real line, but a margin). Of course a paragraph may not contain tags for headlines, tables
                             or forms.
+                        </p>
+
+                        <h4>Skeleton Laoding for text</h4>
+                        <p>
+                            <span class="skeleton skeleton-text"></span>
+                            <span class="skeletons keleton-text"></span>
+                            <span class="skeleton skeleton-text"></span>
                         </p>
 
                         <h3 class="headline-demopage" id="anchor-lists">Lists</h3>
@@ -768,22 +776,18 @@
                         <h3 id="anchor-stretched-boxes">Stretched boxes with different content</h3>
                         <div class="flex-container">
                             <div class="box">
-                                <div>
-                                    <h4>Box with simple headline</h4>
-                                </div>
-                                <div class="box-body">
-                                    <p>
-                                        The default width of all grid-items would be different relating to their
-                                        individual content. By defining the width of each item as 1 fraction and
-                                        defining auto-fit (by using
-                                        (grid-template-columns: repeat(auto-fit, minmax(0, 1fr))) for the
-                                        grid-container, all items are stretched equaly.<br />
-                                        Flex-Box can do the same, but the advantage of using CSS-Grid is that you do not
-                                        have to set margins for the space between the boxes, because you can define a
-                                        specific gap (i.e.:
-                                        2rem), which is used horizontally and vertically.
-                                    </p>
-                                </div>
+                                <h4>Box with simple headline</h4>
+                                <p>
+                                    The default width of all grid-items would be different relating to their
+                                    individual content. By defining the width of each item as 1 fraction and
+                                    defining auto-fit (by using
+                                    (grid-template-columns: repeat(auto-fit, minmax(0, 1fr))) for the
+                                    grid-container, all items are stretched equaly.)<br />
+                                    Flex-Box can do the same, but the advantage of using CSS-Grid is that you do not
+                                    have to set margins for the space between the boxes, because you can define a
+                                    specific gap (i.e.:
+                                    2rem), which is used horizontally and vertically.
+                                </p>
                             </div>
                             <div class="box">
                                 <div class="box-header">
@@ -890,7 +894,7 @@
                     <section>
                         <h2 class="headline-demopage" id="anchor-colors">Colors</h2>
                         <h3>Text colors</h3>
-                        <div class="flex-container flex-none no-wrap-on-small-devices">
+                        <div class="flex-container flex-items-flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--default-text-color)"></span>
                                 <span>Default Text-Color</span>
@@ -905,7 +909,7 @@
                             </span>
                         </div>
                         <h3>Highlight colors</h3>
-                        <div class="flex-container flex-none no-wrap-on-small-devices">
+                        <div class="flex-container flex-items-flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--primary-color)"></span>
                                 <span>Primary</span>
@@ -928,7 +932,7 @@
                             </span>
                         </div>
                         <h3>Shades of gray</h3>
-                        <div class="flex-container flex-none no-wrap-on-small-devices">
+                        <div class="flex-container flex-items-flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-white)"></span>
                                 <span>White</span>
@@ -975,7 +979,7 @@
                             </span>
                         </div>
                         <h3>System colors</h3>
-                        <div class="flex-container flex-none no-wrap-on-small-devices">
+                        <div class="flex-container flex-items-flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--error-color)"></span>
                                 <span>Error</span>
@@ -1098,18 +1102,17 @@
                         </div>
                         <!-- end accordions -->
 
-                        <!-- begin popups-->
-                        <h3 id="anchor-popups">Popups/over</h3>
-                        <button class="button" popovertarget="mypopover">Open Popup</button>
-                        <div popover id="mypopover">
-                            <button class="button" popovertargetaction="hide">
-                                <span class="icon-cancel"></span>
-                            </button>
-                            <h3>Popup/Popover</h3>
+                        <!-- begin popover-->
+                        <h3 id="anchor-popover">Popups/over</h3>
+                        <button class="button" popovertarget="mypopover">Open Popover</button>
+                        <dialog popover id="mypopover">
+                            <h3>Popup/over in Dialog</h3>
                             <p>This is a popover</p>
-                            <button class="button" popovertarget="mypopover" popovertargetaction="hide">Close Popup</button>
-                        </div>
-                        <!-- end popups-->
+                            <button class="button" popovertarget="mypopover" popovertargetaction="hide">
+                                <span>Close Popover</span>
+                            </button>
+                        </dialog>
+                        <!-- end popover-->
 
                         <!-- begin system-messages-->
                         <h3 id="anchor-system-messages">System Messages</h3>
@@ -1290,6 +1293,14 @@
 
                         <h4>Small buttons</h4>
                         <div class="button-wrapper align-left">
+                            <a href="#" class="button small" role="button">
+                                <span class="icon-cogs"></span>
+                                <span>Default button with a-tag</span>
+                            </a>
+                            <button class="button small">
+                                <span class="icon-cogs"></span>
+                                <span>Default button with button-tag</span>
+                            </button>
                             <a href="#" class="button small primary" role="button">
                                 <span class="icon-location-set"></span>
                                 <span>Primary button with a-tag</span>
@@ -1298,13 +1309,13 @@
                                 <span class="icon-location-set"></span>
                                 <span>Primary button with button-tag</span>
                             </button>
-                            <a href="#" class="button small" role="button">
+                            <a href="#" class="button small secondary" role="button">
                                 <span class="icon-cogs"></span>
-                                <span>Default/Secondary button with a-tag</span>
+                                <span>Secondary button with a-tag</span>
                             </a>
-                            <button class="button small">
+                            <button class="button small secondary">
                                 <span class="icon-cogs"></span>
-                                <span>Default/Secondary button with button-tag</span>
+                                <span>Secondary button with button-tag</span>
                             </button>
                             <a href="#" class="button small tertiary" role="button">
                                 <span class="icon-file-pdf"></span>
@@ -1319,6 +1330,16 @@
                         <h4>Large buttons</h4>
                         <div class="flex-container flex-direction-column">
                             <div class="button-wrapper align-left">
+                                <a href="#" class="button large" role="button">
+                                    <span class="icon-cogs"></span>
+                                    <span>Default button with a-tag</span>
+                                </a>
+                                <button class="button large">
+                                    <span class="icon-cogs"></span>
+                                    <span>Default button with button-tag</span>
+                                </button>
+                            </div>
+                            <div class="button-wrapper align-left">
                                 <a href="#" class="button large primary" role="button">
                                     <span class="icon-location-set"></span>
                                     <span>Primary button with a-tag</span>
@@ -1329,13 +1350,13 @@
                                 </button>
                             </div>
                             <div class="button-wrapper align-left">
-                                <a href="#" class="button large" role="button">
+                                <a href="#" class="button large secondary" role="button">
                                     <span class="icon-cogs"></span>
-                                    <span>Default/Secondary button with a-tag</span>
+                                    <span>Secondary button with a-tag</span>
                                 </a>
-                                <button class="button large">
+                                <button class="button large secondary">
                                     <span class="icon-cogs"></span>
-                                    <span>Default/Secondary button with button-tag</span>
+                                    <span>Secondary button with button-tag</span>
                                 </button>
                             </div>
                             <div class="button-wrapper align-left">
@@ -1353,6 +1374,16 @@
                         <div class="flex-container flex-direction-column">
                             <div class="button-wrapper align-left">
                                 <div class="button-wrapper align-left">
+                                    <a href="#" class="button large-icon" role="button">
+                                        <span class="icon-cogs"></span>
+                                        <span>Default button with a-tag</span>
+                                    </a>
+                                    <button class="button large-icon">
+                                        <span class="icon-cogs"></span>
+                                        <span>Default button with button-tag</span>
+                                    </button>
+                                </div>
+                                <div class="button-wrapper align-left">
                                     <a href="#" class="button large-icon primary" role="button">
                                         <span class="icon-location-set"></span>
                                         <span>Primary button with a-tag</span>
@@ -1363,13 +1394,13 @@
                                     </button>
                                 </div>
                                 <div class="button-wrapper align-left">
-                                    <a href="#" class="button large-icon" role="button">
+                                    <a href="#" class="button large-icon secondary" role="button">
                                         <span class="icon-cogs"></span>
-                                        <span>Default/Secondary button with a-tag</span>
+                                        <span>Secondary button with a-tag</span>
                                     </a>
-                                    <button class="button large-icon">
+                                    <button class="button large-icon secondary">
                                         <span class="icon-cogs"></span>
-                                        <span>Default/Secondary button with button-tag</span>
+                                        <span>Secondary button with button-tag</span>
                                     </button>
                                 </div>
                                 <div class="button-wrapper align-left">
@@ -1519,19 +1550,29 @@
                                 <div class="flex-container">
                                     <label for="default-inputfield">
                                         <span class="label-text">
-                                            <span>Default inputfield:<sup>*</sup></span>
+                                            <span>Default inputfield:</span>
                                             <a href="#" title="Open help"><span
                                                     class="icon-questionmark-circle"></span></a>
                                         </span>
                                         <input name="default-inputfield" id="default-inputfield"
                                             placeholder="Placeholdertext for default inputfield" type="text" />
                                     </label>
+                                    <label for="required-inputfield">
+                                        <span class="label-text">
+                                            <span>Requiered inputfield:<sup>*</sup></span>
+                                            <a href="#" class="icon-questionmark-circle" title="Open help"></a>
+                                        </span>
+                                        <input name="requiered-inputfield" id="requiered-inputfield"
+                                        required="required"
+                                            placeholder="Placeholdertext for requiered inputfield" type="text" />
+                                    </label>
                                     <label for="email-inputfield">
                                         <span class="label-text">
-                                            <span>E-Mail inputfield:<sup>*</sup></span>
+                                            <span>Email inputfield:<sup>*</sup></span>
                                             <a href="#" class="icon-questionmark-circle" title="Open help"></a>
                                         </span>
                                         <input name="email-inputfield" id="email-inputfield"
+                                        required="required"
                                             placeholder="Placeholdertext for email inputfield" type="email" />
                                     </label>
                                 </div>
@@ -1759,7 +1800,7 @@
                                             <span>Inputfield wth <a href="#">link</a> in label:<sup>*</sup></span>
                                             <a href="#" class="icon-questionmark-circle" title="Open help!"></a>
                                         </span>
-                                        <input name="inputfield-default" id="inputfield-default"
+                                        <input name="inputfield-default" id="inputfield-default" required="required"
                                             placeholder="Placeholdertext for inputfield" type="text" />
                                     </label>
                                     <label class="error" for="inputfield-with-error">
@@ -1769,6 +1810,7 @@
                                             </a>
                                         </span>
                                         <input name="inputfield-with-error" id="inputfield-with-error"
+                                            required="required"
                                             placeholder="Placeholdertext for inputfield with error" type="text" />
                                     </label>
                                     <label class="warning" for="inputfield-with-warning">
@@ -1776,7 +1818,7 @@
                                             <span>Inputfield with warning:<sup>*</sup></span>
                                             <a href="#" class="icon-exclamation-circle" title="A warning occurred!"></a>
                                         </span>
-                                        <input name="inputfield-with-warning" id="inputfield-with-warning"
+                                        <input name="inputfield-with-warning" id="inputfield-with-warning" required="required"
                                             placeholder="Placeholdertext for inputfield with warning" type="text" />
                                     </label>
                                     <label class="success" for="inputfield-with-success">
@@ -1784,7 +1826,7 @@
                                             <span>Inputfield with success:<sup>*</sup></span>
                                             <a href="#" class="icon-check-circle" title="Field filled correctly!"></a>
                                         </span>
-                                        <input name="inputfield-with-success" id="inputfield-with-success"
+                                        <input name="inputfield-with-success" id="inputfield-with-success" required="required"
                                             placeholder="Placeholdertext for inputfield with success" type="text" />
                                     </label>
                                     <label class="info" for="inputfield-with-info">
@@ -1792,7 +1834,7 @@
                                             <span>Inputfield with info:<sup>*</sup></span>
                                             <a href="#" class="icon-info-circle" title="Some information!"></a>
                                         </span>
-                                        <input name="inputfield-with-info" id="inputfield-with-info"
+                                        <input name="inputfield-with-info" id="inputfield-with-info" required="required"
                                             placeholder="Placeholdertext for inputfield with info" type="text" />
                                     </label>
                                 </div>
@@ -2030,8 +2072,11 @@
                                     </span>
                                 </div>
                                 <div class="label inline">
-                                    <span class="label-text">Label for Toggle-Switch-Checkbox-Group
-                                        (colored):<sup>*</sup></span>
+                                    <span class="label-text">
+                                        <span>Label for Toggle-Switch-Checkbox-Group
+                                        (colored):<sup>*</sup>
+                                        </span>
+                                    </span>
                                     <span class="flex-container flex-none">
                                         <label class="toggle-switch colored" for="checkbox9">
                                             <input type="checkbox" id="checkbox9" name="toggle-switch-chechboxgroup-3"
@@ -2401,15 +2446,16 @@
                             <div>flex-item</div>
                         </div>
                         <h3 id="anchor-flex-containers-reset-flex-all">flex-none (for all items)</h3>
-                        <div class="flex-container flex-none">
+                        <div class="flex-container flex-items-flex-none">
                             <div>flex-item</div>
                             <div>flex-item</div>
                             <div>flex-item</div>
                         </div>
                         <h3 id="anchor-flex-containers-reset-flex-all">flex-none (for single items)</h3>
                         <div class="flex-container">
-                            <div class="flex-none">this flex-item has class "flex-none" which equals (0 0 auto - so the
-                                item cannot shrink)</div>
+                            <div class="flex-none">
+                                this flex-item has class "flex-none" which equals (0 0 auto - so the item cannot shrink)
+                            </div>
                         </div>
                         <h3 id="anchor-flex-containers-reset-flex-all">reset-flex (for all items)</h3>
                         <div class="flex-container reset-flex">
@@ -2419,8 +2465,27 @@
                         </div>
                         <h3 id="anchor-flex-containers-reset-flex-single-item">reset-flex (for single item)</h3>
                         <div class="flex-container">
-                            <div class="reset-flex">this flex-item has class "reset-flex" which equals (0 1 auto - so
-                                the item can shrink)</div>
+                            <div class="reset-flex">
+                                this flex-item has class "reset-flex" which equals (0 1 auto - so the item can shrink)
+                            </div>
+                        </div>
+                        <h3 id="anchor-flex-containers-unequal">different widths</h3>
+                        <div class="flex-container" style="margin-bottom: 2rem;">
+                            <div class="flex-item-flex-2">flex-item 2/3</div>
+                            <div class="flex-item-flex-1">flex-item 1/3</div>
+                        </div>
+                        <div class="flex-container">
+                            <div class="flex-item-flex-1">flex-item 1/4</div>
+                            <div class="flex-item-flex-3">flex-item 3/4</div>
+                        </div>
+                        <h3 id="anchor-flex-containers-different-flex-by-breakpoints">different widths by breakpoints</h3>
+                        <div class="flex-container">
+                            <div class="flex-item-flex-3-large flex-item-flex-2-medium flex-item-flex-1-small">
+                                flex 3 (large), flex 2 (medium), flex 1 (small)
+                            </div>
+                            <div class="flex-item-flex-1-large flex-item-flex-2-medium flex-item-flex-1-small">
+                                flex 1 (large), flex 2 (medium), flex 1 (small)
+                            </div>
                         </div>
                         <h3 id="anchor-flex-containers-vertical">Vertical</h3>
                         <div class="flex-container vertical">
@@ -2428,15 +2493,7 @@
                             <div>flex-item</div>
                             <div>flex-item</div>
                         </div>
-                        <h3 id="anchor-flex-containers-unequal">Unequal widths</h3>
-                        <div class="flex-container" style="margin-bottom: 2rem;">
-                            <div class="flex-item-two-third">flex-item 2/3</div>
-                            <div class="flex-item-one-third">flex-item 1/3</div>
-                        </div>
-                        <div class="flex-container">
-                            <div class="flex-item-one-forth">flex-item 1/4</div>
-                            <div class="flex-item-three-forth">flex-item 3/4</div>
-                        </div>
+
                         <h3 id="anchor-flex-containers-flexible-scroll-container">Flexible scroll-container</h3>
                         <div class="flexible-scroll-container" style="border: 1px dotted gray;">
                             <div class="fixed-wrapper" style="border: 1px dotted gray;">
@@ -2597,7 +2654,7 @@ import packageJson from "../package.json"
 export default {
     data() {
         return {
-            selectedTemplate: "dating",
+            selectedTemplate: "material-web",
             openBoxes: ["template", "table"],
             showSidebar: true,
             openSidebar: true,

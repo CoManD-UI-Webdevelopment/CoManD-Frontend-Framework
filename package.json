@@ -1,6 +1,6 @@
 {
   "name": "comand-frontend-framework",
-  "version": "4.2.86",
+  "version": "4.3.29",
   "license": "GPL-3.0-only",
   "author": "CoManD-UI",
   "private": false,
@@ -26,11 +26,18 @@
     "./styles.css": {
       "import": "./dist/style.css"
     },
+    "./material-web.css": {
+      "import": "./dist/templates/material-web.css"
+    },
+    "./tailwind.css": {
+      "import": "./dist/templates/tailwind.css"
+    },
     "./demopage-only.css": {
       "import": "./dist/demopage-only.css"
     }
   },
   "dependencies": {
+    "comand-component-library": "^4.2.84",
     "comand-ui-iconfonts": "^1.0.19",
     "core-js": "^3.36.0",
     "vue": "^3.4.21"

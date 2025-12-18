@@ -1,0 +1,94 @@
+/* begin template 'tailwind' */
+html {
+    /* overwrite variables from framework.css */
+    --box-border-color: #e5e7eb;
+    --hyperlink-color: var(--primary-color);
+    --primary-color: rgb(37, 99, 235);
+    --button-background: rgb(29, 78, 216);
+    --button-border-radius: 0.8rem;
+    --headline-text-color: rgb(41, 37, 36);
+    --default-text-color: rgb(87, 83, 78);
+    --headline-text-color-h1: var(--primary-color);
+    --default-font-family: ui-sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    --default-line-height: 1.5;
+    --default-fonz-size: 1.6rem;
+    --default-font-weight: 400;
+    --dark-mode-text-color: hsl(from var(--color-white) h s 80%);
+    --box-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --default-border-radius: 1.2rem;
+}
+
+:where(button, .button) {
+    &:not(.primary) {
+        background: var(--color-white);
+
+        span {
+            color: var(--primary-color);
+        }
+    }
+
+    &.primary {
+        &:hover, &:active, &:focus {
+            --primary-color-lightness: 74%;
+            --button-box-shadow-higlighted: 0 .1rem .1rem var(--color-gray-50);
+        }
+    }
+}
+
+select {
+    padding: var(--form-input-padding);
+}
+
+.main-navigation-wrapper {
+    box-shadow: none;
+}
+
+tr {
+    background: none;
+}
+
+:where(button, .button, input[type="submit"]) {
+    &.primary {
+        background: var(--colored-background-gradient);
+    }
+
+    & > [class*="icon-"]:not(:only-child) {
+        top: 0;
+    }
+}
+
+:is(input, select, textarea, .input) {
+    &:focus {
+        background: hsl(from var(--primary-color) h 30% l / .2);
+    }
+}
+
+.system-message {
+    & > input[type="checkbox"] {
+        line-height: .3;
+    }
+}
+
+html {
+    font-size: var(--root-font-size);
+
+    &.light-mode {
+        .page-wrapper {
+            /*
+            background-image: url("../images/background/background-material-web-lightmode.jpg");*/
+        }
+    }
+
+    &.dark-mode {
+        .page-wrapper {
+            background-image: url("../images/background/background-material-web-darkmode.jpg");
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .page-wrapper {
+        background-image: url("../images/background/background-material-web-darkmode.jpg");
+    }
+}
+/* end template 'tailwind' */

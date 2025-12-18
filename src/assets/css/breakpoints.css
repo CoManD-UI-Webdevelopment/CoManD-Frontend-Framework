@@ -1,19 +1,23 @@
-/* breakpoints.css - last update: 2025/04/14
+/* breakpoints.css - last update: 2025/10/20
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES IN template.css OR YOUR OWN breakpoint-css
 */
 /* begin css for medium breakpoint ------------------------------------------------------------------------------------------ */
 @media only screen and (width <= 1023px) {
-    html {
+    html, .wrap-no-medium-devices {
         --grid-columns: 8; /* grid-columns */
         --grid-small-span: calc(var(--grid-columns) / 4); /* default column span smaller part */
         --default-line-height: 1.5; /* avoids hyperlinks inside text to be to narrow to each other */
         --default-gap: 1.5rem; /* default-gap */
+        --box-min-width: 30rem; /* box-min-width */
     }
 
     html, body {
         height: auto;
-        min-height: 100%; /* fallback for old browser */
         min-height: 100dvh;
+    }
+
+    .top-on-medium-devices {
+        order: -1;
     }
 
     /* begin column-count */
@@ -56,12 +60,30 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         transform: scale(1.4); /* scale radiobuttons and checkbox to double of the original size (to click them more easily) */
         margin: 0 var(--default-margin) 0 0;
     }
+
+    .flex-direction-row-for-medium {
+        flex-direction: row !important;
+    }
+
+    .flex-container {
+        .flex-item-flex-1-medium {
+            flex: 1;
+        }
+        
+        .flex-item-flex-2-medium {
+            flex: 2;
+        }
+        
+        .flex-item-flex-3-medium {
+            flex: 3;
+        }
+    }
 }
 /* end css for medium breakpoint ------------------------------------------------------------------------------------------ */
 
 /* begin css for small breakpoint ------------------------------------------------------------------------------------------ */
-@media only screen and (width <= 600px) {
-    html {
+@media only screen and (width <= 640px) {
+    html, .wrap-no-small-devices {
         --grid-columns: 4; /* grid-columns */
         --grid-small-span: var(--grid-columns); /* default column span smaller part */
         --grid-large-span: var(--grid-columns); /* default column span larger part */
@@ -69,6 +91,10 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         --default-gap: 1rem; /* default-gap */
         --golden-ratio-small-width: 100%; /* set to full width to use entire space */
         --golden-ratio-large-width: 100%; /* set to full width to use entire space */
+    }
+
+    .top-on-small-devices {
+        order: -1;
     }
 
     /* begin column-count */
@@ -79,10 +105,6 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 
     :is(button, .button, input[type="submit"]):not(.stretch-on-small-devices) {
         width: auto;
-    }
-
-    a[href^="tel"]:not(.button) {
-        text-decoration: underline;
     }
 
     :is(label, .label) {
@@ -134,6 +156,18 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
             align-items: flex-end;
         }
 
+        .flex-item-flex-1-small {
+            flex: 1;
+        }
+        
+        .flex-item-flex-2-small {
+            flex: 2;
+        }
+        
+        .flex-item-flex-3-small {
+            flex: 3;
+        }
+
         &.row-for-small, &.no-wrap-on-small-devices {
             flex-direction: row; /* arrange flex-items horizontally */
 
@@ -141,6 +175,14 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
                 width: auto;
             }
         }
+
+        :where(input, select, textarea, .input) {
+            width: 100%;
+        }
+    }
+
+    .flex-direction-row-for-devices {
+        flex-direction: row !important;
     }
 
     [class*="grid-container"][class$="fractions"] {
@@ -176,7 +218,6 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     }
 
     fieldset {
-
         > label:first-child {
             margin-top: 0;
         }
@@ -243,10 +284,6 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 
     .multiple-switch .flex-container {
         flex-direction: row;
-    }
-
-    .flex-container :where(input, select, textarea, .input) {
-        width: 100%;
     }
 
     :where(label, .label) .flex-container {
