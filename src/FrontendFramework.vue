@@ -204,6 +204,7 @@
                                             <li><a href="#anchor-accordions">Accordions</a></li>
                                             <li><a href="#anchor-popover">Popover</a></li>
                                             <li><a href="#anchor-system-messages">System Messages</a></li>
+                                            <li><a href="#anchor-tooltips">Tooltips</a></li>
                                             <li><a href="#anchor-buttons">Buttons</a></li>
                                             <li><a href="#anchor-tags">Tags</a></li>
                                         </ul>
@@ -1039,7 +1040,6 @@
                 <div class="width-limitation-wrapper">
                     <section>
                         <h2 class="headline-demopage" id="anchor-user-interface">User Interface</h2>
-                        
                         <!-- begin accordions -->
                         <h3 id="anchor-accordions">Accordions</h3>
                         <div class="accordion-wrapper">
@@ -1104,11 +1104,23 @@
 
                         <!-- begin popover-->
                         <h3 id="anchor-popover">Popups/over</h3>
-                        <button class="button" popovertarget="mypopover">Open Popover</button>
+                        <div class="button-wrapper align-left">
+                            <button class="button" popovertarget="mypopover">Open Popover (default)</button>
+                            <button class="button" popovertarget="mypopover-modal">Open Popover (backdrop)</button>
+                        </div>
+
                         <dialog popover id="mypopover">
                             <h3>Popup/over in Dialog</h3>
-                            <p>This is a popover</p>
+                            <p>This is a default popover</p>
                             <button class="button" popovertarget="mypopover" popovertargetaction="hide">
+                                <span>Close Popover</span>
+                            </button>
+                        </dialog>
+                        
+                        <dialog popover class="modal" id="mypopover-modal">
+                            <h3>Popup/over in Dialog</h3>
+                            <p>This is a popover with backdrop</p>
+                            <button class="button" popovertarget="mypopover-modal" popovertargetaction="hide">
                                 <span>Close Popover</span>
                             </button>
                         </dialog>
@@ -1145,6 +1157,20 @@
                             <input type="checkbox" title="Close system message">
                         </div>
                         <!-- end system-messages-->
+
+                        <!-- begin tooltip -->
+                        <h3 id="anchor-tooltips">Tooltips</h3>
+                         <button style="anchor-name: --tooltip-anchor;" title="Click to open tooltip" popovertarget="tooltip-target" aria-describedby="tooltip-target">
+                            <span class="icon-questionmark"></span>
+                            <span>Toggle Tooltip</span>
+                        </button>
+                        <div id="tooltip-target" role="tooltip" popover style="position-anchor: --tooltip-anchor;">
+                            <span>This is a popover-tooltip linked to an anchor (the button that opens it)!</span>
+                            <button class="close-tooltip no-style" popovertarget="tooltip-target" popovertargetaction="hide" title="Close Tooltip">
+                                <span class="icon-cancel-circle"></span>
+                            </button>
+                        </div>
+                        <!-- end tooltip -->
 
                         <h3 id="anchor-buttons">Buttons</h3>
                         <h4>Default buttons</h4>
@@ -1477,6 +1503,7 @@
                         <form method="post">
                             <fieldset class="flex-container">
                                 <legend>Legend</legend>
+                                <h3>Inputfields (date)</h3>
                                 <div class="label">
                                     <span class="label-text">Enter dates:</span>
                                     <span class="flex-container flex-none">
@@ -1490,15 +1517,7 @@
                                         </label>
                                     </span>
                                 </div>
-                                <label for="single-checkbox">
-                                    <input id="single-checkbox" value="1" checked="checked" type="checkbox" />
-                                    <span class="label-text">Label for single checkbox</span>
-                                </label>
-                                <label for="checkbox-with-long-label">
-                                    <input id="checkbox-with-long-label" value="1" type="checkbox" />
-                                    <span class="label-text">Label for single checkbox with very long text that wraps on
-                                        small devices</span>
-                                </label>
+                                <h3>Radiobuttons</h3>
                                 <div class="label inline">
                                     <span class="label-text">Label for radiobuttons:</span>
                                     <span class="flex-container flex-none">
@@ -1523,6 +1542,16 @@
                                         </label>
                                     </span>
                                 </div>
+                                <h3>Checkboxes</h3>
+                                <label for="single-checkbox">
+                                    <input id="single-checkbox" value="1" checked="checked" type="checkbox" />
+                                    <span class="label-text">Label for single checkbox</span>
+                                </label>
+                                <label for="checkbox-with-long-label">
+                                    <input id="checkbox-with-long-label" value="1" type="checkbox" />
+                                    <span class="label-text">Label for single checkbox with very long text that wraps on
+                                        small devices</span>
+                                </label>
                                 <div class="label inline">
                                     <span class="label-text">Label for checkboxes:</span>
                                     <span class="flex-container flex-none">
@@ -1547,12 +1576,18 @@
                                         </label>
                                     </span>
                                 </div>
+                                <h3>Inputfields (text)</h3>
                                 <div class="flex-container">
                                     <label for="default-inputfield">
                                         <span class="label-text">
                                             <span>Default inputfield:</span>
-                                            <a href="#" title="Open help"><span
-                                                    class="icon-questionmark-circle"></span></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Open help">
+                                                <span class="icon-questionmark-circle"></span>
+                                            </button>
                                         </span>
                                         <input name="default-inputfield" id="default-inputfield"
                                             placeholder="Placeholdertext for default inputfield" type="text" />
@@ -1560,23 +1595,18 @@
                                     <label for="required-inputfield">
                                         <span class="label-text">
                                             <span>Requiered inputfield:<sup>*</sup></span>
-                                            <a href="#" class="icon-questionmark-circle" title="Open help"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Open help">
+                                                <span class="icon-questionmark-circle"></span>
+                                            </button>
                                         </span>
                                         <input name="requiered-inputfield" id="requiered-inputfield"
                                         required="required"
                                             placeholder="Placeholdertext for requiered inputfield" type="text" />
                                     </label>
-                                    <label for="email-inputfield">
-                                        <span class="label-text">
-                                            <span>Email inputfield:<sup>*</sup></span>
-                                            <a href="#" class="icon-questionmark-circle" title="Open help"></a>
-                                        </span>
-                                        <input name="email-inputfield" id="email-inputfield"
-                                        required="required"
-                                            placeholder="Placeholdertext for email inputfield" type="email" />
-                                    </label>
-                                </div>
-                                <div class="flex-container align-bottom">
                                     <label for="textfield1">
                                         <span class="label-text">
                                             <span>A very long label for textfield 1 that wraps if there is no available
@@ -1591,32 +1621,22 @@
                                             value="Some text for disabled textfield" type="text" disabled="disabled"
                                             title="tooltip" />
                                     </label>
-                                    <label for="searchfield">
-                                        <span class="label-text"><span>Label for searchfield:</span></span>
-                                        <span class="input-wrapper">
-                                            <input name="searchfield" id="searchfield" placeholder="Keyword(s)"
-                                                type="search" />
-                                            <a href="#" class="button flex-none"><span class="icon-search"></span></a>
-                                        </span>
+                                </div>
+                                <h3>Inputfields (number, inline)</h3>
+                                <div class="flex-container">
+                                    <label class="inline stretch-field" for="numberfield">
+                                        <span class="label-text"><span>Label for numberfield (inline,
+                                                stretched):</span></span>
+                                        <input name="numberfield" id="numberfield" placeholder="1" type="number"
+                                            value="0" />
                                     </label>
-                                    <label for="select-file-field">
-                                        <span class="label-text"><span>Label for select-file-field:</span></span>
-                                        <input name="select-file-field" id="select-file-field" placeholder="Keyword(s)"
-                                            type="file" />
+                                    <label class="inline" for="numberfield2">
+                                        <span class="label-text"><span>Label for numberfield with decimal
+                                                (inline):</span></span>
+                                        <input name="numberfield" id="numberfield2" placeholder="0.0" type="number"
+                                            step="0.1" />
                                     </label>
                                 </div>
-                                <label class="inline stretch-field" for="numberfield">
-                                    <span class="label-text"><span>Label for numberfield (inline,
-                                            stretched):</span></span>
-                                    <input name="numberfield" id="numberfield" placeholder="1" type="number"
-                                        value="0" />
-                                </label>
-                                <label class="inline" for="numberfield2">
-                                    <span class="label-text"><span>Label for numberfield with decimal
-                                            (inline):</span></span>
-                                    <input name="numberfield" id="numberfield2" placeholder="0.0" type="number"
-                                        step="0.1" />
-                                </label>
                                 <label class="inline" for="colorfield">
                                     <span class="label-text"><span>Label for colorfield (inline):</span></span>
                                     <input name="colorfield" id="colorfield" type="color" />
@@ -1626,31 +1646,31 @@
                                             (inline):<sup>*</sup></span></span>
                                     <input name="datefield" id="datefield" type="date" required="required" />
                                 </label>
-                                <label class="inline" for="rangeslider">
-                                    <span class="label-text"><span>Label for (required) rangeslider
-                                            (inline):</span></span>
-                                    <input name="rangeslider" id="rangeslider" type="range" />
-                                </label>
-                                <label class="inline" for="rangeslider2">
-                                    <span class="label-text"><span>Label for (required and disabled) rangeslider
-                                            (inline):</span></span>
-                                    <input name="rangeslider" id="rangeslider2" type="range" disabled="disabled" />
-                                </label>
+                                <h3>Rangeslider (inline)</h3>
                                 <div class="flex-container">
-                                    <div class="label">
-                                        <span class="label-text"><span>Label for Zip/City (with hidden
-                                                labels):</span></span>
-                                        <span class="input-wrapper">
-                                            <label for="zip" class="reset-flex">
-                                                <span class="hidden">Zip</span>
-                                                <input name="zip" id="zip" placeholder="12345" type="number" />
-                                            </label>
-                                            <label for="city">
-                                                <span class="hidden">City</span>
-                                                <input name="city" id="city" placeholder="City" type="text" />
-                                            </label>
-                                        </span>
-                                    </div>
+                                    <label class="inline" for="rangeslider">
+                                        <span class="label-text"><span>Label for (required) rangeslider
+                                                (inline):</span></span>
+                                        <input name="rangeslider" id="rangeslider" type="range" />
+                                    </label>
+                                    <label class="inline" for="rangeslider2">
+                                        <span class="label-text"><span>Label for (required and disabled) rangeslider
+                                                (inline):</span></span>
+                                        <input name="rangeslider" id="rangeslider2" type="range" disabled="disabled" />
+                                    </label>
+                                </div>
+                                <h3>Selectboxes and Datalists</h3>
+                                <div class="flex-container">
+                                    <label for="selectbox-default">
+                                    <span class="label-text">
+                                        <span>Label for selectbox (default):</span>
+                                    </span>
+                                    <select id="selectbox-default">
+                                        <option value="option-1">Otpion #1</option>
+                                        <option value="option-2">Otpion #2</option>
+                                        <option value="option-3">Otpion #3</option>
+                                    </select>
+                                </label>
                                     <label for="selectbox-required">
                                         <span class="label-text">
                                             <span>Label for selectbox (required):<sup>*</sup></span>
@@ -1685,12 +1705,56 @@
                                         </datalist>
                                     </label>
                                 </div>
+                                <h3>Misc. inputfields and -elements</h3>
+                                <label for="email-inputfield">
+                                        <span class="label-text">
+                                            <span>Email inputfield:<sup>*</sup></span>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Open help">
+                                                <span class="icon-questionmark-circle"></span>
+                                            </button>
+                                        </span>
+                                        <input name="email-inputfield" id="email-inputfield"
+                                        required="required"
+                                            placeholder="Placeholdertext for email inputfield" type="email" />
+                                    </label>
+                                <div class="flex-container align-flex-end">
+                                    <label for="searchfield">
+                                        <span class="label-text"><span>Label for searchfield:</span></span>
+                                        <span class="input-wrapper">
+                                            <input name="searchfield" id="searchfield" placeholder="Keyword(s)"
+                                                type="search" />
+                                            <a href="#" class="button flex-none"><span class="icon-search"></span></a>
+                                        </span>
+                                    </label>
+                                    <label for="select-file-field">
+                                        <span class="label-text"><span>Label for select-file-field:</span></span>
+                                        <input name="select-file-field" id="select-file-field" placeholder="Keyword(s)"
+                                            type="file" />
+                                    </label>
+                                </div>
+                                <div class="label">
+                                    <span class="label-text"><span>Label for Zip/City (with hidden
+                                            labels):</span></span>
+                                    <span class="input-wrapper">
+                                        <label for="zip" class="reset-flex">
+                                            <span class="hidden">Zip</span>
+                                            <input name="zip" id="zip" placeholder="12345" type="number" />
+                                        </label>
+                                        <label for="city">
+                                            <span class="hidden">City</span>
+                                            <input name="city" id="city" placeholder="City" type="text" />
+                                        </label>
+                                    </span>
+                                </div>
                                 <label class="textarea" for="textarea">
                                     <span class="label-text">
-                                        <span>Label for textarea:<sup>*</sup></span>
+                                        <span>Label for textarea:</span>
                                     </span>
-                                    <textarea id="textarea" placeholder="Placeholdertext for textarea"
-                                        required="required"></textarea>
+                                    <textarea id="textarea" placeholder="Placeholdertext for textarea"></textarea>
                                 </label>
                             </fieldset>
                             <div class="button-wrapper align-right">
@@ -1747,7 +1811,7 @@
                         <form method="post" action="#">
                             <fieldset class="flex-container">
                                 <legend>Form with native validation</legend>
-                                <div class="flex-container align-items-top">
+                                <div class="flex-container align-items-flex-start">
                                     <label for="inputfield-with-native-validation">
                                         <span class="label-text">
                                             <span>Inputfield with native validation:<sup>*</sup></span>
@@ -1798,7 +1862,13 @@
                                     <label for="inputfield-default">
                                         <span class="label-text">
                                             <span>Inputfield wth <a href="#">link</a> in label:<sup>*</sup></span>
-                                            <a href="#" class="icon-questionmark-circle" title="Open help!"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Open help">
+                                                <span class="icon-questionmark-circle"></span>
+                                            </button>
                                         </span>
                                         <input name="inputfield-default" id="inputfield-default" required="required"
                                             placeholder="Placeholdertext for inputfield" type="text" />
@@ -1806,8 +1876,13 @@
                                     <label class="error" for="inputfield-with-error">
                                         <span class="label-text">
                                             <span>Inputfield with error:<sup>*</sup></span>
-                                            <a href="#" class="icon-error-circle" title="Please fill field correctly!">
-                                            </a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Please fill field correctly!">
+                                                <span class="icon-error-circle"></span>
+                                            </button>
                                         </span>
                                         <input name="inputfield-with-error" id="inputfield-with-error"
                                             required="required"
@@ -1816,7 +1891,13 @@
                                     <label class="warning" for="inputfield-with-warning">
                                         <span class="label-text">
                                             <span>Inputfield with warning:<sup>*</sup></span>
-                                            <a href="#" class="icon-exclamation-circle" title="A warning occurred!"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="A warning occurred!">
+                                                <span class="icon-exclamation-circle"></span>
+                                            </button>
                                         </span>
                                         <input name="inputfield-with-warning" id="inputfield-with-warning" required="required"
                                             placeholder="Placeholdertext for inputfield with warning" type="text" />
@@ -1824,7 +1905,13 @@
                                     <label class="success" for="inputfield-with-success">
                                         <span class="label-text">
                                             <span>Inputfield with success:<sup>*</sup></span>
-                                            <a href="#" class="icon-check-circle" title="Field filled correctly!"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Field filled correctly!">
+                                                <span class="icon-check-circle"></span>
+                                            </button>
                                         </span>
                                         <input name="inputfield-with-success" id="inputfield-with-success" required="required"
                                             placeholder="Placeholdertext for inputfield with success" type="text" />
@@ -1832,7 +1919,13 @@
                                     <label class="info" for="inputfield-with-info">
                                         <span class="label-text">
                                             <span>Inputfield with info:<sup>*</sup></span>
-                                            <a href="#" class="icon-info-circle" title="Some information!"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Some information!">
+                                                <span class="icon-info-circle"></span>
+                                            </button>
                                         </span>
                                         <input name="inputfield-with-info" id="inputfield-with-info" required="required"
                                             placeholder="Placeholdertext for inputfield with info" type="text" />
@@ -1844,7 +1937,13 @@
                                         <span class="label-text">
                                             <span>Selectbox with (default with help-icon) and wrapping
                                                 label-text:<sup>*</sup></span>
-                                            <a href="#" class="icon-questionmark-circle" title="Open help!"></a>
+                                                <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Open help">
+                                                <span class="icon-questionmark-circle"></span>
+                                            </button>
                                         </span>
                                         <select name="selectbox-default" id="selectbox-default" required="required">
                                             <option value="">Please select&hellip;</option>
@@ -1856,8 +1955,13 @@
                                     <label class="error" for="selectbox-with-error">
                                         <span class="label-text">
                                             <span>Selectbox with error:<sup>*</sup></span>
-                                            <a href="#" class="icon-error-circle"
-                                                title="Please fill field correctly!"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Please fill field correctly!">
+                                                <span class="icon-error-circle"></span>
+                                            </button>
                                         </span>
                                         <select name="selectbox-with-error" id="selectbox-with-error"
                                             required="required">
@@ -1870,7 +1974,13 @@
                                     <label class="warning" for="selectbox-with-warning">
                                         <span class="label-text">
                                             <span>Selectbox with warning:<sup>*</sup></span>
-                                            <a href="#" class="icon-exclamation-circle" title="A warning occurred!"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="A warning occurred!">
+                                                <span class="icon-exclamation-circle"></span>
+                                            </button>
                                         </span>
                                         <select name="selectbox-with-warning" id="selectbox-with-warning"
                                             required="required">
@@ -1883,7 +1993,13 @@
                                     <label class="success" for="selectbox-with-success">
                                         <span class="label-text">
                                             <span>Selectbox with success:<sup>*</sup></span>
-                                            <a href="#" class="icon-check-circle" title="Field filled correctly!"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Field filled correctly!">
+                                                <span class="icon-check-circle"></span>
+                                            </button>
                                         </span>
                                         <select name="selectbox-with-success" id="selectbox-with-success"
                                             required="required">
@@ -1896,7 +2012,13 @@
                                     <label class="info" for="selectbox-with-info">
                                         <span class="label-text">
                                             <span>Selectbox with info:<sup>*</sup></span>
-                                            <a href="#" class="icon-info-circle" title="Some information!"></a>
+                                            <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Some information!">
+                                                <span class="icon-info-circle"></span>
+                                            </button>
                                         </span>
                                         <select name="selectbox-with-info" id="selectbox-with-info" required="required">
                                             <option value="">Please select&hellip;</option>
@@ -1909,8 +2031,7 @@
                             </fieldset>
                         </form>
 
-                        <h3 id="anchor-advanced-form-elements">Advanced form elements (fieldset with
-                            flex-container)</h3>
+                        <h3 id="anchor-advanced-form-elements">Advanced form elements</h3>
                         <form>
                             <fieldset class="flex-container">
                                 <legend>Legend</legend>
@@ -2262,9 +2383,14 @@
                                 <div class="cmd-input-group label multiple-switch">
                                     <span class="label-text" id="label-multiple-switch-radio"
                                         aria-labelledby="label-multiple-switch-radio">
-                                        <span>Grouplabel for radio-group given by property styled as
-                                            multiple-switch</span>
-                                        <a href="#" class="icon-questionmark-circle" title="Open help"></a>
+                                        <span>Grouplabel for radio-group styled as multiple-switch</span>
+                                        <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Open help">
+                                                <span class="icon-questionmark-circle"></span>
+                                            </button>
                                     </span>
                                     <span class="flex-container flex-none no-gap">
                                         <label for="radio-id-1-multi">
@@ -2293,9 +2419,14 @@
                                 <div class="cmd-input-group label multiple-switch">
                                     <span class="label-text" id="label-multiple-switch-checkbox"
                                         aria-labelledby="label-multiple-switch-checkbox">
-                                        <span>Grouplabel for checkbox-group given by property styled as multiple-switch
-                                            (stretched)</span>
-                                        <a href="#" class="icon-questionmark-circle" title="Open help"></a>
+                                        <span>Grouplabel for checkbox-group styled as multiple-switch (stretched)</span>
+                                        <button 
+                                                type="button"
+                                                class="no-style" 
+                                                href="#" 
+                                                title="Open help">
+                                                <span class="icon-questionmark-circle"></span>
+                                            </button>
                                     </span>
                                     <span class="flex-container no-gap">
                                         <label for="checkbox-id-1-multi">

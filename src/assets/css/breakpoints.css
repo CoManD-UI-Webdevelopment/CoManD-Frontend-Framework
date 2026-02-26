@@ -132,7 +132,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
             max-width: 100%;
         }
 
-        &.align-items-top, &.align-items-flex-start {
+        &.align-items-flex-start {
             justify-content: flex-start !important;
         }
 
@@ -140,11 +140,11 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
             justify-content: center !important;
         }
 
-        &.align-items-bottom, &.align-items-flex-end {
+         &.align-items-flex-end {
             justify-content: flex-end !important;
         }
 
-        &.justify-content-top, &.justify-content-flex-start {
+        &.justify-content-flex-start {
             align-items: flex-start;
         }
 

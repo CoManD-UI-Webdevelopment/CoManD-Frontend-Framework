@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2025/12/17
+framework.css - last update: 2026/02/26
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -94,6 +94,7 @@ html {
     --icon-and-text-gap: .5rem; /* gap between icons and text if wrapped inside .icontext-wrapper */
     --default-border-radius: 0; /* default radius */
     --full-circle: 50%; /* radius for full circles */
+    --default-corner-shape: round; /* default corner-shape */
     --default-aspect-ratio: auto; /* default aspect-ratio */
     /* END WEBSITE-GRID AND GLOBAL SETTINGS ------------------------------------------------------------------------------------------ */
 
@@ -105,13 +106,14 @@ html {
     /* END SITE HEADER ------------------------------------------------------------------------------------------ */
 
     /* BEGIN MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
-    --main-navigation-background: var(--color-scheme-background); /* background(-color) for entire main navigation (and all sub-entries) */
-    --main-navigation-background-highlighted: var(--color-white); /* background(-color) for highlighted entries in main navigation (and all sub-entries) */
-    --main-navigation-border: var(--default-border); /* border for main navigation (and all sub-entries) */
-    --main-navigation-border-radius: var(--default-border-radius); /* border-radius for main navigation (and bottom of sub-entries-list) */
-    --main-navigation-hyperlink-color: var(--color-scheme-text-color); /* hyperlink-color for main-navigation */
+    --main-navigation-background: var(--color-scheme-background); /* background(-color) for entire main-navigation (and all sub-entries) */
+    --main-navigation-background-highlighted: var(--color-white); /* background(-color) for highlighted entries in main-navigation (and all sub-entries) */
+    --main-navigation-border: var(--default-border); /* border for main-navigation (and all sub-entries) */
+    --main-navigation-border-radius: var(--default-border-radius); /* border-radius for main-navigation (and bottom of sub-entries-list) */
+    --main-navigation-corder-shape: var(--default-corner-shape); /* corner-shape for main-navigation */
+    --main-navigation-hyperlink-color: var(--color-scheme-text-color); /* hyperlink-color for main navigation */
     --main-navigation-hyperlink-color-highlighted: var(--hyperlink-color); /* highlighted hyperlink-color for main-navigation */
-    --main-navigation-hyperlink-color-active: var(--hyperlink-color); /* active hyperlink-color for  main-navigation */
+    --main-navigation-hyperlink-color-active: var(--hyperlink-color); /* active hyperlink-color for main-navigation */
     --main-navigation-main-level-icon-size: var(--default-icon-size); /* icon-size for icons on main-level of main-navigation */
     --main-navigation-sub-level-icon-size: var(--default-icon-size); /* icon-size for icons on (all) sub-levels of main-navigation */
     /* END MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
@@ -139,17 +141,17 @@ html {
     --disabled-background: hsl(from var(--color-black) h s var(--disabled-background-lightness)); /* disabled-background(-color) */
     --disabled-background-reduced-opacity: hsla(var(--disabled-background), var(--reduced-opacity)); /* disabled-background-color with reduced opacity */
 
-    /* background-lightness for filled inputfields (default, :valid, :invalid) */
-    --form-input-filled-background-hue-success: var(--success-color-hue);
-    --form-input-filled-background-hue-warning: var(--warning-color-hue);
-    --form-input-filled-background-hue-error: var(--error-color-hue);
-    --form-input-filled-background-hue-info: var(--info-color-hue);
-    --form-input-filled-background-saturation: 100%;
-    --form-input-filled-background-lightness: 97%;
-    --form-input-filled-background-success: hsl(var(--form-input-filled-background-hue-success), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness));
-    --form-input-filled-background-warning: hsl(var(--form-input-filled-background-hue-warning), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness));
-    --form-input-filled-background-error: hsl(var(--form-input-filled-background-hue-error), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness));
-    --form-input-filled-background-info: hsl(var(--form-input-filled-background-hue-info), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness));
+    /* background for filled inputfields (default, :valid, :invalid) */
+    --form-input-filled-background-hue-success: var(--success-color-hue); /* background-hue for filled form-inputs with status 'success' */
+    --form-input-filled-background-hue-warning: var(--warning-color-hue); /* background-hue for filled form-inputs with status 'warning' */
+    --form-input-filled-background-hue-error: var(--error-color-hue); /* background-hue for filled form-inputs with status 'error' */
+    --form-input-filled-background-hue-info: var(--info-color-hue); /* background-hue for filled form-inputs with status 'info' */
+    --form-input-filled-background-saturation: 100%; /* background-saturation for filled form-inputs */
+    --form-input-filled-background-lightness: 97%; /* background-lightness for filled form-inputs */
+    --form-input-filled-background-success: hsl(var(--form-input-filled-background-hue-success), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'success' */
+    --form-input-filled-background-warning: hsl(var(--form-input-filled-background-hue-warning), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'warning' */
+    --form-input-filled-background-error: hsl(var(--form-input-filled-background-hue-error), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'error' */
+    --form-input-filled-background-info: hsl(var(--form-input-filled-background-hue-info), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'info' */
     /* END BACKGROUNDS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BORDERS AND OUTLINES ------------------------------------------------------------------------------------------ */
@@ -271,13 +273,13 @@ html {
     --hyperlink-color-lightness-light-mode: var(--primary-color-lightness); /* hyperlink-color-lightness  for light-mode */
     --hyperlink-color-hue-dark-mode: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
     --hyperlink-color-saturation-dark-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
-    --hyperlink-color-lightness-dark-mode: 40%; /* hyperlink-color-lightness for dark-mode */
+    --hyperlink-color-lightness-dark-mode: 45%; /* hyperlink-color-lightness for dark-mode */
     --hyperlink-color: light-dark(hsl(var(--hyperlink-color-hue-light-mode), var(--hyperlink-color-saturation-light-mode), var(--hyperlink-color-lightness-light-mode)), hsl(var(--hyperlink-color-hue-dark-mode), var(--hyperlink-color-saturation-dark-mode), var(--hyperlink-color-lightness-dark-mode))); /* hyperlink-color */
 
     /* hyperlink-color (highlighted) (i.e. for :hover, :active, :focus, .active) */
     --hyperlink-color-highlighted-hue-light-mode: var(--primary-color-hue); /* hyperlink-color-highlighted-hue for light-mode */
     --hyperlink-color-highlighted-saturation-light-mode: var(--primary-color-saturation); /* hyperlink-color-highlighted-saturation for light-mode */
-    --hyperlink-color-highlighted-lightness-light-mode: var(--primary-color-lightness); /* hyperlink-color-highlighted-lightness for light-mode */
+    --hyperlink-color-highlighted-lightness-light-mode: 40%; /* hyperlink-color-highlighted-lightness for light-mode */
     --hyperlink-color-highlighted-hue-dark-mode: var(--primary-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
     --hyperlink-color-highlighted-saturation-dark-mode: var(--primary-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
     --hyperlink-color-highlighted-lightness-dark-mode: 60%; /* hyperlink-color-lightness for dark-mode */
@@ -297,7 +299,7 @@ html {
 
     /* font-sizes */
     --root-font-size: 62.5%; /* default size is 16px, 62.5% of that is 10px = 1rem */
-    --default-font-size: var(--font-size-medium); /* default font-size for text-elements */
+    --default-font-size: var(--font-size-medium); /* default font-size for all text-elements (paragraphs, lists, tables, labels, hyperlinks, buttons etc.) */
     --font-size-small: 1.2rem; /* font-size for small text */
     --font-size-medium: 1.4rem; /* font-size for default/medium text */
     --font-size-large: 1.6rem; /* font-size for large text */
@@ -335,6 +337,14 @@ html {
     --hyperlink-text-decoration-thickness: auto; /* text-decoration-thickness for hyperlinks */
     --hyperlink-text-decoration-highlighted: none; /* text-decoration for highlighted (:hover, :active, :focus) hyperlinks */
 
+    /* paragraphs */
+    --paragraph-font-family: var(--default-font-family); /* font-family for paragraphs */
+    --paragraph-font-size: var(--default-font-size); /* font-size for paragraphs */
+    --paragraph-font-weight: var(--default-font-weight); /* font-weight for paragraphs */
+    --paragraph-line-height: var(--default-line-height); /* line-height for paragraphs */
+    --paragraph-margin-top: 0; /* margin-top for paragraphs */
+    --paragraph-margin-bottom: var(--default-margin); /* margin-bottom for paragraphs */
+
     /* headlines */
     --headline-font-family: var(--default-font-family); /* font-family for headlines */
     --headline-font-size-h1: 3.6rem; /* font-size for h1 */
@@ -367,6 +377,7 @@ html {
     --accordion-border-color-open: var(--default-border-color); /* border-color for accordions when open */ 
     --accordion-border: var(--accordion-border-width) var(--accordion-border-style) var(--accordion-border-color); /* border for accordions */
     --accordion-border-radius: var(--default-border-radius); /* border-radius for accordions */
+    --accordion-corner-shape: var(--default-corner-shape); /* corner-shape for accordions */
     --accordion-summary-background: var(--color-scheme-background); /* background(-color) for accordion-summary */
     --accordion-summary-text-color: var(--color-scheme-text-color); /* text-color for accordion-summary */
     --accordion-summary-background-open: var(--color-scheme-background); /* background(-color) for accordion-summary when open */
@@ -487,6 +498,7 @@ html {
     --box-border-color: var(--default-border-color); /* border-color for boxes */
     --box-border: var(--box-border-width) var(--box-border-style) var(--box-border-color); /* border for boxes */
     --box-border-radius: var(--default-border-radius); /* border-radius for boxes */
+    --box-corner-shape: var(--default-corner-shape); /* corner-shape for boxes */
     --box-header-background: none; /* background(-color) for box-header */
     --box-header-text-color: var(--color-scheme-text-color); /* text-color for box-header */
     --box-header-border-bottom: var(--default-border); /* border-bottom for box-header */
@@ -509,6 +521,7 @@ html {
     --fieldset-border-color: var(--default-border-color); /* border-radius for fieldsets */
     --fieldset-border: var(--fieldset-border-width) var(--fieldset-border-style) var(--fieldset-border-color); /* border for fieldsets */
     --fieldset-border-radius: var(--default-border-radius); /* border-radius for fieldsets */
+    --fieldset-corner-shape: var(--default-corner-shape); /* corner-shape for fieldsets */
     --fieldset-box-shadow: none; /* box-shadow for fieldsets */
     --fieldset-padding: calc(var(--default-padding) * 2); /* padding for fieldsets */
     --fieldset-margin: 0 0 calc(var(--default-margin) * 2) 0; /* margin for fieldsets */
@@ -553,6 +566,7 @@ html {
     --form-input-border-color-highlighted: var(--hyperlink-color-highlighted); /* border-color for form-inputs */
     --form-input-border-highlighted: var(--form-input-border-width-highlighted) var(--form-input-border-style-highlighted) var(--form-input-border-color-highlighted); /* border for form-inputs highlighted */
     --form-input-border-radius: var(--default-border-radius); /* border-radius for form-inputs */
+    --form-input-corner-shape: var(--default-corner-shape); /* corner-shape for form-inputs */
     --form-input-text-color: var(--default-text-color); /* text-color for form-inputs */
     --form-input-background: var(--color-scheme-background); /* background for form-inputs */
     --form-input-background-highlighted: var(--color-scheme-background); /* background for form-inputs highlighted */
@@ -580,11 +594,11 @@ html {
     --list-style-item-color-highlighted: var(--primary-color); /* color for (by class) highlighted list-style-items */
    /* END LISTS ------------------------------------------------------------------------------------------ */
 
-    /* BEGIN POPOVER ------------------------------------------------------------------------------------------ */
+    /* BEGIN POPOVERS/TOOLTIP-TARGETS ------------------------------------------------------------------------------------------ */
     --popover-max-width: 90%; /* max-width for popovers */
     --popover-max-height: 90%; /* max-height for popovers */
-    --popover-padding-top-bottom: var(--default-padding); /* top- and bottom-padding for popovers */
-    --popover-padding-left-right: var(--default-padding); /* left- and right-padding for popovers */
+    --popover-padding-top-bottom: var(--default-padding-half); /* top- and bottom-padding for popovers */
+    --popover-padding-left-right: var(--default-padding-half); /* left- and right-padding for popovers */
     --popover-padding: var(--popover-padding-top-bottom) var(--popover-padding-left-right); /* padding for popovers */
     --popover-border-width: var(--default-border-width); /* border-width for popovers */
     --popover-border-style: var(--default-border-style); /* border-style for popovers */
@@ -594,7 +608,10 @@ html {
     --popover-box-shadow: var(--default-box-shadow); /* box-shadow for popovers */
     --popover-background: var(var(--color-scheme-background)); /* background for popovers */
     --popover-backdrop-background: var(--color-black-reduced-opacity); /* backdrop-background for popovers */
-    /* END POPOVER ------------------------------------------------------------------------------------------ */
+    --tooltip-target-position-area: top right; /* position for tooltip-target */
+    --tooltip-max-width: 30rem; /* max-width for tooltips */
+    --tooltip-max-height: 30rem; /* max-height for tooltip */
+    /* END POPOVERS/TOOLTIP-TARGETS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SKELETON-LOADING ------------------------------------------------------------------------------------------ */
     --skeleton-loading-opacity: var(--reduced-opacity); /* (reduced) opacity to make loading-animation look more realistic */
@@ -715,15 +732,24 @@ html {
     --light-mode-text-color: var(--default-text-color); /* text-color for light-mode */
     --light-mode-text-color-buttons: var(--color-white); /* button-text-color for light-mode */
     --light-mode-background: var(--color-white); /* background(-color) for light-mode */
+    --light-mode-primary-color: var(--primary-color); /* primary-color for light-mode */
+    --light-mode-secondary-color: var(--secondary-color); /* v-color for light-mode */
+    --light-mode-tertiary-color: var(--tertiary-color); /* primary-color for light-mode */
     --dark-mode-text-color: hsl(0, 0%, 85%); /* text-color for dark-mode */
     --dark-mode-text-color-buttons: var(--dark-mode-background); /* button-text-color for dark-mode */
     --dark-mode-background: var(--color-dark-gray); /* background(-color) for dark-mode */
+    --dark-mode-primary-color: var(--dark-color); /* primary-color for dark-mode */
+    --dark-mode-secondary-color: var(--dark-color); /* v-color for dark-mode */
+    --dark-mode-tertiary-color: var(--dark-color); /* primary-color for dark-mode */
     --show-in-light-mode-only: block; /* display-behavior for elements using .show-in-light-mode-only */
     --show-in-dark-mode-only: none; /* display-behavior for elements using .show-in-dark-mode-only */
 
     /* assign default styles to color-scheme related variables */
     --color-scheme-text-color: light-dark(var(--light-mode-text-color), var(--dark-mode-text-color)); /* assign text-color to color-scheme */
     --color-scheme-text-color-buttons: light-dark(var(--light-mode-text-color-buttons), var(--dark-mode-text-color-buttons)); /* assign button-text-color to color-scheme */
+    --color-scheme-primary-color: light-dark(var(--light-mode-primary-color), var(--dark-mode-primary-color)); /* assign primary-color to color-scheme */
+    --color-scheme-secondary-color: light-dark(var(--light-mode-secondary-color), var(--dark-mode-secondary-color)); /* assign secondary-color to color-scheme */
+    --color-scheme-tertiary-color: light-dark(var(--light-mode-tertiary-color), var(--dark-mode-tertiary-color)); /* assign tertiary-color to color-scheme */
     --color-scheme-text-color-inverted: light-dark(var(--dark-mode-text-color), var(--light-mode-text-color)); /* assign an inverted text-color to color-scheme */
     --color-scheme-background: light-dark(var(--light-mode-background), var(--dark-mode-background)); /* assign background(-color) to color-scheme */
     --color-scheme-background-inverted: light-dark(var(--dark-mode-background), var(--light-mode-background)); /* assign an inverted background(-color) to color-scheme */
@@ -1309,8 +1335,12 @@ body.no-transitions *, .no-transitions {
 /* end utility-classes */
 
 /* begin basic typography */
-p, ul, ol, dl, table, address {
+ul, ol, dl, table, address {
     margin-bottom: var(--default-margin); /* margin-bottom for most elements containing text */
+}
+
+p:has(> small:only-child) {
+    line-height: var(--line-height-small);
 }
 
 strong {
@@ -1323,7 +1353,6 @@ em, cite, .italic {
 
 small, small > :where(a, span), .small {
     font-size: var(--font-size-small);
-    line-height: var(--line-height-small);
 }
 
 blockquote, q {
@@ -1336,6 +1365,7 @@ hr {
     margin: calc(var(--default-margin) * 2);
     clear: both;
     color: var(--color-scheme-text-color);
+    width: 100%;
 }
 
 hr + * {
@@ -1360,10 +1390,10 @@ a > :is(img, figcaption, figure):only-child {
 }
 
 img {
-    border-radius: var(--image-border-radius);
     max-height: 100%;
     box-shadow: var(--image-box-shadow);
-    border: var(--image-border);
+    border-radius: var(--image-border-radius);
+    /* corner-shape: var(--image-corner-shape); */
 
     &.grayscale {
         filter: grayscale(1);
@@ -1371,7 +1401,7 @@ img {
 }
 
 a > img {
-    border: var(--default-border);
+    border: var(--image-border);
 }
 
 a:where(:hover, :active, :focus) img {
@@ -1385,17 +1415,51 @@ a:where(:hover, :active, :focus) img {
 [popover] {
     position: fixed;
     margin: auto;
-    max-width: var(--popover--max-width);
-    max-height: var(--popover--max-height);
+    max-width: var(--popover-max-width);
+    max-height: var(--popover-max-height);
     overflow-y: auto;
     padding: var(--popover-padding);
     border-radius: var(--popover-border-radius);
+    /* corner-shape: var(--popover-corner-shape); */
     border: var(--popover-border);
     box-shadow: var(--popover-box-shadow);
 
-    &::backdrop {
+    &.modal::backdrop {
         background: var(--popover-backdrop-background);
     }
+
+    /* begin tooltip-target */
+    &[id^="tooltip-target"] {
+        max-width: var(--tooltip-max-width);
+        max-height: var(--tooltip-max-height);
+        position-area: var(--tooltip-target-position-area); 
+        position-try-fallbacks: flip-block, flip-inline;
+        position-try-order: most-width;
+        inset-inline-start: anchor(105%);
+        inset-block-start: anchor(105%);
+
+        button.close-tooltip {
+            margin-left: var(--default-margin);
+            position: absolute;
+            top: var(--popover-padding-top-bottom);
+            right: var(--popover-padding-left-right);
+
+            span[class*="icon-"] {
+                color: var(--hyperlink-color);
+            }
+
+            &:is(:hover, :active, :focus) {
+                span[class*="icon-"] {
+                    color: var(--hyperlink-color-highlighted);
+                }
+            }
+        }
+
+        &:has(button.close-tooltip) {
+            padding-right: calc(var(--popover-padding-left-right) * 5);
+        }
+    }
+    /* end tooltip-target */
 }
  /* end popover ------------------------------------------------------------------------------------------ */   
 
@@ -1404,6 +1468,7 @@ a:where(:hover, :active, :focus) img {
     background: var(--box-background);
     border: var(--box-border);
     border-radius: var(--box-border-radius);
+    /* corner-shape: var(--box-corner-shape); */
     padding: var(--box-body-padding);
     box-shadow: var(--box-box-shadow);
     min-width: var(--box-min-width);
@@ -1534,6 +1599,7 @@ a:where(:hover, :active, :focus) img {
     background: var(--button-background);
     border: var(--button-border);
     border-radius: var(--button-border-radius);
+    /* corner-shape: var(--button-corner-shape); */
     outline: var(--button-outline);
     color: var(--button-text-color);
     display: inline-flex;
@@ -1643,6 +1709,16 @@ a:where(:hover, :active, :focus) img {
         --button-border-color: var(--success-color);
         --button-border-color-highlighted: var(--success-color) !important;
         --button-text-color-highlighted: var(--success-color);
+    }
+
+    &.no-style {
+        padding: 0;
+        outline: 0;
+        border: 0;
+        box-shadow: none;
+        min-width: auto;
+        min-height: auto;
+        background: none;
     }
 
     &.center {
@@ -2023,14 +2099,14 @@ input, textarea {
     flex-direction: column !important;
     flex-wrap: nowrap;
 
-    > * {
+    & > * {
         max-width: 100%;
         flex: none !important;
         margin-top: 0 !important;
         margin-bottom: 0 !important;
     }
 
-    > a {
+    > a, button, .button {
         align-self: flex-start; /* avoid sensitive-area of link to be stretched to full width of parent-container */
     }
 }
@@ -2141,14 +2217,11 @@ fieldset {
     background: var(--fieldset-background);
     border: var(--fieldset-border);
     border-radius: var(--fieldset-border-radius);
+    /* corner-shape: var(--fieldset-corner-shape); */
     box-shadow: var(--fieldset-box-shadow);
     padding: var(--fieldset-padding);
     margin: var(--fieldset-margin);
     box-shadow: var(--fieldset-box-shadow);
-
-    > * {
-        margin: 0;
-    }
 
     &.flex-container {
         flex-direction: column;
@@ -2198,6 +2271,10 @@ fieldset {
         position: absolute; /* must be placed absolute for fieldset-flex-container to work properly */
         top: calc(var(--fieldset-padding) * -1);
         right: 0; /* align right to avoid collision with optional headlines above fieldset */
+
+        & + * {
+            margin-top: 0 !important; /* first element after legend should have no margin */
+        }
     }
 
     > *:first-child, legend + * {
@@ -2339,15 +2416,6 @@ label, .label {
         flex: none;
     }
 
-    &:has([required]:user-valid) {
-        .label-text {
-            span, sup  {
-                color: var(--success-color);
-            }
-        }
-
-    } 
-
     &:has([required]:user-invalid) {
         .label-text {
             span, sup  {
@@ -2387,7 +2455,7 @@ label, .label {
         }
         /* end mandatory asterisk */
 
-        :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
+        :where(button, span)[class*="icon-"], button:has([class*="icon-"]) {
             --status-color: var(--hyperlink-color);
 
             align-self: center; /* avoids stretching if label wraps */
@@ -2400,10 +2468,10 @@ label, .label {
             &:is(:hover, :active, :focus) {
                 --label-text-color-highlighted: var(--status-color);
                 
-                background: var(--color-white);
+                background: var(--hyperlink-color);
 
                 span[class*="icon"] {
-                    color: inherit;
+                    color: var(--color-white);
                     background: inherit;
                 }
             }
@@ -2519,7 +2587,6 @@ label, .label {
     &:not(.inline) :where(.label-text:not(.hidden)) {
         display: flex;
         margin-bottom: calc(var(--default-margin) / 2);
-        align-items: flex-end;
     }
 
     :where(button, .button) button {
@@ -2612,6 +2679,7 @@ td .toggle-switch.switch-label {
     min-width: 5rem;
     border: var(--form-input-border);
     border-radius: var(--form-input-border-radius);
+    /* corner-shape: var(--form-input-corner-shape); */
     align-self: flex-end; /* required to let items be as high as their content */
     background: var(--form-input-background);
 
@@ -2723,14 +2791,10 @@ input, select, .input {
 }
 
 select {
+    /* appearance: base-select; */
     padding-top: 0; /* avoids text to be cropped */
     padding-bottom: 0; /* avoids text to be cropped */
     word-wrap: normal; /* break words only at allowed break points */
-
-    &:valid {
-        background: var(--form-input-filled-background-success);
-        color: var(--success-color);
-    }
 
     &[multiple] {
         max-height: 10rem;
@@ -3400,7 +3464,7 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
         display: inline-flex;
         justify-content: center;
 
-        a[class*="icon-"], a:has([class*="icon-"]) {
+        button[class*="icon-"], button:has([class*="icon-"]) {
             margin-left: calc(var(--default-margin) / 2);
         }
     }
@@ -3682,6 +3746,17 @@ h6, h6 > :is(a, span) {
 
 /* end headlines ------------------------------------------------------------------------------------------ */
 
+/* begin paragraphs ------------------------------------------------------------------------------------------ */
+p {
+    font-family: var(--paragraph-font-family);
+    font-size: var(--paragraph-font-size);
+    font-weight: var(--paragraph-font-weight);
+    line-height: var(--paragraph-line-height);
+    margin-top: var(--paragraph-margin-top);
+    margin-bottom: var(--paragraph-margin-bottom);
+}
+/* end paragraphs ------------------------------------------------------------------------------------------ */
+
 /* begin hyperlinks & anchors ------------------------------------------------------------------------------------------ */
 a {
     color: var(--hyperlink-color);
@@ -3726,9 +3801,10 @@ a {
     &[class*="icon-"],
     & :where(span, [class*="icon-"]) {
         color: var(--hyperlink-color);
+        line-height: 1;
     }
 
-    &:has(> span[class*="icon-"]) {
+    &:not(.button):has(> span[class*="icon-"]) {
         text-decoration: none;
 
         > :not(span[class*="icon-"]) {
@@ -4182,6 +4258,7 @@ dl {
     border-top: var(--main-navigation-border);
     border-bottom: var(--main-navigation-border);
     border-radius: var(--main-navigation-border-radius);
+    /* corner-shape: var(--main-navigation-corder-shape); */
 
     nav {
         width: 100%;
@@ -4392,10 +4469,15 @@ details {
         padding: var(--accordion-summary-padding);
         background: var(--accordion-summary-background);
         text-align: var(--accordion-summary-text-align);
+        
+        * {
+            color: var(--accordion-summary-text-color);
+        }
 
         &:is(:hover, :active, :focus) {
             color: var(--accordion-summary-text-color-highlighed);
             background: var(--accordion-summary-background-highlighed);
+            cursor: pointer;
         }
 
         > :is(h1, h2, h3, h4, h5, h6) {
@@ -4413,6 +4495,42 @@ details {
 
             &.closed {
                 display: inline-flex;
+            }
+        }
+    }
+
+    &:hover, &:active, &:focus {
+        summary {
+            * {
+                color: var(--hyperlink-color-highlighted);
+            }
+        }
+    }
+
+    &.primary {
+        --accordion-summary-text-color-open: var(--primary-color);
+    }
+
+    &.secondary {
+        --accordion-summary-text-color-open: var(--secondary-color);
+    }
+
+    &.tertiary {
+        --accordion-summary-text-color-open: var(--tertiary-color);
+    }
+
+    &.primary, &.secondary, &.tertiary {
+        summary {
+            * {
+                color: var(--color-white);
+            }
+        }
+
+        &:hover, &:active, &:focus {
+            summary {
+                * {
+                    color: var(--accordion-summary-text-color-open);
+                }
             }
         }
     }
@@ -4445,21 +4563,18 @@ details {
                     display: none;
                 }
             }
+
+            * {
+                color: var(--hyperlink-color-highlighted);
+            }
         }
 
-        &.primary {
-            --accordion-summary-text-color-open: var(--primary-color);
+        &.primary, &.secondary, &.tertiary {
             --accordion-summary-background-open: none;
-        }
-    
-        &.secondary {
-            --accordion-summary-text-color-open: var(--secondary-color);
-            --accordion-summary-background-open: none;
-        }
 
-        &.tertiary {
-            --accordion-summary-text-color-open: var(--tertiary-color);
-            --accordion-summary-background-open: none;
+            * {
+                color: var(--accordion-summary-text-color-open);
+            }
         }
     }
 }
@@ -4637,6 +4752,7 @@ details {
 table {
     border: var(--table-border);
     border-radius: var(--table-border-radius);
+    /* corner-shape: var(--table-corner-shape); */
     box-shadow: var(--table-box-shadow);
 
     &.full-width {
