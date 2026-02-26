@@ -1,8 +1,8 @@
-# CoManD Frontend-Framework
+CSS stadnards# CoManD Frontend-Framework
 
 ## Project description
 ```
-Pure, responsive and accessible HTML5/CSS3-Frontend-Framework based on CSS-Grid. The clean code of the framework is responsive and accessible. 
+Pure, responsive and accessible HTML5/CSS3-Frontend-Framework based on newest CSS-standards. The clean code of the framework is responsive and accessible. 
 The BaseIconfont (an Icomoon based) iconfont from comand-ui-iconfonts-dependency is already included.
 The framework can be used for small, medium and large webprojects. It is scalable from a small onepager to a huge web-platform. 
 
