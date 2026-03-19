@@ -1,6 +1,6 @@
 <template>
     <div id="frontend-framework-demo" class="demopage">
-        <div :id="templateId" class="page-wrapper">
+        <div :id="templateId" class="site-wrapper">
             <div class="site-header sticky" id="anchor-back-to-top" role="banner">
                 <header class="grid-container-create-columns">
                     <div class="company-logo">
@@ -93,26 +93,27 @@
             <aside v-if="showSidebar" :class="['sidebar box', { 'open': openSidebar }]">
                 <!-- begin inner-sidebar-wrapper -->
                 <div v-if="openSidebar" class="inner-sidebar-wrapper">
-                    <h3 class="text-align-center">Site Settings</h3>
+                    <h5 class="text-align-center">Site Settings</h5>
                     <!-- begin select template -->
                     <div class="box content collapsible stretch-horizontally flexible-scroll-container">
                         <a href="#" class="fixed-wrapper box-header" title="Show content"
                             @click.prevent="toggleBox('template')">
-                            <h4>
+                            <h6>
                                 <span class="icon-cog"></span>
                                 <span>Template Settings</span>
-                            </h4>
+                            </h6>
                             <span
                                 :class="openBoxes.includes('template') ? 'icon-chevron-one-stripe-up' : 'icon-chevron-one-stripe-down'"></span>
                         </a>
                         <div v-if="openBoxes.includes('template')" class="scroll-wrapper box-body" aria-expanded="true"
                             role="article">
-                            <div class="default-padding flex-container vertical" style="gap: 0.5rem;">
+                            <div class="flex-container vertical" style="gap: 0.5rem;">
                                 <label for="select-template">
                                     <span>Select template</span>
                                     <select id="select-template" v-model="selectedTemplate">
-                                        <option value="blank">Blank/Unstyled</option> 
+                                        <option value="blank">Blank/Unstyled</option>
                                         <option value="material-web">Material-Web</option>
+                                        <option value="neumorphic">Neumorphic</option>
                                         <option value="tailwind">Tailwind</option>
                                     </select>
                                 </label>
@@ -143,118 +144,116 @@
 
                     <!-- begin table of contents -->
                     <div class="box content flexible-scroll-container collapsible stretch-horizontally"
-                        style="max-height: none;">
+                        style="max-height: none; flex: 1;">
                         <a href="#" class="fixed-wrapper box-header" title="Show content"
                             @click.prevent="toggleBox('table')">
-                            <h4>
+                            <h6>
                                 <span class="icon-table"></span>
                                 <span>Table of contents</span>
-                            </h4>
+                            </h6>
                             <span
                                 :class="openBoxes.includes('table') ? 'icon-chevron-one-stripe-up' : 'icon-chevron-one-stripe-down'"></span>
                         </a>
                         <div v-if="openBoxes.includes('table')" class="scroll-wrapper box-body" aria-expanded="true"
                             role="article">
-                            <div class="default-padding">
-                                <ul>
-                                    <li>
-                                        <a href="#anchor-typography">Typography</a>
-                                        <ul>
-                                            <li><a href="#anchor-headlines">Headlines</a></li>
-                                            <li><a href="#anchor-paragraphs">Paragraphs</a></li>
-                                            <li>
-                                                <a href="#anchor-lists">Lists</a>
-                                                <ul>
-                                                    <li><a href="#anchor-unordered-list">Unordered List</a></li>
-                                                    <li><a href="#anchor-ordered-list">Ordered List</a></li>
-                                                    <li><a href="#anchor-description-list">Description List</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#anchor-hyperlinks">Hyperlinks</a></li>
-                                            <li><a href="#anchor-miscellaneous">Miscellaneous Typo</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#anchor-tables">Tables</a></li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#anchor-boxes">Boxes</a>
-                                        <ul>
-                                            <li><a href="#anchor-stretched-boxes">Stretched Boxes</a></li>
-                                            <li><a href="#anchor-boxes-with-centered-content">Boxes with centered
-                                                    content</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#anchor-colors">Colors</a></li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#anchor-richmedia">Richmedia</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#anchor-user-interface">User Interface</a>
-                                        <ul>
-                                            <li><a href="#anchor-accordions">Accordions</a></li>
-                                            <li><a href="#anchor-popover">Popover</a></li>
-                                            <li><a href="#anchor-system-messages">System Messages</a></li>
-                                            <li><a href="#anchor-tooltips">Tooltips</a></li>
-                                            <li><a href="#anchor-buttons">Buttons</a></li>
-                                            <li><a href="#anchor-tags">Tags</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#anchor-forms">Forms</a>
-                                        <ul>
-                                            <li><a href="#anchor-native-form-elements">Native Form Elements</a></li>
-                                            <li><a href="#anchor-form-validation">Form Validation</a></li>
-                                            <li><a href="#anchor-advanced-form-elements">Advanced Form Elements</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#anchor-main-navigation">Main Navigation</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#anchor-flex-containers">Flex-Containers</a>
-                                        <ul>
-                                            <li><a href="#anchor-flex-containers-default">Default</a></li>
-                                            <li><a href="#anchor-flex-containers-no-gap">No Gap</a></li>
-                                            <li><a href="#anchor-flex-containers-reset-flex-all">No Flex All items</a>
-                                            </li>
-                                            <li><a href="#anchor-flex-containers-reset-flex-single-item">No Flex Single
-                                                    Item</a>
-                                            </li>
-                                            <li><a href="#anchor-flex-containers-vertical">Vertical</a></li>
-                                            <li><a href="#anchor-flex-containers-flexible-scroll-container">Flexible
-                                                    scroll-container</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a href="#anchor-grid-containers">Grid-Containers</a>
-                                        <ul>
-                                            <li><a href="#anchor-grid-containers-regular-grid">Regular Grid</a></li>
-                                            <li><a href="#anchor-grid-containers-default-classes">Default Classes</a>
-                                            </li>
-                                            <li><a href="#anchor-grid-containers-two-fractions">Two Fractions</a></li>
-                                            <li><a href="#anchor-grid-containers-complex-grid">Complex Grid</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ul>
+                                <li>
+                                    <a href="#anchor-typography">Typography</a>
+                                    <ul>
+                                        <li><a href="#anchor-headlines">Headlines</a></li>
+                                        <li><a href="#anchor-paragraphs">Paragraphs</a></li>
+                                        <li>
+                                            <a href="#anchor-lists">Lists</a>
+                                            <ul>
+                                                <li><a href="#anchor-unordered-list">Unordered List</a></li>
+                                                <li><a href="#anchor-ordered-list">Ordered List</a></li>
+                                                <li><a href="#anchor-description-list">Description List</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#anchor-hyperlinks">Hyperlinks</a></li>
+                                        <li><a href="#anchor-miscellaneous">Miscellaneous Typo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li><a href="#anchor-tables">Tables</a></li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#anchor-boxes">Boxes</a>
+                                    <ul>
+                                        <li><a href="#anchor-stretched-boxes">Stretched Boxes</a></li>
+                                        <li><a href="#anchor-boxes-with-centered-content">Boxes with centered
+                                                content</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li><a href="#anchor-colors">Colors</a></li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#anchor-richmedia">Richmedia</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#anchor-user-interface">User Interface</a>
+                                    <ul>
+                                        <li><a href="#anchor-accordions">Accordions</a></li>
+                                        <li><a href="#anchor-popover">Popover</a></li>
+                                        <li><a href="#anchor-system-messages">System Messages</a></li>
+                                        <li><a href="#anchor-tooltips">Tooltips</a></li>
+                                        <li><a href="#anchor-buttons">Buttons</a></li>
+                                        <li><a href="#anchor-tags">Tags</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#anchor-forms">Forms</a>
+                                    <ul>
+                                        <li><a href="#anchor-native-form-elements">Native Form Elements</a></li>
+                                        <li><a href="#anchor-form-validation">Form Validation</a></li>
+                                        <li><a href="#anchor-advanced-form-elements">Advanced Form Elements</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#anchor-main-navigation">Main Navigation</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#anchor-flex-containers">Flex-Containers</a>
+                                    <ul>
+                                        <li><a href="#anchor-flex-containers-default">Default</a></li>
+                                        <li><a href="#anchor-flex-containers-no-gap">No Gap</a></li>
+                                        <li><a href="#anchor-flex-containers-reset-flex-all">No Flex All items</a>
+                                        </li>
+                                        <li><a href="#anchor-flex-containers-reset-flex-single-item">No Flex Single
+                                                Item</a>
+                                        </li>
+                                        <li><a href="#anchor-flex-containers-vertical">Vertical</a></li>
+                                        <li><a href="#anchor-flex-containers-flexible-scroll-container">Flexible
+                                                scroll-container</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#anchor-grid-containers">Grid-Containers</a>
+                                    <ul>
+                                        <li><a href="#anchor-grid-containers-regular-grid">Regular Grid</a></li>
+                                        <li><a href="#anchor-grid-containers-default-classes">Default Classes</a>
+                                        </li>
+                                        <li><a href="#anchor-grid-containers-two-fractions">Two Fractions</a></li>
+                                        <li><a href="#anchor-grid-containers-complex-grid">Complex Grid</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <!-- end table of contents -->
@@ -352,7 +351,8 @@
                             forms.
                         </p>
                         <h4>Paragraphs with columns</h4>
-                        <p class="column-count-2">This is continuous text within a paragraph with text-align left (which is default).
+                        <p class="column-count-2">This is continuous text within a paragraph with text-align left (which
+                            is default).
                             Longer texts should always be formatted with a &lt;p&gt;-tag. It can contain different
                             further tags, i.e. &lt;br /&gt;,
                             &lt;a&gt;,&lt;span&gt;,&lt;strong&gt;, &lt;em&gt;, &lt;div&gt;. An additional &lt;p&gt;-tag
@@ -364,7 +364,8 @@
                             real line, but a margin). Of course a paragraph may not contain tags for headlines, tables
                             or forms.
                         </p>
-                        <p class="column-count-3">This is continuous text within a paragraph with text-align left (which is default).
+                        <p class="column-count-3">This is continuous text within a paragraph with text-align left (which
+                            is default).
                             Longer texts should always be formatted with a &lt;p&gt;-tag. It can contain different
                             further tags, i.e. &lt;br /&gt;,
                             &lt;a&gt;,&lt;span&gt;,&lt;strong&gt;, &lt;em&gt;, &lt;div&gt;. An additional &lt;p&gt;-tag
@@ -376,7 +377,8 @@
                             real line, but a margin). Of course a paragraph may not contain tags for headlines, tables
                             or forms.
                         </p>
-                        <p class="column-count-4">This is continuous text within a paragraph with text-align left (which is default).
+                        <p class="column-count-4">This is continuous text within a paragraph with text-align left (which
+                            is default).
                             Longer texts should always be formatted with a &lt;p&gt;-tag. It can contain different
                             further tags, i.e. &lt;br /&gt;,
                             &lt;a&gt;,&lt;span&gt;,&lt;strong&gt;, &lt;em&gt;, &lt;div&gt;. An additional &lt;p&gt;-tag
@@ -814,8 +816,8 @@
                                 <div class="box-body"><img src="/src/assets/images/landscape-medium.jpg"
                                         alt="landscape medium" title="landscape medium" /></div>
                             </div>
-                            </div>
-                            <div class="flex-container" style="margin-top: var(--default-gap);">
+                        </div>
+                        <div class="flex-container" style="margin-top: var(--default-gap);">
                             <div class="box primary">
                                 <div class="box-header">
                                     <h4>Box with header, body and footer (primary)</h4>
@@ -1047,13 +1049,16 @@
                                 <summary>
                                     <span class="icon-chevron-one-stripe-right closed"></span>
                                     <span class="icon-chevron-one-stripe-down open"></span>
-                                    <h4>Summary text (in a headline) for collapsed accordion-box (no highlight level)</h4>
+                                    <h4>Summary text (in a headline) for collapsed accordion-box (no highlight level)
+                                    </h4>
                                 </summary>
                                 <div class="accordion-body">
                                     <p>
                                         This is long text in a paragraph with &lt;details&gt;-tag.<br />
-                                        This text is only shown when the accordion is collapsed, else the summary-text is shown.
-                                        To let all accordion-boxes be closed, when another is expanded, add a name-attribut with the samel value to all connected boxes. 
+                                        This text is only shown when the accordion is collapsed, else the summary-text
+                                        is shown.
+                                        To let all accordion-boxes be closed, when another is expanded, add a
+                                        name-attribut with the samel value to all connected boxes.
                                     </p>
                                 </div>
                             </details>
@@ -1066,8 +1071,10 @@
                                 <div class="accordion-body">
                                     <p>
                                         This is long text in a paragraph with &lt;details&gt;-tag.<br />
-                                        This text is only shown when the accordion is collapsed, else the summary-text is shown.
-                                        To let all accordion-boxes be closed, when another is expanded, add a name-attribut with the samel value to all connected boxes. 
+                                        This text is only shown when the accordion is collapsed, else the summary-text
+                                        is shown.
+                                        To let all accordion-boxes be closed, when another is expanded, add a
+                                        name-attribut with the samel value to all connected boxes.
                                     </p>
                                 </div>
                             </details>
@@ -1080,8 +1087,10 @@
                                 <div class="accordion-body">
                                     <p>
                                         This is long text in a paragraph with &lt;details&gt;-tag.<br />
-                                        This text is only shown when the accordion is collapsed, else the summary-text is shown.
-                                        To let all accordion-boxes be closed, when another is expanded, add a name-attribut with the samel value to all connected boxes. 
+                                        This text is only shown when the accordion is collapsed, else the summary-text
+                                        is shown.
+                                        To let all accordion-boxes be closed, when another is expanded, add a
+                                        name-attribut with the samel value to all connected boxes.
                                     </p>
                                 </div>
                             </details>
@@ -1094,8 +1103,10 @@
                                 <div class="accordion-body">
                                     <p>
                                         This is long text in a paragraph with &lt;details&gt;-tag.<br />
-                                        This text is only shown when the accordion is collapsed, else the summary-text is shown.
-                                        To let all accordion-boxes be closed, when another is expanded, add a name-attribut with the samel value to all connected boxes. 
+                                        This text is only shown when the accordion is collapsed, else the summary-text
+                                        is shown.
+                                        To let all accordion-boxes be closed, when another is expanded, add a
+                                        name-attribut with the samel value to all connected boxes.
                                     </p>
                                 </div>
                             </details>
@@ -1116,7 +1127,7 @@
                                 <span>Close Popover</span>
                             </button>
                         </dialog>
-                        
+
                         <dialog popover class="modal" id="mypopover-modal">
                             <h3>Popup/over in Dialog</h3>
                             <p>This is a popover with backdrop</p>
@@ -1160,13 +1171,15 @@
 
                         <!-- begin tooltip -->
                         <h3 id="anchor-tooltips">Tooltips</h3>
-                         <button style="anchor-name: --tooltip-anchor;" title="Click to open tooltip" popovertarget="tooltip-target" aria-describedby="tooltip-target">
+                        <button style="anchor-name: --tooltip-anchor;" title="Click to open tooltip"
+                            popovertarget="tooltip-target" aria-describedby="tooltip-target">
                             <span class="icon-questionmark"></span>
                             <span>Toggle Tooltip</span>
                         </button>
                         <div id="tooltip-target" role="tooltip" popover style="position-anchor: --tooltip-anchor;">
                             <span>This is a popover-tooltip linked to an anchor (the button that opens it)!</span>
-                            <button class="close-tooltip no-style" popovertarget="tooltip-target" popovertargetaction="hide" title="Close Tooltip">
+                            <button class="close-tooltip no-style" popovertarget="tooltip-target"
+                                popovertargetaction="hide" title="Close Tooltip">
                                 <span class="icon-cancel-circle"></span>
                             </button>
                         </div>
@@ -1520,7 +1533,7 @@
                                 <h3>Radiobuttons</h3>
                                 <div class="label inline">
                                     <span class="label-text">Label for radiobuttons:</span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label for="radio1">
                                             <input name="radiogroup" id="radio1" value="1" type="radio" />
                                             <span class="label-text">Radiobutton 1 (default)</span>
@@ -1554,7 +1567,7 @@
                                 </label>
                                 <div class="label inline">
                                     <span class="label-text">Label for checkboxes:</span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label for="checkbox1">
                                             <input name="checkbox" id="checkbox1" value="1" type="checkbox" />
                                             <span class="label-text">Checkbox 1 (default)</span>
@@ -1581,11 +1594,7 @@
                                     <label for="default-inputfield">
                                         <span class="label-text">
                                             <span>Default inputfield:</span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Open help">
+                                            <button type="button" class="no-style" href="#" title="Open help">
                                                 <span class="icon-questionmark-circle"></span>
                                             </button>
                                         </span>
@@ -1595,16 +1604,11 @@
                                     <label for="required-inputfield">
                                         <span class="label-text">
                                             <span>Requiered inputfield:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Open help">
+                                            <button type="button" class="no-style" href="#" title="Open help">
                                                 <span class="icon-questionmark-circle"></span>
                                             </button>
                                         </span>
-                                        <input name="requiered-inputfield" id="requiered-inputfield"
-                                        required="required"
+                                        <input name="requiered-inputfield" id="requiered-inputfield" required="required"
                                             placeholder="Placeholdertext for requiered inputfield" type="text" />
                                     </label>
                                     <label for="textfield1">
@@ -1662,15 +1666,15 @@
                                 <h3>Selectboxes and Datalists</h3>
                                 <div class="flex-container">
                                     <label for="selectbox-default">
-                                    <span class="label-text">
-                                        <span>Label for selectbox (default):</span>
-                                    </span>
-                                    <select id="selectbox-default">
-                                        <option value="option-1">Otpion #1</option>
-                                        <option value="option-2">Otpion #2</option>
-                                        <option value="option-3">Otpion #3</option>
-                                    </select>
-                                </label>
+                                        <span class="label-text">
+                                            <span>Label for selectbox (default):</span>
+                                        </span>
+                                        <select id="selectbox-default">
+                                            <option value="option1">Option 1</option>
+                                            <option value="option2">Option 2</option>
+                                            <option value="option3">Option 3</option>
+                                        </select>
+                                    </label>
                                     <label for="selectbox-required">
                                         <span class="label-text">
                                             <span>Label for selectbox (required):<sup>*</sup></span>
@@ -1699,28 +1703,23 @@
                                         <input type="text" list="options" name="datalist" id="datalist"
                                             autocomplete="off" placeholder="Placeholder text for datalist-input" />
                                         <datalist id="options">
-                                            <option value="Option 1"></option>
-                                            <option value="Option 2"></option>
-                                            <option value="Option 3"></option>
+                                            <option value="option1"></option>
+                                            <option value="option2"></option>
+                                            <option value="option2"></option>
                                         </datalist>
                                     </label>
                                 </div>
                                 <h3>Misc. inputfields and -elements</h3>
                                 <label for="email-inputfield">
-                                        <span class="label-text">
-                                            <span>Email inputfield:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Open help">
-                                                <span class="icon-questionmark-circle"></span>
-                                            </button>
-                                        </span>
-                                        <input name="email-inputfield" id="email-inputfield"
-                                        required="required"
-                                            placeholder="Placeholdertext for email inputfield" type="email" />
-                                    </label>
+                                    <span class="label-text">
+                                        <span>Email inputfield:<sup>*</sup></span>
+                                        <button type="button" class="no-style" href="#" title="Open help">
+                                            <span class="icon-questionmark-circle"></span>
+                                        </button>
+                                    </span>
+                                    <input name="email-inputfield" id="email-inputfield" required="required"
+                                        placeholder="Placeholdertext for email inputfield" type="email" />
+                                </label>
                                 <div class="flex-container align-flex-end">
                                     <label for="searchfield">
                                         <span class="label-text"><span>Label for searchfield:</span></span>
@@ -1862,11 +1861,7 @@
                                     <label for="inputfield-default">
                                         <span class="label-text">
                                             <span>Inputfield wth <a href="#">link</a> in label:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Open help">
+                                            <button type="button" class="no-style" href="#" title="Open help">
                                                 <span class="icon-questionmark-circle"></span>
                                             </button>
                                         </span>
@@ -1876,54 +1871,42 @@
                                     <label class="error" for="inputfield-with-error">
                                         <span class="label-text">
                                             <span>Inputfield with error:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
+                                            <button type="button" class="no-style" href="#"
                                                 title="Please fill field correctly!">
                                                 <span class="icon-error-circle"></span>
                                             </button>
                                         </span>
                                         <input name="inputfield-with-error" id="inputfield-with-error"
-                                            required="required"
-                                            placeholder="Placeholdertext for inputfield with error" type="text" />
+                                            required="required" placeholder="Placeholdertext for inputfield with error"
+                                            type="text" />
                                     </label>
                                     <label class="warning" for="inputfield-with-warning">
                                         <span class="label-text">
                                             <span>Inputfield with warning:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="A warning occurred!">
+                                            <button type="button" class="no-style" href="#" title="A warning occurred!">
                                                 <span class="icon-exclamation-circle"></span>
                                             </button>
                                         </span>
-                                        <input name="inputfield-with-warning" id="inputfield-with-warning" required="required"
+                                        <input name="inputfield-with-warning" id="inputfield-with-warning"
+                                            required="required"
                                             placeholder="Placeholdertext for inputfield with warning" type="text" />
                                     </label>
                                     <label class="success" for="inputfield-with-success">
                                         <span class="label-text">
                                             <span>Inputfield with success:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
+                                            <button type="button" class="no-style" href="#"
                                                 title="Field filled correctly!">
                                                 <span class="icon-check-circle"></span>
                                             </button>
                                         </span>
-                                        <input name="inputfield-with-success" id="inputfield-with-success" required="required"
+                                        <input name="inputfield-with-success" id="inputfield-with-success"
+                                            required="required"
                                             placeholder="Placeholdertext for inputfield with success" type="text" />
                                     </label>
                                     <label class="info" for="inputfield-with-info">
                                         <span class="label-text">
                                             <span>Inputfield with info:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Some information!">
+                                            <button type="button" class="no-style" href="#" title="Some information!">
                                                 <span class="icon-info-circle"></span>
                                             </button>
                                         </span>
@@ -1937,11 +1920,7 @@
                                         <span class="label-text">
                                             <span>Selectbox with (default with help-icon) and wrapping
                                                 label-text:<sup>*</sup></span>
-                                                <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Open help">
+                                            <button type="button" class="no-style" href="#" title="Open help">
                                                 <span class="icon-questionmark-circle"></span>
                                             </button>
                                         </span>
@@ -1955,10 +1934,7 @@
                                     <label class="error" for="selectbox-with-error">
                                         <span class="label-text">
                                             <span>Selectbox with error:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
+                                            <button type="button" class="no-style" href="#"
                                                 title="Please fill field correctly!">
                                                 <span class="icon-error-circle"></span>
                                             </button>
@@ -1974,11 +1950,7 @@
                                     <label class="warning" for="selectbox-with-warning">
                                         <span class="label-text">
                                             <span>Selectbox with warning:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="A warning occurred!">
+                                            <button type="button" class="no-style" href="#" title="A warning occurred!">
                                                 <span class="icon-exclamation-circle"></span>
                                             </button>
                                         </span>
@@ -1993,10 +1965,7 @@
                                     <label class="success" for="selectbox-with-success">
                                         <span class="label-text">
                                             <span>Selectbox with success:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
+                                            <button type="button" class="no-style" href="#"
                                                 title="Field filled correctly!">
                                                 <span class="icon-check-circle"></span>
                                             </button>
@@ -2012,11 +1981,7 @@
                                     <label class="info" for="selectbox-with-info">
                                         <span class="label-text">
                                             <span>Selectbox with info:<sup>*</sup></span>
-                                            <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Some information!">
+                                            <button type="button" class="no-style" href="#" title="Some information!">
                                                 <span class="icon-info-circle"></span>
                                             </button>
                                         </span>
@@ -2045,7 +2010,7 @@
                                     <span class="label-text">
                                         <span>Label for Replaced Input-Type-Radio:<sup>*</sup></span>
                                     </span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label for="replaced-radio1">
                                             <input type="radio" class="replace-input-type" id="replaced-radio1"
                                                 name="radiogroup" value="1" />
@@ -2075,7 +2040,7 @@
                                 <h4>Replaced Input-Type-Checkboxes</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Replaced Input-Type-Checkboxes:</span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label for="replaced-checkbox1">
                                             <input type="checkbox" class="replace-input-type" id="replaced-checkbox1"
                                                 name="checkboxgroup" value="1" />
@@ -2106,7 +2071,7 @@
                                 <h4>Toggle-Switch-Radio</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group:</span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label class="toggle-switch" for="radio5">
                                             <input type="radio" id="radio5" name="toggle-switch-radiogroup-1"
                                                 value="1" />
@@ -2132,7 +2097,7 @@
 
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group (colored):</span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label class="toggle-switch colored" for="radio9">
                                             <input type="radio" id="radio9" name="toggle-switch-radiogroup-3"
                                                 value="5" />
@@ -2149,7 +2114,7 @@
 
                                 <!-- begin toggle-switch-checkbox -->
                                 <h4>Toggle-Switch-Checkbox</h4>
-                                <div class="flex-container flex-none">
+                                <div class="flex-container">
                                     <label class="toggle-switch" for="toggle-switch-with-icon">
                                         <input type="checkbox" class="icon-cancel-circle" id="toggle-switch-with-icon"
                                             value="1" />
@@ -2169,7 +2134,7 @@
                                 <div class="label inline">
                                     <span class="label-text"><span>Label for
                                             Toggle-Switch-Checkbox-Group:<sup>*</sup></span></span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label class="toggle-switch" for="checkbox5">
                                             <input type="checkbox" id="checkbox5" name="toggle-switch-chechboxgroup-1"
                                                 value="1" />
@@ -2195,10 +2160,10 @@
                                 <div class="label inline">
                                     <span class="label-text">
                                         <span>Label for Toggle-Switch-Checkbox-Group
-                                        (colored):<sup>*</sup>
+                                            (colored):<sup>*</sup>
                                         </span>
                                     </span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label class="toggle-switch colored" for="checkbox9">
                                             <input type="checkbox" id="checkbox9" name="toggle-switch-chechboxgroup-3"
                                                 value="5" />
@@ -2218,7 +2183,7 @@
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group with
                                         Switch-Label:</span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label class="toggle-switch" for="toggle-switch-radio1" title="default">
                                             <span class="switch-label-wrapper">
                                                 <input type="radio" id="toggle-switch-radio1"
@@ -2287,7 +2252,7 @@
                                         <span>Label for Toggle-Switch-Checkbox with Switch-Label:</span>
                                         <a href="#" class="icon-questionmark-circle" title="Open help"></a>
                                     </span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label class="toggle-switch" for="toggle-switch-checkbox1" title="default">
                                             <span class="switch-label-wrapper">
                                                 <input type="checkbox" id="toggle-switch-checkbox1"
@@ -2331,7 +2296,7 @@
                                 <h4>Toggle-Switch-Radio with Switch-Label</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio with Switch-Label:</span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label class="toggle-switch colored" for="toggle-switch-radio-colored1"
                                             title="default">
                                             <span class="switch-label-wrapper">
@@ -2356,7 +2321,7 @@
                                 <h4>Toggle-Switch-Checkbox with Switch-Label</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Checkbox with Switch-Label:</span>
-                                    <span class="flex-container flex-none">
+                                    <span class="flex-container">
                                         <label class="toggle-switch colored" for="toggle-switch-checkbox-colored1"
                                             title="default">
                                             <span class="switch-label-wrapper">
@@ -2384,15 +2349,11 @@
                                     <span class="label-text" id="label-multiple-switch-radio"
                                         aria-labelledby="label-multiple-switch-radio">
                                         <span>Grouplabel for radio-group styled as multiple-switch</span>
-                                        <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Open help">
-                                                <span class="icon-questionmark-circle"></span>
-                                            </button>
+                                        <button type="button" class="no-style" href="#" title="Open help">
+                                            <span class="icon-questionmark-circle"></span>
+                                        </button>
                                     </span>
-                                    <span class="flex-container flex-none no-gap">
+                                    <span class="switch-wrapper">
                                         <label for="radio-id-1-multi">
                                             <input type="radio" id="radio-id-1-multi" name="input-group-radio-multi"
                                                 value="website">
@@ -2420,15 +2381,11 @@
                                     <span class="label-text" id="label-multiple-switch-checkbox"
                                         aria-labelledby="label-multiple-switch-checkbox">
                                         <span>Grouplabel for checkbox-group styled as multiple-switch (stretched)</span>
-                                        <button 
-                                                type="button"
-                                                class="no-style" 
-                                                href="#" 
-                                                title="Open help">
-                                                <span class="icon-questionmark-circle"></span>
-                                            </button>
+                                        <button type="button" class="no-style" href="#" title="Open help">
+                                            <span class="icon-questionmark-circle"></span>
+                                        </button>
                                     </span>
-                                    <span class="flex-container no-gap">
+                                    <span class="switch-wrapper">
                                         <label for="checkbox-id-1-multi">
                                             <input type="checkbox" id="checkbox-id-1-multi"
                                                 name="input-group-checkbox-multi" value="website">
@@ -2609,7 +2566,8 @@
                             <div class="flex-item-flex-1">flex-item 1/4</div>
                             <div class="flex-item-flex-3">flex-item 3/4</div>
                         </div>
-                        <h3 id="anchor-flex-containers-different-flex-by-breakpoints">different widths by breakpoints</h3>
+                        <h3 id="anchor-flex-containers-different-flex-by-breakpoints">different widths by breakpoints
+                        </h3>
                         <div class="flex-container">
                             <div class="flex-item-flex-3-large flex-item-flex-2-medium flex-item-flex-1-small">
                                 flex 3 (large), flex 2 (medium), flex 1 (small)
@@ -2785,7 +2743,7 @@ import packageJson from "../package.json"
 export default {
     data() {
         return {
-            selectedTemplate: "material-web",
+            selectedTemplate: "neumorphic",
             openBoxes: ["template", "table"],
             showSidebar: true,
             openSidebar: true,
@@ -2857,14 +2815,4 @@ export default {
 }
 </script>
 
-<style>
-.demo-page .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100dvh;
-    scroll-behavior: smooth;
-    scroll-padding-top: 11.7rem;
-}
-</style>
+<style></style>

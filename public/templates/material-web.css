@@ -5,7 +5,6 @@ html {
     --default-font-size: 1.4rem;
     --default-line-height: 2rem;
     --default-font-weight: 500;
-    --text-color: hsl(29, 27%, 32%);
     --dark-mode-text-color: hsl(from var(--color-white) h s 80%);
     --button-border-color: var(--default-text-color);
     --button-border-color-highlighted: var(--default-text-color);
@@ -43,14 +42,12 @@ html {
     --default-background: light-dark(var(--color-white) / .2, var(--color-black) / .2);
     --input-height: 4.6rem;
     --headline-font-weight: normal;
-    --form-element-with-icon-padding: calc(var(--default-padding) * 2);
     --fieldset-background: light-dark(var(--color-white) / .2, linear-gradient(180deg, hsl(var(--primary-color-hue), var(--primary-color-saturation), 7%) 0%, hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 15%)));
 
     /* declare custom variables */
     --colored-background-gradient: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
     --colored-background-gradient-rotated: linear-gradient(0deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
-
 
 :where(button, .button) {
     &:not(.primary) {
@@ -107,21 +104,21 @@ html {
     font-size: var(--root-font-size);
 
     &.light-mode {
-        .page-wrapper {
+        .site-wrapper {
             /*
             background-image: url("../images/background/background-material-web-lightmode.jpg");*/
         }
     }
 
     &.dark-mode {
-        .page-wrapper {
+        .site-wrapper {
             background-image: url("../images/background/background-material-web-darkmode.jpg");
         }
     }
 }
 
 @media (prefers-color-scheme: dark) {
-    .page-wrapper {
+    .site-wrapper {
         background-image: url("../images/background/background-material-web-darkmode.jpg");
     }
 }

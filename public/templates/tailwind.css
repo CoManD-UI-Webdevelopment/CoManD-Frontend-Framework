@@ -73,21 +73,21 @@ html {
     font-size: var(--root-font-size);
 
     &.light-mode {
-        .page-wrapper {
+        .site-wrapper {
             /*
             background-image: url("../images/background/background-material-web-lightmode.jpg");*/
         }
     }
 
     &.dark-mode {
-        .page-wrapper {
+        .site-wrapper {
             background-image: url("../images/background/background-material-web-darkmode.jpg");
         }
     }
 }
 
 @media (prefers-color-scheme: dark) {
-    .page-wrapper {
+    .site-wrapper {
         background-image: url("../images/background/background-material-web-darkmode.jpg");
     }
 }

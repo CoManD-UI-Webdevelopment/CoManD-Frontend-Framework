@@ -1,14 +1,20 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2026/02/26
+framework.css - last update: 2026/03/14
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
 /* begin table of contents ------------------------------------------------------------------------------------------ */
 /*
-- VARIABLES ------------------------
+- VARIABLES & TOKENS ------------------------
 
 - MAIN STYLES ------------------------
+
+- UTILITY CLASSES ------------------------
+
+A ------------------------
+  - accordions
+
 B ------------------------
   - basic selectors and classes
   - boxes
@@ -42,7 +48,13 @@ L ------------------------
 N ------------------------
   - navigation
 
+P ------------------------
+ - popover
+
 S ------------------------
+  - site-footer
+  - site-wrapper
+  - skeleton loading
   - system messages
 
 T ------------------------
@@ -98,11 +110,18 @@ html {
     --default-aspect-ratio: auto; /* default aspect-ratio */
     /* END WEBSITE-GRID AND GLOBAL SETTINGS ------------------------------------------------------------------------------------------ */
 
+    /* BEGIN SITE WRAPPER ------------------------------------------------------------------------------------------ */
+    --site-wrapper-scroll-padding-top: 11.7rem; /* scroll-padding-top for site-wrapper */
+    --site-wrapper-scroll-behavior: smooth; /* scroll-behavior for site-wrapper */
+    --site-wrapper-height: 100dvh; /* height for site-wrapper */
+    /* END SITE WRAPPER ------------------------------------------------------------------------------------------ */
+
     /* BEGIN SITE HEADER ------------------------------------------------------------------------------------------ */
     --site-header-border: var(--default-border); /* border for site-header */
     --site-header-background: var(--color-scheme-background); /* background for site-header */
     --site-header-text-color: var(--color-scheme-text-color); /* text-color for site-header */
     --site-header-padding: var(--default-padding); /* padding for site-header */
+    --site-header-box-shadow: var(--default-box-shadow); /* box-shadow for site-header */
     /* END SITE HEADER ------------------------------------------------------------------------------------------ */
 
     /* BEGIN MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
@@ -116,6 +135,7 @@ html {
     --main-navigation-hyperlink-color-active: var(--hyperlink-color); /* active hyperlink-color for main-navigation */
     --main-navigation-main-level-icon-size: var(--default-icon-size); /* icon-size for icons on main-level of main-navigation */
     --main-navigation-sub-level-icon-size: var(--default-icon-size); /* icon-size for icons on (all) sub-levels of main-navigation */
+    --main-navigation-box-shadow: var(--default-box-shadow); /* box-shadow for main-navigation */
     /* END MAIN NAVIGATION ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SITE FOOTER ------------------------------------------------------------------------------------------ */
@@ -140,18 +160,6 @@ html {
     --disabled-background-lightness: 78%; /* disabled-background-color-lightness */
     --disabled-background: hsl(from var(--color-black) h s var(--disabled-background-lightness)); /* disabled-background(-color) */
     --disabled-background-reduced-opacity: hsla(var(--disabled-background), var(--reduced-opacity)); /* disabled-background-color with reduced opacity */
-
-    /* background for filled inputfields (default, :valid, :invalid) */
-    --form-input-filled-background-hue-success: var(--success-color-hue); /* background-hue for filled form-inputs with status 'success' */
-    --form-input-filled-background-hue-warning: var(--warning-color-hue); /* background-hue for filled form-inputs with status 'warning' */
-    --form-input-filled-background-hue-error: var(--error-color-hue); /* background-hue for filled form-inputs with status 'error' */
-    --form-input-filled-background-hue-info: var(--info-color-hue); /* background-hue for filled form-inputs with status 'info' */
-    --form-input-filled-background-saturation: 100%; /* background-saturation for filled form-inputs */
-    --form-input-filled-background-lightness: 97%; /* background-lightness for filled form-inputs */
-    --form-input-filled-background-success: hsl(var(--form-input-filled-background-hue-success), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'success' */
-    --form-input-filled-background-warning: hsl(var(--form-input-filled-background-hue-warning), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'warning' */
-    --form-input-filled-background-error: hsl(var(--form-input-filled-background-hue-error), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'error' */
-    --form-input-filled-background-info: hsl(var(--form-input-filled-background-hue-info), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'info' */
     /* END BACKGROUNDS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN BORDERS AND OUTLINES ------------------------------------------------------------------------------------------ */
@@ -271,19 +279,23 @@ html {
     --hyperlink-color-hue-light-mode: var(--primary-color-hue); /* hyperlink-color-hue for light-mode */
     --hyperlink-color-saturation-light-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for light-mode */
     --hyperlink-color-lightness-light-mode: var(--primary-color-lightness); /* hyperlink-color-lightness  for light-mode */
+    --hyperlink-color-light-mode: hsl(var(--hyperlink-color-hue-light-mode), var(--hyperlink-color-saturation-light-mode), var(--hyperlink-color-lightness-light-mode)); /* hyperlink-color for light-mode */
     --hyperlink-color-hue-dark-mode: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
     --hyperlink-color-saturation-dark-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
     --hyperlink-color-lightness-dark-mode: 45%; /* hyperlink-color-lightness for dark-mode */
-    --hyperlink-color: light-dark(hsl(var(--hyperlink-color-hue-light-mode), var(--hyperlink-color-saturation-light-mode), var(--hyperlink-color-lightness-light-mode)), hsl(var(--hyperlink-color-hue-dark-mode), var(--hyperlink-color-saturation-dark-mode), var(--hyperlink-color-lightness-dark-mode))); /* hyperlink-color */
+    --hyperlink-color-dark-mode: hsl(var(--hyperlink-color-hue-dark-mode), var(--hyperlink-color-saturation-dark-mode), var(--hyperlink-color-lightness-dark-mode)); /* hyperlink-color for dark-mode */
+    --hyperlink-color: light-dark(var(--hyperlink-color-light-mode), var(--hyperlink-color-dark-mode)); /* hyperlink-color */
 
     /* hyperlink-color (highlighted) (i.e. for :hover, :active, :focus, .active) */
     --hyperlink-color-highlighted-hue-light-mode: var(--primary-color-hue); /* hyperlink-color-highlighted-hue for light-mode */
     --hyperlink-color-highlighted-saturation-light-mode: var(--primary-color-saturation); /* hyperlink-color-highlighted-saturation for light-mode */
     --hyperlink-color-highlighted-lightness-light-mode: 40%; /* hyperlink-color-highlighted-lightness for light-mode */
+    --hyperlink-color-highlighted-light-mode: hsl(var(--hyperlink-color-highlighted-hue-light-mode), var(--hyperlink-color-highlighted-saturation-light-mode), var(--hyperlink-color-highlighted-lightness-light-mode)); /* hyperlink-color-highlighted for light-mode */
     --hyperlink-color-highlighted-hue-dark-mode: var(--primary-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
     --hyperlink-color-highlighted-saturation-dark-mode: var(--primary-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
     --hyperlink-color-highlighted-lightness-dark-mode: 60%; /* hyperlink-color-lightness for dark-mode */
-    --hyperlink-color-highlighted: light-dark(hsl(var(--hyperlink-color-highlighted-hue-light-mode), var(--hyperlink-color-highlighted-saturation-light-mode), var(--hyperlink-color-highlighted-lightness-light-mode)), hsl(var(--hyperlink-color-highlighted-hue-dark-mode), var(--hyperlink-color-saturation-dark-mode), var(--hyperlink-color-highlighted-lightness-dark-mode))) !important; /* hyperlink-color-highlighted */
+    --hyperlink-color-highlighted-dark-mode: hsl(var(--hyperlink-color-highlighted-hue-dark-mode), var(--hyperlink-color-highlighted-saturation-dark-mode), var(--hyperlink-color-highlighted-lightness-dark-mode)); /* hyperlink-color-highlighted for dark-mode */
+    --hyperlink-color-highlighted: light-dark(var(--hyperlink-color-highlighted-light-mode), var(--hyperlink-color-highlighted-dark-mode)); /* hyperlink-color-highlighted */
 
     /* colors for disabled elements */
     --disabled-color: var(--color-gray-70); /* disabled-color - do not set light-dark-mode (color should remain the same) */
@@ -299,10 +311,10 @@ html {
 
     /* font-sizes */
     --root-font-size: 62.5%; /* default size is 16px, 62.5% of that is 10px = 1rem */
-    --default-font-size: var(--font-size-medium); /* default font-size for all text-elements (paragraphs, lists, tables, labels, hyperlinks, buttons etc.) */
-    --font-size-small: 1.2rem; /* font-size for small text */
-    --font-size-medium: 1.4rem; /* font-size for default/medium text */
-    --font-size-large: 1.6rem; /* font-size for large text */
+    --default-font-size: 1.4rem; /* default font-size for all text-elements (paragraphs, lists, tables, labels, hyperlinks, buttons etc.) */
+    --font-size-small: calc(var(--default-font-size) * .8); /* font-size for small text */
+    --font-size-medium: var(--default-font-size); /* font-size for default/medium text */
+    --font-size-large: calc(var(--default-font-size) * 1.2); /* font-size for large text */
 
     /* font-weights */
     --default-font-weight: var(--font-weight-normal); /* default font-weight for text-elements */
@@ -317,16 +329,16 @@ html {
     --font-weight-black: 900; /* font-weight for black text (must be supported by font-family) */
 
     /* icon-sizes */
-    --default-icon-size: var(--icon-size-medium); /* default font-size for icons */
-    --icon-size-small: 1.2rem; /* font-size for small icons */
-    --icon-size-medium: 1.4rem; /* font-size for default/medium icons */
-    --icon-size-large: 1.6rem; /* font-size for small icons */
+    --default-icon-size: 1.4rem; /* default font-size for icons */
+    --icon-size-small: calc(var(--default-icon-size) * .8); /* font-size for small icons */
+    --icon-size-medium: var(--default-icon-size); /* font-size for default/medium icons */
+    --icon-size-large: calc(var(--default-icon-size) * 1.2); /* font-size for small icons */
 
     /* line-heights */
     --default-line-height: 1.4; /* line-height - may not be set as percentage to work properly in calc() */
-    --line-height-large: 2; /* line height for large text */
+    --line-height-small: calc(var(--default-line-height) * .8); /* line height for small text */
     --line-height-medium: var(--default-line-height); /* line height for medium/default/continous text */
-    --line-height-small: 1.2; /* line height for small text */
+    --line-height-large: calc(var(--default-line-height) * .1.4); /* line height for large text */
     --line-height-none: 1; /* may not be set to zero and may not be set as percentage to work properly in calc() */
     --line-of-text-height: calc(var(--default-font-size) * var(--default-line-height)); /* height of one line of (default) text */
 
@@ -347,12 +359,12 @@ html {
 
     /* headlines */
     --headline-font-family: var(--default-font-family); /* font-family for headlines */
-    --headline-font-size-h1: 3.6rem; /* font-size for h1 */
-    --headline-font-size-h2: 3rem; /* font-size for h2 */
-    --headline-font-size-h3: 2.5rem; /* font-size for h3 */
-    --headline-font-size-h4: 2.1rem; /* font-size for h4 */
-    --headline-font-size-h5: 1.8rem; /* font-size for h5 */
-    --headline-font-size-h6: 1.6rem; /* font-size for h6 */
+    --headline-font-size-h1: calc(var(--default-font-size) * 2.3); /* font-size for h1 */
+    --headline-font-size-h2: calc(var(--default-font-size) * 2); /* font-size for h2 */
+    --headline-font-size-h3: calc(var(--default-font-size) * 1.7); /* font-size for h3 */
+    --headline-font-size-h4: calc(var(--default-font-size) * 1.5);/* font-size for h4 */
+    --headline-font-size-h5: calc(var(--default-font-size) * 1.3); /* font-size for h5 */
+    --headline-font-size-h6: calc(var(--default-font-size) * 1.1); /* font-size for h6 */
     --headline-text-color: var(--color-scheme-text-color); /* text-color for headlines */
     --headline-text-color-h1: var(--headline-text-color); /* text-color for h1 */
     --headline-text-color-h2: var(--headline-text-color); /* text-color for h2 */
@@ -365,7 +377,7 @@ html {
     --headline-font-weight: var(--font-weight-bold); /* font-weight for headlines */
     --headline-margin-top: calc(var(--default-margin) * 2); /* margin-top for headlines */
     --headline-margin-bottom: var(--default-margin); /* margin-bottom for headlines */
-    --headline-text-shadow: var(--default-text-shadow); /* text-shadow for headlines */
+    --headline-text-shadow: none; /* text-shadow for headlines */
     --headline-icon-size: 75%; /* font-size for icon inside headlines */
     /* END FONTS AND TYPOGRAPHY ------------------------------------------------------------------------------------------ */
 
@@ -420,6 +432,11 @@ html {
     --button-box-shadow-highlighted: none; /* box-shadow for highlighted (default) buttons */
     --button-background: var(--default-text-color); /* background(-color) for (default) buttons */
     --button-background-highlighted: var(--color-white); /* background for highlighted (default) buttons */
+    --button-transition: none; /* transtion for buttons (on hover/focus/active an back to default) */
+
+    /* buttons with icon only */
+    --button-icon-only-padding: 0; /* padding for buttons with icon only */
+    --button-icon-only-width: auto; /* width for buttons with icon only */
 
     /* primary buttons (outline, border, box-shadow, background) */
     --button-primary-outline: var(--default-outline); /* outline for primary-buttons */
@@ -463,6 +480,16 @@ html {
     --button-tertiary-background: var(--tertiary-color); /* background(-color) for tertiary-buttons */
     --button-tertiary-background-highlighted: var(--color-white); /* background for highlighted tertiary-buttons */
 
+    /* cancel/confirm-buttons */
+    --button-cancel-text-color: var(--color-white); /* text-color for cancel-buttons */
+    --button-cancel-text-color-highlighted: var(--error-color); /* text-color for highlighted cancel-buttons */
+    --button-cancel-border-color: var(--error-color); /* border-color for cancel-buttons */
+    --button-cancel-border-color-highlighted: var(--error-color); /* border-color for highlighted cancel-buttons */
+    --button-confirm-text-color: var(--color-white); /* text-color for confirm-buttons */
+    --button-confirm-text-color-highlighted: var(--success-color); /* text-color for highlighted confirm-buttons */
+    --button-confirm-border-color: var(--success-color); /* border-color for confirm-buttons */
+    --button-confirm-border-color-highlighted: var(--success-color); /* border-color for highlighted confirm-buttons */
+
     /* button dimensions */
     --button-padding: var(--default-padding); /* padding for button */
     --button-min-width: var(--button-min-width-medium); /* required to keep buttons identical in size across different browsers */
@@ -485,7 +512,8 @@ html {
     --button-padding-large: calc(var(--button-padding) * 2); /* padding for large buttons */
 
     /* buttons with large icon */
-    --button-large-icon-icon-size: 5rem; /* icon-size for button with large-icon */
+    --button-large-icon-padding: var(--button-padding-large); /* padding for buttons with large-icon */
+    --button-large-icon-icon-size: 5rem; /* icon-size for buttons with large-icon */
 
     /* buttons shadow */
     --button-box-shadow: var(--default-box-shadow); /* box-shadow for buttons */
@@ -513,7 +541,7 @@ html {
     --box-min-width: 20rem; /* min-width for boxes to avoid content to wrap extremely */
     /* END BOXES ------------------------------------------------------------------------------------------ */
 
-        /* BEGIN FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
+    /* BEGIN FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
     /* fieldsets */
     --fieldset-background: var(--color-scheme-background); /* background(-color) for fieldsets */
     --fieldset-border-width: var(--default-border-width); /* border-width for fieldsets */
@@ -553,7 +581,7 @@ html {
     --placeholder-font-style: regular; /* font-style for placeholder texts */
     --placeholder-text-opacity: .5; /* opacity for placeholder texts (should not be lower than 0.5 to avoid w2aa accessibility standards */
 
-    /* inputfields */
+    /* form-inputs (input, select, textarea) */
     --form-input-height: 4rem; /* fixed height to render inputs and select same height across different browsers */
     --form-input-padding: 1rem .1rem 1rem .5rem; /* padding for inputfields and selectboxes */
     --form-input-max-width-short-fields: 14rem; /* maximum width for small inputs (to avoid stretching if horizontal space is available) */
@@ -566,14 +594,77 @@ html {
     --form-input-border-color-highlighted: var(--hyperlink-color-highlighted); /* border-color for form-inputs */
     --form-input-border-highlighted: var(--form-input-border-width-highlighted) var(--form-input-border-style-highlighted) var(--form-input-border-color-highlighted); /* border for form-inputs highlighted */
     --form-input-border-radius: var(--default-border-radius); /* border-radius for form-inputs */
+    --form-input-box-shadow: var(--default-box-shadow); /* box-shadow for form-inputs */
+    --form-input-box-shadow-highlighted: none; /* box-shadow for form-inputs highlighted */
     --form-input-corner-shape: var(--default-corner-shape); /* corner-shape for form-inputs */
     --form-input-text-color: var(--default-text-color); /* text-color for form-inputs */
     --form-input-background: var(--color-scheme-background); /* background for form-inputs */
     --form-input-background-highlighted: var(--color-scheme-background); /* background for form-inputs highlighted */
+    
+    /* background for filled form-inputs (default, :valid, :invalid) */
+    --form-input-filled-background-hue-success: var(--success-color-hue); /* background-hue for filled form-inputs with status 'success' */
+    --form-input-filled-background-hue-warning: var(--warning-color-hue); /* background-hue for filled form-inputs with status 'warning' */
+    --form-input-filled-background-hue-error: var(--error-color-hue); /* background-hue for filled form-inputs with status 'error' */
+    --form-input-filled-background-hue-info: var(--info-color-hue); /* background-hue for filled form-inputs with status 'info' */
+    --form-input-filled-background-saturation: 100%; /* background-saturation for filled form-inputs */
+    --form-input-filled-background-lightness-light-mode: 97%; /* background-lightness for filled form-inputs for light-mode */
+    --form-input-filled-background-lightness-dark-mode: 5%; /* background-lightness for filled form-inputs for dark-mode */
+    --form-input-filled-background-lightness: var(--form-input-filled-background-lightness-light-mode); /* background-lightness for filled form-inputs */
+    --form-input-filled-background-success: hsl(var(--form-input-filled-background-hue-success), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'success' */
+    --form-input-filled-background-warning: hsl(var(--form-input-filled-background-hue-warning), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'warning' */
+    --form-input-filled-background-error: hsl(var(--form-input-filled-background-hue-error), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'error' */
+    --form-input-filled-background-info: hsl(var(--form-input-filled-background-hue-info), var(--form-input-filled-background-saturation), var(--form-input-filled-background-lightness)); /* background-color for filled form-inputs with status 'info' */
+       
+    /* miscellaneous styles for inputfields */
+    --form-input-transition: var(--default-transition); /* transition for form-inputs (will also be applied on hover/active/focus) */
     --textarea-border-radius: var(--form-input-border-radius); /* border-radius for textareas */
     --textarea-padding: calc(var(--default-padding) / 2); /* padding for textarea */
     --select-options-text-color: var(--color-scheme-text-color); /* text color for options inside selectboxes */
     --form-input-with-icon-padding: calc(var(--default-padding) * 3); /* padding(-left) for form-elements with icon */
+    --form-input-icon-left-position: var(--default-margin); /* left-postion for icons inside form-inputs */
+
+    /* input-type-range/range-slider */
+    --input-type-range-border-width: var(--form-input-border-width); /* border-width for input-type-range/range-sliders*/
+    --input-type-range-border-style: var(--form-input-border-style); /* border-style for input-type-range/range-sliders */
+    --input-type-range-border-color: var(--form-input-border-color); /* border-color for input-type-range/range-sliders */
+    --input-type-range-border: var(--input-type-range-border-width) var(--input-type-range-border-style) var(--input-type-range-border-color); /* border for input-type-range/range-sliders */
+    --input-type-range-background: var(--color-scheme-background); /* background for input-type-range/range-slider */
+    --input-type-range-height: .4rem; /* height for input-type-range/range-slider */
+    --input-type-range-border-radius: calc(var(--input-type-range-height) / 2); /* border-radius for input-type-range/range-sliders */
+    --input-type-range-box-shadow: none; /* box-shadow for input-type-range/range-sliders */
+    --input-type-range-thumb-width: 1.6rem; /* width for thumb of input-type-range/range-sliders */
+    --input-type-range-thumb-height: 1.6rem; /* height for thumb of input-type-range/range-sliders */
+
+    /* multiple-switch */
+    --multiple-switch-border-width: var(--form-input-border-width); /* border-width for toggle-switches */
+    --multiple-switch-border-style: var(--form-input-border-style); /* border-style for toggle-switches */
+    --multiple-switch-border-color: var(--form-input-border-color); /* border-color for toggle-switches */
+    --multiple-switch-border: var(--multiple-switch-border-width) var(--multiple-switch-border-style) var(--multiple-switch-border-color); /* border for multiple-switches */
+    --multiple-switch-border: var(--form-input-border); /* border for multiple-switches (will be applied to switch-wrapper inside) */
+    --multiple-switch-border-radius: var(--default-border-radius); /* border-radius for multiple-switches */
+    --multiple-switch-wrapper-box-shadow: var(--form-input-box-shadow); /* box-shadow for multiple-switches (will be applied to switch-wrapper inside) */
+    --multiple-switch-input-box-shadow: none; /* box-shadow for multiple-switch (will be applied to checkbox/radio inside) */
+    --multiple-switch-input-checked-box-shadow: var(--form-input-box-shadow); /* box-shadow for multiple-switch (will be applied to checked checkbox/radio inside) */
+    
+    /* toggle-switch */
+    --toggle-switch-track-border-width: var(--form-input-border-width); /* border-width for track of toggle-switches */
+    --toggle-switch-track-border-style: var(--form-input-border-style); /* border-style for track of toggle-switches */
+    --toggle-switch-track-border-color: var(--form-input-border-color); /* border-color for track of toggle-switches */
+    --toggle-switch-track-border: var(--toggle-switch-track-border-width) var(--toggle-switch-track-border-style) var(--toggle-switch-track-border-color); /* border for track of toggle-switches */
+    --toggle-switch-thumb-border-width: var(--form-input-border-width); /* border-width for thumb of toggle-switches */
+    --toggle-switch-thumb-border-style: var(--form-input-border-style); /* border-style for thumb of toggle-switches */
+    --toggle-switch-thumb-border-color: var(--form-input-border-color); /* border-color for thumb of toggle-switches */
+    --toggle-switch-thumb-border: var(--toggle-switch-thumb-border-width) var(--toggle-switch-thumb-border-style) var(--toggle-switch-thumb-border-color); /* border for thumb of toggle-switches */
+    --toggle-switch-border-radius: 1.2rem; /* border-radius form toggle-switches */
+    --toggle-switch-height: 2rem; /* height for toggle-switches */
+    --toggle-switch-thumb-width: 1.4rem; /* width for thumb of toggle-switches */
+    --toggle-switch-thumb-box-shadow: var(--form-input-box-shadow); /* box-shadow for thumb of toggle-switch */
+    --toggle-switch-switch-label-thumb-width: 1.4rem; /* width for thumg of toggle-switches with switch-label */
+    --toggle-switch-track-width: 4rem; /* width for track of toggle-switches */
+    --toggle-switch-track-padding: .2rem 1rem; /* padding for track of toggle-switches */
+    --toggle-switch-track-box-shadow: var(--form-input-box-shadow); /* box-shadow for track of toggle-switch */
+    --toggle-switch-with-icon-thumb-border: 0; /* border for thumb for toggle-switches with icon */
+    --toggle-switch-with-icon-thumb-background: none; /* background for thumb for toggle-switches with icon */
     /* END FORMS AND FIELDSETS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN IMAGES ------------------------------------------------------------------------------------------ */
@@ -594,24 +685,30 @@ html {
     --list-style-item-color-highlighted: var(--primary-color); /* color for (by class) highlighted list-style-items */
    /* END LISTS ------------------------------------------------------------------------------------------ */
 
-    /* BEGIN POPOVERS/TOOLTIP-TARGETS ------------------------------------------------------------------------------------------ */
+    /* BEGIN POPOVERS ------------------------------------------------------------------------------------------ */
     --popover-max-width: 90%; /* max-width for popovers */
     --popover-max-height: 90%; /* max-height for popovers */
-    --popover-padding-top-bottom: var(--default-padding-half); /* top- and bottom-padding for popovers */
-    --popover-padding-left-right: var(--default-padding-half); /* left- and right-padding for popovers */
+    --popover-padding-top-bottom: var(--default-padding); /* top- and bottom-padding for popovers */
+    --popover-padding-left-right: var(--default-padding); /* left- and right-padding for popovers */
     --popover-padding: var(--popover-padding-top-bottom) var(--popover-padding-left-right); /* padding for popovers */
     --popover-border-width: var(--default-border-width); /* border-width for popovers */
     --popover-border-style: var(--default-border-style); /* border-style for popovers */
     --popover-border-color: var(--default-border-color); /* border-radius for popovers */
     --popover-border: var(--popover-border-width) var(--popover-border-style) var(--popover-border-color); /* border for popovers */
     --popover-border-radius: var(--default-border-radius); /* border-radius for popovers */
-    --popover-box-shadow: var(--default-box-shadow); /* box-shadow for popovers */
+    --popover-box-shadow: none; /* box-shadow for popovers */
     --popover-background: var(var(--color-scheme-background)); /* background for popovers */
     --popover-backdrop-background: var(--color-black-reduced-opacity); /* backdrop-background for popovers */
+    /* END POPOVERS ------------------------------------------------------------------------------------------ */
+
+    /* BEGIN TOOLTIP-TARGETS ------------------------------------------------------------------------------------------ */
     --tooltip-target-position-area: top right; /* position for tooltip-target */
     --tooltip-max-width: 30rem; /* max-width for tooltips */
     --tooltip-max-height: 30rem; /* max-height for tooltip */
-    /* END POPOVERS/TOOLTIP-TARGETS ------------------------------------------------------------------------------------------ */
+    --tooltip-box-shadow: var(--default-box-shadow); /* box-shadow for tooltips */
+    --tooltip-padding-top-bottom: var(--default-padding); /* padding-top and -bottom for tooltips */
+    --tooltip-padding-left-right: var(--default-padding); /* padding-left and -right for tooltips */
+    /* END TOOLTIP-TARGETS ------------------------------------------------------------------------------------------ */
 
     /* BEGIN SKELETON-LOADING ------------------------------------------------------------------------------------------ */
     --skeleton-loading-opacity: var(--reduced-opacity); /* (reduced) opacity to make loading-animation look more realistic */
@@ -690,27 +787,22 @@ html {
     --tag-box-shadow: var(--default-box-shadow); /* box-shadow for tags */
     /* END TAGS ------------------------------------------------------------------------------------------ */
 
-    /* BEGIN SYSTEM-MESSAGES ------------------------------------------------------------------------------------------ */
-    --system-message-text-color: var(--color-white); /* text-color for all system-messages - do not change due to accessibility reasons */
-    --system-message-border-width: var(--default-border-width); /* border-width for system-messages */
-    --system-message-border-style: var(--default-border-style); /* border-style for system-messages */
-    --system-message-border-color: var(--default-border-color); /* border-radius for system-messages */
-    --system-message-border: var(--system-message-width) var(--system-message-border-style) var(--system-message-border-color); /* border for system-messages */
-    --system-message-border-radius: var(--default-border-radius); /* border-radius for system-messages */
-    --system-message-font-weight: var(--font-weight-bold); /* font-weight for system-messages */
-    --system-message-padding-top-bottom: var(--default-padding); /* top- and bottom-padding for system-messages */
-    --system-message-padding-left-right: calc(var(--default-padding) * 2); /* left- and right-padding for system-messages */
-    --system-message-padding: var(--system-message-padding-top-bottom) calc(var(--system-message-padding-left-right)); /* padding for system-messages */
-    --system-message-box-shadow: var(--default-box-shadow); /* box-shadow for system-messages */
-    /* END SYSTEM-MESSAGES ------------------------------------------------------------------------------------------ */
-
     /* BEGIN MISCELLANEOUS ------------------------------------------------------------------------------------------ */
     /* flex */
     --reset-flex: 0 1 auto; /* reset flex to its default behavior (i.e. to overwrite flex: none;) */
 
+    /* flexible-scroll-container */
+    --flexible-scroll-container-border: var(--default-border); /* border for flexible-scroll-container for fixed-wrapper */
+    --flexible-scroll-container-max-height: 20rem; /* max-height for flexible-scroll-container (must be set in fixed units to enable overflow/scroll */
+    --flexible-scroll-container-fixed-wrapper-padding: var(--default-padding); /* padding for flexible-scroll-container for fixed-wrapper */
+    --flexible-scroll-container-fixed-wrapper-box-shadow: var(--default-box-shadow); /* box-shadow for flexible-scroll-container for fixed-wrapper */
+    --flexible-scroll-container-scroll-wrapper-padding: var(--default-padding); /* padding for flexible-scroll-container for scroll-wrapper */
+    --flexible-scroll-container-scroll-wrapper-box-shadow: var(--default-box-shadow); /* box-shadow for flexible-scroll-container for scroll-wrapper */
+    --flexible-scroll-container-border-radius: var(--default-border-radius); /* border-radius for flexible-scroll-container */
+
     /* opacity */
     --full-opacity: 1; /* full opacity (default for all elements */
-    --reduced-opacity: .75; /* reduced opacity (should be at least 0.75 for accessibility) */
+    --reduced-opacity: .75; /* reduced opacity (should be minimum 0.75 for accessibility) */
     --no-opacity: 0; /* no opacity (element and all its content become transparent) */
 
     /* shadows */
@@ -846,7 +938,83 @@ body.no-transitions *, .no-transitions {
     transition: none !important;
 }
 
-/* begin utility-classes */
+/* begin basic typography */
+ul, ol, dl, table, address {
+    margin-bottom: var(--default-margin); /* margin-bottom for most elements containing text */
+}
+
+p:has(> small:only-child) {
+    line-height: var(--line-height-small);
+}
+
+strong {
+    font-weight: var(--font-weight-bold);
+}
+
+em, cite, .italic {
+    font-style: italic;
+}
+
+small, small > :where(a, span), .small {
+    font-size: var(--font-size-small);
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+hr {
+    border-width: 0;
+    border-top-width: var(--default-border-width);
+    clear: both;
+    color: var(--color-scheme-text-color);
+    width: 100%;
+}
+
+hr + * {
+    margin-top: calc(var(--default-margin) * 2);
+}
+
+:is(p, li, a, dd, td) :is(code, pre) {
+    display: inline;
+}
+
+/* end typography */
+
+/* begin images */
+figure {
+    margin: 0;
+}
+
+a > :is(img, figcaption, figure):only-child {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+img {
+    max-height: 100%;
+    box-shadow: var(--image-box-shadow);
+    border-radius: var(--image-border-radius);
+    /* corner-shape: var(--image-corner-shape); */
+
+    &.grayscale {
+        filter: grayscale(1);
+    }
+}
+
+a > img {
+    border: var(--image-border);
+}
+
+a:where(:hover, :active, :focus) img {
+    border-color: var(--hyperlink-color);
+}
+
+/* end images */
+/* end basic selectors and classes ------------------------------------------------------------------------------------------ */
+
+/* begin utility-classes ------------------------------------------------------------------------------------------ */
 .inline-size, .container-type-inline-size {
     container-type: inline-size; /* set reference for @container-rule for child-elements */
 }
@@ -1165,6 +1333,7 @@ body.no-transitions *, .no-transitions {
 
 .text-align-center {
     text-align: center;
+    text-wrap: balance;
 }
 
 .text-align-right {
@@ -1332,136 +1501,164 @@ body.no-transitions *, .no-transitions {
 .info-color-background {
     background: var(--info-color);
 }
-/* end utility-classes */
+/* end utility-classes  ------------------------------------------------------------------------------------------ */
 
-/* begin basic typography */
-ul, ol, dl, table, address {
-    margin-bottom: var(--default-margin); /* margin-bottom for most elements containing text */
+/* begin accordions ------------------------------------------------------------------------------------------ */
+.accordion-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--default-gap);
 }
 
-p:has(> small:only-child) {
-    line-height: var(--line-height-small);
-}
+details {
+    border: var(--accordion-border);
+    border-radius: var(--accordion-border-radius);
+    background: var(--accordion-background);
+    box-shadow: var(--accordion-box-shadow);
 
-strong {
-    font-weight: var(--font-weight-bold);
-}
-
-em, cite, .italic {
-    font-style: italic;
-}
-
-small, small > :where(a, span), .small {
-    font-size: var(--font-size-small);
-}
-
-blockquote, q {
-    quotes: none;
-}
-
-hr {
-    border-width: 0;
-    border-top-width: var(--default-border-width);
-    margin: calc(var(--default-margin) * 2);
-    clear: both;
-    color: var(--color-scheme-text-color);
-    width: 100%;
-}
-
-hr + * {
-    margin-top: calc(var(--default-margin) * 2);
-}
-
-:is(p, li, a, dd, td) :is(code, pre) {
-    display: inline;
-}
-
-/* end typography */
-
-/* begin images */
-figure {
-    margin: 0;
-}
-
-a > :is(img, figcaption, figure):only-child {
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-}
-
-img {
-    max-height: 100%;
-    box-shadow: var(--image-box-shadow);
-    border-radius: var(--image-border-radius);
-    /* corner-shape: var(--image-corner-shape); */
-
-    &.grayscale {
-        filter: grayscale(1);
-    }
-}
-
-a > img {
-    border: var(--image-border);
-}
-
-a:where(:hover, :active, :focus) img {
-    border-color: var(--hyperlink-color);
-}
-
-/* end images */
-/* end basic selectors and classes ------------------------------------------------------------------------------------------ */
-
-/* begin popover ------------------------------------------------------------------------------------------ */
-[popover] {
-    position: fixed;
-    margin: auto;
-    max-width: var(--popover-max-width);
-    max-height: var(--popover-max-height);
-    overflow-y: auto;
-    padding: var(--popover-padding);
-    border-radius: var(--popover-border-radius);
-    /* corner-shape: var(--popover-corner-shape); */
-    border: var(--popover-border);
-    box-shadow: var(--popover-box-shadow);
-
-    &.modal::backdrop {
-        background: var(--popover-backdrop-background);
+    &.primary {
+        --accordion-summary-text-color: var(--color-white);
+        --accordion-summary-text-color-highlighed: var(--primary-color);
+        --accordion-summary-background: var(--primary-color);
+        --accordion-summary-background-highlighed: var(--color-white);
+        --accordion-border-color-open: var(--primary-color);
     }
 
-    /* begin tooltip-target */
-    &[id^="tooltip-target"] {
-        max-width: var(--tooltip-max-width);
-        max-height: var(--tooltip-max-height);
-        position-area: var(--tooltip-target-position-area); 
-        position-try-fallbacks: flip-block, flip-inline;
-        position-try-order: most-width;
-        inset-inline-start: anchor(105%);
-        inset-block-start: anchor(105%);
+    &.secondary {
+        --accordion-summary-text-color: var(--color-white);
+        --accordion-summary-text-color-highlighed: var(--secondary-color);
+        --accordion-summary-background: var(--secondary-color);
+        --accordion-summary-background-highlighed: var(--color-white);
+        --accordion-border-color-open: var(--secondary-color);
+    }
 
-        button.close-tooltip {
-            margin-left: var(--default-margin);
-            position: absolute;
-            top: var(--popover-padding-top-bottom);
-            right: var(--popover-padding-left-right);
+    &.tertiary {
+        --accordion-summary-text-color: var(--color-white);
+        --accordion-summary-text-color-highlighed: var(--tertiary-color);
+        --accordion-summary-background: var(--tertiary-color);
+        --accordion-summary-background-highlighed: var(--color-white);
+        --accordion-border-color-open: var(--tertiary-color);
+    }
 
-            span[class*="icon-"] {
-                color: var(--hyperlink-color);
+    summary {
+        display: flex;
+        align-items: center;
+        gap: var(--default-gap-half);
+        border-radius: var(--accordion-border-radius);
+        color: var(--accordion-summary-text-color);
+        padding: var(--accordion-summary-padding);
+        background: var(--accordion-summary-background);
+        text-align: var(--accordion-summary-text-align);
+        
+        * {
+            color: var(--accordion-summary-text-color);
+        }
+
+        &:is(:hover, :active, :focus-visible) {
+            color: var(--accordion-summary-text-color-highlighed);
+            background: var(--accordion-summary-background-highlighed);
+            cursor: pointer;
+        }
+
+        > :is(h1, h2, h3, h4, h5, h6) {
+            color: inherit;
+            text-align: inherit;
+            margin: 0;
+        }
+
+        [class*="icon-"] {
+            margin: 0;
+
+            &.open {
+                display: none;
             }
 
-            &:is(:hover, :active, :focus) {
-                span[class*="icon-"] {
-                    color: var(--hyperlink-color-highlighted);
+            &.closed {
+                display: inline-flex;
+            }
+        }
+    }
+
+    &:hover, &:active, &:focus {
+        summary {
+            * {
+                color: var(--hyperlink-color-highlighted);
+            }
+        }
+    }
+
+    &.primary {
+        --accordion-summary-text-color-open: var(--primary-color);
+    }
+
+    &.secondary {
+        --accordion-summary-text-color-open: var(--secondary-color);
+    }
+
+    &.tertiary {
+        --accordion-summary-text-color-open: var(--tertiary-color);
+    }
+
+    &.primary, &.secondary, &.tertiary {
+        summary {
+            * {
+                color: var(--color-white);
+            }
+        }
+
+        &:hover, &:active, &:focus {
+            summary {
+                * {
+                    color: var(--accordion-summary-text-color-open);
                 }
             }
         }
+    }
 
-        &:has(button.close-tooltip) {
-            padding-right: calc(var(--popover-padding-left-right) * 5);
+    .accordion-body {
+        color: var(--accordion-body-text-color);
+        padding: var(--accordion-body-padding);
+
+        *:last-child {
+            margin-bottom: 0;
         }
     }
-    /* end tooltip-target */
+
+    &[open] {
+        border-color: var(--accordion-border-color-open);
+
+        summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            color: var(--accordion-summary-text-color-open);
+            background: var(--accordion-summary-background-open);
+            border-bottom: var(--accordion-summary-border-bottom-open);
+
+            [class*="icon-"] {
+                &.open {
+                    display: inline-flex;
+                }
+    
+                &.closed {
+                    display: none;
+                }
+            }
+
+            * {
+                color: var(--hyperlink-color-highlighted);
+            }
+        }
+
+        &.primary, &.secondary, &.tertiary {
+            --accordion-summary-background-open: none;
+
+            * {
+                color: var(--accordion-summary-text-color-open);
+            }
+        }
+    }
 }
- /* end popover ------------------------------------------------------------------------------------------ */   
+/* end accordions ------------------------------------------------------------------------------------------ */
 
 /* begin boxes ------------------------------------------------------------------------------------------ */
 .box {
@@ -1502,6 +1699,10 @@ a:where(:hover, :active, :focus) img {
             margin: 0;
             text-decoration: none !important; /* avoid overwriting by hyperlink if box-header is clickable */
         }
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
     }
 
     &:has(.box-header) {
@@ -1615,7 +1816,9 @@ a:where(:hover, :active, :focus) img {
     min-width: var(--button-min-width);
     min-height: var(--button-min-height);
     box-shadow: var(--button-box-shadow);
+    transition: var(--button-transition);
 
+    /* icon and label-text */
     > :is(span, [class*="icon-"]) {
         text-decoration: none !important; /* avoid overwriting by hyperlink for a.button */
         color: var(--button-text-color);
@@ -1626,7 +1829,15 @@ a:where(:hover, :active, :focus) img {
         top: -.1rem; /* corrects vertical position of icon to an optical center */
     }
 
+    /* buttons with icon-only (and optional hidden accessible-text) */
+    &:has(> span[class*="icon-"]:only-child),
+    &:has(span.hidden) {
+        padding: var(--button-icon-only-padding);
+        width: var(--button-icon-only-width);
+    }
+
     &:is(:hover, :active, :focus-visible, .active) {
+        transition: var(--button-transition);
         color: var(--button-text-color-highlighted);
         background: var(--button-background-highlighted);
         cursor: pointer;
@@ -1684,6 +1895,10 @@ a:where(:hover, :active, :focus) img {
         border: var(--button-tertiary-border);
         border-radius: var(--button-tertiary-border-radius);
 
+        > :is(span, span[class*="icon-"]) {
+            color: var(--button-tertiary-text-color);
+        }
+
         &:is(:hover, :active, :focus-visible, .active) {
             background: var(--button-tertiary-background-highlighted);
             color: var(--button-tertiary-text-color-highlighted);
@@ -1698,17 +1913,43 @@ a:where(:hover, :active, :focus) img {
     &.cancel {
         --color-scheme-text-color: var(--error-color);
         --button-background: var(--error-color);
-        --button-border-color: var(--error-color);
-        --button-border-color-highlighted: var(--error-color) !important;
         --button-text-color-highlighted: var(--error-color);
+
+        border-color: var(--button-cancel-border-color);
+
+        > :is(span, span[class*="icon-"]) {
+            color: var(--button-cancel-text-color);
+        }
+
+        &:is(:hover, :active, :focus-visible, .active) {
+            color: var(--button-cancel-text-color-highlighted);
+            border-color: var(--button-cancel-border-color-highlighted);
+
+            > :is(span, [class*="icon-"]) {
+                color: var(--button-cancel-text-color-highlighted);
+            }
+        }
     }
 
     &.confirm {
         --color-scheme-text-color: var(--success-color);
         --button-background: var(--success-color);
-        --button-border-color: var(--success-color);
-        --button-border-color-highlighted: var(--success-color) !important;
         --button-text-color-highlighted: var(--success-color);
+
+        border-color: var(--button-confirm-border-color);
+
+        > :is(span, span[class*="icon-"]) {
+            color: var(--button-confirm-text-color);
+        }
+
+        &:is(:hover, :active, :focus-visible, .active) {
+            color: var(--button-confirm-text-color-highlighted);
+            border-color: var(--button-confirm-border-color-highlighted);
+
+            > :is(span, [class*="icon-"]) {
+                color: var(--button-confirm-text-color-highlighted);
+            }
+        }
     }
 
     &.no-style {
@@ -1756,6 +1997,7 @@ a:where(:hover, :active, :focus) img {
     &.large-icon {
         flex-direction: column;
         gap: 1rem;
+        padding: var(--button-large-icon-padding);
 
         :is(span, [class*="icon-"]) {
             margin: 0;
@@ -1766,38 +2008,43 @@ a:where(:hover, :active, :focus) img {
         }
     }
 
-    &.use-icon-as-background[class*="icon-"] {
-        &:is(:hover, &:active, :focus)::before {
-            color: hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 50%);
-        }
+    &.use-icon-as-background {
+        width: auto;
+        box-shadow: none;
 
-        &.confirm {
-            &::before {
-                color: var(--success-color);
-            }
-
+        &[class*="icon-"] {
             &:is(:hover, &:active, :focus)::before {
-                color: hsl(var(--success-color-hue), var(--success-color-saturation), 30%);
+                color: hsl(var(--secondary-color-hue), var(--secondary-color-saturation), 50%);
             }
-        }
-
-        &.error {
-            &::before {
-                color: var(--error-color);
+    
+            &.confirm {
+                &::before {
+                    color: var(--success-color);
+                }
+    
+                &:is(:hover, &:active, :focus)::before {
+                    color: hsl(var(--success-color-hue), var(--success-color-saturation), 30%);
+                }
             }
-
-            &:is(:hover, &:active, :focus)::before {
-                color: hsl(var(--error-color-hue), var(--error-color-saturation), 40%)
+    
+            &.error {
+                &::before {
+                    color: var(--error-color);
+                }
+    
+                &:is(:hover, &:active, :focus)::before {
+                    color: hsl(var(--error-color-hue), var(--error-color-saturation), 40%)
+                }
             }
-        }
-
-        &:is(.disabled, :disabled) {
-            &::before {
-                color: var(--disabled-background) !important;
-            }
-
-            > span[class*="icon-"]::before {
-                color: var(--disabled-color) !important;
+    
+            &:is(.disabled, :disabled) {
+                &::before {
+                    color: var(--disabled-background) !important;
+                }
+    
+                > span[class*="icon-"]::before {
+                    color: var(--disabled-color) !important;
+                }
             }
         }
     }
@@ -1989,16 +2236,28 @@ input, textarea {
 .flexible-scroll-container {
     display: flex;
     flex-direction: column;
-    max-height: 20rem;
+    max-height: var(--flexible-scroll-container-max-height);
     overflow: hidden;
+    border: var(--flexible-scroll-container-border);
+    border-radius: var(--flexible-scroll-container-border-radius);
 
     > .fixed-wrapper {
+        border-radius: var(--flexible-scroll-container-border-radius);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
         flex: none;
+        padding: var(--flexible-scroll-container-fixed-wrapper-padding);
+        box-shadow: var(--flexible-scroll-container-fixed-wrapper-box-shadow);
     }
 
     > .scroll-wrapper {
+        border-radius: var(--flexible-scroll-container-border-radius);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
         flex: 1;
         overflow-y: auto;
+        padding: var(--flexible-scroll-container-scroll-wrapper-padding);
+        box-shadow: var(--flexible-scroll-container-scroll-wrapper-box-shadow);
     }
 }
 
@@ -2039,28 +2298,58 @@ input, textarea {
     }
 }
 
-.stretch > * {
-    align-self: stretch; /* stretch items to same height (elements must/should not have a set height) */
+
+.vertical, .flex-direction-column {
+    flex-direction: column !important;
+    flex-wrap: nowrap;
+
+    & > * {
+        max-width: 100%;
+        flex: none !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    > a, button, .button {
+        align-self: flex-start; /* avoid sensitive-area of link to be stretched to full width of parent-container */
+    }
 }
 
-.align-center > * {
-    align-self: center;
+.horizontal, .flex-direction-row {
+    flex-direction: row !important; /* class forces flex-direction of the flex-container to stay in row on all devices */
 }
 
-.align-bottom > * {
-    align-self: flex-end;
-}
-
+/* begin alignment/justification for flex- & grid-containers */
 .align-items-flex-start, .reset-align-items {
     align-items: flex-start !important;
+
+    > * {
+        align-self: flex-start !important; /* ensure align-self for children will also be overwritten */
+    }
 }
 
 .align-items-center {
     align-items: center !important;
+
+    > * {
+        align-self: center !important; /* ensure align-self for children will also be overwritten */
+    }
 }
 
 .align-items-flex-end {
     align-items: flex-end !important;
+
+    > * {
+        align-self: center !important; /* ensure align-self for children will also be overwritten */
+    }
+}
+
+.align-items-stretch {
+    align-items: stretch !important;
+
+    > * {
+        align-self: stretch !important; /* ensure align-self for children will also be overwritten */
+    }
 }
 
 .justify-content-flex-start {
@@ -2090,26 +2379,22 @@ input, textarea {
 .justify-content-space-around {
     justify-content: space-around !important;
 }
+/* end alignment/justification for flex- & grid-containers */
 
-.horizontal, .flex-direction-row {
-    flex-direction: row !important; /* class forces flex-containers flex-direction to stay in row on all devices */
+/* begin alignment for flex- & grid-items (children) */
+
+.align-self-stretch {
+    align-self: stretch; /* stretch items to same height (elements must/should not have a set height) */
 }
 
-.vertical, .flex-direction-column {
-    flex-direction: column !important;
-    flex-wrap: nowrap;
-
-    & > * {
-        max-width: 100%;
-        flex: none !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-
-    > a, button, .button {
-        align-self: flex-start; /* avoid sensitive-area of link to be stretched to full width of parent-container */
-    }
+.align-self-center {
+    align-self: center;
 }
+
+.align-self-flex-end {
+    align-self: flex-end;
+}
+/* end alignment for flex- & grid-items (children) */
 
 .flex-item-grow-1 {
     flex-grow: 1;
@@ -2214,6 +2499,8 @@ form [class*="grid-container"] {
 
 /* begin fieldsets */
 fieldset {
+    --status-color: var(--form-input-border-color);
+    
     background: var(--fieldset-background);
     border: var(--fieldset-border);
     border-radius: var(--fieldset-border-radius);
@@ -2222,6 +2509,7 @@ fieldset {
     padding: var(--fieldset-padding);
     margin: var(--fieldset-margin);
     box-shadow: var(--fieldset-box-shadow);
+
 
     &.flex-container {
         flex-direction: column;
@@ -2290,41 +2578,25 @@ fieldset {
         width: 90%;
 
         & + * {
-            margin-top: 0;
+            margin-top: 0 !important;
         }
     }
 
     .error {
-        :where(input:not([type="range"]), select, textarea, .input, .replace-input-type, .toggle-switch, .multiple-switch) {
-            &[required] {
-                border-color: var(--error-color);
-            }
-        }
+        --status-color: var(--error-color);
     }
 
     .warning {
-        :where(input:not([type="range"]), select, textarea, .input, .replace-input-type, .toggle-switch, .multiple-switch) {
-            &[required] {
-                border-color: var(--warning-color);
-            }
-        }
+        --status-color: var(--warning-color);   
     } 
 
     .success {
-        :where(input:not([type="range"]), select, textarea, .input, .replace-input-type, .toggle-switch, .multiple-switch) {
-            &[required] {
-                border-color: var(--success-color);
-            }
-        }
-    }
+        --status-color: var(--success-color);   
+    } 
 
     .info {
-        :where(input:not([type="range"]), select, textarea, .input, .replace-input-type, .toggle-switch, .multiple-switch) {
-            &[required] {
-                border-color: var(--info-color);
-            }
-        }
-    }
+        --status-color: var(--info-color);   
+    } 
 
     /* begin disabled fieldset */
 
@@ -2403,7 +2675,9 @@ fieldset {
 
 /* begin labels */
 label, .label {
-    --status-color: var(--label-text-color);
+    --status-color-label-text: var(--label-text-color);
+    --status-color-help-icon: var(--hyperlink-color);
+    --status-color-help-icon-background: var(--hyperlink-color);
 
     display: block;
     white-space: nowrap; /* avoid wrapping of inputelement and (inline) text) */
@@ -2422,16 +2696,15 @@ label, .label {
                 color: var(--error-color);
             }
         }
-
     } 
 
     .label-text {
-        &:has([required]) {
-            --label-text-color: var(--status-color);
-        }
-
         font-size: var(--label-text-font-size);
         font-weight: var(--label-text-font-weight);
+
+        &:has([required]) {
+            --label-text-color: var(--status-color-label-text);
+        }
 
         & ~ *, span {
             color: var(--label-text-color);
@@ -2456,19 +2729,16 @@ label, .label {
         /* end mandatory asterisk */
 
         :where(button, span)[class*="icon-"], button:has([class*="icon-"]) {
-            --status-color: var(--hyperlink-color);
-
-            align-self: center; /* avoids stretching if label wraps */
+            align-self: center;  /* avoids stretching if label wraps */
             border-radius: var(--full-circle);
-            line-height: 1;
+            line-height: var(--line-height-none);
             margin-left: auto;
-            color: var(--status-color);
+            color: var(--status-color-help-icon);
             background: var(--label-text-icon-color);
+            width: auto !important; /* avoid overwrite by buttosn stlye for buttons with icon only */
 
             &:is(:hover, :active, :focus) {
-                --label-text-color-highlighted: var(--status-color);
-                
-                background: var(--hyperlink-color);
+                background: var(--status-color-help-icon-background);
 
                 span[class*="icon"] {
                     color: var(--color-white);
@@ -2479,52 +2749,58 @@ label, .label {
     }
 
     &.error, &.warning, &.info, &.success {
-        --form-input-filled-background: var(--color-white);
+        --form-input-filled-background: var(--form-input-background);
 
         sup {
             --asterisk-color: var(--status-color);
         }
 
-        input, select, textarea {
-           background: var(--form-input-filled-background);
+        :is(input, select, textarea, .input) {
+            border: var(--form-input-border);
+            background: var(--form-input-filled-background);
 
-           &:valid {
+            &:valid {
                 color: var(--form-input-text-color);
-           }
+            }
+        }
+
+        :is(&:hover, &:active, &:focus) {
+            :is(input, select, textarea, .input) {
+                border-color: var(--status-color-border);
+            }
         }
     }
 
-    &.error  {
+    &.error {
         --form-input-filled-background: var(--form-input-filled-background-error);
-
-        > *, :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
-            --status-color: var(--error-color) !important;
-        }
-
+        --status-color-label-text: var(--error-color);
+        --status-color-help-icon: var(--error-color);
+        --status-color-help-icon-background: var(--error-color);
+        --status-color-border: var(--error-color);
     }
 
     &.warning {
         --form-input-filled-background: var(--form-input-filled-background-warning);
-
-        > *, :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
-            --status-color: var(--warning-color) !important;
-        }
+        --status-color-label-text: var(--warning-color);
+        --status-color-help-icon: var(--warning-color);
+        --status-color-help-icon-background: var(--warning-color);
+        --status-color-border: var(--warning-color);
     }
 
     &.success {
         --form-input-filled-background: var(--form-input-filled-background-success);
-
-        > *, :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
-            --status-color: var(--success-color) !important;
-        }
+        --status-color-label-text: var(--success-color);
+        --status-color-help-icon: var(--success-color);
+        --status-color-help-icon-background: var(--success-color);
+        --status-color-border: var(--success-color);
     }
 
     &.info {
         --form-input-filled-background: var(--form-input-filled-background-info);
-
-        > *, :where(a, span)[class*="icon-"], a:has([class*="icon-"]) {
-            --status-color: var(--info-color) !important;
-        }
+        --status-color-label-text: var(--info-color);
+        --status-color-help-icon: var(--info-color);
+        --status-color-help-icon-background: var(--info-color);
+        --status-color-border: var(--info-color);
     }
 
     :where(.label-text :is(a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
@@ -2539,7 +2815,7 @@ label, .label {
          color: var(--status-color);
     }
 
-    > input {
+    & > input {
         margin-top: 0;
         margin-left: 0;
     }
@@ -2570,6 +2846,12 @@ label, .label {
             & > .label-text {
                 flex: none;
             }
+        }
+
+        &:has(input[type="radio"]), &:has(input[type="checkbox"]) {
+            > .label-text {
+                align-self: flex-start; /* overwrite alignment for inline-labels, to keep label-text at top if inputs wraps at end of line */
+            } 
         }
 
         > span:first-child {
@@ -2614,7 +2896,7 @@ label, .label {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        left: var(--default-margin);
+        left: var(--form-input-icon-left-position);
         z-index: 10;
         margin: 0;
 
@@ -2658,7 +2940,6 @@ label, .label {
     &.inline .place-inside {
         display: none;
     }
-
     /* end place-inside (place icon inside/over inputfield) */
 }
 
@@ -2675,17 +2956,28 @@ td .toggle-switch.switch-label {
 /* end labels */
 
 /* begin form-input-elements */
-:where(input, select, textarea, .input) {
+
+:where(input:not([type="range"]), select, textarea, .input, .replace-input-type, .toggle-switch, .multiple-switch) {
+    transition: var(--form-input-transition);
+
+    &:is(:hover, :active, :focus) {
+        transition: var(--form-input-transition);
+    }
+}
+
+:where(input:not([type="range"]), select, textarea, .input) {
     min-width: 5rem;
     border: var(--form-input-border);
     border-radius: var(--form-input-border-radius);
     /* corner-shape: var(--form-input-corner-shape); */
     align-self: flex-end; /* required to let items be as high as their content */
     background: var(--form-input-background);
+    box-shadow: var(--form-input-box-shadow);
 
     &:is(:hover, :active, :focus) {
         border: var(--form-input-border-highlighted);
         background: var(--form-input-background-highlighted);
+        box-shadow: var(--form-input-box-shadow-highlighted);
     }
 
     /*
@@ -2697,16 +2989,24 @@ td .toggle-switch.switch-label {
         }
     }*/
 
-    &[required]:user-valid {
-        color: var(--success-color);
-        border-color: var(--success-color);
-        background: var(--form-input-filled-background-success);
-    }
+    &[required] {
+        border-color: var(--status-color);
 
-    &[required]:user-invalid {
-        color: var(--error-color);
-        border-color: var(--error-color);
-        background: var(--form-input-filled-background-error);
+        &:is(:hover, :active, :focus) {
+            border: var(--form-input-border-highlighted);
+        }
+
+        &:user-valid {
+            color: var(--success-color);
+            border-color: var(--success-color);
+            background: var(--form-input-filled-background-success);
+        }
+
+        &:user-invalid {
+            color: var(--error-color);
+            border-color: var(--error-color);
+            background: var(--form-input-filled-background-error);
+        }
     }
 
     &.error {
@@ -3057,28 +3357,17 @@ input[type="range"] {
     }
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
-    height: .4rem;
-    border: none;
-    border-radius: .2rem;
-}
-
-input[type="range"]::-moz-range-track {
-    height: .4rem;
-    border: 0;
-    border-radius: .2rem;
-}
-
 /* the thumb */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: 0;
-    width: 1.6rem;
-    aspect-ratio: 1/1;
+    width: var(--input-type-range-thumb-width);
+    height:  var(--input-type-range-thumb-height);
     border-radius: var(--full-circle);
     margin-top: -.7rem;
-    background: var(--color-scheme-background);
-    border: var(--default-border);
+    background: var(--input-type-range-background);
+    border: var(--input-type-range-border);
+    box-shadow: var(--input-type-range-box-shadow);
 }
 
 input[type="range"]::-webkit-slider-thumb:is(:hover, :active, :focus) {
@@ -3087,12 +3376,13 @@ input[type="range"]::-webkit-slider-thumb:is(:hover, :active, :focus) {
 
 input[type="range"]::-moz-range-thumb {
     border: 0;
-    width: 1.6rem;
-    aspect-ratio: 1/1;
+    width: var(--input-type-range-thumb-width);
+    height:  var(--input-type-range-thumb-height);
     border-radius: var(--full-circle);
     margin-top: -.5rem;
-    background: var(--color-scheme-background);
-    border: var(--default-border);
+    background: var(--input-type-range-background);
+    border: var(--input-type-range-border);
+    box-shadow: var(--input-type-range-box-shadow);
 }
 
 input[type="range"]::-moz-range-thumb:is(:hover, :active, :focus) {
@@ -3101,8 +3391,11 @@ input[type="range"]::-moz-range-thumb:is(:hover, :active, :focus) {
 
 /* the track */
 input[type="range"]::-webkit-slider-runnable-track {
-    background: var(--color-scheme-background);
-    border-color: var(--hyperlink-color);
+    background: var(--input-type-range-background);
+    border: var(--input-type-range-border);
+    height: var(--input-type-range-height);
+    border-radius: var(--input-type-range-border-radius);
+    box-shadow: var(--input-type-range-box-shadow);
 }
 
 input[type="range"]::-webkit-slider-runnable-track:is(:hover, :active, :focus) {
@@ -3110,8 +3403,11 @@ input[type="range"]::-webkit-slider-runnable-track:is(:hover, :active, :focus) {
 }
 
 input[type="range"]::-moz-range-track {
-    background: var(--color-scheme-background);
-    border: var(--default-border);
+    background: var(--input-type-range-background);
+    border: var(--input-type-range-border);
+    height: var(--input-type-range-height);
+    border-radius: var(--input-type-range-border-radius);
+    box-shadow: var(--input-type-range-box-shadow);
 }
 
 input[type="range"]::-moz-range-track:is(:hover, :active, :focus) {
@@ -3162,17 +3458,17 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
 
     input {
         flex: none; /* avoid input to be shrunk */
-
+        box-shadow: var(--toggle-switch-track-box-shadow);
+        
         &:is([type="checkbox"], [type="radio"]) { /* type required for specificity */
             appearance: none;
-            width: 4rem !important; /* avoids overwrite by media queries for input-elements */
+            width: var(--toggle-switch-track-width) !important; /* avoids overwrite by media queries for input-elements */
             height: 2rem;
             border-radius: 1rem;
-            padding: .2rem;
-            border: var(--default-border);
+            padding: var(--toggle-switch-track-padding);
+            border: var(--toggle-switch-border);
             border-color: var(--status-color);
-            background: var(--color-scheme-background);
-            box-shadow: none;
+            background: var(--form-input-background);
             display: flex;
 
             ~ .label-text {
@@ -3183,17 +3479,22 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
         &::after {
             content: "";
             border-radius: var(--full-circle);
-            border: var(--default-border);
+            border: var(--toggle-switch-border);
             border-color: var(--status-color);
             background: var(--color-scheme-background);
-            width: 1.4rem;
+            width: var(--toggle-switch-thumb-width);
+            box-shadow: var(--toggle-switch-thumb-box-shadow);
             aspect-ratio: 1/1;
             display: block;
             align-self: center;
         }
 
-        &[disabled]::after {
-            border-color: var(--disabled-color) !important;
+        &[disabled], &.disabled {
+            background: var(--disabled-background) !important;
+
+            &::after {
+                border-color: var(--disabled-color) !important;
+            }
         }
 
         /* begin checked toggle-switch */
@@ -3221,15 +3522,15 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
             &::before {
                 position: absolute;
                 z-index: 10;
-                font-size: var(--font-size-large);
+                font-size: var(--icon-size-large);
                 top: 50%;
                 transform: translateY(-50%);
-                left: .2rem;
+                left: .6rem;
             }
 
             &::after, &:checked:disabled::after {
-                border: 0;
-                background: none;
+                border: var(--toggle-switch-with-icon-thumb-border);
+                background: var(--toggle-switch-with-icon-thumb-background);
             }
 
             & + span {
@@ -3262,6 +3563,12 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
                     background: var(--error-color);
                 }
             }
+        }
+    }
+
+    &.disabled {
+        .switch-label-wrapper {
+            box-shadow: none;
         }
     }
 
@@ -3310,16 +3617,17 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
 
     .switch-label-wrapper {
         display: flex;
-        border: var(--default-border);
+        border: var(--toggle-switch-track-border);
         background: var(--color-scheme-background);
-        border-radius: 1.2rem;
+        border-radius: var(--toggle-switch-border-radius);
         overflow: hidden;
-        height: 2rem;
-        padding: .2rem var(--default-padding);
+        height: var(--toggle-switch-height);
+        padding: var(--toggle-switch-padding);
         align-self: center;
+        box-shadow: var(--toggle-switch-track-box-shadow);
 
         .label-text {
-            min-width: 3.5rem;
+            min-width: 3.5rem
         }
 
         input {
@@ -3335,10 +3643,10 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
                 &::before {
                     content: "";
                     border-radius: var(--full-circle);
-                    border: var(--default-border);
+                    border: var(--toggle-switch-thumb-border);
                     border-color: var(--status-color);
                     background: var(--hyperlink-color);
-                    width: 1.4rem;
+                    width: var(--toggle-switch-switch-label-thumb-width);
                     aspect-ratio: 1/1;
                     display: block;
                     align-self: center;
@@ -3458,15 +3766,25 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
 
 /* begin multiple-switch  ------------------------------------------------------------------------------------------ */
 .multiple-switch {
-    display: block !important; /* overwrite default-behavior for labels */
+    display: flex !important; /* overwrite default-behavior for labels */
+    flex-direction: column;
 
     .label-text {
         display: inline-flex;
-        justify-content: center;
 
         button[class*="icon-"], button:has([class*="icon-"]) {
             margin-left: calc(var(--default-margin) / 2);
         }
+    }
+
+    .switch-wrapper {
+        border: var(--multiple-switch-border);
+        display: inline-flex;
+        flex: none;
+        align-self: flex-start;
+        gap: 0;
+        box-shadow: var(--multiple-switch-wrapper-box-shadow);
+        border-radius: var(--multiple-switch-border-radius);
     }
 
     input {
@@ -3477,19 +3795,24 @@ input[type="range"]:is([disabled], .disabled)::-webkit-slider-runnable-track {
         padding: var(--default-padding);
         margin: 0;
         background: var(--color-scheme-background);
-        border: var(--default-border);
+        border: var(--multiple-switch-border);
         border-left: 0;
         flex-direction: column;
+        box-shadow: var(--multiple-switch-input-box-shadow);
 
         &:first-child {
-            border-left: var(--default-border);
-            border-top-left-radius: var(--default-border-radius);
-            border-bottom-left-radius: var(--default-border-radius);
+            border-left: var(--multiple-switch-border);
+            border-top-left-radius: var(--multiple-switch-border-radius);
+            border-bottom-left-radius: var(--multiple-switch-border-radius);
         }
 
         &:last-child {
-            border-top-right-radius: var(--default-border-radius);
-            border-bottom-right-radius: var(--default-border-radius);
+            border-top-right-radius: var(--multiple-switch-border-radius);
+            border-bottom-right-radius: var(--multiple-switch-border-radius);
+        }
+
+        &:has(input:checked) {
+            box-shadow: var(--multiple-switch-input-checked-box-shadow);
         }
 
         span {
@@ -4112,152 +4435,13 @@ dl {
 /* end description-lists */
 /* end lists ------------------------------------------------------------------------------------------ */
 
-/* begin site-header ------------------------------------------------------------------------------------------ */
-.site-header {
-    grid-area: site-header;
-    display: flex;
-    flex-direction: column;
-    border: var(--site-header-border);
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    background: var(--site-header-background);
-
-    &.sticky {
-        position: sticky;
-        left: 0;
-        right: 0;
-        top: 0;
-        z-index: 300;
-    }
-
-    header {
-        max-width: var(--header-max-width);
-        width: 100%;
-        margin: 0 auto;
-        padding: var(--site-header-padding);
-        align-items: center;
-
-        & > * {
-            color: var(--site-header-text-color);
-        }
-
-        &:has(:only-child) {
-            row-gap: 0;
-        }
-
-        .company-logo {
-            grid-area: company-logo;
-            grid-column: span var(--grid-small-span);
-
-            img {
-                box-shadow: none;
-            }
-
-            a img {
-                border: 0;
-                max-height: 10rem;
-            }
-        }
-
-        .main-navigation-wrapper {
-            grid-area: main-navigation;
-            grid-column: span var(--grid-large-span);
-            border: 0;
-            background: none;
-            justify-content: flex-end;
-
-            nav {
-                border: 0;
-                padding: 0;
-                background: inherit;
-                justify-content: flex-end;
-
-                > ul {
-                    background: inherit;
-
-                    > li {
-                        border: 0;
-                        background: inherit;
-
-                        &:first-child {
-                            border: inherit; /* required for specificity */
-                        }
-                    }
-                }
-            }
-
-            /* button to toggle potential offcanvas */
-            #toggle-offcanvas {
-                margin-left: auto;
-                margin-bottom: 0;
-            }
-        }
-    }
-}
-
-/* end site-header ------------------------------------------------------------------------------------------ */
-
-/* begin site-footer ------------------------------------------------------------------------------------------ */
-.site-footer {
-    border: var(--site-footer-border);
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
-    background: var(--site-footer-background);
-    flex: none;
-
-    footer {
-        max-width: var(--footer-max-width);
-        width: 100%;
-        margin: 0 auto;
-        padding: var(--site-footer-padding);
-
-        h2, h3, h4, h5, h6 {
-            color: var(--site-footer-headline-color);
-
-            span {
-                color: inherit;
-            }
-        }
-
-        & * {
-            color: var(--site-footer-text-color);
-        }
-
-        a {
-            text-decoration: var(--site-footer-text-decoration);
-            color: var(--site-footer-hyperlink-color);
-
-            span {
-                color: inherit;
-            }
-
-            &:hover, &:active, &:focus {
-                color: var(--site-footer-hyperlink-color-highlighted);
-                text-decoration: var(--site-footer-text-decoration-highlighted);
-                text-decoration-color: var(--site-footer-text-decoration-color-highlighted);
-
-                span {
-                    color: inherit;
-                }
-            }
-
-            &:has([class*="icon"]) {
-                text-decoration: none;
-            }
-        }
-    }
-}
-
-/* end site-footer ------------------------------------------------------------------------------------------ */
-
 /* begin main-navigation ------------------------------------------------------------------------------------------ */
 .main-navigation-wrapper {
     background: var(--main-navigation-background);
     border-top: var(--main-navigation-border);
     border-bottom: var(--main-navigation-border);
     border-radius: var(--main-navigation-border-radius);
+    box-shadow: var(--main-navigation-box-shadow);
     /* corner-shape: var(--main-navigation-corder-shape); */
 
     nav {
@@ -4309,6 +4493,7 @@ dl {
             }
 
             li {
+                background: var(--main-navigation-background);
                 list-style-type: none;
                 margin: 0;
                 white-space: nowrap;
@@ -4319,6 +4504,7 @@ dl {
                 }
 
                 a {
+                    height: 100%;
                     display: flex;
                     align-items: center;
                     padding: var(--default-padding);
@@ -4423,162 +4609,212 @@ dl {
 }
 /* end main-navigation ------------------------------------------------------------------------------------------ */
 
-/* begin accordions ------------------------------------------------------------------------------------------ */
-.accordion-wrapper {
+/* begin site-header ------------------------------------------------------------------------------------------ */
+.site-header {
+    grid-area: site-header;
     display: flex;
     flex-direction: column;
-    gap: var(--default-gap);
-}
+    border: var(--site-header-border);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background: var(--site-header-background);
+    box-shadow: var(--site-header-box-shadow);
 
-details {
-    border: var(--accordion-border);
-    border-radius: var(--accordion-border-radius);
-    background: var(--accordion-background);
-    box-shadow: var(--accordion-box-shadow);
-
-    &.primary {
-        --accordion-summary-text-color: var(--color-white);
-        --accordion-summary-text-color-highlighed: var(--primary-color);
-        --accordion-summary-background: var(--primary-color);
-        --accordion-summary-background-highlighed: var(--color-white);
-        --accordion-border-color-open: var(--primary-color);
+    &.sticky {
+        position: sticky;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 300;
     }
 
-    &.secondary {
-        --accordion-summary-text-color: var(--color-white);
-        --accordion-summary-text-color-highlighed: var(--secondary-color);
-        --accordion-summary-background: var(--secondary-color);
-        --accordion-summary-background-highlighed: var(--color-white);
-        --accordion-border-color-open: var(--secondary-color);
-    }
-
-    &.tertiary {
-        --accordion-summary-text-color: var(--color-white);
-        --accordion-summary-text-color-highlighed: var(--tertiary-color);
-        --accordion-summary-background: var(--tertiary-color);
-        --accordion-summary-background-highlighed: var(--color-white);
-        --accordion-border-color-open: var(--tertiary-color);
-    }
-
-    summary {
-        display: flex;
+    header {
+        max-width: var(--header-max-width);
+        width: 100%;
+        margin: 0 auto;
+        padding: var(--site-header-padding);
         align-items: center;
-        gap: var(--default-gap-half);
-        border-radius: var(--accordion-border-radius);
-        color: var(--accordion-summary-text-color);
-        padding: var(--accordion-summary-padding);
-        background: var(--accordion-summary-background);
-        text-align: var(--accordion-summary-text-align);
-        
-        * {
-            color: var(--accordion-summary-text-color);
+
+        & > * {
+            color: var(--site-header-text-color);
         }
 
-        &:is(:hover, :active, :focus) {
-            color: var(--accordion-summary-text-color-highlighed);
-            background: var(--accordion-summary-background-highlighed);
-            cursor: pointer;
+        &:has(:only-child) {
+            row-gap: 0;
         }
 
-        > :is(h1, h2, h3, h4, h5, h6) {
-            color: inherit;
-            text-align: inherit;
-            margin: 0;
-        }
+        .company-logo {
+            grid-area: company-logo;
+            grid-column: span var(--grid-small-span);
 
-        [class*="icon-"] {
-            margin: 0;
-
-            &.open {
-                display: none;
+            img {
+                box-shadow: none;
+                border-radius: 0;
             }
 
-            &.closed {
-                display: inline-flex;
-            }
-        }
-    }
-
-    &:hover, &:active, &:focus {
-        summary {
-            * {
-                color: var(--hyperlink-color-highlighted);
-            }
-        }
-    }
-
-    &.primary {
-        --accordion-summary-text-color-open: var(--primary-color);
-    }
-
-    &.secondary {
-        --accordion-summary-text-color-open: var(--secondary-color);
-    }
-
-    &.tertiary {
-        --accordion-summary-text-color-open: var(--tertiary-color);
-    }
-
-    &.primary, &.secondary, &.tertiary {
-        summary {
-            * {
-                color: var(--color-white);
+            a img {
+                border: 0;
+                max-height: 10rem;
             }
         }
 
-        &:hover, &:active, &:focus {
-            summary {
-                * {
-                    color: var(--accordion-summary-text-color-open);
-                }
-            }
-        }
-    }
+        .main-navigation-wrapper {
+            grid-area: main-navigation;
+            grid-column: span var(--grid-large-span);
+            border: 0;
+            background: none;
+            justify-content: flex-end;
 
-    .accordion-body {
-        color: var(--accordion-body-text-color);
-        padding: var(--accordion-body-padding);
+            nav {
+                border: 0;
+                padding: 0;
+                background: inherit;
+                justify-content: flex-end;
 
-        *:last-child {
-            margin-bottom: 0;
-        }
-    }
+                > ul {
+                    background: inherit;
 
-    &[open] {
-        border-color: var(--accordion-border-color-open);
+                    > li {
+                        border: 0;
+                        background: inherit;
 
-        summary {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            color: var(--accordion-summary-text-color-open);
-            background: var(--accordion-summary-background-open);
-            border-bottom: var(--accordion-summary-border-bottom-open);
-
-            [class*="icon-"] {
-                &.open {
-                    display: inline-flex;
-                }
-    
-                &.closed {
-                    display: none;
+                        &:first-child {
+                            border: inherit; /* required for specificity */
+                        }
+                    }
                 }
             }
 
-            * {
-                color: var(--hyperlink-color-highlighted);
-            }
-        }
-
-        &.primary, &.secondary, &.tertiary {
-            --accordion-summary-background-open: none;
-
-            * {
-                color: var(--accordion-summary-text-color-open);
+            /* button to toggle potential offcanvas */
+            #toggle-offcanvas {
+                margin-left: auto;
+                margin-bottom: 0;
             }
         }
     }
 }
-/* end accordions ------------------------------------------------------------------------------------------ */
+
+/* end site-header ------------------------------------------------------------------------------------------ */
+
+/* begin site-footer ------------------------------------------------------------------------------------------ */
+.site-footer {
+    border: var(--site-footer-border);
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    background: var(--site-footer-background);
+    flex: none;
+
+    footer {
+        max-width: var(--footer-max-width);
+        width: 100%;
+        margin: 0 auto;
+        padding: var(--site-footer-padding);
+
+        h2, h3, h4, h5, h6 {
+            color: var(--site-footer-headline-color);
+
+            span {
+                color: inherit;
+            }
+        }
+
+        & * {
+            color: var(--site-footer-text-color);
+        }
+
+        a {
+            text-decoration: var(--site-footer-text-decoration);
+            color: var(--site-footer-hyperlink-color);
+
+            span {
+                color: inherit;
+            }
+
+            &:hover, &:active, &:focus {
+                color: var(--site-footer-hyperlink-color-highlighted);
+                text-decoration: var(--site-footer-text-decoration-highlighted);
+                text-decoration-color: var(--site-footer-text-decoration-color-highlighted);
+
+                span {
+                    color: inherit;
+                }
+            }
+
+            &:has([class*="icon"]) {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+/* end site-footer ------------------------------------------------------------------------------------------ */
+
+/* begin site-wrapper ------------------------------------------------------------------------------------------ */
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: var(--site-wrapper-height);
+    scroll-behavior: var(--site-wrapper-scroll-behavior);
+    scroll-padding-top: var(--site-wrapper-scroll-padding-top);
+}
+/* end site-wrapper ------------------------------------------------------------------------------------------ */
+
+/* begin popover ------------------------------------------------------------------------------------------ */
+[popover] {
+    position: fixed;
+    margin: auto;
+    max-width: var(--popover-max-width);
+    max-height: var(--popover-max-height);
+    overflow-y: auto;
+    padding: var(--popover-padding);
+    border-radius: var(--popover-border-radius);
+    /* corner-shape: var(--popover-corner-shape); */
+    border: var(--popover-border);
+    box-shadow: var(--popover-box-shadow);
+
+    &.modal::backdrop {
+        background: var(--popover-backdrop-background);
+    }
+
+    /* begin tooltip-target */
+    &[id^="tooltip-target"] {
+        max-width: var(--tooltip-max-width);
+        max-height: var(--tooltip-max-height);
+        position-area: var(--tooltip-target-position-area); 
+        box-shadow: var(--tooltip-box-shadow);
+        position-try-fallbacks: flip-block, flip-inline;
+        position-try-order: most-width;
+        inset-inline-start: anchor(105%);
+        inset-block-start: anchor(105%);
+
+        button.close-tooltip {
+            margin-left: var(--default-margin);
+            position: absolute;
+            top: var(--tooltip-padding-top-bottom);
+            right: var(--tooltip-padding-left-right);
+
+            span[class*="icon-"] {
+                color: var(--hyperlink-color);
+            }
+
+            &:is(:hover, :active, :focus) {
+                span[class*="icon-"] {
+                    color: var(--hyperlink-color-highlighted);
+                }
+            }
+        }
+
+        &:has(button.close-tooltip) {
+            padding-right: calc(var(--tooltip-padding-left-right) * 3);
+        }
+    }
+    /* end tooltip-target */
+}
+ /* end popover ------------------------------------------------------------------------------------------ */   
 
 /* begin skeleton-loading ------------------------------------------------------------------------------------------ */
 /* default class to put on element that should use loading-animation */
@@ -4909,7 +5145,7 @@ table {
 /* end tables ------------------------------------------------------------------------------------------ */
 /* ---------------------------------------------- END MAIN STYLES -------------------------------------------------- */
 
-/* ---------------------------------------------- BEGIN MEDIA QUERIES AND BROWSER SPECIFIC STYLES -------------------------------------------------- */
+/* ---------------------------------------------- BEGIN CONTAINER-RULES AND BROWSER SPECIFIC STYLES -------------------------------------------------- */
 /* begin container-styles ------------------------------------------------------------------------------------------ */
 @container (width <= 600px) {
     .flex-container, .button-wrapper {
@@ -5005,7 +5241,7 @@ html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not wo
 }
 
 /* end css firefox only ------------------------------------------------------------------------------------------ */
-/* ---------------------------------------------- END MEDIA QUERIES AND BROWSER SPECIFIC STYLES -------------------------------------------------- */
+/* ---------------------------------------------- END CONTAINER-RULES AND BROWSER SPECIFIC STYLES -------------------------------------------------- */
 
 /* begin css for print only ------------------------------------------------------------------------------------------ */
 @media only print {
@@ -5032,6 +5268,7 @@ html::-webkit-scrollbar-track:hover { /* do not set :active, :focus (does not wo
 /* begin css for dark-mode only ------------------------------------------------------------------------------------------ */
 @media (prefers-color-scheme: dark) {
     html {
+        --form-input-filled-background-lightness: var(--form-input-filled-background-lightness-dark-mode); /* background-lightness for filled inputs */
         --show-in-light-mode-only: none; /* display-behavior for elements using .show-in-light-mode-only */
         --show-in-dark-mode-only: block; /* display-behavior for elements using .show-in-dark-mode-only */
     }

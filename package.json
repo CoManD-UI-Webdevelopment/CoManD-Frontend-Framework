@@ -1,6 +1,6 @@
 {
   "name": "comand-frontend-framework",
-  "version": "4.3.42",
+  "version": "4.3.49",
   "license": "GPL-3.0-only",
   "author": "CoManD-UI",
   "private": false,
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "comand-component-library": "^4.2.84",
-    "comand-ui-iconfonts": "^1.0.19",
+    "comand-ui-iconfonts": "^1.0.21",
     "core-js": "^3.36.0",
     "vue": "^3.4.21"
   },

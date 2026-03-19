@@ -1,5 +1,8 @@
 /* demopage-only.css - STYLES FOR DEMOPAGE ONLY - IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) */
 .demopage {
+    --flexible-scroll-container-fixed-wrapper-box-shadow: none;
+    --box-min-width: none;
+
     body {
         overflow: auto;
     }
@@ -9,8 +12,12 @@
     }
 
     .sidebar {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+
+        .button {
+            box-shadow: none;
+        }
 
         &.open {
             width: 30rem;
@@ -150,6 +157,10 @@
 }
 
 #frontend-framework-demo {
+    header {
+        --main-navigation-box-shadow: none;
+    }
+
     .sidebar {
         display: flex;
         position: fixed;
@@ -208,6 +219,14 @@
             display: flex;
             flex-direction: column;
             padding: 1rem 0 0 0;
+
+            .box {
+                box-shadow: none !important;
+
+                &:first-of-type .scroll-wrapper {
+                    border-bottom-right-radius: 0;
+                }
+            }
         }
 
         & > h3 {
