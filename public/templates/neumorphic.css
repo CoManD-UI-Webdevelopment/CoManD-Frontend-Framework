@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-html {
+:root {
     /* overwrite variables from framework.css */
     --light-mode-background: #EBECF0;
     --default-font-family: 'Montserrat', sans-serif;
@@ -19,7 +19,7 @@ html {
     --drop-shadow: .8rem .8rem 1.2rem -.2rem var(--dark-shadow), -.6rem -.6rem 1.2rem -.1rem var(--light-shadow);
     --inner-shadow: inset -.4rem -.4rem .6rem -.1rem var(--light-shadow), inset .2rem .2rem .8rem -.1rem var(--dark-shadow);
     --default-box-shadow: var(--drop-shadow);
-    --button-padding: 0 2.8rem;
+    --button-padding: 1rem 2.8rem;
     --button-border-width: .3rem;
     --button-border-color: rgba(255, 255, 255, 0);
     --button-text-color: #6C7587;
@@ -28,7 +28,15 @@ html {
     --button-border-width-highlighted: .3rem;
     --button-border-color-highlighted: rgba(255, 255, 255, 0.5);
     --button-min-height: 5.4rem;
+    --button-padding-small: 0.5rem 1rem;
+    --button-padding-large: 1rem 2rem;
+    --button-primary-text-color: var(--color-white);
+    --button-secondary-text-color: var(--color-white);
+    --button-tertiary-text-color: var(--color-white);
     --button-box-shadow: var(--drop-shadow);
+    --button-icon-only-width: 5.4rem;
+    --button-large-icon-padding: 1rem 2rem;
+    --button-background-color-highlighted: var(--color-light-gray);
     --form-input-box-shadow: var(--inner-shadow);
     --form-input-box-shadow-highlighted: none;
     --form-input-padding: 0 2.8rem;
@@ -46,25 +54,17 @@ html {
     --box-border: none;
     --accordion-border-color-open: transparent;
     --table-box-shadow: none;
-    --button-padding-small: 0 1rem;
-    --button-padding-large: 0 2rem;
-    --button-primary-text-color: var(--color-white);
-    --button-secondary-text-color: var(--color-white);
-    --button-tertiary-text-color: var(--color-white);
     --input-type-range-border-width: .1rem;
     --input-type-range-height: 1rem;
     --input-type-range-box-shadow: var(--drop-shadow);
     --input-type-range-thumb-width: 3rem;
     --input-type-range-thumb-height: 3rem;
-    --toggle-switch-padding: 1.2rem .8rem;
     --toggle-switch-track-border-width: 0;
     --toggle-switch-thumb-border-width: .1rem;
     --toggle-switch-thumb-width: 3rem;
     --toggle-switch-track-width: 6rem;
-    --toggle-switch-track-padding: .2rem 0;
     --toggle-switch-border-color: var(--color-medium-gray);
     --toggle-switch-with-icon-thumb-background: var(--color-scheme-background);
-    --button-large-icon-padding: 1rem 2rem;
     --form-input-icon-left-position: 2rem;
     --flexible-scroll-container-fixed-wrapper-box-shadow: var(--drop-shadow);
     --flexible-scroll-container-scroll-wrapper-box-shadow: var(--inner-shadow);
@@ -74,8 +74,10 @@ html {
     --toggle-switch-track-box-shadow: var(--inner-shadow);
     --toggle-switch-switch-label-thumb-width: 1.9rem;
     --toggle-switch-thumb-box-shadow: var(--drop-shadow);
+    --toggle-switch-icon-left-position: .8rem;
+    --toggle-switch-icon-right-position: .8rem;
+    --toggle-switch-height: 2.5rem;
     --form-input-transition: transition: all 500ms ease-in-out;
-    --button-icon-only-width: 5.4rem;
     --hyperlink-color-highlighted-lightness-light-mode: 50%;
     --secondary-color-hue: 183;
     --secondary-color-saturation: 53%;
@@ -83,7 +85,6 @@ html {
     --tertiary-color-hue: 183;
     --tertiary-color-saturation: 23%;
     --tertiary-color-lightness: 50%;
-    --button-background-color-highlighted: var(--color-light-gray);
     --form-input-with-icon-padding: calc(var(--default-padding) * 2);
     --tag-border-radius: 1rem;
     --default-border-color: light-dark(var(--color-light-gray), var(--color-gray-80));
@@ -95,6 +96,6 @@ html {
     --site-footer-background: var(--transparent-background);
     --default-background: light-dark(var(--color-white) / .2, var(--color-black) / .2);
     --headline-font-weight: normal;
-
-    --accordion-border-color-open: red;
+    --accordion-border-color-open: transparent;
+    --label-text-font-size: 1.5rem;
 }

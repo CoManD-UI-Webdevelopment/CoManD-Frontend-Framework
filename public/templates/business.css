@@ -1,4 +1,4 @@
-html {
+:root {
     --primary-color-hue: 216;
     --primary-color-saturation: 80%;
     --primary-color-lightness: 25%;
@@ -46,27 +46,31 @@ html {
         background: var(--colored-background-gradient);
     }
 
-    option {
-        color: var(--color-scheme-text-color-inverted);
+    @layer base {      
+        a.active:not([class*="icon"]), li.active > a:not([class*="icon"]) {
+            color: var(--dark-blue);
+        }
+
+        option {
+            color: var(--color-scheme-text-color-inverted);
+        }
+
+        input, select, textarea, .input {
+            background: none;
+        }
+    
+        :is(input:not([type="range"]), select, textarea, .input):focus {
+            background: rgba(255, 255, 255, .1)
+        }
+    
+        :is(input, select, textarea, .input):focus::placeholder {
+            color: var(--color-scheme-text-color);
+        }
     }
 
-    a.active:not([class*="icon"]), li.active > a:not([class*="icon"]) {
-        color: var(--dark-blue);
-    }
-
-    input, select, textarea, .input {
-        background: none;
-    }
-
-    :is(input:not([type="range"]), select, textarea, .input):focus {
-        background: rgba(255, 255, 255, .1)
-    }
-
-    :is(input, select, textarea, .input):focus::placeholder {
-        color: var(--color-scheme-text-color);
-    }
-
-    tr.active td, td.active {
-        background: rgba(255, 255, 255, var(--reduced-opacity));
+    @layer components {  
+        tr.active td, td.active {
+            background: rgba(255, 255, 255, var(--reduced-opacity));
+        }
     }
 }

@@ -1,9 +1,9 @@
-/* breakpoints.css - last update: 2025/10/20
+/* breakpoints.css - last update: 2026/06/16
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES IN template.css OR YOUR OWN breakpoint-css
 */
 /* begin css for medium breakpoint ------------------------------------------------------------------------------------------ */
 @media only screen and (width <= 1023px) {
-    html, .wrap-no-medium-devices {
+    :root, .wrap-no-medium-devices {
         --grid-columns: 8; /* grid-columns */
         --grid-small-span: calc(var(--grid-columns) / 4); /* default column span smaller part */
         --default-line-height: 1.5; /* avoids hyperlinks inside text to be to narrow to each other */
@@ -16,66 +16,70 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         min-height: 100dvh;
     }
 
-    .top-on-medium-devices {
-        order: -1;
-    }
+    @layer components {
+        /* hide navigation */
+        .main-navigation-wrapper {
+            display: flex;
 
-    /* begin column-count */
-    .column-count-4 {
-        column-count: 2;
-    }
-    /* end column-count */
+            nav {
+                display: none;
+            }
 
-    /* hide navigation */
-    .main-navigation-wrapper {
-        display: flex;
-
-        nav {
-            display: none;
+            /* show button to potentially toggle off-canvas */
+            #toggle-offcanvas {
+                display: inline-flex;
+            }
         }
     }
 
-    /* show button to potentially toggle off-canvas */
-    .main-navigation-wrapper #toggle-offcanvas {
-        display: inline-flex;
-    }
-
-    [class*="grid-item"] {
-        grid-column: span var(--grid-columns)
-    }
-
-    .grid-container-create-columns > .grid-item-half-width {
-        grid-column: span var(--grid-columns);
-    }
-
-    .hide-for-medium, .hide-for-small-up, .hide-for-large-down {
-        display: none !important;
-    }
-
-    .hide-for-medium-up {
-        display: block !important;
-    }
-
-    input.replace-input-type:where([type="checkbox"], [type="radio"]) {
-        transform: scale(1.4); /* scale radiobuttons and checkbox to double of the original size (to click them more easily) */
-        margin: 0 var(--default-margin) 0 0;
-    }
-
-    .flex-direction-row-for-medium {
-        flex-direction: row !important;
-    }
-
-    .flex-container {
-        .flex-item-flex-1-medium {
-            flex: 1;
+    @layer utilities {
+        /* begin column-count */
+        .column-count-4 {
+            column-count: 2;
         }
+        /* end column-count */
         
-        .flex-item-flex-2-medium {
-            flex: 2;
+        [class*="grid-item"] {
+            grid-column: span var(--grid-columns)
         }
-        
-        .flex-item-flex-3-medium {
-            flex: 3;
+    
+        .grid-container-create-columns > .grid-item-half-width {
+            grid-column: span var(--grid-columns);
+        }
+    
+        .hide-for-medium, .hide-for-small-up, .hide-for-large-down {
+            display: none !important;
+        }
+    
+        .hide-for-medium-up {
+            display: block !important;
+        }
+
+        .top-on-medium-devices {
+            order: -1;
+        }
+
+        input.replace-input-type:where([type="checkbox"], [type="radio"]) {
+            transform: scale(1.4); /* scale radiobuttons and checkbox to double of the original size (to click them more easily) */
+            margin: 0 var(--default-margin) 0 0;
+        }
+    
+        .flex-direction-row-for-medium {
+            flex-direction: row !important;
+        }
+    
+        .flex-container {
+            .flex-item-flex-1-medium {
+                flex: 1;
+            }
+            
+            .flex-item-flex-2-medium {
+                flex: 2;
+            }
+            
+            .flex-item-flex-3-medium {
+                flex: 3;
+            }
         }
     }
 }
@@ -83,7 +87,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 
 /* begin css for small breakpoint ------------------------------------------------------------------------------------------ */
 @media only screen and (width <= 640px) {
-    html, .wrap-no-small-devices {
+    :root, .wrap-no-small-devices {
         --grid-columns: 4; /* grid-columns */
         --grid-small-span: var(--grid-columns); /* default column span smaller part */
         --grid-large-span: var(--grid-columns); /* default column span larger part */
@@ -93,201 +97,208 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
         --golden-ratio-large-width: 100%; /* set to full width to use entire space */
     }
 
-    .top-on-small-devices {
-        order: -1;
-    }
-
-    /* begin column-count */
-    [class*="column-count"] {
-        column-count: 1;
-    }
-    /* end column-count */
-
-    :is(button, .button, input[type="submit"]):not(.stretch-on-small-devices) {
-        width: auto;
-    }
-
-    :is(label, .label) {
-        &.inline {
-            flex-direction: column;
-
-            > span.label-text {
-                margin: 0 0 calc(var(--default-margin) / 2) 0;
-            }
-
-            & > span {
-                align-self: flex-start;
-            }
-
-            &:not(.textarea) > * {
-                align-self: flex-start;
-            }
+    @layer base {
+        hr {
+            margin: var(--default-margin);
+        }
+    
+        main {
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 
-    .flex-container {
-        flex-direction: column; /* arrange flex-items vertically */
+    @layer components {
+        :is(button, .button, input[type="submit"]) {
+            width: 100%;
+            float: none;
+            text-align: center;
 
-        > * {
-            max-width: 100%;
-        }
-
-        &.align-items-flex-start {
-            justify-content: flex-start !important;
-        }
-
-        &.align-items-center {
-            justify-content: center !important;
-        }
-
-         &.align-items-flex-end {
-            justify-content: flex-end !important;
-        }
-
-        &.justify-content-flex-start {
-            align-items: flex-start;
-        }
-
-        &.justify-content-center {
-            align-items: center;
-        }
-
-        &.justify-content-bottom, &.justify-content-flex-end {
-            align-items: flex-end;
-        }
-
-        .flex-item-flex-1-small {
-            flex: 1;
-        }
-        
-        .flex-item-flex-2-small {
-            flex: 2;
-        }
-        
-        .flex-item-flex-3-small {
-            flex: 3;
-        }
-
-        &.row-for-small, &.no-wrap-on-small-devices {
-            flex-direction: row; /* arrange flex-items horizontally */
-
-            & > * {
+            &:not(.stretch-on-small-devices) {
                 width: auto;
             }
         }
 
-        :where(input, select, textarea, .input) {
-            width: 100%;
-        }
-    }
-
-    .flex-direction-row-for-devices {
-        flex-direction: row !important;
-    }
-
-    [class*="grid-container"][class$="fractions"] {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    button, .button, input[type="submit"] {
-        width: 100%;
-        float: none;
-        text-align: center;
-    }
-
-    .button-wrapper {
-        &.flex-none > :where(button, .button) {
-            width: auto;
+        fieldset {
+            > label:first-child {
+                margin-top: 0;
+            }
+    
+            [class*="grid-container"] {
+                --grid-gap: calc(var(--grid-gap) / 2);
+            }
+    
+            &.flex-container, & > .flex-container {
+                gap: calc(var(--default-gap) * 2);
+            }
         }
 
-        &.align-right {
-            flex-direction: column-reverse;
-        }
+        :is(label, .label) {
+            &.inline {
+                flex-direction: column;
 
-        &.stretch-on-small-devices {
-            button, .button {
-                flex: 1;
+                > span.label-text {
+                    margin: 0 0 calc(var(--default-margin) / 2) 0;
+                }
+
+                & > span {
+                    align-self: flex-start;
+                }
+
+                &:not(.textarea) > * {
+                    align-self: flex-start;
+                }
             }
         }
     }
 
-    .flex-container.align-bottom > *,
-    fieldset > .flex-container > * {
-        align-self: flex-start;
-        width: 100%;
-    }
-
-    fieldset {
-        > label:first-child {
-            margin-top: 0;
+    @layer utilities {
+        .button-wrapper {
+            &.flex-none > :where(button, .button) {
+                width: auto;
+            }
+    
+            &.align-right {
+                flex-direction: column-reverse;
+            }
+    
+            &.stretch-on-small-devices {
+                button, .button {
+                    flex: 1;
+                }
+            }
         }
 
-        [class*="grid-container"] {
-            --grid-gap: calc(var(--grid-gap) / 2);
+        /* begin column-count */
+        [class*="column-count"] {
+            column-count: 1;
+        }
+        /* end column-count */
+
+        .flex-container {
+            flex-direction: column; /* arrange flex-items vertically */
+    
+            > * {
+                max-width: 100%;
+            }
+    
+            &.align-items-flex-start {
+                justify-content: flex-start !important;
+            }
+    
+            &.align-items-center {
+                justify-content: center !important;
+            }
+    
+             &.align-items-flex-end {
+                justify-content: flex-end !important;
+            }
+    
+            &.justify-content-flex-start {
+                align-items: flex-start;
+            }
+    
+            &.justify-content-center {
+                align-items: center;
+            }
+    
+            &.justify-content-bottom, &.justify-content-flex-end {
+                align-items: flex-end;
+            }
+    
+            .flex-item-flex-1-small {
+                flex: 1;
+            }
+            
+            .flex-item-flex-2-small {
+                flex: 2;
+            }
+            
+            .flex-item-flex-3-small {
+                flex: 3;
+            }
+    
+            &.row-for-small, &.no-wrap-on-small-devices {
+                flex-direction: row; /* arrange flex-items horizontally */
+    
+                & > * {
+                    width: auto;
+                }
+            }
+    
+            :where(input, select, textarea, .input) {
+                width: 100%;
+            }
+        }
+    
+        .flex-direction-row-for-devices {
+            flex-direction: row !important;
+        }
+    
+        [class*="grid-container"][class$="fractions"] {
+            grid-template-columns: repeat(1, 1fr);
         }
 
-        &.flex-container, & > .flex-container {
-            gap: calc(var(--default-gap) * 2);
+        .flex-container.align-bottom > *,
+        fieldset > .flex-container > * {
+            align-self: flex-start;
+            width: 100%;
         }
-    }
 
-    .replace-input-type + .label-text, .label :where(.switch-label-wrapper, .toggle-switch) .label-text {
-        margin: 0;
-    }
-
-    :is(label.toggle-switch, .label .toggle-switch) input {
-        width: 4rem;
-    }
-
-    .inline input:where([type="date"], [type="number"], [type="color"]) {
-        max-width: none;
-    }
-
-    .input-wrapper {
-        flex-direction: row; /* avoid flex-items to be arranged vertically */
-
-        input[type="search"] {
-            flex: 1;
+        .inline input:where([type="date"], [type="number"], [type="color"]) {
+            max-width: none;
         }
-    }
 
-    .input-wrapper :where(button, .button, input, select, textarea), input:is([type="checkbox"], [type="radio"]),
-    :where(label, .label) .flex-container :where(button, .button) {
-        width: auto;
-    }
+        .input-wrapper {
+            flex-direction: row; /* avoid flex-items to be arranged vertically */
 
-    .place-inside + :where(input, select, textarea, .input) {
-        align-self: auto;
-    }
+            input[type="search"] {
+                flex: 1;
+            }
+        }
 
-    [class*="grid-container"] > :where(h1, h2, h3, h4, h5, h6) {
-        margin-top: var(--default-margin);
-    }
+        .input-wrapper :where(button, .button, input, select, textarea), input:is([type="checkbox"], [type="radio"]),
+        :where(label, .label) .flex-container :where(button, .button) {
+            width: auto;
+        }
 
-    .hide-for-small, .hide-for-medium-down, .hide-for-large-down {
-        display: none !important;
-        float: none;
-    }
+        [class*="grid-container"] > :where(h1, h2, h3, h4, h5, h6) {
+            margin-top: var(--default-margin);
+        }    
+    
+        .hide-for-small, .hide-for-medium-down, .hide-for-large-down {
+            display: none !important;
+            float: none;
+        }
+    
+        .hide-for-small-up {
+            display: block !important;
+        }
 
-    .hide-for-small-up {
-        display: block !important;
-    }
+        :where(label, .label) .flex-container {
+            flex-direction: row;
+        }
 
-    hr {
-        margin: var(--default-margin);
-    }
+        :is(label.toggle-switch, .label .toggle-switch) input {
+            width: 4rem;
+        }
+     
+        .multiple-switch .flex-container {
+            flex-direction: row;
+        }
 
-    main {
-        padding-left: 0;
-        padding-right: 0;
-    }
+        .place-inside + :where(input, select, textarea, .input) {
+            align-self: auto;
+        }
 
-    .multiple-switch .flex-container {
-        flex-direction: row;
-    }
+        .replace-input-type + .label-text, .label :where(.switch-label-wrapper, .toggle-switch) .label-text {
+            margin: 0;
+        }
 
-    :where(label, .label) .flex-container {
-        flex-direction: row;
+        .top-on-small-devices {
+            order: -1;
+        }
+    
     }
 }
 /* end css for small breakpoint ------------------------------------------------------------------------------------------ */

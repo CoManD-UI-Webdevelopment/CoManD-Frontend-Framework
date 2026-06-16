@@ -1,5 +1,5 @@
 /* begin template 'material-web' */
-html {
+:root {
     /* overwrite variables from framework.css */
     --default-font-family: Roboto, sans-serif;
     --default-font-size: 1.4rem;
@@ -49,54 +49,55 @@ html {
     --colored-background-gradient-rotated: linear-gradient(0deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
-:where(button, .button) {
-    &:not(.primary) {
-        background: var(--color-white);
+@layer base {
+    :where(button, .button, input[type="submit"]) {
+        &:not(.primary) {
+            background: var(--color-white);
+    
+            span {
+                color: var(--primary-color);
+            }
+        }
+    
+        &.primary {
+            background: var(--colored-background-gradient);
 
-        span {
-            color: var(--primary-color);
+            &:hover, &:active, &:focus {
+                --primary-color-lightness: 74%;
+                --button-box-shadow-higlighted: 0 .1rem .1rem var(--color-gray-50);
+            }
+        }
+
+    
+        & > [class*="icon-"]:not(:only-child) {
+            top: 0;
         }
     }
 
-    &.primary {
-        &:hover, &:active, &:focus {
-            --primary-color-lightness: 74%;
-            --button-box-shadow-higlighted: 0 .1rem .1rem var(--color-gray-50);
+    :is(input, select, textarea, .input) {
+        &:focus {
+            background: hsl(from var(--primary-color) h 30% l / .2);
         }
     }
-}
-
-select {
-    padding: var(--form-input-padding);
-}
-
-.main-navigation-wrapper {
-    box-shadow: none;
-}
-
-tr {
-    background: none;
-}
-
-:where(button, .button, input[type="submit"]) {
-    &.primary {
-        background: var(--colored-background-gradient);
+    
+    select {
+        padding: var(--form-input-padding);
     }
 
-    & > [class*="icon-"]:not(:only-child) {
-        top: 0;
+    tr {
+        background: none;
     }
 }
 
-:is(input, select, textarea, .input) {
-    &:focus {
-        background: hsl(from var(--primary-color) h 30% l / .2);
+@layer components {
+    .main-navigation-wrapper {
+        box-shadow: none;
     }
-}
 
-.system-message {
-    & > input[type="checkbox"] {
-        line-height: .3;
+    .system-message {
+        & > input[type="checkbox"] {
+            line-height: .3;
+        }
     }
 }
 
@@ -118,7 +119,9 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
-    .site-wrapper {
-        background-image: url("../images/background/background-material-web-darkmode.jpg");
+    @layer components {
+        .site-wrapper {
+            background-image: url("../images/background/background-material-web-darkmode.jpg");
+        }
     }
 }

@@ -35,7 +35,7 @@
             white-space: nowrap;
         }
 
-        > a {
+        >a {
             display: flex;
             flex: none;
             text-decoration: none;
@@ -50,7 +50,7 @@
 
     main {
         .width-limitation-wrapper {
-            > section {
+            >section {
                 padding: var(--default-padding);
             }
 
@@ -78,7 +78,7 @@
 
         h3.headline-demopage {
             background: none;
-            gap: var(--default-gap-half);
+            gap: var(--gap-small);
         }
 
         fieldset h3.headline-demopage {
@@ -95,7 +95,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: var(--default-gap-half);
+            gap: var(--gap-small);
             text-align: center;
             color: var(--color-white);
             padding: calc(var(--default-padding) / 2);
@@ -107,13 +107,88 @@
             margin-bottom: 2rem;
             border-radius: var(--default-border-radius);
 
-            span, span[class*="icon-"] {
+            span,
+            span[class*="icon-"] {
                 color: inherit;
                 font-size: inherit;
             }
 
             span[class*="icon-"] {
                 font-size: 3rem;
+            }
+        }
+
+        .function-opacity {
+            .demo-color-wrapper {
+                &:nth-child(1) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .1);
+                    }
+                }
+
+                &:nth-child(2) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .2);
+                    }
+                }
+
+                &:nth-child(3) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .3);
+                    }
+                }
+
+                &:nth-child(4) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .4);
+                    }
+                }
+
+                &:nth-child(5) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .5);
+                    }
+                }
+
+                &:nth-child(6) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .6);
+                    }
+                }
+
+                &:nth-child(7) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .7);
+                    }
+                }
+
+                &:nth-child(8) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .8);
+                    }
+                }
+
+                &:nth-child(9) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), .9);
+                    }
+                }
+
+                &:nth-child(10) {
+                    .color {
+                        background-color: --opacity(var(--primary-color), 1);
+                    }
+                }
+            }
+        }
+
+        .sibling-index {
+            .demo-color-wrapper {
+                display: block;
+                width: 7.5rem;
+                aspect-ratio: 1/1;
+                border-radius: var(--full-circle);
+                background: hsl(0, calc(sibling-index() * 10%), 50%);
             }
         }
 
@@ -124,7 +199,10 @@
             gap: .5rem;
             text-align: center;
 
-            > span {
+            >span {
+                text-align: center;
+                display: block;
+
                 &:first-child {
                     display: block;
                     width: 7.5rem;
@@ -135,15 +213,15 @@
         }
     }
 
-    @media only screen and (width <= 1023px) {
+    @media only screen and (width <=1023px) {
         .sidebar {
             display: none;
         }
     }
 }
 
-#flex-section .flex-container > *,
-#grid-section [class*="grid-"] > div {
+#flex-section .flex-container>*,
+#grid-section [class*="grid-"]>div {
     box-shadow: var(--default-box-shadow);
     background: var(--color-scheme-background);
 }
@@ -151,9 +229,9 @@
 .box.center-content {
     height: 15rem;
 
-    > div {
+    >div {
         border: 1px dashed gray;
-    }    
+    }
 }
 
 #frontend-framework-demo {
@@ -184,7 +262,7 @@
                 flex: 1;
             }
 
-            > .box-header {
+            >.box-header {
                 display: flex;
                 align-items: center;
                 border-radius: 0;
@@ -229,7 +307,7 @@
             }
         }
 
-        & > h3 {
+        &>h3 {
             padding: 1rem;
             margin: 0;
         }
@@ -272,26 +350,26 @@
     #grid-complex {
         grid-template-columns: 1fr 2fr 1fr;
 
-        > div:nth-child(1) {
+        >div:nth-child(1) {
             grid-row: 1 / span 2;
         }
 
-        > div:nth-child(4) {
+        >div:nth-child(4) {
             grid-column: 2 / span 2;
             grid-row: 3 / span 2;
         }
 
-        > div:nth-child(9) {
+        >div:nth-child(9) {
             grid-column: 1 / span 2;
         }
 
-        > div:nth-child(12) {
+        >div:nth-child(12) {
             grid-column: 2 / span 2;
         }
     }
 
-    #flex-section .flex-container > *,
-    #grid-section [class*="grid-"] > div {
+    #flex-section .flex-container>*,
+    #grid-section [class*="grid-"]>div {
         text-align: center;
         padding: var(--default-padding);
         border: var(--default-border);
@@ -299,6 +377,16 @@
 
     main {
         flex: 1 0 auto;
+    }
+}
+
+#template-neumorphic {
+    .demo-color-wrapper {
+        > :first-child {
+            border: 0;
+            border-radius: var(--default-border-radius);
+            box-shadow: var(--drop-shadow);
+        }
     }
 }
 
@@ -337,10 +425,10 @@
             }
         }
 
-        > div > ul > li {
+        >div>ul>li {
             margin-left: 0;
 
-            &:first-child > a {
+            &:first-child>a {
                 font-weight: bold;
                 text-transform: uppercase;
             }
@@ -350,7 +438,7 @@
             margin: calc(var(--default-margin) / 2);
             border-color: var(--default-border-color);
 
-            & + * {
+            &+* {
                 margin: 0;
             }
 

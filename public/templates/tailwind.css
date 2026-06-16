@@ -1,12 +1,12 @@
 /* begin template 'tailwind' */
-html {
+:root {
     /* overwrite variables from framework.css */
     --box-border-color: #e5e7eb;
     --hyperlink-color: var(--primary-color);
     --primary-color: rgb(37, 99, 235);
     --button-background: rgb(29, 78, 216);
     --button-border-radius: 0.8rem;
-    --headline-text-color: rgb(41, 37, 36);
+    --headline-text-color-light: rgb(41, 37, 36);
     --default-text-color: rgb(87, 83, 78);
     --headline-text-color-h1: var(--primary-color);
     --default-font-family: ui-sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
@@ -18,54 +18,54 @@ html {
     --default-border-radius: 1.2rem;
 }
 
-:where(button, .button) {
-    &:not(.primary) {
-        background: var(--color-white);
+@layer base {
+    :where(button, .button, input[type="submit"]) {
+        &:not(.primary) {
+            background: var(--color-white);
+    
+            span {
+                color: var(--primary-color);
+            }
+        }
+    
+        &.primary {
+            background: var(--colored-background-gradient);
 
-        span {
-            color: var(--primary-color);
+            &:hover, &:active, &:focus {
+                --primary-color-lightness: 74%;
+                --button-box-shadow-higlighted: 0 .1rem .1rem var(--color-gray-50);
+            }
+        }
+
+        & > [class*="icon-"]:not(:only-child) {
+            top: 0;
         }
     }
 
-    &.primary {
-        &:hover, &:active, &:focus {
-            --primary-color-lightness: 74%;
-            --button-box-shadow-higlighted: 0 .1rem .1rem var(--color-gray-50);
+    :is(input, select, textarea, .input) {
+        &:focus {
+            background: hsl(from var(--primary-color) h 30% l / .2);
         }
     }
-}
-
-select {
-    padding: var(--form-input-padding);
-}
-
-.main-navigation-wrapper {
-    box-shadow: none;
-}
-
-tr {
-    background: none;
-}
-
-:where(button, .button, input[type="submit"]) {
-    &.primary {
-        background: var(--colored-background-gradient);
+    
+    select {
+        padding: var(--form-input-padding);
     }
 
-    & > [class*="icon-"]:not(:only-child) {
-        top: 0;
-    }
+    tr {
+        background: none;
+    }  
 }
 
-:is(input, select, textarea, .input) {
-    &:focus {
-        background: hsl(from var(--primary-color) h 30% l / .2);
+@layer components {
+    .main-navigation-wrapper {
+        box-shadow: none;
     }
-}
 
-.system-message {
-    & > input[type="checkbox"] {
-        line-height: .3;
+    .system-message {
+        & > input[type="checkbox"] {
+            line-height: .3;
+        }
     }
 }
 
@@ -87,8 +87,10 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
-    .site-wrapper {
-        background-image: url("../images/background/background-material-web-darkmode.jpg");
+    @layer components {
+        .site-wrapper {
+            background-image: url("../images/background/background-material-web-darkmode.jpg");
+        }
     }
 }
 /* end template 'tailwind' */

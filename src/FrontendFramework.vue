@@ -5,8 +5,7 @@
                 <header class="grid-container-create-columns">
                     <div class="company-logo">
                         <a href="./" title="Tooltip">
-                            <img class="show-in-dark-mode-only" src="/images/logos/logo-darkmode.svg"
-                                alt="Company Logo Dark Mode" />
+                            <img class="show-in-dark-mode-only" src="/images/logos/logo-darkmode.svg" alt="Company Logo Dark Mode" />
                             <img class="show-in-light-mode-only" src="/images/logos/logo.svg" alt="Company Logo" />
                         </a>
                     </div>
@@ -258,10 +257,12 @@
                     </div>
                     <!-- end table of contents -->
                     <!-- begin comand-versions -->
-                    <dl class="box-footer comand-versions">
-                        <dt>Frontend-Framework Version:</dt>
-                        <dd>{{ packageJson.version }}</dd>
-                    </dl>
+                    <div class="flex-container justify-content-center">
+                        <dl class="box-footer comand-versions">
+                            <dt>Frontend-Framework Version:</dt>
+                            <dd>{{ packageJson.version }}</dd>
+                        </dl>
+                    </div>
                     <!-- end comand-versions -->
                 </div>
                 <div v-else>
@@ -934,7 +935,73 @@
                                 <span>Hyperlink highlighted</span>
                             </span>
                         </div>
-                        <h3>Shades of gray</h3>
+                        <h3>Opacity set by CSS-Function</h3>
+                        <div class="function-opacity flex-container flex-items-flex-none no-wrap-on-small-devices">
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>10%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>20%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>30%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>40%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>50%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>60%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>70%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>80%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>90%</span>
+                            </span>
+                            <span class="demo-color-wrapper">
+                                <span class="color"></span>
+                                <span>100%</span>
+                            </span>
+                        </div>
+                        <h3>Color set by Sibling-index()</h3>
+                        <div class="sibling-index flex-container flex-items-flex-none no-wrap-on-small-devices">
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                            <span class="demo-color-wrapper">
+                            </span>
+                        </div>
+                        <h3>Shades of gray (predefined by variables)</h3>
                         <div class="flex-container flex-items-flex-none no-wrap-on-small-devices">
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-white)"></span>
@@ -942,39 +1009,39 @@
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-10)"></span>
-                                <span>Gray 10 % <br />(light-gray)</span>
+                                <span>Gray 10% <br />(light-gray)</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-20)"></span>
-                                <span>Gray 20 %</span>
+                                <span>Gray 20%</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-30)"></span>
-                                <span>Gray 30 %</span>
+                                <span>Gray 30%</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-40)"></span>
-                                <span>Gray 40 %</span>
+                                <span>Gray 40%</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-50)"></span>
-                                <span>Gray 50 % <br />(medium-gray)</span>
+                                <span>Gray 50% <br />(medium-gray)</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-60)"></span>
-                                <span>Gray 60 %</span>
+                                <span>Gray 60%</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-70)"></span>
-                                <span>Gray 70 %</span>
+                                <span>Gray 70%</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-80)"></span>
-                                <span>Gray 80 %</span>
+                                <span>Gray 80%</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-gray-90)"></span>
-                                <span>Gray 90 % <br />(dark-gray)</span>
+                                <span>Gray 90% <br />(dark-gray)</span>
                             </span>
                             <span class="demo-color-wrapper">
                                 <span style="background: var(--color-black)"></span>
@@ -1139,28 +1206,28 @@
 
                         <!-- begin system-messages-->
                         <h3 id="anchor-system-messages">System Messages</h3>
-                        <div class="system-message error full-width">
+                        <div class="system-message error full-width-display-flex">
                             <h4 class="message-headline">
                                 <span class="icon-cancel"></span>
                                 <span>Error message</span>
                             </h4>
                             <input type="checkbox" title="Close system message">
                         </div>
-                        <div class="system-message warning full-width">
+                        <div class="system-message warning full-width-display-flex">
                             <h4 class="message-headline">
                                 <span class="icon-warning"></span>
                                 <span>Warning message</span>
                             </h4>
                             <input type="checkbox" title="Close system message">
                         </div>
-                        <div class="system-message success full-width">
+                        <div class="system-message success full-width-display-flex">
                             <h4 class="message-headline">
                                 <span class="icon-check"></span>
                                 <span>Success message</span>
                             </h4>
                             <input type="checkbox" title="Close system message">
                         </div>
-                        <div class="system-message info full-width">
+                        <div class="system-message info full-width-display-flex">
                             <h4 class="message-headline">
                                 <span class="icon-info"></span>
                                 <span>Info message</span>
@@ -2010,7 +2077,7 @@
                                     <span class="label-text">
                                         <span>Label for Replaced Input-Type-Radio:<sup>*</sup></span>
                                     </span>
-                                    <span class="flex-container">
+                                    <span class="flex-container flex-items-flex-none">
                                         <label for="replaced-radio1">
                                             <input type="radio" class="replace-input-type" id="replaced-radio1"
                                                 name="radiogroup" value="1" />
@@ -2040,7 +2107,7 @@
                                 <h4>Replaced Input-Type-Checkboxes</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Replaced Input-Type-Checkboxes:</span>
-                                    <span class="flex-container">
+                                    <span class="flex-container flex-items-flex-none">
                                         <label for="replaced-checkbox1">
                                             <input type="checkbox" class="replace-input-type" id="replaced-checkbox1"
                                                 name="checkboxgroup" value="1" />
@@ -2071,7 +2138,7 @@
                                 <h4>Toggle-Switch-Radio</h4>
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group:</span>
-                                    <span class="flex-container">
+                                    <span class="flex-container flex-items-flex-none">
                                         <label class="toggle-switch" for="radio5">
                                             <input type="radio" id="radio5" name="toggle-switch-radiogroup-1"
                                                 value="1" />
@@ -2097,7 +2164,7 @@
 
                                 <div class="label inline">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group (colored):</span>
-                                    <span class="flex-container">
+                                    <span class="flex-container flex-items-flex-none">
                                         <label class="toggle-switch colored" for="radio9">
                                             <input type="radio" id="radio9" name="toggle-switch-radiogroup-3"
                                                 value="5" />
@@ -2114,27 +2181,33 @@
 
                                 <!-- begin toggle-switch-checkbox -->
                                 <h4>Toggle-Switch-Checkbox</h4>
-                                <div class="flex-container">
-                                    <label class="toggle-switch" for="toggle-switch-with-icon">
-                                        <input type="checkbox" class="icon-cancel-circle" id="toggle-switch-with-icon"
-                                            value="1" />
-                                        <span class="label-text">Toggle-Switch with Icon</span>
-                                    </label>
-                                    <label class="toggle-switch" for="toggle-switch-with-icon-disabled">
-                                        <input type="checkbox" class="icon-cancel-circle" disabled="disabled"
-                                            id="toggle-switch-with-icon-disabled" value="1" />
-                                        <span class="label-text">Toggle-Switch with Icon (disabled)</span>
-                                    </label>
-                                    <label class="toggle-switch" for="toggle-switch-with-icon-disabled-checked">
-                                        <input type="checkbox" class="icon-check-circle" disabled="disabled"
-                                            checked="checked" id="toggle-switch-with-icon-disabled-checked" value="1" />
-                                        <span class="label-text">Toggle-Switch with Icon (disabled and checked)</span>
-                                    </label>
+                                <div class="label inline">
+                                    <span class="label-text"><span>Label for
+                                            Toggle-Switches with Icon:</span></span>
+                                    <span class="flex-container flex-items-flex-none">
+                                        <label class="toggle-switch" for="toggle-switch-with-icon">
+                                            <input type="checkbox" class="icon-cancel-circle"
+                                                id="toggle-switch-with-icon" value="1" />
+                                            <span class="label-text">Toggle-Switch with Icon</span>
+                                        </label>
+                                        <label class="toggle-switch" for="toggle-switch-with-icon-disabled">
+                                            <input type="checkbox" class="icon-cancel-circle" disabled="disabled"
+                                                id="toggle-switch-with-icon-disabled" value="1" />
+                                            <span class="label-text">Toggle-Switch with Icon (disabled)</span>
+                                        </label>
+                                        <label class="toggle-switch" for="toggle-switch-with-icon-disabled-checked">
+                                            <input type="checkbox" class="icon-check-circle" disabled="disabled"
+                                                checked="checked" id="toggle-switch-with-icon-disabled-checked"
+                                                value="1" />
+                                            <span class="label-text">Toggle-Switch with Icon (disabled and
+                                                checked)</span>
+                                        </label>
+                                    </span>
                                 </div>
                                 <div class="label inline">
                                     <span class="label-text"><span>Label for
                                             Toggle-Switch-Checkbox-Group:<sup>*</sup></span></span>
-                                    <span class="flex-container">
+                                    <span class="flex-container flex-items-flex-none">
                                         <label class="toggle-switch" for="checkbox5">
                                             <input type="checkbox" id="checkbox5" name="toggle-switch-chechboxgroup-1"
                                                 value="1" />
@@ -2163,7 +2236,7 @@
                                             (colored):<sup>*</sup>
                                         </span>
                                     </span>
-                                    <span class="flex-container">
+                                    <span class="flex-container flex-items-flex-none">
                                         <label class="toggle-switch colored" for="checkbox9">
                                             <input type="checkbox" id="checkbox9" name="toggle-switch-chechboxgroup-3"
                                                 value="5" />
@@ -2180,10 +2253,10 @@
 
                                 <!-- begin toggle-switch-radio with switch-label -->
                                 <h4>Toggle-Switch-Radio with Switch-Label</h4>
-                                <div class="label inline">
+                                <div class="label">
                                     <span class="label-text">Label for Toggle-Switch-Radio-Group with
                                         Switch-Label:</span>
-                                    <span class="flex-container">
+                                    <span class="flex-container flex-items-flex-none">
                                         <label class="toggle-switch" for="toggle-switch-radio1" title="default">
                                             <span class="switch-label-wrapper">
                                                 <input type="radio" id="toggle-switch-radio1"
@@ -2247,12 +2320,12 @@
 
                                 <!-- begin toggle-switch-checkbox with switch-label -->
                                 <h4>Toggle-Switch-Checkbox with Switch-Label</h4>
-                                <div class="label inline">
+                                <div class="label">
                                     <span class="label-text">
                                         <span>Label for Toggle-Switch-Checkbox with Switch-Label:</span>
                                         <a href="#" class="icon-questionmark-circle" title="Open help"></a>
                                     </span>
-                                    <span class="flex-container">
+                                    <span class="flex-container flex-items-flex-none">
                                         <label class="toggle-switch" for="toggle-switch-checkbox1" title="default">
                                             <span class="switch-label-wrapper">
                                                 <input type="checkbox" id="toggle-switch-checkbox1"
