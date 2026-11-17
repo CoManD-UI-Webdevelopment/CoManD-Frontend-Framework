@@ -22,7 +22,7 @@
     --button-padding: 1rem 2.8rem;
     --button-border-width: .3rem;
     --button-border-color: rgba(255, 255, 255, 0);
-    --button-text-color: #6C7587;
+    --button-text-color: #4a5163;
     --button-background: #EBECF0;
     --button-font-weight: var(--font-weight-normal);
     --button-border-width-highlighted: .3rem;
@@ -30,11 +30,11 @@
     --button-min-height: 5.4rem;
     --button-padding-small: 0.5rem 1rem;
     --button-padding-large: 1rem 2rem;
-    --button-primary-text-color: var(--color-white);
-    --button-secondary-text-color: var(--color-white);
-    --button-tertiary-text-color: var(--color-white);
+    --button-primary-text-color: var(--primary-color-contrast-text);
+    --button-secondary-text-color: var(--secondary-color-contrast-text);
+    --button-tertiary-text-color: var(--tertiary-color-contrast-text);
     --button-box-shadow: var(--drop-shadow);
-    --button-icon-only-width: 5.4rem;
+    --button-icon-only-padding: 1rem;
     --button-large-icon-padding: 1rem 2rem;
     --button-background-color-highlighted: var(--color-light-gray);
     --form-input-box-shadow: var(--inner-shadow);
@@ -78,7 +78,7 @@
     --toggle-switch-icon-right-position: .8rem;
     --toggle-switch-height: 2.5rem;
     --form-input-transition: transition: all 500ms ease-in-out;
-    --hyperlink-color-highlighted-lightness-light-mode: 50%;
+    --hyperlink-color-highlighted-lightness-light-mode: 24%;
     --secondary-color-hue: 183;
     --secondary-color-saturation: 53%;
     --secondary-color-lightness: 50%;
@@ -87,8 +87,8 @@
     --tertiary-color-lightness: 50%;
     --form-input-with-icon-padding: calc(var(--default-padding) * 2);
     --tag-border-radius: 1rem;
-    --default-border-color: light-dark(var(--color-light-gray), var(--color-gray-80));
-    --hyperlink-color: var(--primary-color);
+    --default-border-color: light-dark(var(--color-light-30), var(--color-gray-80));
+    --hyperlink-color: var(--primary-color-text);
     --hyperlink-color-saturation: 70%;
     --active-table-cell-background: light-dark(var(--color-light-gray), var(--color-gray-80));
     --primary-color-opacity: .1;
@@ -98,4 +98,6 @@
     --headline-font-weight: normal;
     --accordion-border-color-open: transparent;
     --label-text-font-size: 1.5rem;
+    --form-input-background-highlighted: white;
+    --image-border-radius: var(--border-radius-small);
 }

@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-framework.css - last update: 2026/06/16
+framework.css - last update: 2026/11/17
 IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING) - DO CHANGES/OVERWRITES IN template.css or a custom css-file ONLY
 */
 
@@ -189,8 +189,8 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     --transparent-border: var(--default-border-width) var(--default-border-style) transparent; /* transparent border */
 
     /* outlines */
-    --default-outline-color: var(--color-scheme-text-color); /* outline-color */
-    --default-outline-width: 0; /* outline-width */
+    --default-outline-color: transparent; /* outline-color (transparent-color ensures high-contrast-accessiblity-mode can be used */
+    --default-outline-width: .1rem; /* outline-width */
     --default-outline-style: var(--default-border-style); /* outline-style */
     --default-outline: var(--default-outline-width) var(--default-outline-style) var(--default-outline-color); /* default-outline */
     --default-outline-reduced-opacity: var(--default-outline-width) var(--default-outline-style) var(--secondary-color-reduced-opacity); /* default-outline with reduced opacity */
@@ -249,8 +249,12 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     /* info-colors - keep identical for light- and dark-mode due to accessibility reasons */
     --info-color-hue: 217; /* info-color-hue */
     --info-color-saturation: 100%; /* info-color-saturation */
-    --info-color-lightness: 63%; /* info-color-lightness */
+    --info-color-lightness: 42%; /* info-color-lightness */
     --info-color: hsl(var(--info-color-hue), var(--info-color-saturation), var(--info-color-lightness)); /* info-color */
+    --error-color-text: light-dark(hsl(var(--error-color-hue) var(--error-color-saturation) min(var(--error-color-lightness), 36%)), hsl(var(--error-color-hue) var(--error-color-saturation) max(var(--error-color-lightness), 68%))); /* error-color for use as TEXT/ICON/BORDER-color on default backgrounds (min. contrast 4.5:1 in light and dark mode) */
+    --warning-color-text: light-dark(hsl(var(--warning-color-hue) var(--warning-color-saturation) min(var(--warning-color-lightness), 27%)), hsl(var(--warning-color-hue) var(--warning-color-saturation) max(var(--warning-color-lightness), 50%))); /* warning-color for use as TEXT/ICON/BORDER-color on default backgrounds (min. contrast 4.5:1 in light and dark mode) */
+    --success-color-text: light-dark(hsl(var(--success-color-hue) var(--success-color-saturation) min(var(--success-color-lightness), 28%)), hsl(var(--success-color-hue) var(--success-color-saturation) max(var(--success-color-lightness), 55%))); /* success-color for use as TEXT/ICON/BORDER-color on default backgrounds (min. contrast 4.5:1 in light and dark mode) */
+    --info-color-text: light-dark(hsl(var(--info-color-hue) var(--info-color-saturation) min(var(--info-color-lightness), 40%)), hsl(var(--info-color-hue) var(--info-color-saturation) max(var(--info-color-lightness), 65%))); /* info-color for use as TEXT/ICON/BORDER-color on default backgrounds (min. contrast 4.5:1 in light and dark mode) */
 
     /* primary-color (i.e. for primary-content) */
     --primary-color-hue: 201; /* primary-color-hue */
@@ -276,6 +280,15 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     --tertiary-color: hsl(var(--tertiary-color-hsl-values)); /* tertiary-color */
     --tertiary-color-reduced-opacity: hsl(from var(--tertiary-color) h s l / var(--reduced-opacity)); /* tertiary-color with reduced opacity */
 
+    /* accessible variants of primary-, secondary- and tertiary-color (derived from the hue/saturation/lightness-tokens, so every template gets them automatically) */
+    --color-contrast-threshold: 40%; /* background-lightness above this value gets black, below white text */
+    --primary-color-contrast-text: hsl(0 0% clamp(0%, calc((var(--color-contrast-threshold) - var(--primary-color-lightness)) * 1000), 100%)); /* text-color for use ON primary-color-backgrounds (black or white) */
+    --secondary-color-contrast-text: hsl(0 0% clamp(0%, calc((var(--color-contrast-threshold) - var(--secondary-color-lightness)) * 1000), 100%)); /* text-color for use ON secondary-color-backgrounds (black or white) */
+    --tertiary-color-contrast-text: hsl(0 0% clamp(0%, calc((var(--color-contrast-threshold) - var(--tertiary-color-lightness)) * 1000), 100%)); /* text-color for use ON tertiary-color-backgrounds (black or white) */
+    --primary-color-text: light-dark(hsl(var(--primary-color-hue) var(--primary-color-saturation) min(var(--primary-color-lightness), 25%)), hsl(var(--primary-color-hue) var(--primary-color-saturation) max(var(--primary-color-lightness), 68%))); /* primary-color for use as TEXT/ICON-color on default backgrounds (min. contrast 4.5:1) */
+    --secondary-color-text: light-dark(hsl(var(--secondary-color-hue) var(--secondary-color-saturation) min(var(--secondary-color-lightness), 25%)), hsl(var(--secondary-color-hue) var(--secondary-color-saturation) max(var(--secondary-color-lightness), 68%))); /* secondary-color for use as TEXT/ICON-color on default backgrounds (min. contrast 4.5:1) */
+    --tertiary-color-text: light-dark(hsl(var(--tertiary-color-hue) var(--tertiary-color-saturation) min(var(--tertiary-color-lightness), 25%)), hsl(var(--tertiary-color-hue) var(--tertiary-color-saturation) max(var(--tertiary-color-lightness), 68%))); /* tertiary-color for use as TEXT/ICON-color on default backgrounds (min. contrast 4.5:1) */
+
     /* text-colors */
     --default-text-color-hue: 0; /* default-text-color-hue */
     --default-text-color-saturation: 0%; /* default-text-color-saturation */
@@ -286,18 +299,19 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     /* hyperlink-color (default) (i.e. for :link, :visited) */
     --hyperlink-color-hue-light-mode: var(--primary-color-hue); /* hyperlink-color-hue for light-mode */
     --hyperlink-color-saturation-light-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for light-mode */
-    --hyperlink-color-lightness-light-mode: var(--primary-color-lightness); /* hyperlink-color-lightness  for light-mode */
+    --hyperlink-color-lightness-light-mode: min(var(--primary-color-lightness), 25%); /* hyperlink-color-lightness  for light-mode */
     --hyperlink-color-light-mode: hsl(var(--hyperlink-color-hue-light-mode), var(--hyperlink-color-saturation-light-mode), var(--hyperlink-color-lightness-light-mode)); /* hyperlink-color for light-mode */
     --hyperlink-color-hue-dark-mode: var(--primary-color-hue); /* hyperlink-color-hue for dark-mode */
     --hyperlink-color-saturation-dark-mode: var(--primary-color-saturation); /* hyperlink-color-saturation for dark-mode */
     --hyperlink-color-lightness-dark-mode: 45%; /* hyperlink-color-lightness for dark-mode */
     --hyperlink-color-dark-mode: hsl(var(--hyperlink-color-hue-dark-mode), var(--hyperlink-color-saturation-dark-mode), var(--hyperlink-color-lightness-dark-mode)); /* hyperlink-color for dark-mode */
     --hyperlink-color: light-dark(var(--hyperlink-color-light-mode), var(--hyperlink-color-dark-mode)); /* hyperlink-color */
+    --hyperlink-color-contrast-text: light-dark(var(--color-white), var(--color-black)); /* text-color for use ON hyperlink-color-backgrounds (hyperlink-color is dark in light mode and light in dark mode) */
 
     /* hyperlink-color (highlighted) (i.e. for :hover, :active, :focus, .active) */
     --hyperlink-color-highlighted-hue-light-mode: var(--primary-color-hue); /* hyperlink-color-highlighted-hue for light-mode */
     --hyperlink-color-highlighted-saturation-light-mode: var(--primary-color-saturation); /* hyperlink-color-highlighted-saturation for light-mode */
-    --hyperlink-color-highlighted-lightness-light-mode: 40%; /* hyperlink-color-highlighted-lightness for light-mode */
+    --hyperlink-color-highlighted-lightness-light-mode: min(var(--primary-color-lightness), 24%); /* hyperlink-color-highlighted-lightness for light-mode */
     --hyperlink-color-highlighted-light-mode: hsl(var(--hyperlink-color-highlighted-hue-light-mode), var(--hyperlink-color-highlighted-saturation-light-mode), var(--hyperlink-color-highlighted-lightness-light-mode)); /* hyperlink-color-highlighted for light-mode */
     --hyperlink-color-highlighted-hue-dark-mode: var(--primary-color-hue); /* hyperlink-color-highlighted-hue for dark-mode */
     --hyperlink-color-highlighted-saturation-dark-mode: var(--primary-color-saturation); /* hyperlink-color-highlighted-saturation for dark-mode */
@@ -346,7 +360,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     --headline-font-size-h6: calc(var(--default-font-size) * 1.1); /* font-size for h6 */
     --headline-text-color-light: var(--light-mode-text-color); /* text-color for headlines in light-mode */
     --headline-text-color-dark: var(--dark-mode-text-color); /* text-color for headlines in dark-mode */
-    --headline-text-color: lightdark(var(--headline-text-color-light), var(----headline-text-color-dark)); /* text-color for headlines */
+    --headline-text-color: light-dark(var(--headline-text-color-light), var(--headline-text-color-dark)); /* text-color for headlines */
     --headline-text-color-h1: var(--headline-text-color); /* text-color for h1 */
     --headline-text-color-h2: var(--headline-text-color); /* text-color for h2 */
     --headline-text-color-h3: var(--headline-text-color); /* text-color for h3 */
@@ -536,12 +550,12 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     /* button typography */
     --button-text-color: var(--color-white); /* text-color for buttons */
     --button-text-color-highlighted: var(--default-text-color); /* highlighted text-color for buttons */
-    --button-primary-text-color: var(--button-text-color); /* text-color for primary-buttons */
-    --button-primary-text-color-highlighted: var(--primary-color); /* highlighted text-color for primary-buttons */
-    --button-secondary-text-color: var(--button-text-color); /* text-color for primary-buttons */
-    --button-secondary-text-color-highlighted: var(--secondary-color); /* highlighted text-color for primary-buttons */
-    --button-tertiary-text-color: var(--button-text-color); /* text-color for primary-buttons */
-    --button-tertiary-text-color-highlighted: var(--tertiary-color); /* highlighted text-color for primary-buttons */
+    --button-primary-text-color: var(--primary-color-contrast-text); /* text-color for primary-buttons */
+    --button-primary-text-color-highlighted: var(--primary-color-text); /* highlighted text-color for primary-buttons */
+    --button-secondary-text-color: var(--secondary-color-contrast-text); /* text-color for primary-buttons */
+    --button-secondary-text-color-highlighted: var(--secondary-color-text); /* highlighted text-color for primary-buttons */
+    --button-tertiary-text-color: var(--tertiary-color-contrast-text); /* text-color for primary-buttons */
+    --button-tertiary-text-color-highlighted: var(--tertiary-color-text); /* highlighted text-color for primary-buttons */
     --button-font-size: var(--font-size-medium); /* font-size for buttons */
     --button-font-weight: var(--font-weight-bold); /* font-weight for buttons */
     --button-line-height: var(--line-height-none); /* line-height for buttons */
@@ -567,6 +581,11 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     /* buttons with icon only */
     --button-icon-only-padding: var(--button-padding); /* padding for buttons with icon only */
     --button-icon-only-width: auto; /* width for buttons with icon only */
+
+    /* button back-to-top */
+    --button-back-to-top-right: 2rem; /* position right for back-to-top-button */
+    --button-back-to-top-bottom: 2rem; /* position bottom for back-to-top-button */
+    --button-back-to-top-padding: var(--default-padding); /* padding for back-to-top-button */
 
     /* primary buttons (outline, border, box-shadow, background) */
     --button-primary-outline: var(--default-outline); /* outline for primary-buttons */
@@ -821,10 +840,12 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     --image-border: var(--image-border-width) var(--image-border-style) var(--image-border-color); /* border for images */
     --image-border-radius: var(--default-border-radius); /* border-radius for images */
     --image-box-shadow: var(--default-box-shadow); /* box-shadow for images */
-    --figcaption-padding: var(--default-padding); /* padding for figcaption */
+    /* --figure-gap: --spacing(2); gap between image and figcaption */
+    --figure-gap: .5rem; /* gap between image and figcaption */
+    --figcaption-padding: 0; /* padding for figcaption */
     --figcaption-border: none; /* border for figcaption */
     --figcaption-background: none; /* background(-color) for figcaption */
-    --figcaption-color: var(--default-text-color); /* text-color for figcaption */
+    --figcaption-color: var(--color-scheme-text-color); /* text-color for figcaption */
     --figcaption-border-radius: 0; /* border-radius for figcaption */
     /* END IMAGES ------------------------------------------------------------------------------------------ */
 
@@ -885,7 +906,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 
     /* table-head */
     --table-head-background: var(--primary-color); /* background(-color) for table-head */
-    --table-head-text-color: var(--color-white); /* text-color for table-head */
+    --table-head-text-color: var(--primary-color-contrast-text); /* text-color for table-head */
     --table-head-font-size: var(--font-size-large); /* font-size for table-head */
     --table-head-font-weight: var(--font-weight-bold); /* font-weight-color for table-head */
     --table-head-text-align: center; /* text-align for table-head */
@@ -974,6 +995,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
     --color-scheme-tertiary-color: light-dark(var(--light-mode-tertiary-color), var(--dark-mode-tertiary-color)); /* assign tertiary-color to color-scheme */
     --color-scheme-text-color-inverted: light-dark(var(--dark-mode-text-color), var(--light-mode-text-color)); /* assign an inverted text-color to color-scheme */
     --color-scheme-background: light-dark(var(--light-mode-background), var(--dark-mode-background)); /* assign background(-color) to color-scheme */
+    --color-scheme-background-subtle: light-dark(var(--color-light-gray), var(--color-gray-80)); /* subtle alternative background-color (i.e. striped sections), follows the color-scheme (--default-background does not) */
     --color-scheme-background-inverted: light-dark(var(--dark-mode-background), var(--light-mode-background)); /* assign an inverted background(-color) to color-scheme */
     /* END VARIABLES FOR NATIVE COLOR-SCHEMES (LIGHT-MODE SET BY BROWSER/OS)------------------------------------------------------------------------------------------ */
 }
@@ -1009,7 +1031,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
 }
 
 @function --z-index(--layer) {
-     /* convention: 1=base 2=dropdown 3=sticky 4=modal-backdrop 5=modal 6=toast */
+    /* convention: 1=base 2=dropdown 3=sticky 4=modal-backdrop 5=modal 6=toast */
     result: calc(var(--layer) * 100);
 }
 
@@ -1399,21 +1421,6 @@ body, fr {
             background: none !important;
         }
     
-        &[type="search"] {
-            box-sizing: border-box; /* overwrite normalize.css */
-    
-            input {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-    
-            & + :is(button, .button) {
-                border-radius: var(--form-input-border-radius);
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
-        }
-    
         &:is([type="checkbox"], [type="radio"]) {
             margin-bottom: 0;
             min-width: auto;
@@ -1456,6 +1463,10 @@ body, fr {
             width: auto;
             border-radius: 0;
             min-width: 0;
+        }
+
+        &[type="search"] {
+            box-sizing: border-box;
         }
     }
     
@@ -1655,6 +1666,9 @@ body, fr {
 
     /* begin images */
     figure {
+        display: flex;
+        flex-direction: column;
+        gap: var(--figure-gap);
         margin: 0;
 
         figcaption {
@@ -2007,8 +2021,8 @@ details {
     box-shadow: var(--accordion-box-shadow);
 
     &.primary {
-        --accordion-summary-text-color: var(--color-white);
-        --accordion-summary-text-color-highlighed: var(--primary-color);
+        --accordion-summary-text-color: var(--primary-color-contrast-text);
+        --accordion-summary-text-color-highlighed: hsl(var(--primary-color-hue) var(--primary-color-saturation) min(var(--primary-color-lightness), 25%));
         --accordion-summary-background: var(--primary-color);
         --accordion-summary-background-highlighed: var(--color-white);
         border-color: var(--primary-color);
@@ -2016,7 +2030,7 @@ details {
 
     &.secondary {
         --accordion-summary-text-color: var(--color-white);
-        --accordion-summary-text-color-highlighed: var(--secondary-color);
+        --accordion-summary-text-color-highlighed: hsl(var(--secondary-color-hue) var(--secondary-color-saturation) min(var(--secondary-color-lightness), 25%));
         --accordion-summary-background: var(--secondary-color);
         --accordion-summary-background-highlighed: var(--color-white);
         border-color: var(--secondary-color);
@@ -2024,7 +2038,7 @@ details {
 
     &.tertiary {
         --accordion-summary-text-color: var(--color-white);
-        --accordion-summary-text-color-highlighed: var(--tertiary-color);
+        --accordion-summary-text-color-highlighed: hsl(var(--tertiary-color-hue) var(--tertiary-color-saturation) min(var(--tertiary-color-lightness), 25%));
         --accordion-summary-background: var(--tertiary-color);
         --accordion-summary-background-highlighed: var(--color-white);
         border-color: var(--tertiary-color);
@@ -2078,21 +2092,21 @@ details {
     }
 
     &.primary {
-        --accordion-summary-text-color-open: var(--primary-color);
+        --accordion-summary-text-color-open: var(--primary-color-text);
     }
 
     &.secondary {
-        --accordion-summary-text-color-open: var(--secondary-color);
+        --accordion-summary-text-color-open: var(--secondary-color-text);
     }
 
     &.tertiary {
-        --accordion-summary-text-color-open: var(--tertiary-color);
+        --accordion-summary-text-color-open: var(--tertiary-color-text);
     }
 
     &.primary, &.secondary, &.tertiary {
         summary {
             * {
-                color: var(--color-white);
+                color: var(--accordion-summary-text-color);
             }
         }
 
@@ -2161,17 +2175,17 @@ details {
     min-width: var(--box-min-width);
 
     &.primary {
-        --box-header-text-color: var(--color-white);
+        --box-header-text-color: var(--primary-color-contrast-text);
         --box-header-background: var(--primary-color);
     }
 
     &.secondary {
-        --box-header-text-color: var(--color-white);
+        --box-header-text-color: var(--secondary-color-contrast-text);
         --box-header-background: var(--secondary-color);
     }
 
     &.tertiary {
-        --box-header-text-color: var(--color-white);
+        --box-header-text-color: var(--tertiary-color-contrast-text);
         --box-header-background: var(--tertiary-color);
     }
 
@@ -2219,6 +2233,7 @@ details {
 
         fieldset {
             background: none;
+            box-shadow: none;
         }
 
         > img:first-child {
@@ -2321,9 +2336,10 @@ details {
 
     /* buttons with icon-only (and optional hidden accessible-text) */
     &:has(> span[class*="icon-"]:only-child),
-    &:has(span.hidden) {
+    &:has(span.hidden, span.visually-hidden) {
         padding: var(--button-icon-only-padding);
         width: var(--button-icon-only-width);
+        aspect-ratio: 1/1;
     }
 
     &:is(:hover, :active, :focus-visible, .active) {
@@ -2538,14 +2554,29 @@ details {
 /* begin back-to-top-button */
 #back-to-top-button {
     position: fixed;
-    right: 2rem;
-    bottom: 2rem;
+    width: auto; /* ensure width is not overwritten by defaut-button */
+    right: var(--button-back-to-top-right);
+    bottom: var(--button-back-to-top-bottom);
+    padding: var(--button-back-to-top-padding);
+    aspect-ratio: 1/1;
+    animation: back-to-top linear;
+    animation-timeline: scroll();
+    animation-range: entry 0% cover 0.1%;
     /* z-index: --z-index(2); */
     z-index: 200;
     line-height: var(--button-line-height);
 
     [class*="icon-"] {
         line-height: inherit; /* avoids icon-bounding-box to be stretched by global line-height */
+    }
+
+    @keyframes back-to-top {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 }
 
@@ -2647,16 +2678,18 @@ input, textarea {
 
     &.primary, &.secondary, &.tertiary {
         --tag-background: var(--primary-color);
-        --tag-text-color: var(--color-white);
+        --tag-text-color: var(--primary-color-contrast-text);
         --tag-border-color: var(--tag-background);
     }
 
     &.secondary {
         --tag-background: var(--secondary-color);
+        --tag-text-color: var(--secondary-color-contrast-text);
     }
 
     &.tertiary {
         --tag-background: var(--tertiary-color);
+        --tag-text-color: var(--tertiary-color-contrast-text);
     }
 }
 /* end tags ------------------------------------------------------------------------------------------ */
@@ -2753,19 +2786,19 @@ fieldset {
     }
 
     .error {
-        --status-color: var(--error-color);
+        --status-color: var(--error-color-text);
     }
 
     .warning {
-        --status-color: var(--warning-color);   
+        --status-color: var(--warning-color-text);   
     } 
 
     .success {
-        --status-color: var(--success-color);   
+        --status-color: var(--success-color-text);   
     } 
 
     .info {
-        --status-color: var(--info-color);   
+        --status-color: var(--info-color-text);   
     } 
 
     /* begin disabled fieldset */
@@ -2898,7 +2931,7 @@ label, .label {
         }
         /* end mandatory asterisk */
 
-        :where(button, span)[class*="icon-"], button:has([class*="icon-"]) {
+        :where(button, span)[class*="icon-"], :is(button, span[role="button"]):has([class*="icon-"]) {
             align-self: center;  /* avoids stretching if label wraps */
             border-radius: var(--full-circle);
             line-height: var(--line-height-none);
@@ -2943,34 +2976,34 @@ label, .label {
 
     &.error {
         --form-input-filled-background: var(--form-input-filled-background-error);
-        --status-color-label-text: var(--error-color);
-        --status-color-help-icon: var(--error-color);
+        --status-color-label-text: var(--error-color-text);
+        --status-color-help-icon: var(--error-color-text);
         --status-color-help-icon-background: var(--error-color);
-        --status-color-border: var(--error-color);
+        --status-color-border: var(--error-color-text);
     }
 
     &.warning {
         --form-input-filled-background: var(--form-input-filled-background-warning);
-        --status-color-label-text: var(--warning-color);
-        --status-color-help-icon: var(--warning-color);
+        --status-color-label-text: var(--warning-color-text);
+        --status-color-help-icon: var(--warning-color-text);
         --status-color-help-icon-background: var(--warning-color);
-        --status-color-border: var(--warning-color);
+        --status-color-border: var(--warning-color-text);
     }
 
     &.success {
         --form-input-filled-background: var(--form-input-filled-background-success);
-        --status-color-label-text: var(--success-color);
-        --status-color-help-icon: var(--success-color);
+        --status-color-label-text: var(--success-color-text);
+        --status-color-help-icon: var(--success-color-text);
         --status-color-help-icon-background: var(--success-color);
-        --status-color-border: var(--success-color);
+        --status-color-border: var(--success-color-text);
     }
 
     &.info {
         --form-input-filled-background: var(--form-input-filled-background-info);
-        --status-color-label-text: var(--info-color);
-        --status-color-help-icon: var(--info-color);
+        --status-color-label-text: var(--info-color-text);
+        --status-color-help-icon: var(--info-color-text);
         --status-color-help-icon-background: var(--info-color);
-        --status-color-border: var(--info-color);
+        --status-color-border: var(--info-color-text);
     }
 
     :where(.label-text :is(a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
@@ -2978,7 +3011,7 @@ label, .label {
     }
 
     &:has(:user-invalid) :is(.label-text :is(span, a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
-        --status-color: var(--error-color);
+        --status-color: var(--error-color-text);
     }
 
     &:has(:user-valid) :where(.label-text :is(a[class*="icon-"], a:has([class*="icon-"])), .place-inside[class*="icon-"], sup, input, select, textarea) {
@@ -3037,7 +3070,7 @@ label, .label {
 
     /* use :where for selectors to set specificity to 0 */
 
-    &:not(.inline) :where(.label-text:not(.hidden)) {
+    &:not(.inline) :where(.label-text:not(.hidden, .visually-hidden)) {
         display: flex;
         margin-bottom: calc(var(--default-margin) / 2);
     }
@@ -3051,7 +3084,7 @@ label, .label {
         margin-bottom: 0;
     }
 
-    :where(input, select, textarea, .input):not(:first-child) {
+    :where(input:not([type="color"]), select, textarea, .input):not(:first-child) {
         display: block;
         width: 100%;
     }
@@ -3173,11 +3206,24 @@ td {
 
     &:has(.button) {
         align-items: stretch;
+
+        .button {
+            aspect-ratio: 1/1;
+            width: auto;
+        }
     }
 
-    &:has([type="search"]) input {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
+    &:has(input[type="search"]) {
+        [type="search"] {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+    
+            & + :is(button, .button) {
+                border-radius: var(--form-input-border-radius);
+                border-top-left-radius: 0 !important; /* avoid overwrite from button inside @component */
+                border-bottom-left-radius: 0 !important; /* avoid overwrite from button inside @component */
+            }
+        }
     }
 }
 
@@ -3447,11 +3493,11 @@ label { /* label required for specificity */
     }
 
     &.colored {
-        --status-color: var(--error-color);
+        --status-color: var(--error-color-text);
 
         input {
             &:checked {
-                --status-color: var(--success-color);
+                --status-color: var(--success-color-text);
 
                 &::after {
                     border-color: var(--status-color);
@@ -3465,7 +3511,7 @@ label { /* label required for specificity */
         }
 
         &:has(input:checked) {
-            --status-color: var(--success-color);
+            --status-color: var(--success-color-text);
         }
 
         &:is(:hover, :active, :focus) {
@@ -3581,11 +3627,11 @@ label { /* label required for specificity */
 
     &.colored {
         .switch-label-wrapper {
-            --status-color: var(--error-color);
+            --status-color: var(--error-color-text);
             border-color: var(--status-color);
 
             span.label-text {
-                --status-color: var(--error-color);
+                --status-color: var(--error-color-text);
                 color: var(--status-color);
 
                 &::before {
@@ -3594,12 +3640,12 @@ label { /* label required for specificity */
             }
 
             &:has(input:checked) {
-                --status-color: var(--success-color); /* overwrite default-checked-colored */
+                --status-color: var(--success-color-text); /* overwrite default-checked-colored */
             }
 
             input:checked {
                 & ~ span.label-text {
-                    --status-color: var(--success-color);
+                    --status-color: var(--success-color-text);
 
                     &::before {
                         background: var(--status-color);
@@ -3635,7 +3681,7 @@ label { /* label required for specificity */
     .label-text {
         display: inline-flex;
 
-        button[class*="icon-"], button:has([class*="icon-"]) {
+        button[class*="icon-"], :is(button, span[role="button"]):has([class*="icon-"]) {
             margin-left: calc(var(--default-margin) / 2);
         }
     }
@@ -3739,15 +3785,15 @@ label { /* label required for specificity */
 /* begin headlines ------------------------------------------------------------------------------------------ */
 h1, h2, h3, h4, h5, h6 {
     &.primary {
-        --headline-text-color: var(--primary-color);
+        --headline-text-color: var(--primary-color-text);
     }
 
     &.secondary {
-        --headline-text-color: var(--secondary-color);
+        --headline-text-color: var(--secondary-color-text);
     }
 
     &.tertiary {
-        --headline-text-color: var(--tertiary-color);
+        --headline-text-color: var(--tertiary-color-text);
     }
 }
 
@@ -3762,21 +3808,21 @@ a {
     }
 
     &.primary {
-        --hyperlink-color: var(--primary-color);
-        --hyperlink-text-decoration-color: var(--primary-color);
-        --hyperlink-color-highlighted: var(--primary-color);
+        --hyperlink-color: var(--primary-color-text);
+        --hyperlink-text-decoration-color: var(--primary-color-text);
+        --hyperlink-color-highlighted: var(--primary-color-text);
     }
 
     &.secondary {
-        --hyperlink-color: var(--secondary-color);
-        --hyperlink-text-decoration-color: var(--secondary-color);
-        --hyperlink-color-highlighted: var(--secondary-color);
+        --hyperlink-color: var(--secondary-color-text);
+        --hyperlink-text-decoration-color: var(--secondary-color-text);
+        --hyperlink-color-highlighted: var(--secondary-color-text);
     }
 
     &.tertiary {
-        --hyperlink-color: var(--tertiary-color);
-        --hyperlink-text-decoration-color: var(--tertiary-color);
-        --hyperlink-color-highlighted: var(--tertiary-color);
+        --hyperlink-color: var(--tertiary-color-text);
+        --hyperlink-text-decoration-color: var(--tertiary-color-text);
+        --hyperlink-color-highlighted: var(--tertiary-color-text);
     }
 
     &.disabled {
@@ -3792,7 +3838,7 @@ a {
 /* begin active list-items with links (do not put .active-class on <a>-tag to avoid specificity-collision with active buttons */
 li.active {
     > :is(span, [class*="icon-"]) {
-        color: var(--color-white);
+        color: var(--hyperlink-color-contrast-text);
     }    
     
     > a {
@@ -3807,7 +3853,7 @@ li.active {
 
         &:not([class*="icon-"]) {
             background: var(--hyperlink-color);
-            color: var(--color-white);
+            color: var(--hyperlink-color-contrast-text);
         }
     
     }
@@ -3842,13 +3888,13 @@ span + [class*="icon-"] {
     padding: 0;
 
     &::before {
-        color: var(--secondary-color);
+        color: var(--secondary-color-text);
         font-size: 4rem;
     }
 
     &.primary {
         ::before {
-            color: var(--primary-color);
+            color: var(--primary-color-text);
         }
 
         &:is(:hover, &:active, :focus)::before {
@@ -3858,7 +3904,7 @@ span + [class*="icon-"] {
 
     &.tertiary {
         &::before {
-            color: var(--tertiary-color);
+            color: var(--tertiary-color-text);
         }
 
         &:is(:hover, &:active, :focus)::before {
@@ -4049,7 +4095,7 @@ span + [class*="icon-"] {
     }
 
     /* button to toggle potential offcanvas */
-    #toggle-offcanvas {
+    :is(#toggle-offcanvas, [id^="toggle-offcanvas-"]) {
         margin-left: auto;
         display: none;
         margin-bottom: var(--default-margin);
@@ -4244,7 +4290,7 @@ span + [class*="icon-"] {
             }
 
             /* button to toggle potential offcanvas */
-            #toggle-offcanvas {
+            :is(#toggle-offcanvas, [id^="toggle-offcanvas-"]) {
                 margin-left: auto;
                 margin-bottom: 0;
             }
@@ -4564,33 +4610,33 @@ span + [class*="icon-"] {
 
     /* begin colors */
     .primary-color {
-        color: var(--primary-color);
+        color: var(--primary-color-text);
     }
 
     .secondary-color {
-        color: var(--secondary-color);
+        color: var(--secondary-color-text);
     }
 
     .tertiary-color {
-        color: var(--tertiary-color);
+        color: var(--tertiary-color-text);
     }
 
     .primary a {
-        --hyperlink-color: var(--primary-color);
-        --hyperlink-color-highlighted: var(--primary-color);
-        --hyperlink-text-decoration-color: var(--primary-color);
+        --hyperlink-color: var(--primary-color-text);
+        --hyperlink-color-highlighted: var(--primary-color-text);
+        --hyperlink-text-decoration-color: var(--primary-color-text);
     }
 
     .secondary a {
-        --hyperlink-color: var(--secondary-color);
-        --hyperlink-color-highlighted: var(--secondary-color);
-        --hyperlink-text-decoration-color: var(--secondary-color);
+        --hyperlink-color: var(--secondary-color-text);
+        --hyperlink-color-highlighted: var(--secondary-color-text);
+        --hyperlink-text-decoration-color: var(--secondary-color-text);
     }
 
     .tertiary a {
-        --hyperlink-color: var(--tertiary-color);
-        --hyperlink-color-highlighted: var(--tertiary-color);
-        --hyperlink-text-decoration-color: var(--tertiary-color);
+        --hyperlink-color: var(--tertiary-color-text);
+        --hyperlink-color-highlighted: var(--tertiary-color-text);
+        --hyperlink-text-decoration-color: var(--tertiary-color-text);
     }
 
     .success-color {
@@ -4712,6 +4758,19 @@ span + [class*="icon-"] {
         display: none !important;
     }
 
+    /* hides content visually but keeps it available for screen readers (use for texts of icon-only buttons/links and labels) - ".hidden" removes content for screen readers too! */
+    .visually-hidden, .sr-only {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        clip-path: inset(50%) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+    }
+
     .display-contents {
         display: contents !important; /* remove parent from html (children act normally) */
     }
@@ -4762,6 +4821,8 @@ span + [class*="icon-"] {
 
         > [class*="fixed-wrapper"] {
             border-radius: var(--flexible-scroll-container-border-radius);
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
             flex: none;
             padding: var(--flexible-scroll-container-fixed-wrapper-padding);
             box-shadow: var(--flexible-scroll-container-fixed-wrapper-box-shadow);

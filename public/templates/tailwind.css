@@ -2,7 +2,7 @@
 :root {
     /* overwrite variables from framework.css */
     --box-border-color: #e5e7eb;
-    --hyperlink-color: var(--primary-color);
+    --hyperlink-color: var(--primary-color-text);
     --primary-color: rgb(37, 99, 235);
     --button-background: rgb(29, 78, 216);
     --button-border-radius: 0.8rem;

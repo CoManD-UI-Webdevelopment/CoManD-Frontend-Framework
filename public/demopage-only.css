@@ -70,7 +70,7 @@
             border: var(--default-border);
             border-color: var(--primary-color);
             margin: 0;
-            color: var(--primary-color);
+            color: var(--hyperlink-color-light-mode);
             text-align: center;
             justify-content: center;
             border-radius: var(--default-border-radius);
@@ -84,7 +84,7 @@
         fieldset h3.headline-demopage {
             padding: 0;
             justify-content: flex-start;
-            color: var(--primary-color);
+            color: var(--primary-color-text);
 
             span {
                 color: inherit;
@@ -97,7 +97,7 @@
             justify-content: center;
             gap: var(--gap-small);
             text-align: center;
-            color: var(--color-white);
+            color: var(--primary-color-contrast-text);
             padding: calc(var(--default-padding) / 2);
             background: var(--primary-color);
             font-size: 4rem;
@@ -269,12 +269,12 @@
                 padding: calc(var(--default-padding) / 2) var(--default-padding);
                 justify-content: space-between;
                 background: var(--primary-color);
-                color: var(--color-white);
+                color: var(--primary-color-contrast-text);
                 text-decoration: none;
                 border: var(--primary-border);
 
                 * {
-                    color: var(--color-white);
+                    color: var(--primary-color-contrast-text);
                     margin-bottom: 0;
                 }
 
@@ -404,7 +404,7 @@
             margin: 0;
             padding: calc(var(--default-padding) / 2);
             background: var(--primary-color);
-            color: var(--color-white);
+            color: var(--primary-color-contrast-text);
         }
 
         div {
@@ -441,7 +441,6 @@
             &+* {
                 margin: 0;
             }
-
         }
     }
 }

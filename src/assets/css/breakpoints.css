@@ -26,7 +26,7 @@ IT IS NOT RECOMMENDED TO EDIT THIS FILE (TO AVOID TROUBLESHOOTING AFTER UPDATING
             }
 
             /* show button to potentially toggle off-canvas */
-            #toggle-offcanvas {
+            :is(#toggle-offcanvas, [id^="toggle-offcanvas-"]) {
                 display: inline-flex;
             }
         }

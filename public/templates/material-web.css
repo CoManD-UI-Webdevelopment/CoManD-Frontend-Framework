@@ -32,7 +32,7 @@
     --box-border-color: hsl(from var(--color-black) h s 80%);
     --button-border-radius: 3rem;
     --main-navigation-background: light-dark(var(--color-light-gray), var(--color-dark-gray));
-    --hyperlink-color: var(--primary-color);
+    --hyperlink-color: var(--primary-color-text);
     --hyperlink-color-saturation: 70%;
     --active-table-cell-background: light-dark(var(--color-light-gray), var(--color-gray-80));
     --primary-color-opacity: .1;

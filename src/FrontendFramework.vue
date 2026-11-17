@@ -1,7 +1,7 @@
 <template>
     <div id="frontend-framework-demo" class="demopage">
         <div :id="templateId" class="site-wrapper">
-            <div class="site-header sticky" id="anchor-back-to-top" role="banner">
+            <div class="site-header sticky" id="anchor-back-to-top">
                 <header class="grid-container-create-columns">
                     <div class="company-logo">
                         <a href="./" title="Tooltip">
@@ -11,7 +11,7 @@
                     </div>
                     <!-- begin main-navigation for testing -->
                     <div class="main-navigation-wrapper">
-                        <nav>
+                        <nav aria-label="Navigation 1">
                             <ul>
                                 <li>
                                     <a href="#">
@@ -83,13 +83,13 @@
                         </nav>
                         <a href="#" class="button" id="toggle-offcanvas">
                             <span class="icon-bars"></span>
-                            <span class="hidden">Open navigation</span>
+                            <span class="visually-hidden">Open navigation</span>
                         </a>
                     </div>
                     <!-- end main-navigation for testing -->
                 </header>
             </div>
-            <aside v-if="showSidebar" :class="['sidebar box', { 'open': openSidebar }]">
+            <aside aria-label="Sidebar" v-if="showSidebar" :class="['sidebar box', { 'open': openSidebar }]">
                 <!-- begin inner-sidebar-wrapper -->
                 <div v-if="openSidebar" class="inner-sidebar-wrapper">
                     <h5 class="text-align-center">Site Settings</h5>
@@ -267,11 +267,11 @@
                 </div>
                 <div v-else>
                     <div class="closed-sidebar">
-                        <a href="#" class="button primary" title="Open Template Settings"
+                        <a aria-label="Home" href="#" class="button primary" title="Open Template Settings"
                             @click.prevent="openBox('template')">
                             <span class="icon-home"></span>
                         </a>
-                        <a href="#" class="button primary" title="Open Template Settings"
+                        <a aria-label="Cogs" href="#" class="button primary" title="Open Template Settings"
                             @click.prevent="openBox('table')">
                             <span class="icon-cogs"></span>
                         </a>
@@ -536,7 +536,7 @@
                         <a href="#" class="tertiary">Hyperlink (tertiary)</a><br />
                         <a href="#" class="none">Hyperlink (none/text-color)</a>
                         <h4>Link with icon only</h4>
-                        <a href="#">
+                        <a aria-label="User profile" href="#">
                             <span class="icon-user-profile"></span>
                         </a>
                         <h4>Link with icon and text</h4>
@@ -596,7 +596,7 @@
                         <!--p>
                             <a href="#" id="toggle_stretch_table" title="(add/remove class 'full-width')">Toggle stretched table</a>
                         </p-->
-                        <div class="table-wrapper">
+                        <div class="table-wrapper" tabindex="0" role="region" aria-label="Scrollable table">
                             <table class="full-width">
                                 <caption>Tablecaption</caption>
                                 <thead>
@@ -1245,7 +1245,7 @@
                         </button>
                         <div id="tooltip-target" role="tooltip" popover style="position-anchor: --tooltip-anchor;">
                             <span>This is a popover-tooltip linked to an anchor (the button that opens it)!</span>
-                            <button class="close-tooltip no-style" popovertarget="tooltip-target"
+                            <button aria-label="Cancel circle" class="close-tooltip no-style" popovertarget="tooltip-target"
                                 popovertargetaction="hide" title="Close Tooltip">
                                 <span class="icon-cancel-circle"></span>
                             </button>
@@ -1305,7 +1305,7 @@
                         <div class="button-wrapper align-left">
                             <a class="button" href="#" role="button">
                                 <span class="icon-register"></span>
-                                <span class="hidden">Hidden label-text</span>
+                                <span class="visually-hidden">Hidden label-text</span>
                             </a>
                             <a class="button" href="#" role="button"><span>Button with label-text only</span></a>
                             <a class="button" href="#" role="button">
@@ -1318,7 +1318,7 @@
                         <div class="button-wrapper align-center">
                             <a class="button" href="#" role="button">
                                 <span class="icon-register"></span>
-                                <span class="hidden">Hidden label-text</span>
+                                <span class="visually-hidden">Hidden label-text</span>
                             </a>
                             <a class="button" href="#" role="button"><span>Button with label-text only</span></a>
                             <a class="button" href="#" role="button">
@@ -1331,7 +1331,7 @@
                         <div class="button-wrapper align-right">
                             <button class="button">
                                 <span class="icon-register"></span>
-                                <span class="hidden">Hidden label-text</span>
+                                <span class="visually-hidden">Hidden label-text</span>
                             </button>
                             <button class="button"><span>Button with label-text only</span></button>
                             <button class="button">
@@ -1344,7 +1344,7 @@
                         <div class="button-wrapper space-between">
                             <a class="button" href="#" role="button">
                                 <span class="icon-register"></span>
-                                <span class="hidden">Hidden label-text</span>
+                                <span class="visually-hidden">Hidden label-text</span>
                             </a>
                             <a class="button" href="#" role="button"><span>Button with label-text only</span></a>
                             <a class="button" href="#" role="button">
@@ -1523,23 +1523,23 @@
                         </div>
                         <h4>Buttons with different shapes (and icons only)</h4>
                         <div class="button-wrapper align-left">
-                            <a href="#" class="button primary icon-hexagon use-icon-as-background" role="button">
+                            <a aria-label="Add" href="#" class="button primary icon-hexagon use-icon-as-background" role="button">
                                 <span class="icon-plus"></span>
                             </a>
-                            <a href="#" class="button icon-triangle use-icon-as-background" role="button">
+                            <a aria-label="Add" href="#" class="button icon-triangle use-icon-as-background" role="button">
                                 <span class="icon-plus"></span>
                             </a>
-                            <a href="#" class="button tertiary icon-circle use-icon-as-background" role="button">
+                            <a aria-label="Add" href="#" class="button tertiary icon-circle use-icon-as-background" role="button">
                                 <span class="icon-plus"></span>
                             </a>
-                            <a href="#" class="button tertiary icon-square use-icon-as-background disabled"
+                            <a aria-label="Add" href="#" class="button tertiary icon-square use-icon-as-background disabled"
                                 role="button">
                                 <span class="icon-plus"></span>
                             </a>
-                            <a href="#" class="button confirm icon-square use-icon-as-background" role="button">
+                            <a aria-label="Add" href="#" class="button confirm icon-square use-icon-as-background" role="button">
                                 <span class="icon-plus"></span>
                             </a>
-                            <button href="#" class="button cancel icon-square use-icon-as-background">
+                            <button aria-label="Add" href="#" class="button cancel icon-square use-icon-as-background">
                                 <span class="icon-plus"></span>
                             </button>
                         </div>
@@ -1661,9 +1661,9 @@
                                     <label for="default-inputfield">
                                         <span class="label-text">
                                             <span>Default inputfield:</span>
-                                            <button type="button" class="no-style" href="#" title="Open help">
+                                            <span role="button" tabindex="0" aria-label="Questionmark circle" class="no-style" title="Open help">
                                                 <span class="icon-questionmark-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <input name="default-inputfield" id="default-inputfield"
                                             placeholder="Placeholdertext for default inputfield" type="text" />
@@ -1671,11 +1671,11 @@
                                     <label for="required-inputfield">
                                         <span class="label-text">
                                             <span>Requiered inputfield:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#" title="Open help">
+                                            <span role="button" tabindex="0" aria-label="Questionmark circle" class="no-style" title="Open help">
                                                 <span class="icon-questionmark-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
-                                        <input name="requiered-inputfield" id="requiered-inputfield" required="required"
+                                        <input name="required-inputfield" id="required-inputfield" required="required"
                                             placeholder="Placeholdertext for requiered inputfield" type="text" />
                                     </label>
                                     <label for="textfield1">
@@ -1780,25 +1780,29 @@
                                 <label for="email-inputfield">
                                     <span class="label-text">
                                         <span>Email inputfield:<sup>*</sup></span>
-                                        <button type="button" class="no-style" href="#" title="Open help">
+                                        <span role="button" tabindex="0" aria-label="Questionmark circle" class="no-style" title="Open help">
                                             <span class="icon-questionmark-circle"></span>
-                                        </button>
+                                        </span>
                                     </span>
                                     <input name="email-inputfield" id="email-inputfield" required="required"
                                         placeholder="Placeholdertext for email inputfield" type="email" />
                                 </label>
                                 <div class="flex-container align-flex-end">
                                     <label for="searchfield">
-                                        <span class="label-text"><span>Label for searchfield:</span></span>
+                                        <span class="label-text"><span>Label for searchfield (without button):</span></span>
+                                        <input name="searchfield" id="searchfield" placeholder="Keyword(s)" type="search" />
+                                    </label>
+                                    <label for="searchfield-with-button">
+                                        <span class="label-text"><span>Label for searchfield (with button):</span></span>
                                         <span class="input-wrapper">
-                                            <input name="searchfield" id="searchfield" placeholder="Keyword(s)"
+                                            <input name="searchfield-with-button" id="searchfield-with-button" placeholder="Keyword(s)"
                                                 type="search" />
-                                            <a href="#" class="button flex-none"><span class="icon-search"></span></a>
+                                            <a aria-label="Search" href="#" class="button flex-none"><span class="icon-search"></span></a>
                                         </span>
                                     </label>
                                     <label for="select-file-field">
                                         <span class="label-text"><span>Label for select-file-field:</span></span>
-                                        <input name="select-file-field" id="select-file-field" placeholder="Keyword(s)"
+                                        <input name="select-file-field" id="select-file-field"
                                             type="file" />
                                     </label>
                                 </div>
@@ -1807,11 +1811,11 @@
                                             labels):</span></span>
                                     <span class="input-wrapper">
                                         <label for="zip" class="reset-flex">
-                                            <span class="hidden">Zip</span>
+                                            <span class="visually-hidden">Zip</span>
                                             <input name="zip" id="zip" placeholder="12345" type="number" />
                                         </label>
                                         <label for="city">
-                                            <span class="hidden">City</span>
+                                            <span class="visually-hidden">City</span>
                                             <input name="city" id="city" placeholder="City" type="text" />
                                         </label>
                                     </span>
@@ -1928,9 +1932,9 @@
                                     <label for="inputfield-default">
                                         <span class="label-text">
                                             <span>Inputfield wth <a href="#">link</a> in label:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#" title="Open help">
+                                            <span role="button" tabindex="0" aria-label="Questionmark circle" class="no-style" title="Open help">
                                                 <span class="icon-questionmark-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <input name="inputfield-default" id="inputfield-default" required="required"
                                             placeholder="Placeholdertext for inputfield" type="text" />
@@ -1938,10 +1942,9 @@
                                     <label class="error" for="inputfield-with-error">
                                         <span class="label-text">
                                             <span>Inputfield with error:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#"
-                                                title="Please fill field correctly!">
+                                            <span role="button" tabindex="0" aria-label="Error circle" class="no-style" title="Please fill field correctly!">
                                                 <span class="icon-error-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <input name="inputfield-with-error" id="inputfield-with-error"
                                             required="required" placeholder="Placeholdertext for inputfield with error"
@@ -1950,9 +1953,9 @@
                                     <label class="warning" for="inputfield-with-warning">
                                         <span class="label-text">
                                             <span>Inputfield with warning:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#" title="A warning occurred!">
+                                            <span role="button" tabindex="0" aria-label="Exclamation circle" class="no-style" title="A warning occurred!">
                                                 <span class="icon-exclamation-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <input name="inputfield-with-warning" id="inputfield-with-warning"
                                             required="required"
@@ -1961,10 +1964,9 @@
                                     <label class="success" for="inputfield-with-success">
                                         <span class="label-text">
                                             <span>Inputfield with success:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#"
-                                                title="Field filled correctly!">
+                                            <span role="button" tabindex="0" aria-label="Check circle" class="no-style" title="Field filled correctly!">
                                                 <span class="icon-check-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <input name="inputfield-with-success" id="inputfield-with-success"
                                             required="required"
@@ -1973,9 +1975,9 @@
                                     <label class="info" for="inputfield-with-info">
                                         <span class="label-text">
                                             <span>Inputfield with info:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#" title="Some information!">
+                                            <span role="button" tabindex="0" aria-label="Info circle" class="no-style" title="Some information!">
                                                 <span class="icon-info-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <input name="inputfield-with-info" id="inputfield-with-info" required="required"
                                             placeholder="Placeholdertext for inputfield with info" type="text" />
@@ -1983,15 +1985,15 @@
                                 </div>
                                 <h5>Selectboxes</h5>
                                 <div class="flex-container align-bottom">
-                                    <label for="selectbox-default">
+                                    <label for="selectbox-default-2">
                                         <span class="label-text">
                                             <span>Selectbox with (default with help-icon) and wrapping
                                                 label-text:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#" title="Open help">
+                                            <span role="button" tabindex="0" aria-label="Questionmark circle" class="no-style" title="Open help">
                                                 <span class="icon-questionmark-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
-                                        <select name="selectbox-default" id="selectbox-default" required="required">
+                                        <select name="selectbox-default" id="selectbox-default-2" required="required">
                                             <option value="">Please select&hellip;</option>
                                             <option value="1">Option 1</option>
                                             <option value="2">Option 2</option>
@@ -2001,10 +2003,9 @@
                                     <label class="error" for="selectbox-with-error">
                                         <span class="label-text">
                                             <span>Selectbox with error:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#"
-                                                title="Please fill field correctly!">
+                                            <span role="button" tabindex="0" aria-label="Error circle" class="no-style" title="Please fill field correctly!">
                                                 <span class="icon-error-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <select name="selectbox-with-error" id="selectbox-with-error"
                                             required="required">
@@ -2017,9 +2018,9 @@
                                     <label class="warning" for="selectbox-with-warning">
                                         <span class="label-text">
                                             <span>Selectbox with warning:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#" title="A warning occurred!">
+                                            <span role="button" tabindex="0" aria-label="Exclamation circle" class="no-style" title="A warning occurred!">
                                                 <span class="icon-exclamation-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <select name="selectbox-with-warning" id="selectbox-with-warning"
                                             required="required">
@@ -2032,10 +2033,9 @@
                                     <label class="success" for="selectbox-with-success">
                                         <span class="label-text">
                                             <span>Selectbox with success:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#"
-                                                title="Field filled correctly!">
+                                            <span role="button" tabindex="0" aria-label="Check circle" class="no-style" title="Field filled correctly!">
                                                 <span class="icon-check-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <select name="selectbox-with-success" id="selectbox-with-success"
                                             required="required">
@@ -2048,9 +2048,9 @@
                                     <label class="info" for="selectbox-with-info">
                                         <span class="label-text">
                                             <span>Selectbox with info:<sup>*</sup></span>
-                                            <button type="button" class="no-style" href="#" title="Some information!">
+                                            <span role="button" tabindex="0" aria-label="Info circle" class="no-style" title="Some information!">
                                                 <span class="icon-info-circle"></span>
-                                            </button>
+                                            </span>
                                         </span>
                                         <select name="selectbox-with-info" id="selectbox-with-info" required="required">
                                             <option value="">Please select&hellip;</option>
@@ -2422,9 +2422,9 @@
                                     <span class="label-text" id="label-multiple-switch-radio"
                                         aria-labelledby="label-multiple-switch-radio">
                                         <span>Grouplabel for radio-group styled as multiple-switch</span>
-                                        <button type="button" class="no-style" href="#" title="Open help">
+                                        <span role="button" tabindex="0" aria-label="Questionmark circle" class="no-style" title="Open help">
                                             <span class="icon-questionmark-circle"></span>
-                                        </button>
+                                        </span>
                                     </span>
                                     <span class="switch-wrapper">
                                         <label for="radio-id-1-multi">
@@ -2454,9 +2454,9 @@
                                     <span class="label-text" id="label-multiple-switch-checkbox"
                                         aria-labelledby="label-multiple-switch-checkbox">
                                         <span>Grouplabel for checkbox-group styled as multiple-switch (stretched)</span>
-                                        <button type="button" class="no-style" href="#" title="Open help">
+                                        <span role="button" tabindex="0" aria-label="Questionmark circle" class="no-style" title="Open help">
                                             <span class="icon-questionmark-circle"></span>
-                                        </button>
+                                        </span>
                                     </span>
                                     <span class="switch-wrapper">
                                         <label for="checkbox-id-1-multi">
@@ -2533,7 +2533,7 @@
                     <section>
                         <h2 class="headline-demopage" id="anchor-main-navigation">Main Navigation</h2>
                         <div class="main-navigation-wrapper">
-                            <nav>
+                            <nav aria-label="Navigation 2">
                                 <ul>
                                     <li>
                                         <a href="#">
@@ -2612,13 +2612,13 @@
                             <div>flex-item</div>
                             <div>flex-item</div>
                         </div>
-                        <h3 id="anchor-flex-containers-reset-flex-all">flex-none (for single items)</h3>
+                        <h3 id="anchor-flex-containers-reset-flex-single">flex-none (for single items)</h3>
                         <div class="flex-container">
                             <div class="flex-none">
                                 this flex-item has class "flex-none" which equals (0 0 auto - so the item cannot shrink)
                             </div>
                         </div>
-                        <h3 id="anchor-flex-containers-reset-flex-all">reset-flex (for all items)</h3>
+                        <h3 id="anchor-flex-containers-reset-reset-flex">reset-flex (for all items)</h3>
                         <div class="flex-container reset-flex">
                             <div>flex-item</div>
                             <div>flex-item</div>
@@ -2661,7 +2661,7 @@
                             <div class="fixed-wrapper" style="border: 1px dotted gray;">
                                 Fixed Content
                             </div>
-                            <div class="scroll-wrapper" style="border: 1px dotted gray;">
+                            <div class="scroll-wrapper" style="border: 1px dotted gray;" tabindex="0" role="region" aria-label="Scrollable content">
                                 <ul>
                                     <li>Dynamic Content</li>
                                     <li>Dynamic Content</li>
@@ -2778,7 +2778,7 @@
                 <!-- end grid-containers -->
 
                 <!-- begin back-to-top-button -->
-                <a class="button" id="back-to-top-button" href="#top-of-page" title="Back to top">
+                <a aria-label="Chevron one stripe up" class="button" id="back-to-top-button" href="#top-of-page" title="Back to top">
                     <span class="icon-chevron-one-stripe-up"></span>
                 </a>
                 <!-- end back-to-top-button -->
@@ -2786,7 +2786,7 @@
 
             <!-- begin site-footer -->
             <div class="site-footer">
-                <footer class="width-limitation-wrapper">
+                <footer class="width-limitation-wrapper" aria-label="Site footer">
                     <h6>Site Footer</h6>
                     <ul class="no-list-items">
                         <li>
@@ -2801,7 +2801,7 @@
             <!-- end site-footer -->
 
             <!-- begin copyright-information -->
-            <div class="copyright-information" role="contentinfo">
+            <div class="copyright-information">
                 <a href="https://www.comand-ui.com" target="_blank" lang="en" title="CoManD-UI-Website">© CoManD-UI</a>
             </div>
             <!-- end copyright-information -->
@@ -2868,18 +2868,16 @@ export default {
         },
         selectedTemplate: {
             handler() {
-                let linkTag = document.querySelector('link')
-
-                if (linkTag) {
-                    linkTag.parentNode.removeChild(linkTag)
-                }
+                // remove only the template-stylesheet added by this demo page
+                document.getElementById("cmd-template-stylesheet")?.remove()
 
                 if (this.selectedTemplate !== "blank") {
-                    let newLink = document.createElement('link');
-                    newLink.rel = 'stylesheet';
-                    newLink.href = '/templates/' + this.selectedTemplate + '.css';
+                    const newLink = document.createElement('link')
+                    newLink.id = "cmd-template-stylesheet"
+                    newLink.rel = 'stylesheet'
+                    newLink.href = '/templates/' + this.selectedTemplate + '.css'
 
-                    document.head.appendChild(newLink);
+                    document.head.appendChild(newLink)
                 }
             },
             immediate: true
