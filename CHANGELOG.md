@@ -4,6 +4,8 @@ All notable changes are documented here, newest first. Format: [Keep a Changelog
 
 ## [Unreleased]
 
+## [5.0.0] – 2026-11-17
+
 _Add every new change here before it is released._
 
 ### Added
@@ -59,7 +61,7 @@ _Add every new change here before it is released._
 ### Baseline note (documented 2026-11-17)
 At the time documentation started the working copy contained **uncommitted changes** on top of commit `1d5a147` ("reafactoring to layers", 2026-06-16): `package.json`, `public/demopage-only.css`, `public/templates/neumorphic.css`, `src/FrontendFramework.vue`, `src/assets/css/framework.css` (about +69/−33 lines in total; header dated 2026/06/18). The content of these changes is not itemized yet – review with `git diff` before the next release and list them here.
 
-## [4.5.04] – current `package.json` version
+## [4.5.04]
 - CSS reorganized into cascade layers (`base`, `components`, `utilities`) – commit "reafactoring to layers".
 - `neumorphic.css` template added; templates available then: `business`, `material-web`, `neumorphic`, `tailwind` (`business` was removed later, see Unreleased).
 - Package exports: `styles.css`, `material-web.css`, `tailwind.css`, `demopage-only.css`.
